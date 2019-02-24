@@ -11,7 +11,7 @@ import Link from "./Link";
 
 const propTypes = {
   children: PropTypes.node,
-  style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
+  style: Text.propTypes.style,
 };
 const defaultProps = {
   children: "",

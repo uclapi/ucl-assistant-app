@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 20,
   },
+  padder: {
+    height: 20,
+  },
 });
 
 const initialRegion = {
@@ -103,6 +106,7 @@ class RoomDetailScreen extends Component {
           <View style={styles.navigate}>
             <Button onPress={navigateToLocation}>Directions</Button>
           </View>
+          <View style={styles.padder} />
         </Page>
       </View>
     );

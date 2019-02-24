@@ -61,11 +61,13 @@ class TimetableDetailScreen extends Component {
       latitudeDelta: 0.0012,
       longitudeDelta: 0.0071,
     };
+    const { navigation } = this.props;
     return (
       <TimetableDetailView
         initialRegion={initialRegion}
         date={this.state.date}
         {...this.state.event}
+        navigation={navigation}
       />
     );
   }

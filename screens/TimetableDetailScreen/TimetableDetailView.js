@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import PropTypes from "prop-types";
 import { MapView } from "expo";
 import moment from "moment";
@@ -8,13 +8,22 @@ import {
   TitleText,
   SubtitleText,
   BodyText,
+  Link,
 } from "../../components/Typography";
 import Button from "../../components/Button";
 import { Page } from "../../components/Containers";
 import MapStyle from "../../styles/Map";
 import MapsManager from "../../lib/MapsManager";
+import MailManager from "../../lib/MailManager";
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  contactPerson: {
+    marginTop: 20,
+  },
+  emailButton: {
+    marginTop: 10,
+  },
+});
 
 class TimetableDetailView extends React.Component {
   navigateToLocation = ({ lat, lng, address }) => () => {
@@ -23,6 +32,14 @@ class TimetableDetailView extends React.Component {
     } else {
       MapsManager.navigateToAddress(address.join());
     }
+  };
+  sendEmail = email => () => {
+    MailManager.composeAsync({
+      recipients: [email],
+    });
+  };
+  openRoomSearch = roomName => () => {
+    this.props.navigation.navigate("Rooms", { query: roomName });
   };
   render() {
     let contactTypeStr = "";
@@ -48,8 +65,6 @@ class TimetableDetailView extends React.Component {
     const longitude = parseFloat(lng, 10) || this.props.initialRegion.longitude;
     const { address } = this.props.location;
 
-    console.log(this.props);
-
     return (
       <Page>
         <TitleText>{this.props.module.name}</TitleText>
@@ -59,7 +74,9 @@ class TimetableDetailView extends React.Component {
         <BodyText>
           {this.props.start_time} - {this.props.end_time}
         </BodyText>
-        <BodyText>{this.props.location.name}</BodyText>
+        <Link onPress={this.openRoomSearch(this.props.location.name)}>
+          {this.props.location.name}
+        </Link>
         <BodyText>Type: {this.props.session_type_str}</BodyText>
         {this.props.session_group.length > 0 && (
           <BodyText>Group {this.props.session_group}</BodyText>
@@ -86,9 +103,18 @@ class TimetableDetailView extends React.Component {
           Directions
         </Button>
 
-        <SubtitleText>{contactTypeStr}</SubtitleText>
-        <BodyText>{this.props.contact}</BodyText>
-        <Button>Details</Button>
+        <View style={styles.contactPerson}>
+          <SubtitleText>{contactTypeStr}</SubtitleText>
+          <BodyText>
+            {this.props.contact} ({this.props.module.lecturer.department_name})
+          </BodyText>
+          <Button
+            onPress={this.sendEmail(this.props.module.lecturer.email)}
+            style={styles.emailButton}
+          >
+            Send Email
+          </Button>
+        </View>
 
         {__DEV__ && <SubtitleText>Debug Information</SubtitleText>}
         {__DEV__ && <BodyText>{JSON.stringify(this.props, "\n", 2)}</BodyText>}
@@ -127,6 +153,7 @@ TimetableDetailView.propTypes = {
   }),
   session_type_str: PropTypes.string,
   session_group: PropTypes.string,
+  navigation: PropTypes.shape().isRequired,
 };
 
 TimetableDetailView.defaultProps = {

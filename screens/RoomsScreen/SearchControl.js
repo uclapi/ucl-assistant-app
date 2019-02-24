@@ -21,9 +21,11 @@ class SearchControl extends Component {
   static propTypes = {
     token: PropTypes.string,
     navigation: PropTypes.shape().isRequired,
+    query: PropTypes.string,
   };
   static defaultProps = {
     token: "",
+    query: "",
   };
   static mapStateToProps = state => ({
     token: state.user.token,
@@ -37,6 +39,20 @@ class SearchControl extends Component {
       isSearching: false,
       searchResults: [],
     };
+    const queryExists =
+      props.navigation.state &&
+      props.navigation.state.params &&
+      props.navigation.state.params.query &&
+      props.navigation.state.params.query.length > 0;
+    if (queryExists) {
+      this.state.query = props.navigation.state.params.query;
+    }
+  }
+  componentDidMount() {
+    const { query } = this.state;
+    if (query.length > 0) {
+      this.searchRooms(query);
+    }
   }
   onChangeText = (query: String) => {
     if (query.length > 3) {

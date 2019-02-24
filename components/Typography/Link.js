@@ -15,12 +15,14 @@ class Link extends React.Component {
   static propTypes = {
     href: PropTypes.string,
     children: PropTypes.node,
-    textStyle: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
+    textStyle: Text.propTypes.style,
+    onPress: PropTypes.func,
   };
   static defaultProps = {
     href: "",
     children: "",
-    textStyle: {},
+    textStyle: StyleSheet.create({}),
+    onPress: null,
   };
   openLink = () => {
     const { href } = this.props;
@@ -29,9 +31,9 @@ class Link extends React.Component {
     }
   };
   render() {
-    const { children, textStyle } = this.props;
+    const { onPress, children, textStyle } = this.props;
     return (
-      <Text onPress={this.openLink}>
+      <Text onPress={onPress || this.openLink}>
         <BodyText style={[styles.linkText, textStyle]}>{children}</BodyText>
       </Text>
     );
