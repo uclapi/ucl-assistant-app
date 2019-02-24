@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import { MapView } from "expo";
 import moment from "moment";
@@ -13,80 +14,88 @@ import { Page } from "../../components/Containers";
 import MapStyle from "../../styles/Map";
 import MapsManager from "../../lib/MapsManager";
 
-const TimetableDetailView = props => {
-  let contactTypeStr = "";
-  const sessionType = props.session_type_str.toLowerCase();
-  switch (true) {
-    case sessionType === "lecture":
-    case sessionType === "seminar": {
-      contactTypeStr = "Lecturer";
-      break;
+const styles = StyleSheet.create({});
+
+class TimetableDetailView extends React.Component {
+  navigateToLocation = ({ lat, lng, address }) => () => {
+    if (lat && lng) {
+      MapsManager.navigateToCoords({ lat, lng });
+    } else {
+      MapsManager.navigateToAddress(address.join());
     }
-    case sessionType === "practical":
-    case sessionType === "problem based learning": {
-      contactTypeStr = "Instructor";
-      break;
+  };
+  render() {
+    let contactTypeStr = "";
+    const sessionType = this.props.session_type_str.toLowerCase();
+    switch (true) {
+      case sessionType === "lecture":
+      case sessionType === "seminar": {
+        contactTypeStr = "Lecturer";
+        break;
+      }
+      case sessionType === "practical":
+      case sessionType === "problem based learning": {
+        contactTypeStr = "Instructor";
+        break;
+      }
+      default: {
+        contactTypeStr = "Contact";
+      }
     }
-    default: {
-      contactTypeStr = "Contact";
-    }
+
+    const { lat, lng } = this.props.location.coordinates;
+    const latitude = parseFloat(lat, 10) || this.props.initialRegion.latitude;
+    const longitude = parseFloat(lng, 10) || this.props.initialRegion.longitude;
+    const { address } = this.props.location;
+
+    console.log(this.props);
+
+    return (
+      <Page>
+        <TitleText>{this.props.module.name}</TitleText>
+        <BodyText>
+          {moment(this.props.date).format("dddd, Do MMMM YYYY")}
+        </BodyText>
+        <BodyText>
+          {this.props.start_time} - {this.props.end_time}
+        </BodyText>
+        <BodyText>{this.props.location.name}</BodyText>
+        <BodyText>Type: {this.props.session_type_str}</BodyText>
+        {this.props.session_group.length > 0 && (
+          <BodyText>Group {this.props.session_group}</BodyText>
+        )}
+        {(!lat || !lng) && (
+          <ErrorText>
+            Error: We couldn{"'"}t fetch coordinates for this venue, so the map
+            may be incorrect.
+          </ErrorText>
+        )}
+        <MapView
+          style={MapStyle.wideMap}
+          initialRegion={this.props.initialRegion}
+          region={{
+            latitude,
+            longitude,
+            latitudeDelta: this.props.initialRegion.latitudeDelta,
+            longitudeDelta: this.props.initialRegion.longitudeDelta,
+          }}
+        >
+          <MapView.Marker coordinate={{ latitude, longitude }} />
+        </MapView>
+        <Button onPress={this.navigateToLocation({ lat, lng, address })}>
+          Directions
+        </Button>
+
+        <SubtitleText>{contactTypeStr}</SubtitleText>
+        <BodyText>{this.props.contact}</BodyText>
+        <Button>Details</Button>
+
+        {__DEV__ && <SubtitleText>Debug Information</SubtitleText>}
+        {__DEV__ && <BodyText>{JSON.stringify(this.props, "\n", 2)}</BodyText>}
+      </Page>
+    );
   }
-
-  const { lat, lng } = props.location.coordinates;
-  const latitude = parseFloat(lat, 10) || props.initialRegion.latitude;
-  const longitude = parseFloat(lng, 10) || props.initialRegion.longitude;
-
-  return (
-    <Page>
-      <TitleText>{props.module.name}</TitleText>
-      <BodyText>{moment(props.date).format("dddd, Do MMMM YYYY")}</BodyText>
-      <BodyText>
-        {props.start_time} - {props.end_time}
-      </BodyText>
-      <BodyText>{props.location.name}</BodyText>
-      <BodyText>Type: {props.session_type_str}</BodyText>
-      {props.session_group.length > 0 && (
-        <BodyText>Group {props.session_group}</BodyText>
-      )}
-      {(!lat || !lng) && (
-        <ErrorText>
-          Error: We couldn{"'"}t fetch coordinates for this venue, so the map
-          may be incorrect.
-        </ErrorText>
-      )}
-      <MapView
-        style={MapStyle.wideMap}
-        initialRegion={props.initialRegion}
-        region={{
-          latitude,
-          longitude,
-          latitudeDelta: props.initialRegion.latitudeDelta,
-          longitudeDelta: props.initialRegion.longitudeDelta,
-        }}
-      >
-        <MapView.Marker coordinate={{ latitude, longitude }} />
-      </MapView>
-      <Button
-        onPress={() => {
-          if (lat && lng) {
-            MapsManager.navigateToCoords({ lat, lng });
-          } else {
-            MapsManager.navigateToAddress(props.location.address.join());
-          }
-        }}
-      >
-        Directions
-      </Button>
-
-      <SubtitleText>{contactTypeStr}</SubtitleText>
-      <BodyText>{props.contact}</BodyText>
-      <Button>Details</Button>
-
-      {__DEV__ && <SubtitleText>Debug Information</SubtitleText>}
-      {__DEV__ && <BodyText>{JSON.stringify(props, "\n", 2)}</BodyText>}
-    </Page>
-  );
-};
+}
 
 TimetableDetailView.propTypes = {
   initialRegion: PropTypes.shape({
@@ -127,7 +136,7 @@ TimetableDetailView.defaultProps = {
     latitudeDelta: 0.0012,
     longitudeDelta: 0.0071,
   },
-  date: "2017-01-01",
+  date: "2019-01-01",
   start_time: "",
   end_time: "",
   contact: "",
