@@ -63,7 +63,11 @@ class TimetableDetailView extends React.Component {
     const { lat, lng } = this.props.location.coordinates;
     const latitude = parseFloat(lat, 10) || this.props.initialRegion.latitude;
     const longitude = parseFloat(lng, 10) || this.props.initialRegion.longitude;
-    const { address } = this.props.location;
+    const {
+      address,
+      type: locationType,
+      name: locationName,
+    } = this.props.location;
 
     return (
       <Page>
@@ -74,9 +78,13 @@ class TimetableDetailView extends React.Component {
         <BodyText>
           {this.props.start_time} - {this.props.end_time}
         </BodyText>
-        <Link onPress={this.openRoomSearch(this.props.location.name)}>
-          {this.props.location.name}
-        </Link>
+        {locationType === "CB" ? (
+          <Link onPress={this.openRoomSearch(this.props.location.name)}>
+            {locationName}
+          </Link>
+        ) : (
+          <BodyText>{locationName}</BodyText>
+        )}
         <BodyText>Type: {this.props.session_type_str}</BodyText>
         {this.props.session_group.length > 0 && (
           <BodyText>Group {this.props.session_group}</BodyText>
@@ -141,6 +149,7 @@ TimetableDetailView.propTypes = {
       lat: PropTypes.string,
       lng: PropTypes.string,
     }),
+    type: PropTypes.string,
   }),
   module: PropTypes.shape({
     name: PropTypes.string,
@@ -174,6 +183,7 @@ TimetableDetailView.defaultProps = {
       lat: "51.5246586",
       lng: "-0.1339784",
     },
+    type: "DB",
   },
   module: {
     name: "",
