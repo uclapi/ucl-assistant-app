@@ -88,11 +88,11 @@ class StudySpaceDetailScreen extends Component {
 
   constructor(props) {
     super(props);
-    const { id, name, occupied, capacity } = this.props.navigation.state.params;
+    const { id, name, occupied, total } = this.props.navigation.state.params;
     this.state = {
       name,
       id,
-      capacity,
+      total,
       occupied,
       data: Array.from(Array(24)).map(() => 0),
       fetchingData: false,
@@ -122,7 +122,7 @@ class StudySpaceDetailScreen extends Component {
   };
 
   render() {
-    const { id, name, data, capacity, occupied, space } = this.state;
+    const { id, name, data, total, occupied, space } = this.state;
     const { isFetchingAverages, maps } = space;
     const hour = parseInt(moment().format("HH"), 10);
     return (
@@ -132,7 +132,7 @@ class StudySpaceDetailScreen extends Component {
           <Horizontal>
             <View style={{ flex: 1 }}>
               <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
-                {capacity - occupied}
+                {total - occupied}
               </TitleText>
               <BodyText>Seats Available</BodyText>
             </View>
@@ -149,7 +149,7 @@ class StudySpaceDetailScreen extends Component {
               id={id}
               data={data}
               occupied={occupied}
-              capacity={capacity}
+              capacity={total}
               loading={isFetchingAverages}
             />
           </View>
@@ -157,7 +157,7 @@ class StudySpaceDetailScreen extends Component {
             <LiveIndicator />
             <BodyText>
               {moment().format("HH:mm")} -{" "}
-              {busyText(hour, data, occupied, capacity)}
+              {busyText(hour, data, occupied, total)}
             </BodyText>
           </Horizontal>
           <LiveSeatingMapList style={styles.liveSeatingMapList} maps={maps} />

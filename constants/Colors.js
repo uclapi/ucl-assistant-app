@@ -6,6 +6,7 @@ export default {
   accentColorLight: "#73CCC2",
   textInputBackground: "#eaeaea",
   cardBackground: "#fff",
+  dividerLine: "#808080",
   oldCardBackground: "#f2f2f2",
   buttonBackground: "#4BB3FD",
   disabledButtonBackground: "rgba(152, 153, 160, 1)",

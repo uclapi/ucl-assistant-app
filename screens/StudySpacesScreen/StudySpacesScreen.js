@@ -62,7 +62,11 @@ class StudySpaceScreen extends Component {
   };
 
   static findErrorneousSpaces = spaces =>
-    spaces.filter(space => space.fetchSeatInfoError !== "");
+    spaces.filter(
+      space =>
+        typeof space.fetchSeatInfoError === "string" &&
+        space.fetchSeatInfoError !== "",
+    );
 
   static mapStateToProps = state => ({
     studyspaces: state.studyspaces.studyspaces,

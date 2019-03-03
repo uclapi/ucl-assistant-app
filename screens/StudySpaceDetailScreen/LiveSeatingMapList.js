@@ -24,9 +24,9 @@ class LiveSeatingMapList extends Component {
   });
   static mapDispatchToProps = () => ({});
 
-  renderMapInfo = ({ id, name, capacity, occupied }) => (
+  renderMapInfo = ({ id, name, total, occupied }) => (
     <BodyText key={id}>
-      {name}: {capacity - occupied} seats free (total: {capacity})
+      {name}: {total - occupied} seats free (total: {total})
     </BodyText>
   );
 

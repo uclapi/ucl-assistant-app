@@ -9,13 +9,13 @@ const StudySpaceResult = ({
   name,
   onPress,
   occupied,
-  capacity,
+  total,
   fetchingSeatInfo,
 }) => {
-  const occupation = occupied / capacity;
+  const occupation = occupied / total;
   let capacityString = "Unable to get data";
   let indicatorColor = Colors.textInputBackground;
-  if (capacity > 0) {
+  if (total > 0) {
     switch (true) {
       case occupation > 0.9:
         capacityString = "Very busy";
@@ -42,7 +42,7 @@ const StudySpaceResult = ({
     <SearchResult
       key={generate()}
       topText={name}
-      bottomText={`${capacityString} (${capacity - occupied} seats free)`}
+      bottomText={`${capacityString} (${total - occupied} seats free)`}
       type="location"
       buttonText="View"
       indicator
@@ -57,7 +57,7 @@ StudySpaceResult.propTypes = {
   onPress: PropTypes.func,
   name: PropTypes.string,
   occupied: PropTypes.number,
-  capacity: PropTypes.number,
+  total: PropTypes.number,
   fetchingSeatInfo: PropTypes.bool,
 };
 
@@ -65,7 +65,7 @@ StudySpaceResult.defaultProps = {
   onPress: () => {},
   name: "Study Space Name",
   occupied: 0,
-  capacity: 0,
+  total: 0,
   fetchingSeatInfo: false,
 };
 
@@ -86,7 +86,7 @@ const ConnectedStudySpaceResult = ({ id, studyspaces, navigation }) => {
           id: space.id,
           name: space.name,
           occupied: space.occupied,
-          capacity: space.capacity,
+          total: space.total,
         })
       }
     />

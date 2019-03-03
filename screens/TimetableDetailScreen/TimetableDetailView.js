@@ -79,7 +79,7 @@ class TimetableDetailView extends React.Component {
           {this.props.start_time} - {this.props.end_time}
         </BodyText>
         {locationType === "CB" ? (
-          <Link onPress={this.openRoomSearch(this.props.location.name)}>
+          <Link onPress={this.openRoomSearch(locationName)}>
             {locationName}
           </Link>
         ) : (
