@@ -32,6 +32,7 @@ const userPersistConfig = {
   storage: secureStorage,
   debug: __DEV__,
   timeout: null,
+  blacklist: ["signIn"],
 };
 
 const appReducer = combineReducers({
@@ -44,15 +45,13 @@ const rootReducer = (state, action) =>
 
 const persistRootReducer = persistReducer(config, rootReducer);
 
-export default () => {
-  const store = createStore(
-    persistRootReducer,
-    initialState,
-    applyMiddleware(...middleware),
-  );
-  const persistor = persistStore(store, null, () => {
-    store.getState();
-  });
+const store = createStore(
+  persistRootReducer,
+  initialState,
+  applyMiddleware(...middleware),
+);
+const persistor = persistStore(store, null, () => {
+  store.getState();
+});
 
-  return { persistor, store };
-};
+export default { persistor, store };

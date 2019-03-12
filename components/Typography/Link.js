@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Text, StyleSheet } from "react-native";
-import { BodyText } from "./index";
+import Style from "../../styles/Typography";
 import Colors from "../../constants/Colors";
 import WebBrowserManager from "../../lib/WebBrowserManager";
 
@@ -15,13 +15,13 @@ class Link extends React.Component {
   static propTypes = {
     href: PropTypes.string,
     children: PropTypes.node,
-    textStyle: Text.propTypes.style,
+    style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
     onPress: PropTypes.func,
   };
   static defaultProps = {
     href: "",
     children: "",
-    textStyle: StyleSheet.create({}),
+    style: {},
     onPress: null,
   };
   openLink = () => {
@@ -31,10 +31,13 @@ class Link extends React.Component {
     }
   };
   render() {
-    const { onPress, children, textStyle } = this.props;
+    const { onPress, children, style } = this.props;
     return (
-      <Text onPress={onPress || this.openLink}>
-        <BodyText style={[styles.linkText, textStyle]}>{children}</BodyText>
+      <Text
+        onPress={onPress || this.openLink}
+        style={[Style.bodyText, styles.linkText, style]}
+      >
+        {children}
       </Text>
     );
   }

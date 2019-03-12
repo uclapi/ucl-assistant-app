@@ -6,9 +6,6 @@ import { TitleText, SubtitleText } from "../../components/Typography";
 import LiveSeatingMap from "./LiveSeatingMap";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   seatMap: {},
 });
 
@@ -30,12 +27,10 @@ class LiveSeatingMapScreen extends Component {
         : survey.maps.map(this.renderSeatMap(survey));
 
     return (
-      <View style={styles.container}>
-        <Page>
-          <TitleText>{survey.name}</TitleText>
-          {seatMaps}
-        </Page>
-      </View>
+      <Page>
+        <TitleText>{survey.name}</TitleText>
+        {seatMaps}
+      </Page>
     );
   }
 }

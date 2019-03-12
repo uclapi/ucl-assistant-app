@@ -1,6 +1,5 @@
 /* eslint react/prop-types: 0 */
 import React from "react";
-import { Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "react-navigation";
 import Colors from "../constants/Colors";
@@ -69,10 +68,8 @@ export default createBottomTabNavigator(screens, {
   swipeEnabled: false,
   tabBarOptions: {
     activeTintColor: Colors.pageBackground,
-    activeBackgroundColor: "rgba(27,153,139,0.7)",
-    inactiveBackgroundColor: `rgba(206,208,217,${
-      Platform.OS === "ios" ? "0.1" : "0.4"
-    })`,
+    activeBackgroundColor: Colors.accentColor,
+    inactiveBackgroundColor: Colors.tabBackground,
     inactiveTintColor: Colors.textColor,
     tabStyle: {
       paddingTop: 5,
@@ -83,7 +80,7 @@ export default createBottomTabNavigator(screens, {
     },
     style: {
       height: 60,
-      backgroundColor: "rgba(255,255,255,0)",
+      backgroundColor: Colors.pageBackground,
       position: "absolute",
       left: 0,
       right: 0,

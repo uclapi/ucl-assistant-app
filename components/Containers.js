@@ -6,6 +6,7 @@ import { Feather } from "@expo/vector-icons";
 import {
   KeyboardAvoidingView,
   RefreshControl,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
@@ -60,7 +61,7 @@ export const Page = ({
   mainTabPage,
   ...props
 }) => (
-  <Fragment>
+  <SafeAreaView style={[Styles.pageContainer]}>
     <KeyboardAvoidingView
       style={[Styles.pageContainer, mainTabPage ? Styles.mainTab : null]}
       {...props}
@@ -70,12 +71,15 @@ export const Page = ({
         contentContainerStyle={Styles.pageScrollContent}
         style={[style, Styles.page, Styles.pageScrollView]}
         refreshControl={
-          <RefreshControl
-            enabled={refreshEnabled}
-            onRefresh={onRefresh}
-            refreshing={refreshing}
-          />
+          refreshEnabled ? (
+            <RefreshControl
+              enabled={refreshEnabled}
+              onRefresh={onRefresh}
+              refreshing={refreshing}
+            />
+          ) : null
         }
+        keyboardDismissMode="on-drag"
       >
         <View style={pageTopPadding} />
         {children}
@@ -91,19 +95,21 @@ export const Page = ({
         </Fragment>
       )}
     </KeyboardAvoidingView>
-  </Fragment>
+  </SafeAreaView>
 );
 Page.propTypes = propTypes;
 Page.defaultProps = defaultProps;
 
 export const PageNoScroll = ({ children, style, ...props }) => (
-  <KeyboardAvoidingView
-    style={[Styles.pageContainer, Styles.pageNoScrollContainer]}
-    {...props}
-    behavior="padding"
-  >
-    <View style={[Styles.page, style]}>{children}</View>
-  </KeyboardAvoidingView>
+  <SafeAreaView style={[Styles.pageContainer]}>
+    <KeyboardAvoidingView
+      style={[Styles.pageContainer, Styles.pageNoScrollContainer]}
+      {...props}
+      behavior="padding"
+    >
+      <View style={[Styles.page, style]}>{children}</View>
+    </KeyboardAvoidingView>
+  </SafeAreaView>
 );
 PageNoScroll.propTypes = propTypes;
 PageNoScroll.defaultProps = defaultProps;

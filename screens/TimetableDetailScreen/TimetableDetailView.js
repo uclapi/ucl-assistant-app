@@ -86,9 +86,9 @@ class TimetableDetailView extends React.Component {
           <BodyText>{locationName}</BodyText>
         )}
         <BodyText>Type: {this.props.session_type_str}</BodyText>
-        {this.props.session_group.length > 0 && (
-          <BodyText>Group {this.props.session_group}</BodyText>
-        )}
+        {props.session_group && props.session_group.length > 0 ? (
+          <BodyText>Group {props.session_group}</BodyText>
+        ) : null}
         {(!lat || !lng) && (
           <ErrorText>
             Error: We couldn{"'"}t fetch coordinates for this venue, so the map
@@ -110,7 +110,6 @@ class TimetableDetailView extends React.Component {
         <Button onPress={this.navigateToLocation({ lat, lng, address })}>
           Directions
         </Button>
-
         <View style={styles.contactPerson}>
           <SubtitleText>{contactTypeStr}</SubtitleText>
           <BodyText>

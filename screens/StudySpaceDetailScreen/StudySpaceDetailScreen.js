@@ -126,56 +126,53 @@ class StudySpaceDetailScreen extends Component {
     const { isFetchingAverages, maps } = space;
     const hour = parseInt(moment().format("HH"), 10);
     return (
-      <View style={{ flex: 1 }}>
-        <Page style={{ flex: 1 }}>
-          <TitleText>{name}</TitleText>
-          <Horizontal>
-            <View style={{ flex: 1 }}>
-              <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
-                {total - occupied}
-              </TitleText>
-              <BodyText>Seats Available</BodyText>
-            </View>
-            <View style={{ flex: 1 }}>
-              <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
-                {occupied}
-              </TitleText>
-              <BodyText>Seats Occupied</BodyText>
-            </View>
-          </Horizontal>
-          <View style={styles.popularTimes}>
-            <SubtitleText>Popular Times</SubtitleText>
-            <CapacityChart
-              id={id}
-              data={data}
-              occupied={occupied}
-              capacity={total}
-              loading={isFetchingAverages}
-            />
+      <Page style={{ flex: 1 }}>
+        <TitleText>{name}</TitleText>
+        <Horizontal>
+          <View style={{ flex: 1 }}>
+            <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
+              {total - occupied}
+            </TitleText>
+            <BodyText>Seats Available</BodyText>
           </View>
-          <Horizontal style={styles.liveIndicator}>
-            <LiveIndicator />
-            <BodyText>
-              {moment().format("HH:mm")} -{" "}
-              {busyText(hour, data, occupied, total)}
-            </BodyText>
-          </Horizontal>
-          <LiveSeatingMapList style={styles.liveSeatingMapList} maps={maps} />
-          {/* {survey ? (
-            <Button onPress={this.navigateToLiveSeatMap}>Live Seat Map</Button>
-          ) : null} */}
-          {/* <SubtitleText>Opening Hours</SubtitleText>
-          <OpeningHours /> */}
-          <View style={styles.facilities}>
-            <SubtitleText>Facilities</SubtitleText>
-            <BodyText>
-              See the libraries website for more information about what
-              facilities are offered.
-            </BodyText>
+          <View style={{ flex: 1 }}>
+            <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
+              {occupied}
+            </TitleText>
+            <BodyText>Seats Occupied</BodyText>
           </View>
-        </Page>
+        </Horizontal>
+        <View style={styles.popularTimes}>
+          <SubtitleText>Popular Times</SubtitleText>
+          <CapacityChart
+            id={id}
+            data={data}
+            occupied={occupied}
+            capacity={total}
+            loading={isFetchingAverages}
+          />
+        </View>
+        <Horizontal style={styles.liveIndicator}>
+          <LiveIndicator />
+          <BodyText>
+            {moment().format("HH:mm")} - {busyText(hour, data, occupied, total)}
+          </BodyText>
+        </Horizontal>
+        <LiveSeatingMapList style={styles.liveSeatingMapList} maps={maps} />
+        {/* {survey ? (
+          <Button onPress={this.navigateToLiveSeatMap}>Live Seat Map</Button>
+        ) : null} */}
+        {/* <SubtitleText>Opening Hours</SubtitleText>
+        <OpeningHours /> */}
+        <View style={styles.facilities}>
+          <SubtitleText>Facilities</SubtitleText>
+          <BodyText>
+            See the libraries website for more information about what facilities
+            are offered.
+          </BodyText>
+        </View>
         <FavouriteButton id={id} />
-      </View>
+      </Page>
     );
   }
 }

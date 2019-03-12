@@ -17,11 +17,52 @@ module.exports = {
     },
     {
       id: 58,
-      name: "UCL Student Center",
+      name: "UCL Student Centre",
       active: true,
       start_time: "09:00",
       end_time: "17:00",
-      maps: [],
+      maps: [
+        {
+          id: 128,
+          name: "Student Centre Ground Floor",
+          image_id: 139,
+        },
+        {
+          id: 129,
+          name: "Student Centre Mezzanine",
+          image_id: 140,
+        },
+        {
+          id: 133,
+          name: "Student Centre 1st Floor",
+          image_id: 144,
+        },
+        {
+          id: 130,
+          name: "Student Centre 2nd Floor",
+          image_id: 141,
+        },
+        {
+          id: 134,
+          name: "Student Centre 3rd Floor",
+          image_id: 145,
+        },
+        {
+          id: 131,
+          name: "Student Centre 4th Floor",
+          image_id: 142,
+        },
+        {
+          id: 135,
+          name: "Student Centre Level B1",
+          image_id: 146,
+        },
+        {
+          id: 132,
+          name: "Student Centre Level B2",
+          image_id: 143,
+        },
+      ],
     },
     {
       id: 39,
@@ -404,7 +445,7 @@ module.exports = {
     },
     {
       id: 49,
-      name: "1 Saint Martin Le Grand",
+      name: "1 Saint Martin Le Grand - Ended 06/03/19",
       active: true,
       start_time: "09:00",
       end_time: "17:00",
@@ -416,6 +457,19 @@ module.exports = {
         },
       ],
     },
+    {
+      id: 59,
+      name: "1 Saint Martin Le Grand",
+      active: true,
+      start_time: "09:00",
+      end_time: "17:00",
+      maps: [
+        {
+          id: 138,
+          name: "1SMLG",
+          image_id: 149,
+        },
+      ],
+    },
   ],
-  ok: true,
 };

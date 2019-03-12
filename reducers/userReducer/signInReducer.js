@@ -14,10 +14,10 @@ export default (state = initialState, action = null) => {
   const { type, error } = action;
   switch (type) {
     case IS_SIGNING_IN: {
-      return { ...state, error: "", isSigningIn: true };
+      return { ...state, isSigningIn: true, error: "" };
     }
     case SIGN_IN_SUCCESS: {
-      return { ...state, isSigningIn: false, signInError: "" };
+      return { ...state, isSigningIn: false, error: "" };
     }
     case SIGN_IN_FAILURE: {
       return { ...state, isSigningIn: false, error };

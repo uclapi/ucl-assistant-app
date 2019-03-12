@@ -2,6 +2,9 @@ import { AuthSession } from "expo";
 import * as constants from "../constants/userConstants";
 import { clearTimetable } from "./timetableActions";
 import { ASSISTANT_API_URL } from "../constants/API";
+import configureStore from "../configureStore";
+
+const { persistor } = configureStore;
 
 export const isSigningIn = () => ({
   type: constants.IS_SIGNING_IN,
@@ -52,5 +55,7 @@ export const signOutUser = () => ({
 
 export const signOut = () => async dispatch => {
   await dispatch(clearTimetable());
-  return dispatch(signOutUser());
+  await dispatch(signOutUser());
+  await persistor.purge();
+  return {};
 };

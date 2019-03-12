@@ -23,4 +23,14 @@ module.exports = StyleSheet.create({
     flexGrow: 0,
     flexBasis: 20,
   },
+  disclaimer: {
+    marginTop: 20,
+  },
+  disclaimerText: {
+    color: Colors.cardBackground,
+  },
+  disclaimerLink: {
+    color: Colors.cardBackground,
+    textDecorationLine: "underline",
+  },
 });

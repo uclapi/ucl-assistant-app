@@ -46,9 +46,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     paddingBottom: 5,
   },
-  container: {
-    flex: 1,
-  },
   coordinatesError: {
     marginBottom: 10,
   },
@@ -166,7 +163,7 @@ class RoomDetailScreen extends Component {
     const {
       roomname: name,
       classification_name: classification,
-      total,
+      capacity,
       location,
     } = room;
     const { address } = location;
@@ -193,68 +190,64 @@ class RoomDetailScreen extends Component {
         : MapsManager.navigateToCoords({ lat: latitude, lng: longitude });
 
     return (
-      <View style={styles.container}>
-        <Page>
-          <TitleText>{name}</TitleText>
-          <Horizontal style={styles.details}>
-            <BodyText>{classification}</BodyText>
-            <BodyText>Capacity: {total}</BodyText>
-          </Horizontal>
-          <View style={styles.address}>
-            <BodyText>{addressString}</BodyText>
-          </View>
-          {invalidCoordinates ? (
-            <View style={styles.coordinatesError}>
-              <ErrorText>
-                Error: We couldn{"'"}t fetch coordinates for this venue, so the
-                location displayed on the map may be incorrect.
-              </ErrorText>
-            </View>
-          ) : null}
-          <MapView
-            style={MapStyle.wideMap}
-            initialRegion={initialRegion}
-            region={{
-              latitude,
-              longitude,
-              latitudeDelta: initialRegion.latitudeDelta,
-              longitudeDelta: initialRegion.longitudeDelta,
-            }}
-          >
-            <MapView.Marker coordinate={{ latitude, longitude }} />
-          </MapView>
-          <View style={styles.navigate}>
-            <Button onPress={navigateToLocation}>Directions</Button>
-          </View>
-          {fetchEquipmentError ? (
+      <Page>
+        <TitleText>{name}</TitleText>
+        <Horizontal style={styles.details}>
+          <BodyText>{classification}</BodyText>
+          <BodyText>Capacity: {capacity}</BodyText>
+        </Horizontal>
+        <View style={styles.address}>
+          <BodyText>{addressString}</BodyText>
+        </View>
+        {invalidCoordinates ? (
+          <View style={styles.coordinatesError}>
             <ErrorText>
-              Error: We couldn{"'"}t fetch equipment data for this venue.
+              Error: We couldn{"'"}t fetch coordinates for this venue, so the
+              location displayed on the map may be incorrect.
             </ErrorText>
-          ) : null}
-          {equipment.length > 0 ? (
-            <View style={styles.equipmentList}>
-              <SubtitleText style={styles.cardHeader}>
-                In This Room
-              </SubtitleText>
-              {equipment.map(this.renderEquipment)}
-            </View>
-          ) : null}
-          {fetchBookingsError ? (
-            <ErrorText>
-              Error: We couldn{"'"}t fetch room booking data for this venue.
-            </ErrorText>
-          ) : null}
-          {roombookings.length > 0 ? (
-            <View style={styles.bookingList}>
-              <SubtitleText style={styles.bookingHeader}>
-                Bookings Today
-              </SubtitleText>
-              {roombookings.map(this.renderBooking)}
-            </View>
-          ) : null}
-          <View style={styles.padder} />
-        </Page>
-      </View>
+          </View>
+        ) : null}
+        <MapView
+          style={MapStyle.wideMap}
+          initialRegion={initialRegion}
+          region={{
+            latitude,
+            longitude,
+            latitudeDelta: initialRegion.latitudeDelta,
+            longitudeDelta: initialRegion.longitudeDelta,
+          }}
+        >
+          <MapView.Marker coordinate={{ latitude, longitude }} />
+        </MapView>
+        <View style={styles.navigate}>
+          <Button onPress={navigateToLocation}>Directions</Button>
+        </View>
+        {fetchEquipmentError ? (
+          <ErrorText>
+            Error: We couldn{"'"}t fetch equipment data for this venue.
+          </ErrorText>
+        ) : null}
+        {equipment.length > 0 ? (
+          <View style={styles.equipmentList}>
+            <SubtitleText style={styles.cardHeader}>In This Room</SubtitleText>
+            {equipment.map(this.renderEquipment)}
+          </View>
+        ) : null}
+        {fetchBookingsError ? (
+          <ErrorText>
+            Error: We couldn{"'"}t fetch room booking data for this venue.
+          </ErrorText>
+        ) : null}
+        {roombookings.length > 0 ? (
+          <View style={styles.bookingList}>
+            <SubtitleText style={styles.bookingHeader}>
+              Bookings Today
+            </SubtitleText>
+            {roombookings.map(this.renderBooking)}
+          </View>
+        ) : null}
+        <View style={styles.padder} />
+      </Page>
     );
   }
 }

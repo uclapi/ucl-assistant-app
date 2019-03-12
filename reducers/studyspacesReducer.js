@@ -42,9 +42,9 @@ const updateStudyspaces = (studyspaces, id, newSpace) => {
     newStudyspaces.splice(idx, 0, {
       ...oldStudySpace,
       ...newSpace,
-      maps: oldStudySpace.maps.map(oldMap => {
-        const newMap = newSpace.maps
-          ? newSpace.maps.filter(m => m.id === oldMap.id)[0]
+      maps: newSpace.maps.map(newMap => {
+        const oldMap = oldStudySpace.maps
+          ? oldStudySpace.maps.filter(m => m.id === newMap.id)[0]
           : {};
         return {
           ...oldMap,
