@@ -41,7 +41,7 @@
     "@storybook/addon-knobs": "^5.0.3",
     "@storybook/addon-links": "^5.0.2",
     "@storybook/react-native": "^4.1.14",
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
     "eslint": "5.15.3",
     "eslint-config-airbnb": "^17.1.0",
