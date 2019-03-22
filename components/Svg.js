@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { WebView } from "react-native";
 
-const openingHtml = `<html>
+const Svg = ({ uri, style, scrollEnabled, bounces, pointerEvents }) => {
+  const openingHtml = `<html>
     <head>
       <style>
         html, body {
@@ -21,31 +22,37 @@ const openingHtml = `<html>
       </style>
     </head>
   <body>`;
-const closingHtml = "</body></html>";
-
-const Svg = ({ uri, style }) => (
-  <WebView
-    source={{
-      html: `${openingHtml}
-        <img src="${uri}" />
-      ${closingHtml}`,
-    }}
-    style={style}
-    scalesPageToFit
-    scrollEnabled={false}
-    bounces={false}
-    dataDetectorTypes="none"
-    pointerEvents="none"
-  />
-);
+  const closingHtml = "</body></html>";
+  return (
+    <WebView
+      source={{
+        html: `${openingHtml}
+          <img src="${uri}" />
+        ${closingHtml}`,
+      }}
+      style={style}
+      scalesPageToFit
+      scrollEnabled={scrollEnabled}
+      bounces={bounces}
+      dataDetectorTypes="none"
+      pointerEvents={pointerEvents}
+    />
+  );
+};
 
 const propTypes = {
   uri: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
+  scrollEnabled: PropTypes.bool,
+  bounces: PropTypes.bool,
+  pointerEvents: PropTypes.string,
 };
 const defaultProps = {
   uri: "",
   style: {},
+  scrollEnabled: false,
+  bounces: false,
+  pointerEvents: "none",
 };
 
 Svg.propTypes = propTypes;

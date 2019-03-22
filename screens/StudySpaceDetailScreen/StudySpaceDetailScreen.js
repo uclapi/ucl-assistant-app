@@ -134,6 +134,7 @@ class StudySpaceDetailScreen extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
     const { id, name, data, total, occupied, space } = this.state;
     const { isFetchingAverages, maps } = space;
     const hour = parseInt(moment().format("HH"), 10);
@@ -176,6 +177,7 @@ class StudySpaceDetailScreen extends Component {
             style={styles.liveSeatingMapList}
             maps={maps}
             surveyId={id}
+            navigation={navigation}
           />
           {/* {survey ? (
             <Button onPress={this.navigateToLiveSeatMap}>Live Seat Map</Button>

@@ -31,6 +31,7 @@ const fixNames = ({ name, ...otherProps }) => ({
 
 class LiveSeatingMapList extends Component {
   static propTypes = {
+    navigation: PropTypes.shape().isRequired,
     maps: PropTypes.arrayOf(PropTypes.shape()),
     surveyId: PropTypes.number.isRequired,
   };
@@ -47,7 +48,7 @@ class LiveSeatingMapList extends Component {
 
   openLiveMap = ({ surveyId, mapId }) => () => {
     const { navigation } = this.props;
-    console.log("bleh");
+    navigation.navigate("LiveSeatingMap", { surveyId, mapId });
   };
 
   renderMapInfo = ({ id, name, total, occupied }) => {
