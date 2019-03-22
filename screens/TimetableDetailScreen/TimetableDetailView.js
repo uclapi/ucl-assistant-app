@@ -18,6 +18,7 @@ import MailManager from "../../lib/MailManager";
 
 const styles = StyleSheet.create({
   contactPerson: {
+    marginBottom: 20,
     marginTop: 20,
   },
   emailButton: {

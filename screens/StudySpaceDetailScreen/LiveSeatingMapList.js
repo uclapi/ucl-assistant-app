@@ -1,20 +1,40 @@
 // @flow
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { SubtitleText, BodyText } from "../../components/Typography";
+import Svg from "../../components/Svg";
+
+const { width: windowWidth } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   liveSeatingMap: {
+    height: 200,
+    marginBottom: 20,
+    marginTop: 10,
+    width: windowWidth - 40,
+  },
+  liveSeatingMaps: {
     marginVertical: 20,
   },
+});
+
+const studySpaceNames = ["Student Centre "];
+// remove the name of the studyspace from the name
+// of the map if it is present because it's just redundant
+// e.g. Student Centre Level 1 => Level 1
+const fixNames = ({ name, ...otherProps }) => ({
+  ...otherProps,
+  name: name.replace(new RegExp(`(${studySpaceNames.join("|")})`), ""),
 });
 
 class LiveSeatingMapList extends Component {
   static propTypes = {
     maps: PropTypes.arrayOf(PropTypes.shape()),
+    surveyId: PropTypes.number.isRequired,
   };
+
   static defaultProps = {
     maps: [],
   };
@@ -22,13 +42,35 @@ class LiveSeatingMapList extends Component {
   static mapStateToProps = (state: Object) => ({
     token: state.user.token,
   });
+
   static mapDispatchToProps = () => ({});
 
-  renderMapInfo = ({ id, name, total, occupied }) => (
-    <BodyText key={id}>
-      {name}: {total - occupied} seats free (total: {total})
-    </BodyText>
-  );
+  openLiveMap = ({ surveyId, mapId }) => () => {
+    const { navigation } = this.props;
+    console.log("bleh");
+  };
+
+  renderMapInfo = ({ id, name, total, occupied }) => {
+    const { surveyId } = this.props;
+    return (
+      <View key={id}>
+        <BodyText>
+          {name}: {total - occupied} seats free (total: {total})
+        </BodyText>
+        <TouchableOpacity
+          onPress={this.openLiveMap({
+            surveyId,
+            mapId: id,
+          })}
+        >
+          <Svg
+            uri="https://a.uguu.se/XG7RLe0MrSaL.svg"
+            style={styles.liveSeatingMap}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   render() {
     const { maps } = this.props;
@@ -39,10 +81,10 @@ class LiveSeatingMapList extends Component {
       return null;
     }
 
-    const mapsList = maps.map(this.renderMapInfo);
+    const mapsList = maps.map(fixNames).map(this.renderMapInfo);
 
     return (
-      <View style={styles.liveSeatingMap}>
+      <View style={styles.liveSeatingMaps}>
         <SubtitleText>Breakdown</SubtitleText>
         {mapsList}
       </View>

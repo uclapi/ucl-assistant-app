@@ -18,18 +18,21 @@ class Link extends React.Component {
     style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
     onPress: PropTypes.func,
   };
+
   static defaultProps = {
     href: "",
     children: "",
     style: {},
     onPress: null,
   };
+
   openLink = () => {
     const { href } = this.props;
     if (href) {
       WebBrowserManager.openLink(href);
     }
   };
+
   render() {
     const { onPress, children, style } = this.props;
     return (

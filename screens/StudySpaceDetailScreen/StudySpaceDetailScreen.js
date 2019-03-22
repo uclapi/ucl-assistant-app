@@ -6,7 +6,12 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { fetchAverages } from "../../actions/studyspacesActions";
 import { Page, Horizontal } from "../../components/Containers";
-import { BodyText, TitleText, SubtitleText } from "../../components/Typography";
+import {
+  BodyText,
+  TitleText,
+  SubtitleText,
+  Link,
+} from "../../components/Typography";
 import CapacityChart from "./CapacityChart";
 import LiveIndicator from "./LiveIndicator";
 // import OpeningHours from "./OpeningHours";
@@ -167,7 +172,11 @@ class StudySpaceDetailScreen extends Component {
               {busyText(hour, data, occupied, total)}
             </BodyText>
           </Horizontal>
-          <LiveSeatingMapList style={styles.liveSeatingMapList} maps={maps} />
+          <LiveSeatingMapList
+            style={styles.liveSeatingMapList}
+            maps={maps}
+            surveyId={id}
+          />
           {/* {survey ? (
             <Button onPress={this.navigateToLiveSeatMap}>Live Seat Map</Button>
           ) : null} */}
@@ -176,8 +185,11 @@ class StudySpaceDetailScreen extends Component {
           <View style={styles.facilities}>
             <SubtitleText>Facilities</SubtitleText>
             <BodyText>
-              See the libraries website for more information about what
-              facilities are offered.
+              See the
+              <Link href="https://www.ucl.ac.uk/library/opening-hours">
+                &nbsp;libraries website&nbsp;
+              </Link>
+              for more information about what facilities are offered.
             </BodyText>
           </View>
           <View style={styles.padder} />
