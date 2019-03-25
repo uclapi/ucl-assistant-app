@@ -55,7 +55,7 @@
     "jest-expo": "^32.0.0",
     "lint-staged": "^8.1.5",
     "prettier": "^1.16.4",
-    "react-dom": "16.0.0",
+    "react-dom": "16.8.5",
     "react-native-storybook-loader": "^1.6.0",
     "react-test-renderer": "^16.8.4",
     "redux-logger": "^3.0.6"
