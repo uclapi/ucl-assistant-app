@@ -1,20 +1,10 @@
 // @flow
 import React, { Component } from "react";
-import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
-import { connect } from "react-redux";
+import { View, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-import { SubtitleText, BodyText } from "../../components/Typography";
-import Svg from "../../components/Svg";
-
-const { width: windowWidth } = Dimensions.get("window");
+import { SubtitleText, BodyText, Link } from "../../components/Typography";
 
 const styles = StyleSheet.create({
-  liveSeatingMap: {
-    height: 200,
-    marginBottom: 20,
-    marginTop: 10,
-    width: windowWidth - 40,
-  },
   liveSeatingMaps: {
     marginVertical: 20,
   },
@@ -40,12 +30,6 @@ class LiveSeatingMapList extends Component {
     maps: [],
   };
 
-  static mapStateToProps = (state: Object) => ({
-    token: state.user.token,
-  });
-
-  static mapDispatchToProps = () => ({});
-
   openLiveMap = ({ surveyId, mapId }) => () => {
     const { navigation } = this.props;
     navigation.navigate("LiveSeatingMap", { surveyId, mapId });
@@ -56,28 +40,18 @@ class LiveSeatingMapList extends Component {
     return (
       <View key={id}>
         <BodyText>
-          {name}: {total - occupied} seats free (total: {total})
+          <Link onPress={this.openLiveMap({ mapId: id, surveyId })}>
+            {name}
+          </Link>
+          : {total - occupied} seats free (total: {total})
         </BodyText>
-        <TouchableOpacity
-          onPress={this.openLiveMap({
-            surveyId,
-            mapId: id,
-          })}
-        >
-          <Svg
-            uri="https://a.uguu.se/XG7RLe0MrSaL.svg"
-            style={styles.liveSeatingMap}
-          />
-        </TouchableOpacity>
       </View>
     );
   };
 
   render() {
     const { maps } = this.props;
-    const hasMaps = maps && Array.isArray(maps) && maps.length > 1;
-    // No breakdown needed if there is only one map in the survey
-    // the map data == the survey data
+    const hasMaps = maps && Array.isArray(maps);
     if (!hasMaps) {
       return null;
     }
@@ -93,7 +67,4 @@ class LiveSeatingMapList extends Component {
   }
 }
 
-export default connect(
-  LiveSeatingMapList.mapStateToProps,
-  LiveSeatingMapList.mapDispatchToProps,
-)(LiveSeatingMapList);
+export default LiveSeatingMapList;
