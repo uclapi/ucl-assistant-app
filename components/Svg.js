@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import { WebView } from "react-native";
 
 const Svg = ({ uri, style, scrollEnabled, bounces, pointerEvents }) => {
+  // arbitrarily large width & height that caters to the largest floorplans
   const openingHtml = `<html>
     <head>
       <style>
         html, body {
+          width: 2000px;
+          height: 2000px;
           margin:0;
-          padding:0;
+          padding:25px;
           overflow:hidden;
           background-color: transparent;
         }
