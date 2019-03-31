@@ -13,7 +13,7 @@ import {
   Link,
 } from "../../components/Typography";
 import CapacityChart from "./CapacityChart";
-import LiveIndicator from "./LiveIndicator";
+import LiveIndicator from "../../components/LiveIndicator";
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton";
 import LiveSeatingMapList from "./LiveSeatingMapList";
@@ -25,8 +25,9 @@ const busyText = (
   capacity = 1,
 ) => {
   const diff = data[time] - occupied;
-  if (Math.abs(diff) / capacity < 0.05) {
-    return "about as busy as normal";
+  const threshold = capacity > 100 ? 0.1 : 0.05;
+  if (Math.abs(diff) / capacity < threshold) {
+    return "as busy as normal";
   }
   if (diff > 0) {
     return "quieter than usual";
@@ -43,8 +44,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   liveIndicator: {
+    marginRight: 10,
+  },
+  liveIndicatorContainer: {
     justifyContent: "flex-start",
-    marginBottom: 10,
+    paddingRight: 40,
   },
   occupancySection: {
     flex: 1,
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   popularTimes: {
-    marginVertical: 10,
+    marginTop: 10,
   },
 });
 
@@ -166,8 +170,8 @@ class StudySpaceDetailScreen extends Component {
               loading={isFetchingAverages}
             />
           </View>
-          <Horizontal style={styles.liveIndicator}>
-            <LiveIndicator />
+          <Horizontal style={styles.liveIndicatorContainer}>
+            <LiveIndicator style={styles.liveIndicator} />
             <BodyText>
               {moment().format("h:mma")} -{" "}
               {busyText(hour, data, occupied, total)}

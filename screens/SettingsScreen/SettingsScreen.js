@@ -24,7 +24,7 @@ import Button, { SmallButton } from "../../components/Button";
 import Colors from "../../constants/Colors";
 import TextInput from "../../components/Input/TextInput";
 import NotificationSwitch from "./NotificationSwitch";
-import LiveIndicator from "../StudySpaceDetailScreen/LiveIndicator";
+import LiveIndicator from "../../components/LiveIndicator";
 import common from "../../styles/common";
 
 const { version } = require("../../package.json");

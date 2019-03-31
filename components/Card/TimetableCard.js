@@ -1,9 +1,21 @@
 import React, { Fragment } from "react";
+import { StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import { Feather } from "@expo/vector-icons";
 import moment from "moment";
-import Card from "./";
+import Card from ".";
 import { BodyText } from "../Typography";
+import LiveIndicator from "../LiveIndicator";
+import { Horizontal } from "../Containers";
+
+const styles = StyleSheet.create({
+  nowIndicator: {
+    marginLeft: 10,
+  },
+  timeContainer: {
+    justifyContent: "flex-start",
+  },
+});
 
 const TimetableCard = ({
   moduleName,
@@ -17,12 +29,13 @@ const TimetableCard = ({
 }) => {
   const start = moment(startTime).format("HH:mma");
   const end = moment(endTime).format("HH:mma");
+  const happeningNow =
+    moment().isSameOrAfter(startTime) && moment().isSameOrBefore(endTime);
   return (
     <Card
       old={pastEvent}
       title={moduleCode}
       onPress={() => {
-        console.log("Attempting to navigate...");
         navigation.navigate("TimetableDetail", {
           date: moment(startTime).format("YYYY-MM-DD"),
           time: moment(startTime).format("HH:mm"),
@@ -32,9 +45,14 @@ const TimetableCard = ({
       }}
     >
       <BodyText>{moduleName}</BodyText>
-      <BodyText>
-        <Feather name="clock" /> {start} - {end}
-      </BodyText>
+      <Horizontal style={styles.timeContainer}>
+        <BodyText>
+          <Feather name="clock" /> {start} - {end}
+        </BodyText>
+        {happeningNow ? (
+          <LiveIndicator style={styles.nowIndicator}>Now</LiveIndicator>
+        ) : null}
+      </Horizontal>
       {!pastEvent && (
         <Fragment>
           <BodyText>

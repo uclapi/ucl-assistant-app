@@ -9,7 +9,7 @@ export default {
   dividerLine: "#808080",
   oldCardBackground: "#f2f2f2",
   buttonBackground: "#4BB3FD",
-  disabledButtonBackground: "rgba(152, 153, 160, 1)",
+  disabledButtonBackground: "rgba(231, 231, 233, 1)",
   errorColor: "rgba(215, 38, 61, 1)",
   warningColor: "#AB7627",
   infoColor: "#1C5C8A",

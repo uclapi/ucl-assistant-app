@@ -17,13 +17,16 @@ class FloatingHeartButton extends Component {
     onPress: () => {},
   };
 
-  renderIcon = () => (
-    <Entypo
-      name={this.props.active ? "heart" : "heart-outlined"}
-      size={24}
-      color={this.props.active ? Colors.errorColor : Colors.pageBackground}
-    />
-  );
+  renderIcon = () => {
+    const { active } = this.props;
+    return (
+      <Entypo
+        name={active ? "heart" : "heart-outlined"}
+        size={24}
+        color={active ? Colors.errorColor : Colors.pageBackground}
+      />
+    );
+  };
 
   render() {
     const { active, onPress } = this.props;

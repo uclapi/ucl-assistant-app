@@ -34,17 +34,32 @@ class TimetableDetailView extends React.Component {
       MapsManager.navigateToAddress(address.join());
     }
   };
+
   sendEmail = email => () => {
     MailManager.composeAsync({
       recipients: [email],
     });
   };
+
   openRoomSearch = roomName => () => {
-    this.props.navigation.navigate("Rooms", { query: roomName });
+    const { navigation } = this.props;
+    navigation.navigate("Rooms", { query: roomName });
   };
+
   render() {
     let contactTypeStr = "";
-    const sessionType = this.props.session_type_str.toLowerCase();
+    const {
+      date,
+      location,
+      initialRegion,
+      contact: contactPerson,
+      module,
+      session_type_str: sessionTypeStr,
+      session_group: sessionGroup,
+      start_time: startTime,
+      end_time: endTime,
+    } = this.props;
+    const sessionType = sessionTypeStr.toLowerCase();
     switch (true) {
       case sessionType === "lecture":
       case sessionType === "seminar": {
@@ -61,23 +76,19 @@ class TimetableDetailView extends React.Component {
       }
     }
 
-    const { lat, lng } = this.props.location.coordinates;
-    const latitude = parseFloat(lat, 10) || this.props.initialRegion.latitude;
-    const longitude = parseFloat(lng, 10) || this.props.initialRegion.longitude;
-    const {
-      address,
-      type: locationType,
-      name: locationName,
-    } = this.props.location;
+    const { lat, lng } = location.coordinates;
+    const latitude = parseFloat(lat, 10) || initialRegion.latitude;
+    const longitude = parseFloat(lng, 10) || initialRegion.longitude;
+    const { address, type: locationType, name: locationName } = location;
+
+    const { department_name: departmentName, email } = module.lecturer;
 
     return (
       <Page>
-        <TitleText>{this.props.module.name}</TitleText>
+        <TitleText>{module.name}</TitleText>
+        <BodyText>{moment(date).format("dddd, Do MMMM YYYY")}</BodyText>
         <BodyText>
-          {moment(this.props.date).format("dddd, Do MMMM YYYY")}
-        </BodyText>
-        <BodyText>
-          {this.props.start_time} - {this.props.end_time}
+          {startTime} - {endTime}
         </BodyText>
         {locationType === "CB" ? (
           <Link onPress={this.openRoomSearch(locationName)}>
@@ -86,9 +97,9 @@ class TimetableDetailView extends React.Component {
         ) : (
           <BodyText>{locationName}</BodyText>
         )}
-        <BodyText>Type: {this.props.session_type_str}</BodyText>
-        {this.props.session_group && this.props.session_group.length > 0 ? (
-          <BodyText>Group {this.props.session_group}</BodyText>
+        <BodyText>Type: {sessionTypeStr}</BodyText>
+        {sessionGroup && sessionGroup.length > 0 ? (
+          <BodyText>Group {sessionGroup}</BodyText>
         ) : null}
         {(!lat || !lng) && (
           <ErrorText>
@@ -98,12 +109,12 @@ class TimetableDetailView extends React.Component {
         )}
         <MapView
           style={MapStyle.wideMap}
-          initialRegion={this.props.initialRegion}
+          initialRegion={initialRegion}
           region={{
             latitude,
             longitude,
-            latitudeDelta: this.props.initialRegion.latitudeDelta,
-            longitudeDelta: this.props.initialRegion.longitudeDelta,
+            latitudeDelta: initialRegion.latitudeDelta,
+            longitudeDelta: initialRegion.longitudeDelta,
           }}
         >
           <MapView.Marker coordinate={{ latitude, longitude }} />
@@ -122,15 +133,19 @@ class TimetableDetailView extends React.Component {
 
         <View style={styles.contactPerson}>
           <SubtitleText>{contactTypeStr}</SubtitleText>
-          <BodyText>
-            {this.props.contact} ({this.props.module.lecturer.department_name})
-          </BodyText>
-          <Button
-            onPress={this.sendEmail(this.props.module.lecturer.email)}
-            style={styles.emailButton}
-          >
-            Send Email
-          </Button>
+          {contactPerson && contactPerson.length > 0 ? (
+            <BodyText>
+              {contactPerson}{" "}
+              {departmentName && departmentName.length > 0
+                ? `(${departmentName})`
+                : null}
+            </BodyText>
+          ) : null}
+          {email && email.length > 0 ? (
+            <Button onPress={this.sendEmail(email)} style={styles.emailButton}>
+              Send Email
+            </Button>
+          ) : null}
         </View>
 
         {__DEV__ && <SubtitleText>Debug Information</SubtitleText>}

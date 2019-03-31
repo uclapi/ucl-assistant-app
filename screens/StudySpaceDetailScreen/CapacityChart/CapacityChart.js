@@ -90,7 +90,8 @@ class CapacityChart extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.loading && !this.props.loading) {
+    const { loading } = this.props;
+    if (prevProps.loading && !loading) {
       setTimeout(() => this.setState({ showData: true }), 600);
     }
   }
@@ -143,27 +144,18 @@ class CapacityChart extends Component {
               extras={[Gradient, line, highlightBar]}
             />
             <XAxis
-              style={{ marginHorizontal: -10 }}
-              contentInset={{ top: 10, right: 15 }}
+              style={{ marginHorizontal: -10, marginTop: 10 }}
+              contentInset={{ right: 15 }}
               data={
                 showData
                   ? Object.keys(graphData).map(v => Number.parseInt(v, 10))
                   : []
               }
               formatLabel={this.formatXLabel}
-              svg={{ y: 10, fontSize: 16, fill: "black" }}
+              svg={{ fontSize: 16, fill: "black" }}
             />
           </React.Fragment>
         )}
-        {/* <Horizontal
-          style={{ justifyContent: "space-between", paddingHorizontal: 2 }}
-        >
-          <BodyText style={TextStyles.small}>12:00 am</BodyText>
-          <BodyText style={TextStyles.small}>6:00 am</BodyText>
-          <BodyText style={TextStyles.small}>12:00 pm</BodyText>
-          <BodyText style={TextStyles.small}>6:00 pm</BodyText>
-          <BodyText style={TextStyles.small}>11:00 pm</BodyText>
-        </Horizontal> */}
       </View>
     );
   }
