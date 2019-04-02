@@ -3,10 +3,24 @@ import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import { SubtitleText, BodyText, Link } from "../../components/Typography";
+import Colors from "../../constants/Colors";
+import Shadow from "../../lib/Shadow";
 
 const styles = StyleSheet.create({
-  liveSeatingMaps: {
-    marginVertical: 20,
+  cardHeader: {
+    backgroundColor: Colors.cardHeader,
+    borderRadius: 10,
+    color: Colors.cardBackground,
+    marginBottom: 5,
+    padding: 20,
+    ...Shadow(2),
+  },
+  cardList: {
+    backgroundColor: Colors.cardBackground,
+    borderRadius: 10,
+    marginTop: 5,
+    padding: 20,
+    ...Shadow(2),
   },
 });
 
@@ -59,9 +73,9 @@ class LiveSeatingMapList extends Component {
     const mapsList = maps.map(fixNames).map(this.renderMapInfo);
 
     return (
-      <View style={styles.liveSeatingMaps}>
-        <SubtitleText>Breakdown</SubtitleText>
-        {mapsList}
+      <View style={styles.liveSeatingMap}>
+        <SubtitleText style={styles.cardHeader}>Breakdown</SubtitleText>
+        <View style={styles.cardList}>{mapsList}</View>
       </View>
     );
   }

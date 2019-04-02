@@ -28,23 +28,19 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.cardBackground,
     marginVertical: 5,
     padding: 20,
+    borderRadius: 10,
     ...Shadow(2),
   },
-  bookingHeader: {
-    backgroundColor: Colors.accentColor,
+  cardHeader: {
+    backgroundColor: Colors.cardHeader,
     color: Colors.cardBackground,
     marginBottom: 5,
     padding: 20,
+    borderRadius: 10,
     ...Shadow(2),
   },
   bookingList: {
     marginTop: 20,
-  },
-  cardHeader: {
-    borderBottomColor: Colors.dividerLine,
-    borderBottomWidth: 0.5,
-    marginBottom: 5,
-    paddingBottom: 5,
   },
   coordinatesError: {
     marginBottom: 10,
@@ -53,10 +49,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 20,
   },
-  equipmentList: {
+  cardList: {
     backgroundColor: Colors.cardBackground,
-    marginTop: 20,
+    marginTop: 5,
     padding: 20,
+    borderRadius: 10,
     ...Shadow(2),
   },
   padder: {
@@ -228,9 +225,11 @@ class RoomDetailScreen extends Component {
           </ErrorText>
         ) : null}
         {equipment.length > 0 ? (
-          <View style={styles.equipmentList}>
+          <View>
             <SubtitleText style={styles.cardHeader}>In This Room</SubtitleText>
-            {equipment.map(this.renderEquipment)}
+            <View style={styles.cardList}>
+              {equipment.map(this.renderEquipment)}
+            </View>
           </View>
         ) : null}
         {fetchBookingsError ? (
@@ -240,7 +239,7 @@ class RoomDetailScreen extends Component {
         ) : null}
         {roombookings.length > 0 ? (
           <View style={styles.bookingList}>
-            <SubtitleText style={styles.bookingHeader}>
+            <SubtitleText style={styles.cardHeader}>
               Bookings Today
             </SubtitleText>
             {roombookings.map(this.renderBooking)}

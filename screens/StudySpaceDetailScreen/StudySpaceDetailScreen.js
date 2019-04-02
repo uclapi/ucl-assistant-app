@@ -17,6 +17,8 @@ import LiveIndicator from "../../components/LiveIndicator";
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton";
 import LiveSeatingMapList from "./LiveSeatingMapList";
+import Colors from "../../constants/Colors";
+import Shadow from "../../lib/Shadow";
 
 const busyText = (
   time = 0,
@@ -36,6 +38,21 @@ const busyText = (
 };
 
 const styles = StyleSheet.create({
+  cardHeader: {
+    backgroundColor: Colors.cardHeader,
+    borderRadius: 10,
+    color: Colors.cardBackground,
+    marginBottom: 5,
+    padding: 20,
+    ...Shadow(2),
+  },
+  cardList: {
+    backgroundColor: Colors.cardBackground,
+    borderRadius: 10,
+    marginTop: 5,
+    padding: 20,
+    ...Shadow(2),
+  },
   container: {
     flex: 1,
   },
@@ -189,14 +206,16 @@ class StudySpaceDetailScreen extends Component {
           {/* <SubtitleText>Opening Hours</SubtitleText>
           <OpeningHours /> */}
           <View style={styles.facilities}>
-            <SubtitleText>Facilities</SubtitleText>
-            <BodyText>
-              See the
-              <Link href="https://www.ucl.ac.uk/library/opening-hours">
-                &nbsp;libraries website&nbsp;
-              </Link>
-              for more information about what facilities are offered.
-            </BodyText>
+            <SubtitleText style={styles.cardHeader}>Facilities</SubtitleText>
+            <View style={styles.cardList}>
+              <BodyText>
+                See the
+                <Link href="https://www.ucl.ac.uk/library/opening-hours">
+                  &nbsp;libraries website&nbsp;
+                </Link>
+                for more information about what facilities are offered.
+              </BodyText>
+            </View>
           </View>
           <View style={styles.padder} />
         </Page>
