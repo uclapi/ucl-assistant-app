@@ -54,7 +54,7 @@
     "eslint-plugin-react-native": "^3.7.0",
     "expo-cli": "^2.19.2",
     "husky": "^2.3.0",
-    "jest-expo": "^32.0.1",
+    "jest-expo": "^33.0.2",
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1",
     "react-dom": "16.0.0",
