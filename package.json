@@ -70,7 +70,7 @@
     "expo-cli": "^2.21.2",
     "husky": "^2.4.1",
     "jest-expo": "^33.0.0",
-    "lint-staged": "^8.2.1",
+    "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "react-dom": "16.0.1",
     "react-native-storybook-loader": "^1.6.0",
