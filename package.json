@@ -55,7 +55,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-knobs": "^5.0.11",
-    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addon-links": "^5.1.9",
     "@storybook/react-native": "^4.1.18",
     "babel-eslint": "^10.0.2",
     "babel-preset-expo": "^5.2.0",
