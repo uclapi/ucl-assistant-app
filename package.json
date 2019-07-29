@@ -25,7 +25,7 @@
     "expo-font": "^5.0.1",
     "expo-intent-launcher": "^5.0.1",
     "expo-linear-gradient": "^5.0.1",
-    "expo-localization": "^5.0.1",
+    "expo-localization": "^6.0.0",
     "expo-mail-composer": "^5.0.1",
     "expo-permissions": "^5.0.1",
     "expo-secure-store": "^5.0.1",
