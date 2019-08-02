@@ -23,7 +23,7 @@
     "expo-blur": "^5.0.1",
     "expo-constants": "^5.0.1",
     "expo-font": "^5.0.1",
-    "expo-intent-launcher": "^5.0.1",
+    "expo-intent-launcher": "^6.0.0",
     "expo-linear-gradient": "^5.0.1",
     "expo-localization": "^5.0.1",
     "expo-mail-composer": "^5.0.1",
