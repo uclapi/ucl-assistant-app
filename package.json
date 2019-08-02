@@ -28,7 +28,7 @@
     "expo-localization": "^5.0.1",
     "expo-mail-composer": "^5.0.1",
     "expo-permissions": "^5.0.1",
-    "expo-secure-store": "^5.0.1",
+    "expo-secure-store": "^6.0.0",
     "expo-web-browser": "^5.0.3",
     "lottie-react-native": "^2.6.1",
     "memoize-one": "^5.0.5",
