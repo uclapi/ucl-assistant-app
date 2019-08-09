@@ -35,7 +35,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "prop-types": "^15.7.2",
-    "react": "16.8.3",
+    "react": "16.9.0",
     "react-moment-proptypes": "^1.6.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.1.tar.gz",
     "react-native-action-button": "^2.8.5",
