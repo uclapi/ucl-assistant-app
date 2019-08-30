@@ -112,7 +112,7 @@
     "inquirer": "^7.0.0",
     "jest-expo": "^34.0.1",
     "lint-staged": "^9.2.5",
-    "react-dom": "16.8.6",
+    "react-dom": "16.9.0",
     "react-native-storybook-loader": "^1.8.0",
     "react-test-renderer": "^16.9.0",
     "redux-logger": "^3.0.6"
