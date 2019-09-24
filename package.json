@@ -98,7 +98,7 @@
     "@storybook/addon-links": "^5.2.1",
     "@storybook/react-native": "^5.2.1",
     "babel-eslint": "^10.0.3",
-    "babel-preset-expo": "^5.2.0",
+    "babel-preset-expo": "^7.0.0",
     "codecov": "^3.5.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
