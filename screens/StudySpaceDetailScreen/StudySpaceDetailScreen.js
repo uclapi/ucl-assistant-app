@@ -1,27 +1,30 @@
 // @flow
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { View, StyleSheet } from "react-native"
-import { connect } from "react-redux"
 import moment from "moment"
-import Timezones from "../../constants/Timezones"
-import LocalisationManager from "../../lib/LocalisationManager"
+import PropTypes from "prop-types"
+import React, { Component } from "react"
+import { StyleSheet, View } from "react-native"
+import { connect } from "react-redux"
+
 import { fetchAverages as fetchAveragesAction } from "../../actions/studyspacesActions"
-import { Page, Horizontal } from "../../components/Containers"
+import Button from "../../components/Button"
+import { Horizontal, Page } from "../../components/Containers"
+import LiveIndicator from "../../components/LiveIndicator"
 import {
   BodyText,
-  TitleText,
-  SubtitleText,
-  Link,
   InfoText,
+  Link,
+  SubtitleText,
+  TitleText,
 } from "../../components/Typography"
+import Colors from "../../constants/Colors"
+import Timezones from "../../constants/Timezones"
+import LocalisationManager from "../../lib/LocalisationManager"
+// import MapsManager from "../../lib/MapsManager"
+import Shadow from "../../lib/Shadow"
 import CapacityChart from "./CapacityChart"
-import LiveIndicator from "../../components/LiveIndicator"
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton"
 import LiveSeatingMapList from "./LiveSeatingMapList"
-import Colors from "../../constants/Colors"
-import Shadow from "../../lib/Shadow"
 
 const busyText = (
   time = 0,
@@ -88,14 +91,14 @@ const styles = StyleSheet.create({
 class StudySpaceDetailScreen extends Component {
   static navigationOptions = {
     title: `Study Space Detail`,
-  };
+  }
 
   static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    /* eslint-disable react/no-unused-prop-types */
-    studyspaces: PropTypes.arrayOf(PropTypes.shape()),
-    /* eslint-enable react/no-unused-prop-types */
     fetchAverages: PropTypes.func.isRequired,
+    /* eslint-disable react/no-unused-prop-types */
+    navigation: PropTypes.shape().isRequired,
+    /* eslint-enable react/no-unused-prop-types */
+    studyspaces: PropTypes.arrayOf(PropTypes.shape()),
     token: PropTypes.string,
   }
 
@@ -133,18 +136,18 @@ class StudySpaceDetailScreen extends Component {
       id, name, occupied, total,
     } = navigation.state.params
     this.state = {
-      name,
-      id,
-      total,
-      occupied,
       data: Array.from(Array(24)).map(() => 0),
       fetchingData: false,
+      id,
+      name,
+      occupied,
       space: {
         isFetchingAverages: false,
       },
       survey: props.studyspaces.filter(
         ({ id: surveyId }) => Number.parseInt(id, 10) === Number.parseInt(surveyId, 10),
       )[0],
+      total,
     }
   }
 
@@ -161,6 +164,16 @@ class StudySpaceDetailScreen extends Component {
     const { navigation } = this.props
     const { survey } = this.state
     navigation.navigate(`LiveSeatingMap`, { survey })
+  }
+
+  navigateToLocation = () => {
+    // navigate
+    console.log(this.props, this.state)
+    // if (lat && lng) {
+    //   MapsManager.navigateToCoords({ lat, lng })
+    // } else {
+    //   MapsManager.navigateToAddress(address.join())
+    // }
   }
 
   render() {
@@ -251,6 +264,9 @@ class StudySpaceDetailScreen extends Component {
               </BodyText>
             </View>
           </View>
+          <Button onPress={this.navigateToLocation}>
+            Directions
+          </Button>
           <View style={styles.padder} />
         </Page>
         <FavouriteButton id={id} />
