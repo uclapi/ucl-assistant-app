@@ -16,7 +16,9 @@
     "storybook": "storybook start -p 7007",
     "test": "jest --ci && codecov",
     "test:dev": "jest --watch --coverage=false",
-    "upload": "node scripts/upload.js"
+    "upload": "node scripts/upload.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -92,7 +94,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "sentry-expo": "~2.0.0",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "snyk": "^1.231.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.2.1",
@@ -129,5 +132,6 @@
     "react-test-renderer": "16.8.3",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.3"
-  }
+  },
+  "snyk": true
 }
