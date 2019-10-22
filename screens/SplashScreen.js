@@ -22,7 +22,7 @@ import {
   SubtitleText,
 } from "../components/Typography"
 import Colors from "../constants/Colors"
-import { AssetManager } from "../lib"
+import { AnalyticsManager, AssetManager } from "../lib"
 import Styles from "../styles/Containers"
 import SplashStyle from "../styles/Splash"
 
@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
 })
 
 class SplashScreen extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="calendar"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
+  static mapStateToProps = (state) => ({
+    error: state.user.signIn.error,
+    isSigningIn: state.user.signIn.isSigningIn,
+    token: state.user.token,
+    user: state.user,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    signIn: () => dispatch(signInAction()),
+  })
 
   static propTypes = {
     error: PropTypes.string,
@@ -50,24 +50,17 @@ class SplashScreen extends Component {
     navigation: PropTypes.shape().isRequired,
     signIn: PropTypes.func,
     token: PropTypes.string,
+    user: PropTypes.shape(),
   }
+
 
   static defaultProps = {
     error: ``,
     isSigningIn: false,
     signIn: () => { },
     token: ``,
+    user: {},
   }
-
-  static mapStateToProps = (state) => ({
-    error: state.user.signIn.error,
-    isSigningIn: state.user.signIn.isSigningIn,
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    signIn: () => dispatch(signInAction()),
-  })
 
   componentDidMount() {
     const { token } = this.props
@@ -89,6 +82,7 @@ class SplashScreen extends Component {
       // did we just sign in?
       // eslint-disable-next-line security/detect-possible-timing-attacks
       if (token !== null) {
+        this.updateAnalytics()
         // yes, replace screen with home screen.
         this.goHome()
       } else if (error.length < 1) {
@@ -100,13 +94,53 @@ class SplashScreen extends Component {
     }
   }
 
-  goHome() {
+  goHome = () => {
     const { navigation } = this.props
     const resetAction = StackActions.reset({
       actions: [NavigationActions.navigate({ routeName: `Main` })],
       index: 0,
     })
     navigation.dispatch(resetAction)
+  }
+
+  updateAnalytics = () => {
+    const {
+      user: {
+        upi,
+        apiToken,
+        cn,
+        department,
+        email,
+        fullName,
+        givenName,
+        scopeNumber,
+        token,
+      },
+    } = this.props
+
+    // update user properties
+    AnalyticsManager.setUserId(upi)
+    AnalyticsManager.setUserProperties({
+      apiToken,
+      cn,
+      department,
+      email,
+      fullName,
+      givenName,
+      scopeNumber,
+      token,
+    })
+  }
+
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="calendar"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
   }
 
   render() {
@@ -156,7 +190,7 @@ class SplashScreen extends Component {
                   href="https://github.com/uclapi/ucl-assistant-app/blob/master/TERMS.md"
                   style={SplashStyle.disclaimerLink}
                 >
-                  {`UCL API's terms & conditions.`}
+                  UCL API&apos;s terms & conditions.
                 </Link>
               </BodyText>
             </View>

@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationsScreen renders the NotificationsScreen 1`] = `
+<Page
+  bottomColour="#fefefe"
+  contentContainerStyle={Object {}}
+  keyboardAvoidingViewStyle={Object {}}
+  mainTabPage={false}
+  onRefresh={[Function]}
+  refreshEnabled={false}
+  refreshing={false}
+  safeAreaViewStyle={Object {}}
+  style={Object {}}
+  topColour="#fefefe"
+>
+  <View
+    style={
+      Object {
+        "paddingBottom": 30,
+        "paddingTop": 30,
+      }
+    }
+  >
+    <TitleText
+      style={Object {}}
+    >
+      Be Notified
+    </TitleText>
+    <Image
+      resizeMethod="scale"
+      resizeMode="contain"
+      source={1}
+      style={
+        Array [
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "rgba(0,0,0,0)",
+            "flex": 1,
+            "height": undefined,
+            "marginTop": 50,
+            "width": undefined,
+          },
+          Object {
+            "height": 150,
+            "marginTop": 15,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "marginBottom": 20,
+          "marginTop": 20,
+        }
+      }
+    >
+      <BodyText
+        style={Object {}}
+      >
+        Find out when there's a new feature on UCL Assistant,  when your timetable changes, or if there's an upcoming event that might  interest you.
+      </BodyText>
+    </View>
+    <View
+      style={
+        Object {
+          "marginBottom": 30,
+        }
+      }
+    >
+      <BodyText
+        style={Object {}}
+      >
+        You can disable notifications later at any time.
+      </BodyText>
+    </View>
+    <Button
+      disabled={false}
+      loading={false}
+      onPress={[Function]}
+      style={Object {}}
+      testID="enable-notifications-button"
+    >
+      Enable Notifications
+    </Button>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 20,
+          "marginTop": 20,
+        }
+      }
+    >
+      <Link
+        href=""
+        onPress={[Function]}
+        style={Object {}}
+      >
+        Skip
+      </Link>
+    </View>
+  </View>
+</Page>
+`;

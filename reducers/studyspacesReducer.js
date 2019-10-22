@@ -1,26 +1,27 @@
 import moment from "moment"
+
 import {
-  WORKSPACES_FETCH_SEATINFOS_FAILURE,
-  WORKSPACES_IS_FETCHING_SEATINFOS,
-  WORKSPACES_FETCH_SEATINFOS_SUCCESS,
-  WORKSPACES_IS_FETCHING_HISTORIC_DATA,
   WORKSPACES_FETCH_HISTORIC_DATA_FAILURE,
   WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS,
-  WORKSPACES_TOGGLE_FAVOURITE,
-  WORKSPACES_SORT_TYPES,
+  WORKSPACES_FETCH_SEATINFOS_FAILURE,
+  WORKSPACES_FETCH_SEATINFOS_SUCCESS,
+  WORKSPACES_IS_FETCHING_HISTORIC_DATA,
+  WORKSPACES_IS_FETCHING_SEATINFOS,
   WORKSPACES_SET_SEARCH_QUERY,
   WORKSPACES_SET_SORT_TYPE,
+  WORKSPACES_SORT_TYPES,
+  WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
 
 const sortStudySpaces = (s1, s2) => s1.id - s2.id
 
 export const initialState = {
+  favourites: [],
+  isFetchingSpaces: false,
+  lastStatusUpdate: null,
   searchQuery: ``,
   sortType: WORKSPACES_SORT_TYPES.NAME,
   studyspaces: [],
-  lastStatusUpdate: null,
-  isFetchingSpaces: false,
-  favourites: [],
 }
 
 const updateStudyspaces = (studyspaces, id, newSpace) => {
@@ -60,8 +61,8 @@ export default (state = initialState, action = null) => {
         ...state,
         studyspaces: state.studyspaces.map((space) => ({
           ...space,
-          isFetchingSeatInfo: true,
           fetchSeatInfoError: ``,
+          isFetchingSeatInfo: true,
         })),
       }
     }
@@ -69,12 +70,12 @@ export default (state = initialState, action = null) => {
     case WORKSPACES_FETCH_SEATINFOS_FAILURE: {
       return {
         ...state,
+        lastStatusUpdate: moment(),
         studyspaces: state.studyspaces.map((space) => ({
           ...space,
-          isFetchingSeatInfo: false,
           fetchSeatInfoError: error,
+          isFetchingSeatInfo: false,
         })),
-        lastStatusUpdate: moment(),
       }
     }
 
@@ -95,8 +96,8 @@ export default (state = initialState, action = null) => {
         })
       return {
         ...state,
-        studyspaces: newStudyspaces,
         lastStatusUpdate: moment(),
+        studyspaces: newStudyspaces,
       }
     }
 
@@ -104,8 +105,8 @@ export default (state = initialState, action = null) => {
       if (oldSpace) {
         const newStudyspaces = updateStudyspaces(state.studyspaces, id, {
           ...oldSpace,
-          isFetchingAverages: true,
           dailyAveragesError: ``,
+          isFetchingAverages: true,
         })
         return {
           ...state,
@@ -119,14 +120,14 @@ export default (state = initialState, action = null) => {
       if (oldSpace) {
         const newStudyspaces = updateStudyspaces(state.studyspaces, id, {
           ...oldSpace,
-          isFetchingAverages: false,
           dailyAveragesError: error,
+          isFetchingAverages: false,
           lastUpdatedAverages: moment(),
         })
         return {
           ...state,
-          studyspaces: newStudyspaces,
           lastStatusUpdate: moment(),
+          studyspaces: newStudyspaces,
         }
       }
       return state
@@ -141,8 +142,8 @@ export default (state = initialState, action = null) => {
         })
         return {
           ...state,
-          studyspaces: newStudyspaces,
           lastStatusUpdate: moment(),
+          studyspaces: newStudyspaces,
         }
       }
       return state

@@ -43,6 +43,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
           },
           Array [
             Object {
+              "alignSelf": "stretch",
               "backgroundColor": "#fff",
               "borderRadius": 10,
               "marginBottom": 10,
@@ -142,6 +143,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
           },
           Array [
             Object {
+              "alignSelf": "stretch",
               "backgroundColor": "#fff",
               "borderRadius": 10,
               "marginBottom": 10,
@@ -241,6 +243,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
           },
           Array [
             Object {
+              "alignSelf": "stretch",
               "backgroundColor": "#fff",
               "borderRadius": 10,
               "marginBottom": 10,

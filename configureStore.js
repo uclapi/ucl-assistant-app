@@ -1,12 +1,13 @@
-import { createStore, applyMiddleware, combineReducers } from "redux"
+import { AsyncStorage } from "react-native"
+import { applyMiddleware, combineReducers, createStore } from "redux"
 import { persistStore } from "redux-persist"
-import AsyncStorage from "redux-persist/es/storage"
 import createSecureStore from "redux-persist-expo-securestore"
-import thunk from "redux-thunk"
 import persistReducer from "redux-persist/lib/persistReducer"
+import thunk from "redux-thunk"
+
+import { SIGN_OUT_USER } from "./constants/userConstants"
 import debounce from "./lib/debounce"
 import reducer, { initialState } from "./reducers"
-import { SIGN_OUT_USER } from "./constants/userConstants"
 
 const { user, ...otherReducers } = reducer
 
@@ -20,19 +21,19 @@ if (process.env.NODE_ENV === `development`) {
 }
 
 const config = {
+  blacklist: [`user`],
+  debug: __DEV__,
   key: `root`,
   storage: AsyncStorage,
-  debug: __DEV__,
-  blacklist: [`user`],
   timeout: null, // https://github.com/rt2zz/redux-persist/issues/786
 }
 
 const userPersistConfig = {
+  blacklist: [`signIn`],
+  debug: __DEV__,
   key: `user`,
   storage: secureStorage,
-  debug: __DEV__,
   timeout: null,
-  blacklist: [`signIn`],
 }
 
 const appReducer = combineReducers({

@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 
 import EmptyRoomsScreen from './EmptyRoomsScreen'
 import RoomsFavouritesScreen from './RoomsFavouritesScreen'

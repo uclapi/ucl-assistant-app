@@ -1,51 +1,63 @@
-import { createStackNavigator, createAppContainer } from "react-navigation"
+import { createAppContainer } from "react-navigation"
+import { createStackNavigator } from "react-navigation-stack"
 
-import MainTabNavigator from "./MainTabNavigator"
-import SplashScreen from "../screens/SplashScreen"
-import TimetableDetailScreen from "../screens/TimetableDetailScreen"
-import PersonDetailScreen from "../screens/PersonDetailScreen"
-import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
 import FAQScreen from "../screens/FAQScreen"
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
+import NotificationsScreen from "../screens/NotificationsScreen"
+import PersonDetailScreen from "../screens/PersonDetailScreen"
 import RoomDetailScreen from "../screens/RoomDetailScreen"
+import SplashScreen from "../screens/SplashScreen"
+import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
+import TimetableDetailScreen from "../screens/TimetableDetailScreen"
+import MainTabNavigator from "./MainTabNavigator"
 
 const RootStackNavigator = createStackNavigator(
   {
-    Splash: {
-      screen: SplashScreen,
-    },
-    Main: {
-      screen: MainTabNavigator,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    TimetableDetail: {
-      screen: TimetableDetailScreen,
-    },
-    PersonDetail: {
-      screen: PersonDetailScreen,
-    },
-    StudySpaceDetail: {
-      screen: StudySpaceDetailScreen,
-    },
     FAQ: {
       screen: FAQScreen,
     },
     LiveSeatingMap: {
       screen: LiveSeatingMapScreen,
     },
+    Main: {
+      navigationOptions: {
+        header: null,
+      },
+      screen: MainTabNavigator,
+    },
+    Notifications: {
+      navigationOptions: {
+        header: null,
+      },
+      screen: NotificationsScreen,
+    },
+    PersonDetail: {
+      screen: PersonDetailScreen,
+    },
     RoomDetail: {
       screen: RoomDetailScreen,
+    },
+    Splash: {
+      navigationOptions: {
+        header: null,
+      },
+      screen: SplashScreen,
+    },
+    StudySpaceDetail: {
+      screen: StudySpaceDetailScreen,
+    },
+    TimetableDetail: {
+      screen: TimetableDetailScreen,
     },
   },
   {
     defaultNavigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: `normal`,
         fontFamily: `apercu`,
+        fontWeight: `normal`,
       },
     }),
+    initialRouteName: `Splash`,
   },
 )
 

@@ -44,6 +44,10 @@ const busyText = (
 }
 
 const styles = StyleSheet.create({
+  capacityTextStyle: {
+    marginBottom: 0,
+    marginTop: 5,
+  },
   cardHeader: {
     backgroundColor: Colors.cardHeader,
     borderRadius: 10,
@@ -89,9 +93,14 @@ const styles = StyleSheet.create({
 })
 
 class StudySpaceDetailScreen extends Component {
-  static navigationOptions = {
-    title: `Study Space Detail`,
-  }
+  static mapStateToProps = (state) => ({
+    studyspaces: state.studyspaces.studyspaces,
+    token: state.user.token,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    fetchAverages: (token, id) => dispatch(fetchAveragesAction(token, id)),
+  })
 
   static propTypes = {
     fetchAverages: PropTypes.func.isRequired,
@@ -113,20 +122,6 @@ class StudySpaceDetailScreen extends Component {
       return { data: space.dailyAverages, space }
     }
     return null
-  }
-
-  static mapStateToProps = (state) => ({
-    studyspaces: state.studyspaces.studyspaces,
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    fetchAverages: (token, id) => dispatch(fetchAveragesAction(token, id)),
-  })
-
-  static capacityTextStyle = {
-    marginBottom: 0,
-    marginTop: 5,
   }
 
   constructor(props) {
@@ -176,6 +171,10 @@ class StudySpaceDetailScreen extends Component {
     // }
   }
 
+  static navigationOptions = {
+    title: `Study Space Detail`,
+  }
+
   render() {
     const { navigation } = this.props
     const {
@@ -211,13 +210,13 @@ class StudySpaceDetailScreen extends Component {
           <TitleText>{name}</TitleText>
           <Horizontal>
             <View style={styles.occupancySection}>
-              <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
+              <TitleText style={styles.capacityTextStyle}>
                 {total - occupied}
               </TitleText>
               <BodyText>Seats Available</BodyText>
             </View>
             <View style={styles.occupancySection}>
-              <TitleText style={StudySpaceDetailScreen.capacityTextStyle}>
+              <TitleText style={styles.capacityTextStyle}>
                 {occupied}
               </TitleText>
               <BodyText>Seats Occupied</BodyText>
@@ -230,7 +229,7 @@ class StudySpaceDetailScreen extends Component {
               data={data}
               occupied={occupied}
               capacity={total}
-              loading={isFetchingAverages}
+              isLoading={isFetchingAverages}
             />
           </View>
           {timezoneInfo}

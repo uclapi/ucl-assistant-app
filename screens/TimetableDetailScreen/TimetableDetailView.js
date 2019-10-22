@@ -133,7 +133,7 @@ class TimetableDetailView extends React.Component {
         <SubtitleText>{contactTypeStr}</SubtitleText>
         {validContactPerson ? (
           <BodyText>
-            {`${contactPerson} ${validDepartment ? departmentName : null}`}
+            {`${contactPerson} - ${validDepartment ? departmentName : null}`}
           </BodyText>
         ) : null}
         {validEmail ? (

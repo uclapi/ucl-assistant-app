@@ -1,17 +1,18 @@
-import React, { Component } from "react"
+import { AppLoading, Notifications } from "expo"
+import { Asset } from "expo-asset"
+import * as Font from "expo-font"
 import PropTypes from "prop-types"
+import React, { Component } from "react"
+import { Platform, StatusBar, View } from "react-native"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/es/integration/react"
-import { Platform, StatusBar, View } from "react-native"
-import { AppLoading, Notifications } from "expo"
-import * as Font from "expo-font"
-import { Asset } from "expo-asset"
-import { NotificationChannels } from "./constants/notificationsConstants"
+
 import configureStore from "./configureStore"
+import Colors from './constants/Colors'
+import { NotificationChannels } from "./constants/notificationsConstants"
+import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
 import Styles from "./styles/Containers"
-import Colors from './constants/Colors'
-import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 
 const { persistor, store } = configureStore
 

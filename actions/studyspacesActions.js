@@ -1,15 +1,15 @@
 // @flow
 import { WORKSPACES_URL } from "../constants/API"
 import {
-  WORKSPACES_FETCH_SEATINFOS_FAILURE,
-  WORKSPACES_IS_FETCHING_SEATINFOS,
-  WORKSPACES_FETCH_SEATINFOS_SUCCESS,
   WORKSPACES_FETCH_HISTORIC_DATA_FAILURE,
   WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS,
+  WORKSPACES_FETCH_SEATINFOS_FAILURE,
+  WORKSPACES_FETCH_SEATINFOS_SUCCESS,
   WORKSPACES_IS_FETCHING_HISTORIC_DATA,
-  WORKSPACES_TOGGLE_FAVOURITE,
+  WORKSPACES_IS_FETCHING_SEATINFOS,
   WORKSPACES_SET_SEARCH_QUERY,
   WORKSPACES_SET_SORT_TYPE,
+  WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
 
 export const setIsFetchingSeatInfos = () => ({
@@ -52,14 +52,14 @@ export const setIsFetchingAverages = (id: Number) => ({
 })
 
 export const fetchAveragesSuccess = (id: Number, dailyAverages) => ({
-  id,
   dailyAverages,
+  id,
   type: WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS,
 })
 
 export const fetchAveragesFailure = (id: Number, error) => ({
-  id,
   error,
+  id,
   type: WORKSPACES_FETCH_HISTORIC_DATA_FAILURE,
 })
 

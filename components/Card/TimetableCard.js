@@ -1,21 +1,22 @@
-import React, { Fragment } from "react";
-import { StyleSheet } from "react-native";
-import PropTypes from "prop-types";
-import { Feather } from "@expo/vector-icons";
-import moment from "moment";
-import Card from ".";
-import { BodyText } from "../Typography";
-import LiveIndicator from "../LiveIndicator";
-import { Horizontal } from "../Containers";
+import { Feather } from "@expo/vector-icons"
+import moment from "moment"
+import PropTypes from "prop-types"
+import React from "react"
+import { StyleSheet } from "react-native"
+
+import { Horizontal } from "../Containers"
+import LiveIndicator from "../LiveIndicator"
+import { BodyText } from "../Typography"
+import Card from "."
 
 const styles = StyleSheet.create({
   nowIndicator: {
     marginLeft: 10,
   },
   timeContainer: {
-    justifyContent: "flex-start",
+    justifyContent: `flex-start`,
   },
-});
+})
 
 const TimetableCard = ({
   moduleName,
@@ -27,66 +28,71 @@ const TimetableCard = ({
   navigation,
   pastEvent,
 }) => {
-  const start = moment(startTime).format("HH:mma");
-  const end = moment(endTime).format("HH:mma");
-  const happeningNow =
-    moment().isSameOrAfter(startTime) && moment().isSameOrBefore(endTime);
+  const startMoment = moment(startTime, `YYYY-MM-DD HH:mm`)
+  const endMoment = moment(endTime, `YYYY-MM-DD HH:mm`)
+  const start = startMoment.format(`HH:mma`)
+  const end = endMoment.format(`HH:mma`)
+  const happeningNow = moment().isSameOrAfter(startMoment) && moment().isSameOrBefore(endMoment)
   return (
     <Card
       old={pastEvent}
       title={moduleCode}
       onPress={() => {
-        navigation.navigate("TimetableDetail", {
-          date: moment(startTime).format("YYYY-MM-DD"),
-          time: moment(startTime).format("HH:mm"),
-          module: moduleName,
+        navigation.navigate(`TimetableDetail`, {
           code: moduleCode,
-        });
+          date: startMoment.format(`YYYY-MM-DD`),
+          module: moduleName,
+          time: startMoment.format(`HH:mm`),
+        })
       }}
     >
       <BodyText>{moduleName}</BodyText>
       <Horizontal style={styles.timeContainer}>
         <BodyText>
-          <Feather name="clock" /> {start} - {end}
+          <Feather name="clock" />
+          {` ${start} - ${end}`}
         </BodyText>
         {happeningNow ? (
           <LiveIndicator style={styles.nowIndicator}>Now</LiveIndicator>
         ) : null}
       </Horizontal>
       {!pastEvent && (
-        <Fragment>
+        <>
           <BodyText>
-            <Feather name="map-pin" /> {location}
+            <Feather name="map-pin" />
+            {` `}
+            {location}
           </BodyText>
           <BodyText>
-            <Feather name="user" />{" "}
-            {lecturer === "unknown" ? "Unknown Lecturer" : lecturer}
+            <Feather name="user" />
+            {` `}
+            {lecturer === `unknown` ? `Unknown Lecturer` : lecturer}
           </BodyText>
-        </Fragment>
+        </>
       )}
     </Card>
-  );
-};
+  )
+}
 
 TimetableCard.propTypes = {
-  moduleName: PropTypes.string,
+  endTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  lecturer: PropTypes.string,
+  location: PropTypes.string,
   moduleCode: PropTypes.string,
+  moduleName: PropTypes.string,
+  navigation: PropTypes.shape().isRequired,
   pastEvent: PropTypes.bool,
   startTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  endTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  location: PropTypes.string,
-  lecturer: PropTypes.string,
-  navigation: PropTypes.shape().isRequired,
-};
+}
 
 TimetableCard.defaultProps = {
-  moduleName: "",
-  moduleCode: "ABCD123D",
+  endTime: moment().toISOString(),
+  lecturer: `Unknown Lecturer`,
+  location: `TBC`,
+  moduleCode: `ABCD123D`,
+  moduleName: ``,
   pastEvent: false,
   startTime: moment().toISOString(),
-  endTime: moment().toISOString(),
-  location: "TBC",
-  lecturer: "Unknown Lecturer",
-};
+}
 
-export default TimetableCard;
+export default TimetableCard

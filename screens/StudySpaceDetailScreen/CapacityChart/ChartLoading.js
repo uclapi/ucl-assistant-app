@@ -1,63 +1,71 @@
 /* eslint react-native/no-inline-styles: 0 */
-import React, { Component } from "react";
-import { View } from "react-native";
-import Colors from "../../../constants/Colors";
-import { BodyText } from "../../../components/Typography";
-import Lottie from "lottie-react-native";
+import Lottie from "lottie-react-native"
+import React, { Component } from "react"
+import { StyleSheet, View } from "react-native"
+
+import { BodyText } from "../../../components/Typography"
+import Colors from "../../../constants/Colors"
+
+const styles = StyleSheet.create({
+  chartLoading: {
+    alignItems: `center`,
+    backgroundColor: Colors.textInputBackground,
+    flexDirection: `column`,
+    height: 200,
+    justifyContent: `center`,
+  },
+})
 
 class ChartLoading extends Component {
-  state = {
-    animation: null,
-  };
+  constructor() {
+    super()
+    this.state = {
+      animation: null,
+    }
+  }
 
   componentDidMount() {
-    this.playAnimation();
+    this.playAnimation()
   }
 
   playAnimation = () => {
-    const { animation } = this.state;
+    const { animation } = this.state
     if (!animation) {
-      this.loadAnimation();
+      this.loadAnimation()
     } else {
-      this.animationRef.reset();
-      this.animationRef.play();
+      this.animationRef.reset()
+      this.animationRef.play()
     }
-  };
+  }
 
   loadAnimation = () => {
-    const animation = require("../../../assets/animations/bar-chart.json");
+    const animation = require(`../../../assets/animations/bar-chart.json`)
 
-    this.setState({ animation }, this.playAnimation);
-  };
+    this.setState({ animation }, this.playAnimation)
+  }
 
   render() {
-    const { animation } = this.state;
+    const { animation } = this.state
     return (
       <View
-        style={{
-          height: 200,
-          backgroundColor: Colors.textInputBackground,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
+        style={styles.chartLoading}
       >
         {animation && (
           <Lottie
-            ref={animRef => {
-              this.animationRef = animRef;
+            ref={(animRef) => {
+              this.animationRef = animRef
             }}
             loop
-            style={{ width: 200, height: 200 }}
+            style={{ height: 200, width: 200 }}
             source={animation}
           />
         )}
-        <BodyText style={{ position: "relative", bottom: 75 }}>
+        <BodyText style={{ bottom: 75, position: `relative` }}>
           Loading chart...
         </BodyText>
       </View>
-    );
+    )
   }
 }
 
-export default ChartLoading;
+export default ChartLoading

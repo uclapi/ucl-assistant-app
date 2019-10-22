@@ -1,6 +1,10 @@
 import {
-  Dimensions, Platform, StyleSheet, StatusBar,
+  Dimensions,
+  Platform,
+  StatusBar,
+  StyleSheet,
 } from "react-native"
+
 import Colors from "../constants/Colors"
 import { BORDER_RADIUS } from "../constants/styleConstants"
 import Shadow from "../lib/Shadow"
@@ -8,14 +12,15 @@ import Shadow from "../lib/Shadow"
 const { height, width } = Dimensions.get(`window`)
 
 const cardShared = {
-  padding: 10,
+  alignSelf: `stretch`,
   backgroundColor: Colors.cardBackground,
-  marginBottom: 5,
-  marginTop: 5,
   borderRadius: BORDER_RADIUS,
-  ...Shadow(3),
+  marginBottom: 5,
   marginLeft: Platform.OS === `ios` ? 1 : 0,
   marginRight: Platform.OS === `ios` ? 1 : 0,
+  ...Shadow(3),
+  marginTop: 5,
+  padding: 10,
 }
 
 export default StyleSheet.create({
@@ -75,8 +80,8 @@ export default StyleSheet.create({
   oldCard: StyleSheet.flatten([
     cardShared,
     {
-      flexDirection: `column`,
       backgroundColor: Colors.oldCardBackground,
+      flexDirection: `column`,
     },
   ]),
   paddedIcon: {
@@ -90,9 +95,9 @@ export default StyleSheet.create({
     paddingRight: 20,
   },
   pageContainer: {
+    backgroundColor: Colors.pageBackground,
     flex: 1,
     flexDirection: `column`,
-    backgroundColor: Colors.pageBackground,
     height,
     width,
   },
@@ -111,10 +116,10 @@ export default StyleSheet.create({
   resultCard: StyleSheet.flatten([
     cardShared,
     {
-      marginTop: 5,
       marginBottom: 10,
       marginLeft: 2,
       marginRight: 2,
+      marginTop: 5,
     },
   ]),
   spacer: {

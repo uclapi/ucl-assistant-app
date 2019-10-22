@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 
 import StudySpacesFavouritesScreen from './StudySpacesFavouritesScreen'
 import StudySpacesListScreen from './StudySpacesListScreen'
@@ -13,13 +13,13 @@ const StudySpaceNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: `StudySpacesFavourites`,
     defaultNavigationOptions: () => ({
       headerTitleStyle: {
-        fontWeight: `normal`,
         fontFamily: `apercu`,
+        fontWeight: `normal`,
       },
     }),
+    initialRouteName: `StudySpacesFavourites`,
   }
 )
 

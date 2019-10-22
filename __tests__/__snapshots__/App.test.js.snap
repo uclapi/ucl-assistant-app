@@ -356,7 +356,7 @@ exports[`renders the root without loading screen 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#FFF",
+              "backgroundColor": "#fff",
               "transform": Array [
                 Object {
                   "translateX": -750,
@@ -370,8 +370,8 @@ exports[`renders the root without loading screen 1`] = `
             pointerEvents="box-none"
             style={
               Object {
-                "backgroundColor": "#FFF",
-                "borderBottomColor": "#A7A7AA",
+                "backgroundColor": "#fff",
+                "borderBottomColor": "#a7a7aa",
                 "borderBottomWidth": 0.5,
                 "height": 64,
                 "paddingBottom": 0,

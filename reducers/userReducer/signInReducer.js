@@ -1,29 +1,29 @@
 import {
   IS_SIGNING_IN,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
   SIGN_IN_CANCEL,
+  SIGN_IN_FAILURE,
+  SIGN_IN_SUCCESS,
 } from "../../constants/userConstants"
 
 export const initialState = {
-  isSigningIn: false,
   error: ``,
+  isSigningIn: false,
 }
 
 export default (state = initialState, action = null) => {
   const { type, error } = action
   switch (type) {
     case IS_SIGNING_IN: {
-      return { ...state, isSigningIn: true, error: `` }
+      return { ...state, error: ``, isSigningIn: true }
     }
     case SIGN_IN_SUCCESS: {
-      return { ...state, isSigningIn: false, error: `` }
+      return { ...state, error: ``, isSigningIn: false }
     }
     case SIGN_IN_FAILURE: {
-      return { ...state, isSigningIn: false, error }
+      return { ...state, error, isSigningIn: false }
     }
     case SIGN_IN_CANCEL: {
-      return { ...state, isSigningIn: false, error: `` }
+      return { ...state, error: ``, isSigningIn: false }
     }
     default: {
       return state

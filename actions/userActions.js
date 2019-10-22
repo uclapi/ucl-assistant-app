@@ -65,3 +65,12 @@ export const signOut = () => async (dispatch) => {
   await persistor.purge()
   return {}
 }
+
+export const declinePushNotifications = () => ({
+  type: constants.DECLINE_PUSH_NOTIFICATIONS,
+})
+
+export const setExpoPushToken = (pushToken) => ({
+  pushToken,
+  type: constants.SET_EXPO_PUSH_TOKEN,
+})

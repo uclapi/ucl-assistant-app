@@ -1,46 +1,47 @@
 /* eslint react/require-default-props: 0 */
-import React from "react"
-import PropTypes from "prop-types"
 import { Feather } from "@expo/vector-icons"
+import PropTypes from "prop-types"
+import React from "react"
 import {
   KeyboardAvoidingView,
   RefreshControl,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
   View,
   ViewPropTypes,
-  StyleSheet,
 } from "react-native"
-import Styles from "../styles/Containers"
+
 import Colors from "../constants/Colors"
+import Styles from "../styles/Containers"
 
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
-  children: PropTypes.node,
-  style: ViewPropTypes.style,
-  refreshEnabled: PropTypes.bool,
-  onRefresh: PropTypes.func,
-  refreshing: PropTypes.bool,
-  mainTabPage: PropTypes.bool,
-  safeAreaViewStyle: ViewPropTypes.style,
-  keyboardAvoidingViewStyle: ViewPropTypes.style,
-  contentContainerStyle: ViewPropTypes.style,
-  topColour: PropTypes.string,
   bottomColour: PropTypes.string,
+  children: PropTypes.node,
+  contentContainerStyle: ViewPropTypes.style,
+  keyboardAvoidingViewStyle: ViewPropTypes.style,
+  mainTabPage: PropTypes.bool,
+  onRefresh: PropTypes.func,
+  refreshEnabled: PropTypes.bool,
+  refreshing: PropTypes.bool,
+  safeAreaViewStyle: ViewPropTypes.style,
+  style: ViewPropTypes.style,
+  topColour: PropTypes.string,
 }
 /* eslint-enable react/no-unused-prop-types */
 const defaultProps = {
-  children: ``,
-  style: {},
-  refreshEnabled: false,
-  onRefresh: () => { },
-  refreshing: false,
-  mainTabPage: false,
-  safeAreaViewStyle: {},
-  keyboardAvoidingViewStyle: {},
-  contentContainerStyle: {},
-  topColour: Colors.pageBackground,
   bottomColour: Colors.pageBackground,
+  children: ``,
+  contentContainerStyle: {},
+  keyboardAvoidingViewStyle: {},
+  mainTabPage: false,
+  onRefresh: () => { },
+  refreshEnabled: false,
+  refreshing: false,
+  safeAreaViewStyle: {},
+  style: {},
+  topColour: Colors.pageBackground,
 }
 
 const pageTopPadding = { height: 10 }
@@ -83,7 +84,7 @@ export const Page = ({
         >
           <ScrollView
             contentContainerStyle={[Styles.pageScrollContent, contentContainerStyle]}
-            style={[style, Styles.page, Styles.pageScrollView]}
+            style={[Styles.page, Styles.pageScrollView, style]}
             refreshControl={
               refreshEnabled ? (
                 <RefreshControl
