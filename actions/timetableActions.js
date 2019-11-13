@@ -1,5 +1,5 @@
 // @flow
-import moment, { Moment } from "moment"
+import { Moment } from "moment"
 
 import { TIMETABLE_URL } from "../constants/API"
 import {
@@ -8,6 +8,7 @@ import {
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
+import { LocalisationManager } from "../lib"
 
 export const fetchTimetableSuccess = (timetableFrag: Object) => ({
   timetableFrag,
@@ -25,7 +26,7 @@ export const setIsFetchingTimetable = () => ({
 
 export const fetchTimetable = (
   token: String = null,
-  date: Moment = moment(),
+  date: Moment = LocalisationManager.getMoment(),
 ) => async (dispatch: Function) => {
   await dispatch(setIsFetchingTimetable())
   const datePart = date ? `?date=${date.format(`YYYY-MM-DD`)}` : ``
@@ -40,7 +41,7 @@ export const fetchTimetable = (
     if (!res.ok) {
       throw new Error(json.error || `There was a problem`)
     }
-    const now = moment()
+    const now = LocalisationManager.getMoment()
     Object.keys(json.content.timetable).forEach((day) => {
       const timetable = json.content.timetable[day]
       json.content.timetable[day] = {

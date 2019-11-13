@@ -1,4 +1,3 @@
-import moment from "moment"
 import PropTypes from "prop-types"
 import React from "react"
 import { momentObj } from "react-moment-proptypes"
@@ -13,7 +12,7 @@ import { generate } from "shortid"
 import Button from "../../components/Button"
 import TimetableCard from "../../components/Card/TimetableCard"
 import { CentredText, SubtitleText } from "../../components/Typography"
-import { AssetManager, Random } from "../../lib"
+import { AssetManager, LocalisationManager, Random } from "../../lib"
 import Styles from "../../styles/Containers"
 
 const relaxIllustration = Random.array([
@@ -49,7 +48,7 @@ class TimetableComponent extends React.Component {
 
   static defaultProps = {
     changeDate: () => { },
-    date: moment(),
+    date: LocalisationManager.getMoment(),
     isLoading: false,
     timetable: {},
   }
@@ -57,7 +56,7 @@ class TimetableComponent extends React.Component {
   renderTimetableCard = (item) => {
     const { date, navigation } = this.props
     const dateISO = date.format(`YYYY-MM-DD`)
-    const past = Date.parse(`${dateISO}T${item.end_time}`) - Date.now() < 0
+    const past = LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() < 0
     return (
       <TimetableCard
         moduleName={item.module.name}
@@ -75,9 +74,9 @@ class TimetableComponent extends React.Component {
 
   renderJumpToToday = () => {
     const { date, changeDate } = this.props
-    if (!date.isSame(moment().startOf(`day`))) {
+    if (!date.isSame(LocalisationManager.getMoment().startOf(`day`))) {
       return (
-        <Button onPress={() => changeDate(moment())}>
+        <Button onPress={() => changeDate(LocalisationManager.getMoment())}>
           Jump To Today
         </Button>
       )
@@ -91,14 +90,14 @@ class TimetableComponent extends React.Component {
     const filteredTimetable = (timetable[dateISO] || {}).timetable || []
 
     const items = filteredTimetable.sort(
-      (a, b) => Date.parse(`${dateISO}T${a.start_time}:00`)
-        - Date.parse(`${dateISO}T${b.start_time}:00`),
+      (a, b) => LocalisationManager.parseToDate(`${dateISO}T${a.start_time}:00`)
+        - LocalisationManager.parseToDate(`${dateISO}T${b.start_time}:00`),
     )
     const pastItems = items.filter(
-      (item) => Date.parse(`${dateISO}T${item.end_time}`) - Date.now() < 0,
+      (item) => LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() < 0,
     )
     const futureItems = items.filter(
-      (item) => Date.parse(`${dateISO}T${item.end_time}`) - Date.now() > 0,
+      (item) => LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() > 0,
     )
 
     if (filteredTimetable.length > 0) {

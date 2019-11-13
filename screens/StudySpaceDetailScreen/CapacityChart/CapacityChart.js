@@ -1,5 +1,4 @@
 /* eslint react-native/no-inline-styles: 0 */
-import moment from "moment-timezone"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { StyleSheet, View } from "react-native"
@@ -11,7 +10,7 @@ import { AreaChart, XAxis } from "react-native-svg-charts"
 import { generate } from "shortid"
 
 import Colors from "../../../constants/Colors"
-import Timezones from "../../../constants/Timezones"
+import { LocalisationManager } from "../../../lib"
 import MapStyles from "../../../styles/Map"
 import ChartLoading from "./ChartLoading"
 
@@ -77,7 +76,7 @@ const CapacityLine = ({
             fontSize={15}
             key={selectedIndex}
           >
-            {moment(selectedIndex, `H`).format(`h:00a`)}
+            {LocalisationManager.parseToMoment(selectedIndex, `H`).format(`h:00a`)}
             {` - ${Math.round(data[selectedIndex])} seats occupied`}
           </Text>
         </>
@@ -158,7 +157,7 @@ class CapacityChart extends Component {
     const time = value - 1
     const selectTimes = [2, 8, 14, 20]
     if (selectTimes.includes(time)) {
-      return moment(time, `H`).format(`h:00a`)
+      return LocalisationManager.parseToMoment(time, `H`).format(`h:00a`)
     }
     // returning an empty or string or null makes the chart
     // makes the chart library think all labels have zero height
@@ -185,8 +184,7 @@ class CapacityChart extends Component {
     }
 
     const hour = parseInt(
-      moment()
-        .tz(Timezones.London)
+      LocalisationManager.getMoment()
         .format(`HH`),
       10,
     )

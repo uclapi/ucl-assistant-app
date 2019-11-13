@@ -1,9 +1,9 @@
 import { Feather } from "@expo/vector-icons"
-import moment from "moment"
 import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet } from "react-native"
 
+import { LocalisationManager } from "../../lib"
 import { Horizontal } from "../Containers"
 import LiveIndicator from "../LiveIndicator"
 import { BodyText } from "../Typography"
@@ -28,11 +28,14 @@ const TimetableCard = ({
   navigation,
   pastEvent,
 }) => {
-  const startMoment = moment(startTime, `YYYY-MM-DD HH:mm`)
-  const endMoment = moment(endTime, `YYYY-MM-DD HH:mm`)
+  const startMoment = LocalisationManager.parseToMoment(startTime, `YYYY-MM-DD HH:mm`)
+  const endMoment = LocalisationManager.parseToMoment(endTime, `YYYY-MM-DD HH:mm`)
   const start = startMoment.format(`HH:mma`)
   const end = endMoment.format(`HH:mma`)
-  const happeningNow = moment().isSameOrAfter(startMoment) && moment().isSameOrBefore(endMoment)
+  const happeningNow = (
+    LocalisationManager.getMoment().isSameOrAfter(startMoment)
+    && LocalisationManager.getMoment().isSameOrBefore(endMoment)
+  )
   return (
     <Card
       old={pastEvent}
@@ -86,13 +89,13 @@ TimetableCard.propTypes = {
 }
 
 TimetableCard.defaultProps = {
-  endTime: moment().toISOString(),
+  endTime: LocalisationManager.getMoment().toISOString(),
   lecturer: `Unknown Lecturer`,
   location: `TBC`,
   moduleCode: `ABCD123D`,
   moduleName: ``,
   pastEvent: false,
-  startTime: moment().toISOString(),
+  startTime: LocalisationManager.getMoment().toISOString(),
 }
 
 export default TimetableCard

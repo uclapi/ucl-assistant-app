@@ -1,4 +1,3 @@
-import moment from "moment"
 import PropTypes from "prop-types"
 import React from "react"
 import { momentObj } from "react-moment-proptypes"
@@ -7,6 +6,7 @@ import DateTimerPicker from "react-native-modal-datetime-picker"
 
 import Button, { RoundButton } from "../../components/Button"
 import { Horizontal, Spacer } from "../../components/Containers"
+import { LocalisationManager } from "../../lib"
 
 const styles = StyleSheet.create({
   dateControls: {
@@ -22,7 +22,7 @@ class DateControls extends React.Component {
   }
 
   static defaultProps = {
-    date: moment().startOf(`day`),
+    date: LocalisationManager.getMoment().startOf(`day`),
     onDateChanged: () => { },
   }
 
@@ -35,7 +35,7 @@ class DateControls extends React.Component {
 
   onDatePickerConfirm = (date) => {
     const { onDateChanged } = this.props
-    onDateChanged(moment(date))
+    onDateChanged(LocalisationManager.getMoment(date))
     this.setState({ isDatePickerVisible: false })
   }
 

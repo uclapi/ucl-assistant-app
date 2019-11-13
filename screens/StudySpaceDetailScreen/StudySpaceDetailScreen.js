@@ -1,5 +1,4 @@
 // @flow
-import moment from "moment"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { StyleSheet, View } from "react-native"
@@ -17,10 +16,8 @@ import {
   TitleText,
 } from "../../components/Typography"
 import Colors from "../../constants/Colors"
-import Timezones from "../../constants/Timezones"
-import LocalisationManager from "../../lib/LocalisationManager"
 // import MapsManager from "../../lib/MapsManager"
-import Shadow from "../../lib/Shadow"
+import { LocalisationManager, Shadow } from "../../lib"
 import CapacityChart from "./CapacityChart"
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton"
@@ -182,17 +179,14 @@ class StudySpaceDetailScreen extends Component {
     } = this.state
     const { isFetchingAverages, maps } = space
     const hour = parseInt(
-      moment()
-        .tz(Timezones.London)
+      LocalisationManager.getMoment()
         .format(`HH`),
       10,
     )
 
-    const londonTimeOffset = moment()
-      .tz(Timezones.London)
+    const londonTimeOffset = LocalisationManager.getMoment()
       .utcOffset()
-    const localTimeOffset = moment()
-      .tz(LocalisationManager.getTimezone())
+    const localTimeOffset = LocalisationManager.local.getMoment()
       .utcOffset()
     const hoursDifference = (localTimeOffset - londonTimeOffset) / 60
     const timezoneInfo = londonTimeOffset !== localTimeOffset ? (
@@ -236,8 +230,7 @@ class StudySpaceDetailScreen extends Component {
           <Horizontal style={styles.liveIndicatorContainer}>
             <LiveIndicator style={styles.liveIndicator} />
             <BodyText>
-              {moment()
-                .tz(Timezones.London)
+              {LocalisationManager.getMoment()
                 .format(`h:mma`)}
               {` - `}
               {busyText(hour, data, occupied, total)}

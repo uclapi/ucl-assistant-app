@@ -13,7 +13,7 @@ import { Page } from "../../components/Containers"
 import { BodyText, ErrorText, TitleText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
-import { ErrorManager, PushNotificationsManager } from '../../lib'
+import { ErrorManager, LocalisationManager, PushNotificationsManager } from '../../lib'
 import DateControls from "./DateControls"
 import TimetableComponent from "./TimetableComponent"
 
@@ -30,16 +30,17 @@ const styles = StyleSheet.create({
 })
 
 class TimetableScreen extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="calendar"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
+  static mapStateToProps = (state) => ({
+    error: state.timetable.error,
+    isFetchingTimetable: state.timetable.isFetching,
+    timetable: state.timetable.timetable,
+    user: state.user,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    fetchTimetable: (token, date) => dispatch(fetchTimetableAction(token, date)),
+    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
+  })
 
   static propTypes = {
     fetchTimetable: PropTypes.func,
@@ -58,22 +59,10 @@ class TimetableScreen extends Component {
     user: {},
   }
 
-  static mapStateToProps = (state) => ({
-    error: state.timetable.error,
-    isFetchingTimetable: state.timetable.isFetching,
-    timetable: state.timetable.timetable,
-    user: state.user,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    fetchTimetable: (token, date) => dispatch(fetchTimetableAction(token, date)),
-    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
-  })
-
   constructor(props) {
     super(props)
     this.state = {
-      date: moment().startOf(`day`),
+      date: LocalisationManager.getMoment().startOf(`day`),
     }
   }
 
@@ -127,7 +116,7 @@ class TimetableScreen extends Component {
         return fetchTimetable(token, eachDate)
       }
       const diff = moment.duration(
-        moment().diff(timetable[dateString].lastUpdated),
+        LocalisationManager.getMoment().diff(timetable[dateString].lastUpdated),
       )
       if (diff.asHours() > TIMETABLE_CACHE_TIME_HOURS) {
         console.log(diff.asHours(), TIMETABLE_CACHE_TIME_HOURS)
@@ -157,6 +146,17 @@ class TimetableScreen extends Component {
       return false
     }
     return true
+  }
+
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="calendar"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
   }
 
   render() {

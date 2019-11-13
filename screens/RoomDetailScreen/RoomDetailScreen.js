@@ -1,4 +1,3 @@
-import moment from "moment"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { StyleSheet, View } from "react-native"
@@ -19,6 +18,7 @@ import Colors from "../../constants/Colors"
 import {
   ApiManager,
   ErrorManager,
+  LocalisationManager,
   MapsManager,
   Shadow,
 } from "../../lib"
@@ -77,9 +77,9 @@ const initialRegion = {
 }
 
 class RoomDetailScreen extends Component {
-  static navigationOptions = {
-    title: `Room Detail`,
-  }
+  static mapStateToProps = (state) => ({
+    token: state.user.token,
+  })
 
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
@@ -89,10 +89,6 @@ class RoomDetailScreen extends Component {
   static defaultProps = {
     token: ``,
   }
-
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
 
   constructor() {
     super()
@@ -138,6 +134,10 @@ class RoomDetailScreen extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: `Room Detail`,
+  }
+
   renderEquipment = ({ description, units }) => {
     if (description === `Wheelchair accessible`) {
       return (
@@ -161,7 +161,7 @@ class RoomDetailScreen extends Component {
   }) => (
       <View style={styles.booking} key={generate()}>
         <SearchResultTopText>
-          {`${moment(start).format(`HH:mm`)}hrs - ${moment(end).format(`HH:mm`)}hrs`}
+          {`${LocalisationManager.parseToMoment(start).format(`HH:mm`)}hrs - ${LocalisationManager.parseToMoment(end).format(`HH:mm`)}hrs`}
         </SearchResultTopText>
         {contact && (<BodyText>{`booked by ${contact}`}</BodyText>)}
         <BodyText>{description}</BodyText>

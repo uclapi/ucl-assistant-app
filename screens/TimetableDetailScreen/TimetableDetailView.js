@@ -1,4 +1,3 @@
-import moment from "moment"
 import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet, View } from "react-native"
@@ -13,8 +12,7 @@ import {
   SubtitleText,
   TitleText,
 } from "../../components/Typography"
-import MailManager from "../../lib/MailManager"
-import MapsManager from "../../lib/MapsManager"
+import { LocalisationManager, MailManager, MapsManager } from "../../lib"
 import MapStyle from "../../styles/Map"
 
 const styles = StyleSheet.create({
@@ -183,7 +181,7 @@ class TimetableDetailView extends React.Component {
     return (
       <Page>
         <TitleText>{moduleName}</TitleText>
-        <BodyText>{moment(date).format(`dddd, Do MMMM YYYY`)}</BodyText>
+        <BodyText>{LocalisationManager.parseToMoment(date).format(`dddd, Do MMMM YYYY`)}</BodyText>
         <BodyText>
           {`${startTime} - ${endTime}`}
         </BodyText>
