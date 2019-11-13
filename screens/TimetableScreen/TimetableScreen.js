@@ -6,14 +6,22 @@ import { Platform, StyleSheet, View } from "react-native"
 import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
-import { fetchTimetable as fetchTimetableAction } from "../../actions/timetableActions"
-import { setExpoPushToken as setExpoPushTokenAction } from "../../actions/userActions"
+import {
+  fetchTimetable as fetchTimetableAction,
+} from "../../actions/timetableActions"
+import {
+  setExpoPushToken as setExpoPushTokenAction,
+} from "../../actions/userActions"
 import Button from "../../components/Button"
 import { Page } from "../../components/Containers"
 import { BodyText, ErrorText, TitleText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
-import { ErrorManager, LocalisationManager, PushNotificationsManager } from '../../lib'
+import {
+  ErrorManager,
+  LocalisationManager,
+  PushNotificationsManager,
+} from '../../lib'
 import DateControls from "./DateControls"
 import TimetableComponent from "./TimetableComponent"
 
@@ -38,8 +46,12 @@ class TimetableScreen extends Component {
   })
 
   static mapDispatchToProps = (dispatch) => ({
-    fetchTimetable: (token, date) => dispatch(fetchTimetableAction(token, date)),
-    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
+    fetchTimetable: (token, date) => dispatch(
+      fetchTimetableAction(token, date),
+    ),
+    setExpoPushToken: (pushToken) => dispatch(
+      setExpoPushTokenAction(pushToken),
+    ),
   })
 
   static propTypes = {
@@ -83,15 +95,22 @@ class TimetableScreen extends Component {
 
     if (Platform.OS === `android` && expoPushToken === ``) {
       try {
-        const pushToken = await PushNotificationsManager.registerForPushNotifications(token)
+        const pushToken = (
+          await PushNotificationsManager.registerForPushNotifications(token)
+        )
         setExpoPushToken(pushToken)
       } catch (error) {
         ErrorManager.captureError(error)
       }
     }
 
-    if (Platform.OS === `ios` && !declinePushNotifications && expoPushToken === ``) {
-      const didGrant = await PushNotificationsManager.hasPushNotificationPermissions()
+    if (Platform.OS === `ios`
+      && !declinePushNotifications
+      && expoPushToken === ``
+    ) {
+      const didGrant = (
+        await PushNotificationsManager.hasPushNotificationPermissions()
+      )
       if (!didGrant) {
         const { navigation } = this.props
         navigation.navigate(`Notifications`)
@@ -111,7 +130,10 @@ class TimetableScreen extends Component {
     ].map((eachDate) => {
       const dateString = eachDate.format(`YYYY-MM-DD`)
 
-      if (forceUpdate || !timetable[dateString] || !timetable[dateString].lastUpdated) {
+      if (forceUpdate
+        || !timetable[dateString]
+        || !timetable[dateString].lastUpdated
+      ) {
         console.log(timetable[dateString])
         return fetchTimetable(token, eachDate)
       }
@@ -148,6 +170,16 @@ class TimetableScreen extends Component {
     return true
   }
 
+  onRefresh = () => {
+    const { date } = this.state
+    this.onDateChanged(date, true)
+  }
+
+  navigateToSignIn = () => {
+    const { navigation: { navigate } } = this.props
+    navigate(`Splash`)
+  }
+
   static navigationOptions = {
     header: null,
     tabBarIcon: ({ focused }) => (
@@ -166,14 +198,13 @@ class TimetableScreen extends Component {
       isFetchingTimetable,
       navigation,
     } = this.props
-    const { navigate } = navigation
     const { scopeNumber } = user
     const { date, error } = this.state
     const dateString = date.format(`ddd, Do MMMM`)
     return (
       <Page
         refreshing={isFetchingTimetable}
-        onRefresh={() => this.onDateChanged(date, true)}
+        onRefresh={this.onRefresh}
         refreshEnabled
         mainTabPage
         contentContainerStyle={styles.page}
@@ -181,7 +212,7 @@ class TimetableScreen extends Component {
         {scopeNumber < 0 && (
           <View>
             <BodyText>You are not signed in.</BodyText>
-            <Button onPress={() => navigate(`Splash`)}>Sign In</Button>
+            <Button onPress={this.navigateToSignIn}>Sign In</Button>
           </View>
         )}
         {error && error !== `` ? (
@@ -192,7 +223,10 @@ class TimetableScreen extends Component {
         <View style={styles.currentDate}>
           <TitleText>{dateString}</TitleText>
         </View>
-        <DateControls date={date} onDateChanged={(d) => this.onDateChanged(d)} />
+        <DateControls
+          date={date}
+          onDateChanged={this.onDateChanged}
+        />
         <TimetableComponent
           timetable={timetable}
           date={date}

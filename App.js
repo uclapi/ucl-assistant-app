@@ -18,6 +18,11 @@ const { persistor, store } = configureStore
 
 ErrorManager.initialise()
 
+if (process.env.NODE_ENV !== `production`) {
+  const whyDidYouRender = require(`@welldone-software/why-did-you-render`)
+  whyDidYouRender(React)
+}
+
 class App extends Component {
   static propTypes = {
     skipLoadingScreen: PropTypes.bool,
@@ -78,7 +83,10 @@ class App extends Component {
     this.setState({ isLoadingComplete: true })
   }
 
-  handleNotification = (notification) => console.log(`Received notification`, notification)
+  handleNotification = (notification) => console.log(
+    `Received notification`,
+    notification,
+  )
 
   onNavigationStateChange = (prevState, currentState) => {
     const currentScreen = App.getActiveRouteName(currentState)

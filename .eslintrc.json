@@ -51,6 +51,15 @@
       "error",
       "always-multiline"
     ],
+    "no-var": "error",
+    "prefer-const": "error",
+    "max-len": [
+      "warn",
+      {
+        "code": 80
+      }
+    ],
+    "object-property-newline": "error",
     "react-native/no-raw-text": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "no-secrets/no-secrets": "error",
@@ -60,6 +69,12 @@
     "react/jsx-indent-props": [
       "error",
       2
+    ],
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "ignoreRefs": true
+      }
     ],
     "react/jsx-closing-bracket-location": [
       "error"

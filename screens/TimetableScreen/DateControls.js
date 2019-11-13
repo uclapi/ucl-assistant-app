@@ -35,32 +35,46 @@ class DateControls extends React.Component {
 
   onDatePickerConfirm = (date) => {
     const { onDateChanged } = this.props
-    onDateChanged(LocalisationManager.getMoment(date))
+    onDateChanged(LocalisationManager.parseToMoment(date))
     this.setState({ isDatePickerVisible: false })
   }
 
-  render() {
+  onPreviousDay = () => {
     const { onDateChanged, date } = this.props
+    onDateChanged(date.clone().subtract(1, `day`))
+  }
+
+  onNextDay = () => {
+    const { onDateChanged, date } = this.props
+    onDateChanged(date.clone().add(1, `day`))
+  }
+
+  showDatePicker = () => this.setState({ isDatePickerVisible: true })
+
+  hideDatePicker = () => this.setState({ isDatePickerVisible: false })
+
+  render() {
+    const { date } = this.props
     const { isDatePickerVisible } = this.state
     return (
       <Horizontal style={styles.dateControls}>
         <RoundButton
-          onPress={() => onDateChanged(date.clone().subtract(1, `day`))}
+          onPress={this.onPreviousDay}
           icon="chevron-left"
         />
         <Spacer />
         <DateTimerPicker
           isVisible={isDatePickerVisible}
           onConfirm={this.onDatePickerConfirm}
-          onCancel={() => this.setState({ isDatePickerVisible: false })}
+          onCancel={this.hideDatePicker}
           date={date.toDate()}
         />
-        <Button onPress={() => this.setState({ isDatePickerVisible: true })}>
+        <Button onPress={this.showDatePicker}>
           Jump To Date
         </Button>
         <Spacer />
         <RoundButton
-          onPress={() => onDateChanged(date.clone().add(1, `day`))}
+          onPress={this.onNextDay}
           icon="chevron-right"
         />
       </Horizontal>
