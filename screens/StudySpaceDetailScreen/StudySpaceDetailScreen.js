@@ -137,7 +137,9 @@ class StudySpaceDetailScreen extends Component {
         isFetchingAverages: false,
       },
       survey: props.studyspaces.filter(
-        ({ id: surveyId }) => Number.parseInt(id, 10) === Number.parseInt(surveyId, 10),
+        ({ id: surveyId }) => (
+          Number.parseInt(id, 10) === Number.parseInt(surveyId, 10)
+        ),
       )[0],
       total,
     }
