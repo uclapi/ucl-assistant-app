@@ -4,7 +4,9 @@ import React, { Component } from "react"
 import { StyleSheet, View } from "react-native"
 import { connect } from "react-redux"
 
-import { fetchAverages as fetchAveragesAction } from "../../actions/studyspacesActions"
+import {
+  fetchAverages as fetchAveragesAction,
+} from "../../actions/studyspacesActions"
 import Button from "../../components/Button"
 import { Horizontal, Page } from "../../components/Containers"
 import LiveIndicator from "../../components/LiveIndicator"
@@ -16,8 +18,7 @@ import {
   TitleText,
 } from "../../components/Typography"
 import Colors from "../../constants/Colors"
-// import MapsManager from "../../lib/MapsManager"
-import { LocalisationManager, Shadow } from "../../lib"
+import { LocalisationManager, MapsManager, Shadow } from "../../lib"
 import CapacityChart from "./CapacityChart"
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton"
@@ -136,11 +137,6 @@ class StudySpaceDetailScreen extends Component {
       space: {
         isFetchingAverages: false,
       },
-      survey: props.studyspaces.filter(
-        ({ id: surveyId }) => (
-          Number.parseInt(id, 10) === Number.parseInt(surveyId, 10)
-        ),
-      )[0],
       total,
     }
   }
@@ -156,18 +152,19 @@ class StudySpaceDetailScreen extends Component {
 
   navigateToLiveSeatMap = () => {
     const { navigation } = this.props
-    const { survey } = this.state
-    navigation.navigate(`LiveSeatingMap`, { survey })
+    const { space } = this.state
+    navigation.navigate(`LiveSeatingMap`, { space })
   }
 
   navigateToLocation = () => {
-    // navigate
-    console.log(this.props, this.state)
-    // if (lat && lng) {
-    //   MapsManager.navigateToCoords({ lat, lng })
-    // } else {
-    //   MapsManager.navigateToAddress(address.join())
-    // }
+    const { space: { location } } = this.state
+    const { coordinates, address } = location
+    if (coordinates && coordinates.lat && coordinates.lng) {
+      const { lat, lng } = coordinates
+      MapsManager.navigateToCoords({ lat, lng })
+    } else {
+      MapsManager.navigateToAddress(address.join())
+    }
   }
 
   static navigationOptions = {
