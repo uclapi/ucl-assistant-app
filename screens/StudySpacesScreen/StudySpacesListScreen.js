@@ -19,7 +19,6 @@ import {
   ErrorText,
 } from "../../components/Typography"
 import { WORKSPACES_SORT_TYPES } from '../../constants/studyspacesConstants'
-import ApiManager from "../../lib/ApiManager"
 import {
   matchingStudySpacesSelector,
 } from '../../selectors/studyspacesSelectors'
@@ -103,7 +102,7 @@ class StudySpacesListScreen extends React.Component {
     this.updateTextInterval = null
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { loadedSeatInfo } = this.state
     const { token } = this.props
     if (!loadedSeatInfo && token) {
@@ -113,7 +112,6 @@ class StudySpacesListScreen extends React.Component {
       () => this.updateLastUpdatedText(),
       10000,
     )
-    ApiManager.workspaces.getWorkspaces(token)
   }
 
   componentDidUpdate(prevProps) {

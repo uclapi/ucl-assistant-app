@@ -20,7 +20,7 @@ const StudySpaceNavigator = createStackNavigator(
       },
     }),
     initialRouteName: `StudySpacesFavourites`,
-  }
+  },
 )
 
 export default StudySpaceNavigator

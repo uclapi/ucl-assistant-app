@@ -7,13 +7,18 @@ import { momentObj } from "react-moment-proptypes"
 import { Image, StyleSheet, View } from "react-native"
 import { connect } from "react-redux"
 
-import { fetchSeatInfos } from "../../actions/studyspacesActions"
+import {
+  fetchDetails,
+  fetchSeatInfos,
+} from "../../actions/studyspacesActions"
 import Button from "../../components/Button"
 import { Page } from "../../components/Containers"
 import { BodyText, SubtitleText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { AssetManager } from "../../lib"
-import { favouriteStudySpacesSelector } from '../../selectors/studyspacesSelectors'
+import {
+  favouriteStudySpacesSelector,
+} from '../../selectors/studyspacesSelectors'
 import Styles from "../../styles/Containers"
 import FavouriteStudySpaces from "./components/FavouriteStudySpaces"
 
@@ -35,35 +40,6 @@ const styles = StyleSheet.create({
 })
 
 class StudySpaceFavouritesScreen extends Component {
-  static navigationOptions = {
-    header: null,
-    title: `Study Spaces`,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="book"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
-
-  static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    studyspaces: PropTypes.arrayOf(PropTypes.shape()),
-    token: PropTypes.string,
-    fetchInfo: PropTypes.func,
-    lastUpdated: PropTypes.oneOfType([momentObj, PropTypes.string]),
-    favouriteSpaces: PropTypes.arrayOf(PropTypes.shape()),
-  }
-
-  static defaultProps = {
-    studyspaces: [],
-    token: ``,
-    fetchInfo: () => { },
-    lastUpdated: null,
-    favouriteSpaces: [],
-  }
-
   static mapStateToProps = (state) => {
     const {
       studyspaces: {
@@ -82,20 +58,40 @@ class StudySpaceFavouritesScreen extends Component {
 
   static mapDispatchToProps = (dispatch) => ({
     fetchInfo: (ids, token) => dispatch(fetchSeatInfos(token, ids)),
+    fetchStudyspaceDetails: (token) => dispatch(fetchDetails(token)),
   })
+
+  static propTypes = {
+    favouriteSpaces: PropTypes.arrayOf(PropTypes.shape()),
+    fetchInfo: PropTypes.func,
+    fetchStudyspaceDetails: PropTypes.func,
+    lastUpdated: PropTypes.oneOfType([momentObj, PropTypes.string]),
+    navigation: PropTypes.shape().isRequired,
+    studyspaces: PropTypes.arrayOf(PropTypes.shape()),
+    token: PropTypes.string,
+  }
+
+  static defaultProps = {
+    favouriteSpaces: [],
+    fetchInfo: () => { },
+    fetchStudyspaceDetails: () => { },
+    lastUpdated: null,
+    studyspaces: [],
+    token: ``,
+  }
 
   constructor(props) {
     super(props)
     this.state = {
-      loadedSeatInfo: false,
       lastUpdated: `never`,
+      loadedSeatInfo: false,
     }
     this.updateTextInterval = null
   }
 
   componentDidMount() {
     const { loadedSeatInfo } = this.state
-    const { token } = this.props
+    const { token, fetchStudyspaceDetails } = this.props
     if (!loadedSeatInfo && token) {
       this.fetchSeatInfo()
     }
@@ -103,6 +99,7 @@ class StudySpaceFavouritesScreen extends Component {
       () => this.updateLastUpdatedText(),
       10000,
     )
+    fetchStudyspaceDetails(token)
   }
 
   componentDidUpdate(prevProps) {
@@ -163,6 +160,18 @@ class StudySpaceFavouritesScreen extends Component {
       />
     </View>
   )
+
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="book"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+    title: `Study Spaces`,
+  }
 
   render() {
     const { loadedSeatInfo } = this.state
