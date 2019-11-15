@@ -90,6 +90,17 @@ const styles = StyleSheet.create({
   },
 })
 
+const hasCoordinates = (coordinates) => (
+  coordinates && coordinates.lat && coordinates.lng
+  && coordinates.lat.length > 0
+  && coordinates.lng.length > 0
+)
+
+const hasAddress = (address) => (
+  address && Array.isArray(address) && address.length > 0
+  && !address.every((part) => part.length === 0)
+)
+
 class StudySpaceDetailScreen extends Component {
   static mapStateToProps = (state) => ({
     studyspaces: state.studyspaces.studyspaces,
@@ -159,7 +170,7 @@ class StudySpaceDetailScreen extends Component {
   navigateToLocation = () => {
     const { space: { location } } = this.state
     const { coordinates, address } = location
-    if (coordinates && coordinates.lat && coordinates.lng) {
+    if (hasCoordinates(coordinates)) {
       const { lat, lng } = coordinates
       MapsManager.navigateToCoords({ lat, lng })
     } else {
@@ -197,6 +208,10 @@ class StudySpaceDetailScreen extends Component {
         ).
       </InfoText>
     ) : null
+
+    const { location: { coordinates, address } } = space
+    const canNavigateTo = (hasCoordinates(coordinates) && hasAddress(address))
+
     return (
       <View style={styles.container}>
         <Page>
@@ -255,9 +270,13 @@ class StudySpaceDetailScreen extends Component {
               </BodyText>
             </View>
           </View>
-          <Button onPress={this.navigateToLocation}>
-            Directions
-          </Button>
+          {
+            canNavigateTo ? (
+              <Button onPress={this.navigateToLocation}>
+                Directions
+              </Button>
+            ) : null
+          }
           <View style={styles.padder} />
         </Page>
         <FavouriteButton id={id} />
