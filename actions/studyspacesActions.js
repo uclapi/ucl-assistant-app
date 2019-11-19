@@ -45,7 +45,7 @@ export const fetchSeatInfos = (token: String) => async (dispatch: Function) => {
     return dispatch(fetchSeatInfosSuccess(json.content))
   } catch (error) {
     return dispatch(
-      fetchSeatInfosFailure(typeof error === `string` ? error : error.message),
+      fetchSeatInfosFailure(error.message),
     )
   }
 }
@@ -86,7 +86,7 @@ export const fetchAverages = (token: String, id: Number) => async (
     return dispatch(
       fetchAveragesFailure(
         id,
-        typeof error === `string` ? error : error.message,
+        error.message,
       ),
     )
   }
@@ -132,7 +132,7 @@ export const fetchDetails = (token: String) => async (
   } catch (error) {
     return dispatch(
       fetchDetailsFailure(
-        typeof error === `string` ? error : error.message,
+        error.message,
       ),
     )
   }
