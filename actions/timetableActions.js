@@ -1,14 +1,13 @@
 // @flow
 import { Moment } from "moment"
 
-import { TIMETABLE_URL } from "../constants/API"
 import {
   CLEAR_TIMETABLE,
   TIMETABLE_FETCH_FAILURE,
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
-import { LocalisationManager } from "../lib"
+import { ApiManager, LocalisationManager } from "../lib"
 
 export const fetchTimetableSuccess = (timetableFrag: Object) => ({
   timetableFrag,
@@ -29,30 +28,15 @@ export const fetchTimetable = (
   date: Moment = LocalisationManager.getMoment(),
 ) => async (dispatch: Function) => {
   await dispatch(setIsFetchingTimetable())
-  const datePart = date ? `?date=${date.format(`YYYY-MM-DD`)}` : ``
-  const url = `${TIMETABLE_URL}${datePart}`
   try {
-    const res = await fetch(url, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-    const json = await res.json()
-    if (!res.ok) {
-      throw new Error(json.error || `There was a problem`)
-    }
-    const now = LocalisationManager.getMoment()
-    Object.keys(json.content.timetable).forEach((day) => {
-      const timetable = json.content.timetable[day]
-      json.content.timetable[day] = {
-        lastUpdated: now,
-        timetable,
-      }
-    })
-    return dispatch(fetchTimetableSuccess(json.content.timetable))
+    const timetable = await ApiManager.timetable.getPersonalTimetable(
+      token,
+      date,
+    )
+    return dispatch(fetchTimetableSuccess(timetable))
   } catch (error) {
     return dispatch(
-      fetchTimetableFailure(typeof error === `string` ? error : error.message),
+      fetchTimetableFailure(error.message),
     )
   }
 }

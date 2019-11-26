@@ -26,7 +26,7 @@ import DateControls from "./DateControls"
 import TimetableComponent from "./TimetableComponent"
 
 const styles = StyleSheet.create({
-  currentDate: {
+  container: {
     paddingLeft: 20,
     paddingRight: 20,
   },
@@ -42,6 +42,7 @@ class TimetableScreen extends Component {
     error: state.timetable.error,
     isFetchingTimetable: state.timetable.isFetching,
     timetable: state.timetable.timetable,
+    timetableLastModified: state.timetable.lastModified,
     user: state.user,
   })
 
@@ -134,14 +135,12 @@ class TimetableScreen extends Component {
         || !timetable[dateString]
         || !timetable[dateString].lastUpdated
       ) {
-        console.log(timetable[dateString])
         return fetchTimetable(token, eachDate)
       }
       const diff = moment.duration(
         LocalisationManager.getMoment().diff(timetable[dateString].lastUpdated),
       )
       if (diff.asHours() > TIMETABLE_CACHE_TIME_HOURS) {
-        console.log(diff.asHours(), TIMETABLE_CACHE_TIME_HOURS)
         return fetchTimetable(token, eachDate)
       }
       return Promise.resolve()
@@ -220,7 +219,7 @@ class TimetableScreen extends Component {
             <ErrorText>{error}</ErrorText>
           </View>
         ) : null}
-        <View style={styles.currentDate}>
+        <View style={styles.container}>
           <TitleText>{dateString}</TitleText>
         </View>
         <DateControls

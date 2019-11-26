@@ -53,10 +53,17 @@ class TimetableComponent extends React.Component {
     timetable: {},
   }
 
+  jumpToToday = () => {
+    const { changeDate } = this.props
+    changeDate(LocalisationManager.getMoment())
+  }
+
   renderTimetableCard = (item) => {
     const { date, navigation } = this.props
     const dateISO = date.format(`YYYY-MM-DD`)
-    const past = LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() < 0
+    const past = LocalisationManager.parseToDate(
+      `${dateISO}T${item.end_time}`,
+    ) - LocalisationManager.now() < 0
     return (
       <TimetableCard
         moduleName={item.module.name}
@@ -73,10 +80,10 @@ class TimetableComponent extends React.Component {
   }
 
   renderJumpToToday = () => {
-    const { date, changeDate } = this.props
+    const { date } = this.props
     if (!date.isSame(LocalisationManager.getMoment().startOf(`day`))) {
       return (
-        <Button onPress={() => changeDate(LocalisationManager.getMoment())}>
+        <Button onPress={this.jumpToToday}>
           Jump To Today
         </Button>
       )
@@ -87,22 +94,30 @@ class TimetableComponent extends React.Component {
   renderItem = ({ index }) => {
     const { date, timetable } = this.props
     const dateISO = date.clone().add(index - 1, `days`).format(`YYYY-MM-DD`)
-    const filteredTimetable = (timetable[dateISO] || {}).timetable || []
+    const {
+      timetable: dayTimetable = [],
+      lastUpdated = null,
+    } = (timetable[dateISO] || {})
 
-    const items = filteredTimetable.sort(
+    const items = dayTimetable.sort(
       (a, b) => LocalisationManager.parseToDate(`${dateISO}T${a.start_time}:00`)
         - LocalisationManager.parseToDate(`${dateISO}T${b.start_time}:00`),
     )
     const pastItems = items.filter(
-      (item) => LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() < 0,
+      (item) => LocalisationManager.parseToDate(
+        `${dateISO}T${item.end_time}`,
+      ) - LocalisationManager.now() < 0,
     )
     const futureItems = items.filter(
-      (item) => LocalisationManager.parseToDate(`${dateISO}T${item.end_time}`) - LocalisationManager.now() > 0,
+      (item) => LocalisationManager.parseToDate(
+        `${dateISO}T${item.end_time}`,
+      ) - LocalisationManager.now() > 0,
     )
 
-    if (filteredTimetable.length > 0) {
+    if (dayTimetable.length > 0) {
       return (
         <View style={styles.dayView}>
+          {this.renderLastUpdated(lastUpdated)}
           {futureItems.map(this.renderTimetableCard)}
           {pastItems.length > 0 && (
             <>
@@ -117,6 +132,7 @@ class TimetableComponent extends React.Component {
 
     return (
       <View style={styles.dayView}>
+        {this.renderLastUpdated(lastUpdated)}
         <View style={topPadding} />
         <CentredText>
           Nothing scheduled on&nbsp;
@@ -134,6 +150,19 @@ class TimetableComponent extends React.Component {
     )
   }
 
+  renderLastUpdated = (lastUpdated) => (
+    <View style={[styles.container, styles.lastUpdated]}>
+      <CentredText>
+        {`Last updated ${
+          LocalisationManager.parseToMoment(
+            lastUpdated,
+          ).calendar().toLowerCase()
+        }`}
+      </CentredText>
+    </View>
+
+  )
+
   render() {
     const {
       timetable,
@@ -142,12 +171,23 @@ class TimetableComponent extends React.Component {
     } = this.props
 
     const dateISO = date.format(`YYYY-MM-DD`)
-    const filteredTimetable = (timetable[dateISO] || {}).timetable || []
+    const {
+      timetable: dayTimetable = [],
+      lastUpdated = null,
+    } = (timetable[dateISO] || {})
 
-    if (isLoading && filteredTimetable.length === 0) {
+    if (isLoading && dayTimetable.length === 0) {
       return (
         <View>
           <CentredText>Loading timetable...</CentredText>
+        </View>
+      )
+    }
+
+    if (lastUpdated === null) {
+      return (
+        <View>
+          <CentredText>Could not load personal timetable...</CentredText>
         </View>
       )
     }
