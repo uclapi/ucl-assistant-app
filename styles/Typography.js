@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+
 import Color from "../constants/Colors"
 
 export const style = StyleSheet.create({
@@ -27,6 +28,11 @@ export const style = StyleSheet.create({
   },
   errorText: {
     color: Color.errorColor,
+  },
+  header: {
+    fontFamily: `apercu-light`,
+    fontSize: 28,
+    marginBottom: 10,
   },
   infoText: {
     color: Color.infoColor,
@@ -95,6 +101,7 @@ export default StyleSheet.create({
     style.informational,
     style.errorText,
   ]),
+  headerText: StyleSheet.flatten([style.baseStyle, style.header]),
   infoText: StyleSheet.flatten([
     style.baseStyle,
     style.informational,

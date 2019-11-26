@@ -54,7 +54,7 @@ export default StyleSheet.create({
   },
   image: {
     alignSelf: `stretch`,
-    backgroundColor: Colors.black,
+    backgroundColor: `rgba(0,0,0,0)`,
     flex: 1,
     height: undefined,
     marginTop: 50,

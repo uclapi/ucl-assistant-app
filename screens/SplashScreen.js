@@ -26,6 +26,9 @@ import { AnalyticsManager, AssetManager } from "../lib"
 import Styles from "../styles/Containers"
 import SplashStyle from "../styles/Splash"
 
+const TERMS_URL = `https://github.com/uclapi/ucl-assistant-app/`
+  + `blob/master/TERMS.md`
+
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
@@ -161,7 +164,7 @@ class SplashScreen extends Component {
               resizeMode="contain"
             />
             <SubtitleText style={SplashStyle.text}>
-              One app to manage your life at UCL.
+              One app to manage your life at UCL
             </SubtitleText>
             <Spacer />
             <CustomButton
@@ -182,17 +185,15 @@ class SplashScreen extends Component {
               </Horizontal>
             </CustomButton>
             <View style={SplashStyle.disclaimer}>
-              <BodyText>
-                <BodyText style={SplashStyle.disclaimerText}>
-                  By signing into this app, you agree to&nbsp;
-                </BodyText>
-                <Link
-                  href="https://github.com/uclapi/ucl-assistant-app/blob/master/TERMS.md"
-                  style={SplashStyle.disclaimerLink}
-                >
-                  UCL API&apos;s terms & conditions.
-                </Link>
+              <BodyText style={SplashStyle.disclaimerText}>
+                By signing into this app, you agree to&nbsp;
               </BodyText>
+              <Link
+                href={TERMS_URL}
+                style={SplashStyle.disclaimerLink}
+              >
+                UCL API&apos;s terms &amp; conditions.
+              </Link>
             </View>
           </SafeAreaView>
         </LinearGradient>

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+
 import Colors from "../constants/Colors"
 
 const SplashStyle = StyleSheet.create({
@@ -8,6 +9,8 @@ const SplashStyle = StyleSheet.create({
   },
   buttonText: {},
   disclaimer: {
+    flexDirection: `row`,
+    flexWrap: `wrap`,
     marginTop: 20,
   },
   disclaimerLink: {
