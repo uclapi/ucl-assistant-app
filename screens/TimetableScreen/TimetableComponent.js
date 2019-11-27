@@ -11,7 +11,7 @@ import { generate } from "shortid"
 
 import Button from "../../components/Button"
 import TimetableCard from "../../components/Card/TimetableCard"
-import { CentredText, SubtitleText } from "../../components/Typography"
+import { CentredText, Link, SubtitleText } from "../../components/Typography"
 import { AssetManager, LocalisationManager, Random } from "../../lib"
 import Styles from "../../styles/Containers"
 
@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     width: windowWidth,
+  },
+  lastModified: {
+    marginTop: 20,
   },
 })
 
@@ -96,7 +99,7 @@ class TimetableComponent extends React.Component {
     const dateISO = date.clone().add(index - 1, `days`).format(`YYYY-MM-DD`)
     const {
       timetable: dayTimetable = [],
-      lastUpdated = null,
+      lastModified = null,
     } = (timetable[dateISO] || {})
 
     const items = dayTimetable.sort(
@@ -117,7 +120,6 @@ class TimetableComponent extends React.Component {
     if (dayTimetable.length > 0) {
       return (
         <View style={styles.dayView}>
-          {this.renderLastUpdated(lastUpdated)}
           {futureItems.map(this.renderTimetableCard)}
           {pastItems.length > 0 && (
             <>
@@ -126,13 +128,13 @@ class TimetableComponent extends React.Component {
             </>
           )}
           {this.renderJumpToToday()}
+          {this.renderLastModified(lastModified)}
         </View>
       )
     }
 
     return (
       <View style={styles.dayView}>
-        {this.renderLastUpdated(lastUpdated)}
         <View style={topPadding} />
         <CentredText>
           Nothing scheduled on&nbsp;
@@ -146,19 +148,22 @@ class TimetableComponent extends React.Component {
           resizeMode="contain"
         />
         {this.renderJumpToToday()}
+        {this.renderLastModified(lastModified)}
       </View>
     )
   }
 
-  renderLastUpdated = (lastUpdated) => (
-    <View style={[styles.container, styles.lastUpdated]}>
-      <CentredText>
-        {`Last updated ${
-          LocalisationManager.parseToMoment(
-            lastUpdated,
-          ).calendar().toLowerCase()
-        }`}
-      </CentredText>
+  renderLastModified = (lastModified) => (
+    <View style={[styles.container, styles.lastModified]}>
+      <Link onPress={this.openFAQ}>
+        <CentredText>
+          {`Last updated ${
+            LocalisationManager.parseToMoment(
+              lastModified,
+            ).calendar().toLowerCase()
+          }`}
+        </CentredText>
+      </Link>
     </View>
 
   )
@@ -173,7 +178,7 @@ class TimetableComponent extends React.Component {
     const dateISO = date.format(`YYYY-MM-DD`)
     const {
       timetable: dayTimetable = [],
-      lastUpdated = null,
+      lastModified = null,
     } = (timetable[dateISO] || {})
 
     if (isLoading && dayTimetable.length === 0) {
@@ -184,7 +189,7 @@ class TimetableComponent extends React.Component {
       )
     }
 
-    if (lastUpdated === null) {
+    if (lastModified === null) {
       return (
         <View>
           <CentredText>Could not load personal timetable...</CentredText>

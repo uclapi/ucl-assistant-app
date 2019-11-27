@@ -133,12 +133,14 @@ class TimetableScreen extends Component {
 
       if (forceUpdate
         || !timetable[dateString]
-        || !timetable[dateString].lastUpdated
+        || !timetable[dateString].lastModified
       ) {
         return fetchTimetable(token, eachDate)
       }
       const diff = moment.duration(
-        LocalisationManager.getMoment().diff(timetable[dateString].lastUpdated),
+        LocalisationManager.getMoment().diff(
+          timetable[dateString].lastModified,
+        ),
       )
       if (diff.asHours() > TIMETABLE_CACHE_TIME_HOURS) {
         return fetchTimetable(token, eachDate)

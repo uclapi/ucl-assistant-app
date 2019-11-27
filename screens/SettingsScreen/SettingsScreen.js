@@ -16,47 +16,66 @@ import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
 import { signOut as signOutAction } from "../../actions/userActions"
-import Button, { SmallButton } from "../../components/Button"
-import { Horizontal, PaddedIcon, Page } from "../../components/Containers"
+import { SmallButton } from "../../components/Button"
+import { Horizontal, Page } from "../../components/Containers"
 import TextInput from "../../components/Input/TextInput"
 // import NotificationSwitch from "./NotificationSwitch"
 import LiveIndicator from "../../components/LiveIndicator"
 import {
   BodyText,
-  ButtonText,
+  HeaderText,
   Link,
-  SubtitleText,
-  TitleText,
 } from "../../components/Typography"
-import Colors from "../../constants/Colors"
 import { AnalyticsManager, MailManager } from "../../lib"
 import common from "../../styles/common"
 
-const { version } = require(`../../package.json`)
+const {
+  repository: {
+    url: githubURL,
+  },
+  version,
+} = require(`../../package.json`)
 
 const styles = StyleSheet.create({
+  createdBy: {
+    flexDirection: `row`,
+    flexWrap: `wrap`,
+  },
   faqButton: {
     marginBottom: 10,
-  },
-  feedbackButton: {
-    alignSelf: `flex-start`,
   },
   // notificationSettingsButton: {
   //   marginTop: 10,
   // },
+  feedbackButton: {
+    marginVertical: 10,
+  },
+  releaseChannel: {
+    alignItems: `center`,
+    flexDirection: `row`,
+    justifyContent: `flex-start`,
+    marginBottom: 10,
+  },
   section: {
     marginBottom: 15,
     marginTop: 15,
+  },
+  signOut: {
+    marginTop: 10,
   },
   textWithUpperMargin: {
     marginTop: 10,
   },
 })
 
-class SettingsScreen extends Component {
-  static navigationOptions = {
-    header: null,
-  }
+export class SettingsScreen extends Component {
+  static mapStateToProps = (state) => ({
+    user: state.user,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    signOut: () => dispatch(signOutAction()),
+  })
 
   static propTypes = {
     navigation: PropTypes.shape(),
@@ -68,41 +87,6 @@ class SettingsScreen extends Component {
     navigation: {},
     signOut: () => { },
     user: {},
-  }
-
-  static mapStateToProps = (state) => ({
-    user: state.user,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    signOut: () => dispatch(signOutAction()),
-  })
-
-  static launchNotificationSettings() {
-    // note that this will only work on standalone apps
-    // because the bundleIdentifier/packageName will
-    // only be used when an APK/IPA is built
-    if (Platform.OS === `android`) {
-      IntentLauncherAndroid.startActivityAsync(
-        IntentLauncherAndroid.ACTION_APP_NOTIFICATION_SETTINGS,
-        {
-          "android.provider.extra.APP_PACKAGE":
-            Constants.manifest.android.package,
-        },
-      )
-    } else {
-      // is iOS
-      Linking.openURL(
-        `app-settings://notification/${Constants.manifest.ios.bundleIdentifier}`,
-      )
-    }
-  }
-
-  static releaseChannelStyle = {
-    alignItems: `center`,
-    flexDirection: `row`,
-    justifyContent: `flex-start`,
-    marginBottom: 10,
   }
 
   constructor() {
@@ -120,6 +104,28 @@ class SettingsScreen extends Component {
         index: 0,
       })
       navigation.dispatch(action)
+    }
+  }
+
+  launchNotificationSettings = () => {
+    // note that this will only work on standalone apps
+    // because the bundleIdentifier/packageName will
+    // only be used when an APK/IPA is built
+    if (Platform.OS === `android`) {
+      IntentLauncherAndroid.startActivityAsync(
+        IntentLauncherAndroid.ACTION_APP_NOTIFICATION_SETTINGS,
+        {
+          "android.provider.extra.APP_PACKAGE":
+            Constants.manifest.android.package,
+        },
+      )
+    } else {
+      // is iOS
+      Linking.openURL(
+        `app-settings://notification/${
+          Constants.manifest.ios.bundleIdentifier
+        }`,
+      )
     }
   }
 
@@ -145,7 +151,8 @@ class SettingsScreen extends Component {
     const { user: { upi } } = this.props
     const { deviceName, platform, manifest: { releaseChannel } } = Constants
     MailManager.composeAsync({
-      body: `I've been using UCL Assistant and I just wanted to tell you ... \n\n`
+      body: `I've been using UCL Assistant and I just wanted `
+        + `to tell you ... \n\n`
         + `Technical Information\n${JSON.stringify({
           deviceName,
           platform,
@@ -163,124 +170,119 @@ class SettingsScreen extends Component {
     if (isSupported) {
       StoreReview.requestReview()
     }
-    AnalyticsManager.logEvent(AnalyticsManager.events.SETTINGS_RATE_APP, { isSupported })
+    AnalyticsManager.logEvent(
+      AnalyticsManager.events.SETTINGS_RATE_APP,
+      { isSupported },
+    )
+  }
+
+  static navigationOptions = {
+    header: null,
+  }
+
+  renderDev = () => {
+    const { user } = this.props
+    return __DEV__ && (
+      <View style={styles.section}>
+        <HeaderText>UCL API Token</HeaderText>
+        <Horizontal>
+          <TextInput style={common.flex} value={user.token} />
+          <SmallButton onPress={this.copyTokenToClipboard}>
+            Copy
+          </SmallButton>
+        </Horizontal>
+        <HeaderText>State</HeaderText>
+        <BodyText>{JSON.stringify(user, `\n`, 2)}</BodyText>
+      </View>
+    )
   }
 
   render() {
     const { user } = this.props
     return (
       <Page mainTabPage>
-        <TitleText>Settings</TitleText>
-        {/* <View>
-          <SubtitleText>Notifications</SubtitleText>
-          <NotificationSwitch />
-          <Button
-            onPress={() => SettingsScreen.launchNotificationSettings()}
-            style={styles.notificationSettingsButton}
-          >
-            Manage Notification Settings
-          </Button>
-        </View> */}
-        {/* <View style={styles.section}>
-          <SubtitleText>Default Screen</SubtitleText>
-          <BodyText>Set the default screen that shows when you open the app</BodyText>
-          <Picker
-            // selectedValue={this.state.language}
-            // style={{height: 50, width: 100}}
-            // onValueChange={(itemValue, itemIndex) =>
-            //   this.setState({language: itemValue})
-            // }
-            >
-            <Picker.Item label="Timetable" value="timetable" />
-            <Picker.Item label="Study Spaces" value="studyspaces" />
-          </Picker>
-        </View> */}
         <View style={styles.section}>
-          <SubtitleText>User</SubtitleText>
+          <HeaderText>User</HeaderText>
           <BodyText>
             {`Logged in as ${user.fullName}`}
           </BodyText>
           <BodyText>
             {`Unique Person Identifier (UPI): ${user.upi}`}
           </BodyText>
-          <Button onPress={this.signOut}>
-            <Horizontal>
-              <PaddedIcon
-                name="log-out"
-                size={24}
-                color={Colors.pageBackground}
-              />
-              <ButtonText>Sign Out</ButtonText>
-            </Horizontal>
-          </Button>
+          <Link
+            onPress={this.signOut}
+            style={styles.signOut}
+            testID="signOutButton"
+          >
+            Sign Out
+          </Link>
         </View>
         <View style={styles.section}>
-          <TitleText>About This App</TitleText>
-          <Button onPress={this.navigateToFAQs} style={styles.faqButton}>
+          <HeaderText>App Info</HeaderText>
+          <Link
+            onPress={this.navigateToFAQs}
+            style={styles.faqButton}
+            testID="faqButton"
+          >
             Frequently Asked Questions
-          </Button>
+          </Link>
           <BodyText>
             {`Version: ${version}`}
           </BodyText>
-          <Horizontal style={SettingsScreen.releaseChannelStyle}>
+          <Horizontal style={styles.releaseChannel}>
             {__DEV__ ? (
               <LiveIndicator>Developer Mode</LiveIndicator>
             ) : (
-                <>
+              <>
                   <BodyText>Release Channel: </BodyText>
                   <LiveIndicator>
                     {Constants.manifest.releaseChannel || `dev`}
                   </LiveIndicator>
-                </>
+              </>
             )}
           </Horizontal>
-          <Link href="https://github.com/uclapi/ucl-assistant-app">
+          <Link
+            href={githubURL}
+            testID="githubButton"
+          >
             Source Code
           </Link>
-          <Button
-            style={styles.feedbackButton}
+          <Link
+            containerStyle={styles.feedbackButton}
             onPress={this.giveFeedback}
+            textID="feedbackButton"
           >
             Send Us Feedback
-          </Button>
-          {/* <Horizontal>
-            <Button onPress={this.rateApp}>
-              Rate Us
-            </Button>
-          </Horizontal> */}
+          </Link>
+          {/* <Link
+            onPress={this.rateApp}
+          >
+            Rate Us
+          </Link> */}
         </View>
         <View style={styles.section}>
-          <SubtitleText>Author</SubtitleText>
-          <BodyText>
-            Created by Matt Bell (class of 2018) using the&nbsp;
+          <HeaderText>Credits</HeaderText>
+          <View style={styles.createdBy}>
+            <BodyText>
+              Created by Matt Bell (class of 2018) using the&nbsp;
+            </BodyText>
             <Link href="https://uclapi.com">UCL API</Link>
-            .
-          </BodyText>
+            <BodyText>
+              .
+            </BodyText>
+          </View>
           <BodyText style={styles.textWithUpperMargin}>
-            Currently managed by the UCL API Team: a group of students working
-            together within ISD to improve UCL by building a platform on top of
-            {` UCL's `}
+            Currently managed by the UCL API Team: a group of
+            students working together within ISD to improve UCL
+            by building a platform on top of UCL&apos;s
             digital services for students.
           </BodyText>
           <BodyText style={styles.textWithUpperMargin}>
-            Illustrations courtesy of the unDraw project, released under the MIT
-            license.
+            Illustrations courtesy of the unDraw project,
+            released under the MIT license.
           </BodyText>
         </View>
-        {__DEV__ && (
-          <View style={styles.section}>
-            <TitleText>Dev Stuff</TitleText>
-            <SubtitleText>UCL API Token</SubtitleText>
-            <Horizontal>
-              <TextInput style={common.flex} value={user.token} />
-              <SmallButton onPress={this.copyTokenToClipboard}>
-                Copy
-              </SmallButton>
-            </Horizontal>
-            <SubtitleText>State</SubtitleText>
-            <BodyText>{JSON.stringify(user, `\n`, 2)}</BodyText>
-          </View>
-        )}
+        {this.renderDev()}
       </Page>
     )
   }
@@ -290,3 +292,32 @@ export default connect(
   SettingsScreen.mapStateToProps,
   SettingsScreen.mapDispatchToProps,
 )(SettingsScreen)
+
+/*
+
+<View>
+  <SubtitleText>Notifications</SubtitleText>
+  <NotificationSwitch />
+  <Button
+    onPress={() => SettingsScreen.launchNotificationSettings()}
+    style={styles.notificationSettingsButton}
+  >
+    Manage Notification Settings
+  </Button>
+</View>
+<View style={styles.section}>
+  <SubtitleText>Default Screen</SubtitleText>
+  <BodyText>Set the default screen that shows when you open the app</BodyText>
+  <Picker
+    // selectedValue={this.state.language}
+    // style={{height: 50, width: 100}}
+    // onValueChange={(itemValue, itemIndex) =>
+    //   this.setState({language: itemValue})
+    // }
+    >
+    <Picker.Item label="Timetable" value="timetable" />
+    <Picker.Item label="Study Spaces" value="studyspaces" />
+  </Picker>
+</View>
+
+*/
