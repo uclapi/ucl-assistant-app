@@ -25,7 +25,7 @@ class LastUpdated extends React.Component {
 
   renderError = () => (
     <ErrorText containerStyle={styles.error}>
-      Our studyspace information is stale. Sorry about that.
+      Our studyspace data is stale. Sorry about that.
       We&apos;re working on getting this fixed as quickly as possible.
     </ErrorText>
   )

@@ -19,7 +19,7 @@ describe(`LastUpdated`, () => {
 
   it(`renders the LastUpdated component`, () => {
     const mockProps = {
-      lastModified: LocalisationManager.getMoment().subtract(29, `minutes`),
+      lastModified: LocalisationManager.getMoment().subtract(11, `hours`),
     }
     const wrapper = shallow(<LastModified {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
@@ -37,7 +37,7 @@ describe(`LastUpdated`, () => {
     const mockProps = {
       lastModified: LocalisationManager
         .getMoment()
-        .subtract(31, `minutes`),
+        .subtract(13, `hours`),
     }
     const wrapper = shallow(<LastModified {...mockProps} />)
     expect(wrapper).toMatchSnapshot()

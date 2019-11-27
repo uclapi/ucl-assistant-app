@@ -36,9 +36,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     width: windowWidth,
   },
-  lastModified: {
-    marginTop: 20,
-  },
 })
 
 class TimetableComponent extends React.Component {
@@ -160,10 +157,7 @@ class TimetableComponent extends React.Component {
   }
 
   renderLastModified = (lastModified) => (
-    <View style={[styles.container, styles.lastModified]}>
-      <LastModified lastModified={lastModified} openFAQ={this.openFAQ} />
-    </View>
-
+    <LastModified lastModified={lastModified} openFAQ={this.openFAQ} />
   )
 
   render() {
@@ -190,7 +184,7 @@ class TimetableComponent extends React.Component {
     if (lastModified === null) {
       return (
         <View>
-          <CentredText>Could not load personal timetable...</CentredText>
+          <CentredText>Could not load personal timetable</CentredText>
         </View>
       )
     }

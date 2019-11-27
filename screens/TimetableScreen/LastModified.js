@@ -1,14 +1,17 @@
 import PropTypes from "prop-types"
 import React from 'react'
 import { momentObj } from "react-moment-proptypes"
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { CentredText, ErrorText, Link } from "../../components/Typography"
 import { LocalisationManager } from "../../lib"
 
 const styles = StyleSheet.create({
   error: {
-    marginBottom: 10,
+    marginBottom: 20,
+  },
+  lastModified: {
+    marginTop: 20,
   },
 })
 
@@ -25,7 +28,7 @@ class LastModified extends React.Component {
 
   renderError = () => (
     <ErrorText containerStyle={styles.error}>
-      Our timetable information is stale. Sorry about that.
+      Our timetable data is stale. Sorry about that.
       We&apos;re working on getting this fixed as quickly as possible.
     </ErrorText>
   )
@@ -38,11 +41,11 @@ class LastModified extends React.Component {
     }
 
     const isStale = lastModified.isBefore(
-      LocalisationManager.getMoment().subtract(30, `minutes`),
+      LocalisationManager.getMoment().subtract(12, `hour`),
     )
 
     return (
-      <>
+      <View style={styles.lastModified}>
         {isStale ? this.renderError() : null}
         <Link onPress={openFAQ}>
           <CentredText>
@@ -53,7 +56,7 @@ class LastModified extends React.Component {
             }`}
           </CentredText>
         </Link>
-      </>
+      </View>
     )
   }
 }

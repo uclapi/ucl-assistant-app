@@ -28,7 +28,7 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
     }
     style={Object {}}
   >
-    Our studyspace information is stale. Sorry about that. We're working on getting this fixed as quickly as possible.
+    Our studyspace data is stale. Sorry about that. We're working on getting this fixed as quickly as possible.
   </ErrorText>
   <BodyText
     style={Object {}}
