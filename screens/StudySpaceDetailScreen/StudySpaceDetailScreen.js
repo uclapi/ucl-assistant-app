@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
   cardList: {
     backgroundColor: Colors.cardBackground,
     borderRadius: 10,
+    flexDirection: `row`,
+    flexWrap: `wrap`,
     marginTop: 5,
     padding: 20,
     ...Shadow(2),
@@ -263,9 +265,11 @@ class StudySpaceDetailScreen extends Component {
             <View style={styles.cardList}>
               <BodyText>
                 See the
-                <Link href="https://www.ucl.ac.uk/library/opening-hours">
-                  &nbsp;libraries website&nbsp;
-                </Link>
+              </BodyText>
+              <Link href="https://www.ucl.ac.uk/library/opening-hours">
+                &nbsp;libraries website&nbsp;
+              </Link>
+              <BodyText>
                 for more information about what facilities are offered.
               </BodyText>
             </View>

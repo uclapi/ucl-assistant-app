@@ -22,22 +22,26 @@ export const matchingStudySpacesSelector = createSelector(
     switch (sortType) {
       case WORKSPACES_SORT_TYPES.VACANCIES: {
         return matchingStudySpaces.slice().sort(
-          (s1, s2) => ((s1.occupied / s1.total) - (s2.occupied / s2.total))
+          (s1, s2) => ((s1.occupied / s1.total) - (s2.occupied / s2.total)),
         )
       }
 
       default:
       case WORKSPACES_SORT_TYPES.NAME: {
-        return matchingStudySpaces.slice().sort((s1, s2) => s1.name.localeCompare(s2.name))
+        return matchingStudySpaces.slice().sort(
+          (s1, s2) => s1.name.localeCompare(s2.name),
+        )
       }
     }
-  }
+  },
 )
 
 export const favouriteStudySpacesSelector = createSelector(
   studySpacesSelector,
   studySpacesFavouriteIdsSelector,
-  (studyspaces, favourites) => studyspaces.filter((space) => favourites.includes(space.id))
+  (studyspaces, favourites) => studyspaces.filter(
+    (space) => favourites.includes(space.id),
+  ),
 )
 
 export default {}

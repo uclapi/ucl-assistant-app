@@ -20,8 +20,9 @@ export const setIsFetchingSeatInfos = () => ({
   type: WORKSPACES_IS_FETCHING_SEATINFOS,
 })
 
-export const fetchSeatInfosSuccess = (data) => ({
+export const fetchSeatInfosSuccess = (data, lastModified) => ({
   data,
+  lastModified,
   type: WORKSPACES_FETCH_SEATINFOS_SUCCESS,
 })
 
@@ -33,16 +34,11 @@ export const fetchSeatInfosFailure = (error) => ({
 export const fetchSeatInfos = (token: String) => async (dispatch: Function) => {
   await dispatch(setIsFetchingSeatInfos())
   try {
-    const res = await fetch(`${WORKSPACES_URL}/summary`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-    const json = await res.json()
-    if (!res.ok) {
-      throw new Error(json.error || `There was a problem`)
-    }
-    return dispatch(fetchSeatInfosSuccess(json.content))
+    const {
+      data,
+      lastModified,
+    } = await ApiManager.workspaces.getSummary(token)
+    return dispatch(fetchSeatInfosSuccess(data, lastModified))
   } catch (error) {
     return dispatch(
       fetchSeatInfosFailure(error.message),
@@ -127,8 +123,10 @@ export const fetchDetails = (token: String) => async (
   try {
     dispatch(setIsFetchingDetails())
 
-    const results = await ApiManager.workspaces.getWorkspaces(token)
-    return dispatch(fetchDetailsSuccess(results))
+    const {
+      data: studySpaces,
+    } = await ApiManager.workspaces.getWorkspaces(token)
+    return dispatch(fetchDetailsSuccess(studySpaces))
   } catch (error) {
     return dispatch(
       fetchDetailsFailure(

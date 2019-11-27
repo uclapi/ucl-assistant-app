@@ -1,6 +1,5 @@
 // @flow
 import memoize from "memoize-one"
-import moment from "moment"
 import PropTypes from "prop-types"
 import React from 'react'
 import { momentObj } from "react-moment-proptypes"
@@ -15,13 +14,13 @@ import {
 } from "../../actions/studyspacesActions"
 import { Page } from "../../components/Containers"
 import {
-  BodyText,
   ErrorText,
 } from "../../components/Typography"
 import { WORKSPACES_SORT_TYPES } from '../../constants/studyspacesConstants'
 import {
   matchingStudySpacesSelector,
 } from '../../selectors/studyspacesSelectors'
+import LastUpdated from './components/LastUpdated'
 import StudySpaceFilters from './components/StudySpaceFilters'
 import StudySpaceSearchResult from "./components/StudySpaceResult"
 
@@ -38,7 +37,7 @@ class StudySpacesListScreen extends React.Component {
   static mapStateToProps = (state) => {
     const {
       studyspaces: {
-        lastStatusUpdate,
+        lastModified,
         searchQuery = ``,
         sortType,
       },
@@ -47,7 +46,7 @@ class StudySpacesListScreen extends React.Component {
       },
     } = state
     return {
-      lastUpdated: lastStatusUpdate,
+      lastModified,
       searchQuery,
       sortType,
       studyspaces: matchingStudySpacesSelector(state),
@@ -72,7 +71,7 @@ class StudySpacesListScreen extends React.Component {
 
   static propTypes = {
     fetchInfo: PropTypes.func,
-    lastUpdated: PropTypes.oneOfType([momentObj, PropTypes.string]),
+    lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
     navigation: PropTypes.shape().isRequired,
     searchQuery: PropTypes.string,
     setQuery: PropTypes.func,
@@ -84,7 +83,7 @@ class StudySpacesListScreen extends React.Component {
 
   static defaultProps = {
     fetchInfo: () => { },
-    lastUpdated: null,
+    lastModified: null,
     searchQuery: ``,
     setQuery: () => { },
     setSort: () => { },
@@ -96,10 +95,8 @@ class StudySpacesListScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      lastUpdated: `never`,
       loadedSeatInfo: false,
     }
-    this.updateTextInterval = null
   }
 
   async componentDidMount() {
@@ -108,28 +105,6 @@ class StudySpacesListScreen extends React.Component {
     if (!loadedSeatInfo && token) {
       this.fetchSeatInfo()
     }
-    this.updateTextInterval = setInterval(
-      () => this.updateLastUpdatedText(),
-      10000,
-    )
-  }
-
-  componentDidUpdate(prevProps) {
-    const { lastUpdated: currentUpdate } = this.props
-    if (currentUpdate !== prevProps.lastUpdated) {
-      this.updateLastUpdatedText()
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.updateTextInterval)
-  }
-
-  updateLastUpdatedText = () => {
-    const { lastUpdated } = this.props
-    this.setState({
-      lastUpdated: lastUpdated ? moment(lastUpdated).fromNow() : `never`,
-    })
   }
 
   fetchSeatInfo = () => {
@@ -154,13 +129,14 @@ class StudySpacesListScreen extends React.Component {
   }
 
   render() {
-    const { lastUpdated, loadedSeatInfo } = this.state
+    const { loadedSeatInfo } = this.state
     const {
       studyspaces,
       setQuery,
       searchQuery,
       sortType,
       setSort,
+      lastModified,
     } = this.props
     const errorneousSpaces = this.memoizeErrorneousSpaces(studyspaces)
     const isLoading = !loadedSeatInfo
@@ -200,11 +176,7 @@ class StudySpacesListScreen extends React.Component {
           updateSortType={setSort}
         />
 
-        <BodyText>
-          Last updated:
-          {` `}
-          {lastUpdated}
-        </BodyText>
+        <LastUpdated lastModified={lastModified} />
 
         <FlatList
           data={studyspaces}

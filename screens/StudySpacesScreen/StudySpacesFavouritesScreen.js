@@ -1,6 +1,5 @@
 // @flow
 import { Feather } from "@expo/vector-icons"
-import moment from "moment"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { momentObj } from "react-moment-proptypes"
@@ -42,16 +41,16 @@ const styles = StyleSheet.create({
 class StudySpaceFavouritesScreen extends Component {
   static mapStateToProps = (state) => {
     const {
-      studyspaces: {
-        lastStatusUpdate,
-      },
       user: {
         token,
+      },
+      studyspaces: {
+        lastModified,
       },
     } = state
     return {
       favouriteSpaces: favouriteStudySpacesSelector(state),
-      lastUpdated: lastStatusUpdate,
+      lastModified,
       token,
     }
   }
@@ -65,7 +64,7 @@ class StudySpaceFavouritesScreen extends Component {
     favouriteSpaces: PropTypes.arrayOf(PropTypes.shape()),
     fetchInfo: PropTypes.func,
     fetchStudyspaceDetails: PropTypes.func,
-    lastUpdated: PropTypes.oneOfType([momentObj, PropTypes.string]),
+    lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
     navigation: PropTypes.shape().isRequired,
     studyspaces: PropTypes.arrayOf(PropTypes.shape()),
     token: PropTypes.string,
@@ -75,7 +74,7 @@ class StudySpaceFavouritesScreen extends Component {
     favouriteSpaces: [],
     fetchInfo: () => { },
     fetchStudyspaceDetails: () => { },
-    lastUpdated: null,
+    lastModified: null,
     studyspaces: [],
     token: ``,
   }
@@ -83,10 +82,8 @@ class StudySpaceFavouritesScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lastUpdated: `never`,
       loadedSeatInfo: false,
     }
-    this.updateTextInterval = null
   }
 
   componentDidMount() {
@@ -95,29 +92,7 @@ class StudySpaceFavouritesScreen extends Component {
     if (!loadedSeatInfo && token) {
       this.fetchSeatInfo()
     }
-    this.updateTextInterval = setInterval(
-      () => this.updateLastUpdatedText(),
-      10000,
-    )
     fetchStudyspaceDetails(token)
-  }
-
-  componentDidUpdate(prevProps) {
-    const { lastUpdated: currentUpdate } = this.props
-    if (currentUpdate !== prevProps.lastUpdated) {
-      this.updateLastUpdatedText()
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.updateTextInterval)
-  }
-
-  updateLastUpdatedText = () => {
-    const { lastUpdated } = this.props
-    this.setState({
-      lastUpdated: lastUpdated ? moment(lastUpdated).fromNow() : `never`,
-    })
   }
 
   fetchSeatInfo = () => {
@@ -134,11 +109,10 @@ class StudySpaceFavouritesScreen extends Component {
   }
 
   renderFavouriteStudySpaces = () => {
-    const { lastUpdated } = this.state
-    const { navigation, favouriteSpaces } = this.props
+    const { navigation, favouriteSpaces, lastModified } = this.props
     return (
       <FavouriteStudySpaces
-        lastUpdated={lastUpdated}
+        lastModified={lastModified}
         favouriteSpaces={favouriteSpaces}
         navigation={navigation}
         style={styles.favourites}

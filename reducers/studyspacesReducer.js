@@ -23,7 +23,8 @@ export const initialState = {
   fetchingSpacesDetailsError: ``,
   isFetchingSpaces: false, // not used at present
   isFetchingSpacesDetails: false,
-  lastStatusUpdate: null,
+  lastModified: null, // last-modified header from server
+  lastStatusUpdate: null, // last client-side refresh
   searchQuery: ``, // not used at present
   sortType: WORKSPACES_SORT_TYPES.NAME,
   studyspaces: [],
@@ -101,6 +102,7 @@ export default (state = initialState, action = null) => {
     }
 
     case WORKSPACES_FETCH_SEATINFOS_SUCCESS: {
+      const { lastModified } = action
       const newStudyspaces = data
         .reduce(
           (spaces, space) => updateStudyspacesWithMaps(spaces, space.id, {
@@ -117,6 +119,7 @@ export default (state = initialState, action = null) => {
         })
       return {
         ...state,
+        lastModified,
         lastStatusUpdate: moment(),
         studyspaces: newStudyspaces,
       }

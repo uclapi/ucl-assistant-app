@@ -61,6 +61,11 @@ class TimetableComponent extends React.Component {
     changeDate(LocalisationManager.getMoment())
   }
 
+  openFAQ = () => {
+    const { navigation: { navigate } } = this.props
+    navigate(`FAQ`)
+  }
+
   renderTimetableCard = (item) => {
     const { date, navigation } = this.props
     const dateISO = date.format(`YYYY-MM-DD`)

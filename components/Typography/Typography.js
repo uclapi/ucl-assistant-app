@@ -63,14 +63,14 @@ export const CardTitleText = ({ children, style }) => (
 CardTitleText.propTypes = propTypes
 CardTitleText.defaultProps = defaultProps
 
-export const ErrorText = ({ children, style }) => (
-  <Horizontal style={Style.infoTextContainer}>
+export const ErrorText = ({ children, style, containerStyle }) => (
+  <Horizontal style={[Style.infoTextContainer, containerStyle]}>
     <Feather size={18} color={Colors.errorColor} name="alert-circle" />
     <Text style={[Style.errorText, style]}>{children}</Text>
   </Horizontal>
 )
-ErrorText.propTypes = propTypes
-ErrorText.defaultProps = defaultProps
+ErrorText.propTypes = { ...propTypes, containerStyle: ViewPropTypes.style }
+ErrorText.defaultProps = { ...defaultProps, containerStyle: {} }
 
 export const WarningText = ({ children, icon, style }) => (
   <Horizontal style={Style.infoTextContainer}>
