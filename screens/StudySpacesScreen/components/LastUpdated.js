@@ -1,10 +1,10 @@
-import moment from 'moment'
 import PropTypes from "prop-types"
 import React from 'react'
 import { momentObj } from "react-moment-proptypes"
 import { StyleSheet } from 'react-native'
 
 import { BodyText, ErrorText } from "../../../components/Typography"
+import { LocalisationManager } from '../../../lib'
 
 const styles = StyleSheet.create({
   error: {
@@ -39,7 +39,9 @@ class LastUpdated extends React.Component {
     const isStale = (
       lastModified === null
       || typeof lastModified !== `object`
-      || lastModified.isBefore(moment().subtract(6, `hours`))
+      || lastModified.isBefore(
+        LocalisationManager.getMoment().subtract(6, `hours`),
+      )
     )
 
     return (

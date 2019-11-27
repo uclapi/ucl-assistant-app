@@ -132,6 +132,7 @@
     "inquirer": "^7.0.0",
     "jest-expo": "^35.0.0",
     "lint-staged": "^9.4.3",
+    "mockdate": "^2.0.5",
     "react-dom": "16.8.3",
     "react-native-storybook-loader": "^1.8.1",
     "react-test-renderer": "16.8.3",
