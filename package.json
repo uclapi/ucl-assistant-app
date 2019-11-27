@@ -131,7 +131,7 @@
     "husky": "^3.1.0",
     "inquirer": "^7.0.0",
     "jest-expo": "^35.0.0",
-    "lint-staged": "^9.4.3",
+    "lint-staged": "^9.5.0",
     "mockdate": "^2.0.5",
     "react-dom": "16.8.3",
     "react-native-storybook-loader": "^1.8.1",
