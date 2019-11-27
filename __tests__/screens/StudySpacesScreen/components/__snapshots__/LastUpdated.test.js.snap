@@ -5,7 +5,7 @@ exports[`LastUpdated renders the LastUpdated component 1`] = `
   <BodyText
     style={Object {}}
   >
-    Last updated today at 8:37 am
+    Last updated today at 8:43 am
   </BodyText>
 </Fragment>
 `;
@@ -33,7 +33,7 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
   <BodyText
     style={Object {}}
   >
-    Last updated yesterday at 10:47 pm
+    Last updated today at 8:41 am
   </BodyText>
 </Fragment>
 `;

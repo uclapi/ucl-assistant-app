@@ -11,9 +11,10 @@ import { generate } from "shortid"
 
 import Button from "../../components/Button"
 import TimetableCard from "../../components/Card/TimetableCard"
-import { CentredText, Link, SubtitleText } from "../../components/Typography"
+import { CentredText, SubtitleText } from "../../components/Typography"
 import { AssetManager, LocalisationManager, Random } from "../../lib"
 import Styles from "../../styles/Containers"
+import LastModified from "./LastModified"
 
 const relaxIllustration = Random.array([
   AssetManager.undraw.relaxation,
@@ -160,15 +161,7 @@ class TimetableComponent extends React.Component {
 
   renderLastModified = (lastModified) => (
     <View style={[styles.container, styles.lastModified]}>
-      <Link onPress={this.openFAQ}>
-        <CentredText>
-          {`Last updated ${
-            LocalisationManager.parseToMoment(
-              lastModified,
-            ).calendar().toLowerCase()
-          }`}
-        </CentredText>
-      </Link>
+      <LastModified lastModified={lastModified} />
     </View>
 
   )

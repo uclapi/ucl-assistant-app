@@ -9,8 +9,8 @@ import MockDate from 'mockdate'
 import React from 'react'
 
 import { LocalisationManager } from '../../../../lib'
-import LastUpdated from
-  "../../../../screens/StudySpacesScreen/components/LastUpdated"
+import LastModified from
+  "../../../../screens/TimetableScreen/LastModified"
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -19,9 +19,9 @@ describe(`LastUpdated`, () => {
 
   it(`renders the LastUpdated component`, () => {
     const mockProps = {
-      lastModified: LocalisationManager.getMoment().subtract(4, `minutes`),
+      lastModified: LocalisationManager.getMoment().subtract(29, `minutes`),
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
+    const wrapper = shallow(<LastModified {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -29,7 +29,7 @@ describe(`LastUpdated`, () => {
     const mockProps = {
       lastModified: `${LocalisationManager.parseToDate()}`,
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
+    const wrapper = shallow(<LastModified {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -37,9 +37,9 @@ describe(`LastUpdated`, () => {
     const mockProps = {
       lastModified: LocalisationManager
         .getMoment()
-        .subtract(6, `minutes`),
+        .subtract(31, `minutes`),
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
+    const wrapper = shallow(<LastModified {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

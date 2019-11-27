@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LastUpdated renders the LastUpdated component 1`] = `
+<Fragment>
+  <Link
+    containerStyle={Object {}}
+    href=""
+    onPress={null}
+    style={Object {}}
+  >
+    <CentredText
+      style={Object {}}
+    >
+      Last updated today at 8:18 am
+    </CentredText>
+  </Link>
+</Fragment>
+`;
+
+exports[`LastUpdated renders the LastUpdated component loading 1`] = `""`;
+
+exports[`LastUpdated shows error when studyspace info is stale 1`] = `
+<Fragment>
+  <ErrorText
+    containerStyle={
+      Object {
+        "marginBottom": 10,
+      }
+    }
+    style={Object {}}
+  >
+    Our timetable information is stale. Sorry about that. We're working on getting this fixed as quickly as possible.
+  </ErrorText>
+  <Link
+    containerStyle={Object {}}
+    href=""
+    onPress={null}
+    style={Object {}}
+  >
+    <CentredText
+      style={Object {}}
+    >
+      Last updated today at 8:16 am
+    </CentredText>
+  </Link>
+</Fragment>
+`;

@@ -32,16 +32,12 @@ class LastUpdated extends React.Component {
 
   render() {
     const { lastModified } = this.props
-    if (typeof lastModified === `string`) {
+    if (lastModified === null || typeof lastModified !== `object`) {
       return this.renderLoading()
     }
 
-    const isStale = (
-      lastModified === null
-      || typeof lastModified !== `object`
-      || lastModified.isBefore(
-        LocalisationManager.getMoment().subtract(6, `hours`),
-      )
+    const isStale = lastModified.isBefore(
+      LocalisationManager.getMoment().subtract(5, `minutes`),
     )
 
     return (
