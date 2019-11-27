@@ -142,7 +142,7 @@ exports[`renders the root without loading screen 1`] = `
                     ]
                   }
                 >
-                  One app to manage your life at UCL.
+                  One app to manage your life at UCL
                 </Text>
                 <View
                   style={
@@ -275,6 +275,8 @@ exports[`renders the root without loading screen 1`] = `
                 <View
                   style={
                     Object {
+                      "flexDirection": "row",
+                      "flexWrap": "wrap",
                       "marginTop": 20,
                     }
                   }
@@ -289,30 +291,30 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": 1,
                           "marginTop": 1,
                         },
-                        Object {},
+                        Object {
+                          "color": "#fff",
+                        },
                       ]
                     }
                   >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                          },
-                          Object {
-                            "color": "#fff",
-                          },
-                        ]
+                    By signing into this app, you agree to 
+                  </Text>
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "opacity": 1,
                       }
-                    >
-                      By signing into this app, you agree to 
-                    </Text>
+                    }
+                  >
                     <Text
-                      onPress={[Function]}
                       style={
                         Array [
                           Object {
@@ -334,7 +336,7 @@ exports[`renders the root without loading screen 1`] = `
                     >
                       UCL API's terms & conditions.
                     </Text>
-                  </Text>
+                  </View>
                 </View>
               </RCTSafeAreaView>
             </ViewManagerAdapter_ExpoLinearGradient>

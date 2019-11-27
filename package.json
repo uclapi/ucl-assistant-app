@@ -3,6 +3,15 @@
   "version": "5.0.0",
   "private": true,
   "description": "An app to manage your UCL life",
+  "homepage": "https://github.com/uclapi/ucl-assistant-app",
+  "bugs": {
+    "url": "https://github.com/uclapi/ucl-assistant-app/issues",
+    "email": "isd.apiteam@ucl.ac.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uclapi/ucl-assistant-app"
+  },
   "license": "MIT",
   "author": "UCL API",
   "main": "node_modules/expo/AppEntry.js",

@@ -94,6 +94,7 @@ exports[`NotificationsScreen renders the NotificationsScreen 1`] = `
       }
     >
       <Link
+        containerStyle={Object {}}
         href=""
         onPress={[Function]}
         style={Object {}}

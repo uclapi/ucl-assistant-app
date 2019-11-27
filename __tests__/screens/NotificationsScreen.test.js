@@ -22,7 +22,9 @@ describe(`NotificationsScreen`, () => {
   }
 
   const mockRegisterForPushNotifications = jest.fn(() => Promise.resolve())
-  PushNotificationsManager.registerForPushNotifications = mockRegisterForPushNotifications
+  PushNotificationsManager.registerForPushNotifications = (
+    mockRegisterForPushNotifications
+  )
 
   beforeEach(() => {
     wrapper = shallow(<NotificationsScreen {...mockProps} />)
@@ -32,19 +34,26 @@ describe(`NotificationsScreen`, () => {
     expect(wrapper).toMatchSnapshot()
   })
 
-  it(`registers for notifications when onEnableNotifications runs`, async () => {
-    await wrapper.instance().onEnableNotifications()
+  it(
+    `registers for notifications when onEnableNotifications runs`,
+    async () => {
+      await wrapper.instance().onEnableNotifications()
 
-    expect(mockRegisterForPushNotifications).toHaveBeenCalledTimes(1)
-    expect(mockRegisterForPushNotifications).toHaveBeenCalledWith(mockProps.token)
+      expect(mockRegisterForPushNotifications).toHaveBeenCalledTimes(1)
+      expect(mockRegisterForPushNotifications).toHaveBeenCalledWith(
+        mockProps.token,
+      )
 
-    expect(mockDispatch).toHaveBeenCalledTimes(1)
-  })
+      expect(mockDispatch).toHaveBeenCalledTimes(1)
+    },
+  )
 
   it(`does not register for notifications when onSkip runs`, async () => {
     await wrapper.instance().onSkip()
 
-    expect(mockRegisterForPushNotifications).toHaveBeenCalledTimes(1) // i.e. not be called again
+    expect(
+      mockRegisterForPushNotifications,
+    ).toHaveBeenCalledTimes(1) // i.e. not be called again
     expect(mockDispatch).toHaveBeenCalledTimes(2) // i.e. once more
   })
 })

@@ -250,7 +250,7 @@ export class SettingsScreen extends Component {
           <Link
             containerStyle={styles.feedbackButton}
             onPress={this.giveFeedback}
-            textID="feedbackButton"
+            testID="feedbackButton"
           >
             Send Us Feedback
           </Link>
