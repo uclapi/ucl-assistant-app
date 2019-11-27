@@ -161,7 +161,7 @@ class TimetableComponent extends React.Component {
 
   renderLastModified = (lastModified) => (
     <View style={[styles.container, styles.lastModified]}>
-      <LastModified lastModified={lastModified} />
+      <LastModified lastModified={lastModified} openFAQ={this.openFAQ} />
     </View>
 
   )

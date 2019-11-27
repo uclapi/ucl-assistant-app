@@ -15,14 +15,23 @@ const styles = StyleSheet.create({
 class LastModified extends React.Component {
   static propTypes = {
     lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
+    openFAQ: PropTypes.func,
   }
 
   static defaultProps = {
     lastModified: null,
+    openFAQ: () => { },
   }
 
+  renderError = () => (
+    <ErrorText containerStyle={styles.error}>
+      Our timetable information is stale. Sorry about that.
+      We&apos;re working on getting this fixed as quickly as possible.
+    </ErrorText>
+  )
+
   render() {
-    const { lastModified } = this.props
+    const { lastModified, openFAQ } = this.props
 
     if (lastModified === null || typeof lastModified !== `object`) {
       return null
@@ -34,13 +43,8 @@ class LastModified extends React.Component {
 
     return (
       <>
-        {isStale && (
-          <ErrorText containerStyle={styles.error}>
-            Our timetable information is stale. Sorry about that.
-            We&apos;re working on getting this fixed as quickly as possible.
-          </ErrorText>
-        )}
-        <Link onPress={this.openFAQ}>
+        {isStale ? this.renderError() : null}
+        <Link onPress={openFAQ}>
           <CentredText>
             {`Last updated ${
               LocalisationManager.parseToMoment(
