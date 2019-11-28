@@ -1,26 +1,22 @@
 import PropTypes from "prop-types"
 import React from 'react'
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 
-import { HeaderText } from "../../components/Typography"
+import Button from "../../components/Button"
 import Colors from "../../constants/Colors"
 import { Shadow } from "../../lib"
 
 const styles = StyleSheet.create({
   answerContainer: {
+    backgroundColor: Colors.cardBackground,
+    borderRadius: 10,
     marginBottom: 30,
     marginTop: 10,
-  },
-  questionContainer: {
-    backgroundColor: Colors.cardHeader,
-    borderRadius: 10,
-    color: Colors.cardBackground,
-    marginBottom: 5,
     padding: 20,
     ...Shadow(2),
   },
-  questionText: {
-    color: Colors.white,
+  question: {
+    zIndex: 2,
   },
   section: {
 
@@ -53,13 +49,9 @@ class FAQ extends React.Component {
     const { showAnswer } = this.state
     return (
       <View style={styles.section}>
-        <TouchableOpacity onPress={this.toggleQuestion} activeOpacity={0.9}>
-          <View style={styles.questionContainer}>
-            <HeaderText style={styles.questionText}>
-              {question}
-            </HeaderText>
-          </View>
-        </TouchableOpacity>
+        <Button onPress={this.toggleQuestion} style={styles.question}>
+          {question}
+        </Button>
         {showAnswer && (
           <View style={styles.answerContainer}>
             {answer}

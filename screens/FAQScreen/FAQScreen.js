@@ -50,7 +50,10 @@ class FAQScreen extends Component {
               </BodyText>
               <Link href="https://uclapi.com">UCL API</Link>
               <BodyText>
-                &nbsp;– a student-run platform for interacting with
+                &nbsp;– a student-run
+              </BodyText>
+              <BodyText>
+                platform for interacting with
                 data not usually made available, or that is difficult
                 to access, through other UCL systems.
               </BodyText>
@@ -69,7 +72,7 @@ class FAQScreen extends Component {
         />
 
         <FAQ
-          question="How do you out how busy the study spaces are?"
+          question="How do you know how busy the study spaces are?"
           answer={(
             <BodyText>
               Under almost every desk in UCL&apos;s libraries, there is a
