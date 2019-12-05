@@ -100,7 +100,7 @@ describe(`SettingsScreen`, () => {
     )
     expect(analyticsCheckbox.exists())
 
-    analyticsCheckbox.props().onValueChange(true)
+    analyticsCheckbox.props().onClick()
     expect(mockSetShouldTrackAnalytics).toHaveBeenCalledTimes(1)
     expect(mockSetShouldTrackAnalytics).toHaveBeenCalledWith(true)
   })

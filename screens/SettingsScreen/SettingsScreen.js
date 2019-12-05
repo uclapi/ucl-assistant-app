@@ -6,13 +6,13 @@ import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
   Alert,
-  CheckBox,
   Clipboard,
   Linking,
   Platform,
   StyleSheet,
   View,
 } from "react-native"
+import CheckBox from 'react-native-check-box'
 import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
@@ -145,10 +145,10 @@ export class SettingsScreen extends Component {
     }
   }
 
-  toggleAnalytics = (value) => {
-    const { setShouldTrackAnalytics } = this.props
+  toggleAnalytics = () => {
+    const { user: { settings: { shouldTrackAnalytics: value } }, setShouldTrackAnalytics } = this.props
 
-    setShouldTrackAnalytics(value)
+    setShouldTrackAnalytics(!value)
   }
 
   signOut = () => {
@@ -251,8 +251,8 @@ export class SettingsScreen extends Component {
             <CheckBox
               testID="analyticsCheckbox"
               style={styles.settingsCheckBox}
-              value={user.settings.shouldTrackAnalytics}
-              onValueChange={this.toggleAnalytics}
+              isChecked={user.settings.shouldTrackAnalytics}
+              onClick={this.toggleAnalytics}
             />
           </View>
         </View>
