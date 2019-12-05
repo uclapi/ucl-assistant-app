@@ -88,14 +88,17 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
       >
         Allow UCL Assistant to send analytics data to UCL API
       </BodyText>
-      <UnimplementedView
-        onValueChange={[Function]}
+      <CheckBox
+        isChecked={false}
+        isIndeterminate={false}
+        leftTextStyle={Object {}}
+        onClick={[Function]}
+        rightTextStyle={Object {}}
         style={
           Object {
             "flex": 0.1,
           }
         }
-        value={false}
       />
     </View>
   </View>
