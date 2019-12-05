@@ -99,6 +99,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
             "flex": 0.1,
           }
         }
+        testID="analyticsCheckbox"
       />
     </View>
   </View>
