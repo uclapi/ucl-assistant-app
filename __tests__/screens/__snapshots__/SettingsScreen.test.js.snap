@@ -86,7 +86,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
           }
         }
       >
-        Allow UCL Assistant to send analytics data to UCL API
+        Disallow UCL Assistant from sending analytics data to UCL API
       </BodyText>
       <CheckBox
         isChecked={false}
@@ -207,7 +207,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
       <BodyText
         style={Object {}}
       >
-        Created by Matt Bell (class of 2018) using the 
+        Created by Matt Bell (class of 2018) using
       </BodyText>
       <Link
         containerStyle={Object {}}
@@ -217,11 +217,6 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
       >
         UCL API
       </Link>
-      <BodyText
-        style={Object {}}
-      >
-        .
-      </BodyText>
     </View>
     <BodyText
       style={

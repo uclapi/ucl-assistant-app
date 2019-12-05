@@ -244,7 +244,11 @@ export class SettingsScreen extends Component {
             <BodyText
               style={styles.settingsText}
             >
-              {user.settings.shouldTrackAnalytics ? `Stop UCL Assistant sending analytics data to UCL API` : `Allow UCL Assistant to send analytics data to UCL API`}
+              {
+                user.settings.shouldTrackAnalytics
+                  ? `Allow UCL Assistant to send analytics data to UCL API`
+                  : `Disallow UCL Assistant from sending analytics data to UCL API`
+              }
             </BodyText>
             <CheckBox
               testID="analyticsCheckbox"
@@ -301,12 +305,9 @@ export class SettingsScreen extends Component {
           <HeaderText>Credits</HeaderText>
           <View style={styles.createdBy}>
             <BodyText>
-              Created by Matt Bell (class of 2018) using the&nbsp;
+              Created by Matt Bell (class of 2018) using
             </BodyText>
             <Link href="https://uclapi.com">UCL API</Link>
-            <BodyText>
-              .
-            </BodyText>
           </View>
           <BodyText style={styles.textWithUpperMargin}>
             Currently managed by the UCL API Team: a group of

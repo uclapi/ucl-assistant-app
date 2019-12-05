@@ -22,10 +22,12 @@ describe(`SettingsScreen`, () => {
   let wrapper
   const mockSignOut = jest.fn()
   const mockNavigate = jest.fn()
+  const mockSetShouldTrackAnalytics = jest.fn()
   const mockProps = {
     navigation: {
       navigate: mockNavigate,
     },
+    setShouldTrackAnalytics: mockSetShouldTrackAnalytics,
     signOut: mockSignOut,
     user: {
       fullName: `Jeremy Bentham`,
@@ -90,5 +92,16 @@ describe(`SettingsScreen`, () => {
     feedbackButton.props().onPress()
     expect(mockComposeAsync).toHaveBeenCalledTimes(1)
     expect(mockComposeAsync.mock.calls).toMatchSnapshot()
+  })
+
+  it(`dispatches action when analytics checkbox is toggled`, async () => {
+    const analyticsCheckbox = wrapper.findWhere(
+      (node) => node.prop(`testID`) === `analyticsCheckbox`,
+    )
+    expect(analyticsCheckbox.exists())
+
+    analyticsCheckbox.props().onValueChange(true)
+    expect(mockSetShouldTrackAnalytics).toHaveBeenCalledTimes(1)
+    expect(mockSetShouldTrackAnalytics).toHaveBeenCalledWith(true)
   })
 })
