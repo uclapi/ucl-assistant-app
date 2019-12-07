@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   },
   settingsCheckBox: {
     flex: 0.1,
+    justifyContent: `center`,
   },
   settingsText: {
     flex: 0.9,
