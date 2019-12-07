@@ -97,6 +97,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
         style={
           Object {
             "flex": 0.1,
+            "justifyContent": "center",
           }
         }
         testID="analyticsCheckbox"
