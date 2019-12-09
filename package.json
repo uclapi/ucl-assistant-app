@@ -64,7 +64,7 @@
     "expo": "^35.0.1",
     "expo-analytics-amplitude": "~7.0.0",
     "expo-asset": "~7.0.0",
-    "expo-blur": "~7.0.0",
+    "expo-blur": "~8.0.0",
     "expo-constants": "^7.0.1",
     "expo-font": "~7.0.0",
     "expo-intent-launcher": "~7.0.0",
