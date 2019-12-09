@@ -109,7 +109,7 @@
     "@storybook/react-native": "^5.2.8",
     "@welldone-software/why-did-you-render": "^3.3.9",
     "babel-eslint": "^10.0.3",
-    "babel-preset-expo": "^7.1.0",
+    "babel-preset-expo": "^8.0.0",
     "codecov": "^3.6.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
