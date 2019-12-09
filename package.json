@@ -66,7 +66,7 @@
     "expo-asset": "~7.0.0",
     "expo-blur": "~7.0.0",
     "expo-constants": "^7.0.1",
-    "expo-font": "~7.0.0",
+    "expo-font": "~8.0.0",
     "expo-intent-launcher": "~7.0.0",
     "expo-linear-gradient": "~7.0.1",
     "expo-localization": "~7.0.0",
