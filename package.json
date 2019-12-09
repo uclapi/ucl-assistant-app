@@ -69,7 +69,7 @@
     "expo-font": "~7.0.0",
     "expo-intent-launcher": "~7.0.0",
     "expo-linear-gradient": "~7.0.1",
-    "expo-localization": "~7.0.0",
+    "expo-localization": "~8.0.0",
     "expo-mail-composer": "~7.0.0",
     "expo-permissions": "~7.0.0",
     "expo-secure-store": "~7.0.0",
