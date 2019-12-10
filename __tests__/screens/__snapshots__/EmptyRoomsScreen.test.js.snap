@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyRoomsScreen renders the EmptyRoomsScreen 1`] = `
+<Page
+  bottomColour="#fefefe"
+  contentContainerStyle={Object {}}
+  keyboardAvoidingViewStyle={Object {}}
+  mainTabPage={false}
+  onRefresh={[Function]}
+  refreshEnabled={false}
+  refreshing={false}
+  safeAreaViewStyle={Object {}}
+  style={Object {}}
+  topColour="#fefefe"
+>
+  <View
+    style={
+      Object {
+        "paddingBottom": 20,
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="large"
+    />
+  </View>
+</Page>
+`;
+
+exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
+<Page
+  bottomColour="#fefefe"
+  contentContainerStyle={Object {}}
+  keyboardAvoidingViewStyle={Object {}}
+  mainTabPage={false}
+  onRefresh={[Function]}
+  refreshEnabled={false}
+  refreshing={false}
+  safeAreaViewStyle={Object {}}
+  style={Object {}}
+  topColour="#fefefe"
+>
+  <View
+    style={
+      Object {
+        "paddingBottom": 20,
+      }
+    }
+  >
+    <BodyText
+      style={Object {}}
+    >
+      Filter by:
+    </BodyText>
+    <Picker
+      mode="dialog"
+      onValueChange={[Function]}
+      selectedValue={null}
+      testID="buildingPicker"
+    >
+      <PickerItem
+        label="< Building >"
+        value=""
+      />
+    </Picker>
+    <BodyText
+      style={
+        Object {
+          "marginBottom": 10,
+        }
+      }
+    >
+      Rooms vacant for the next hour:
+    </BodyText>
+    <CentredText
+      style={Object {}}
+    >
+      No empty rooms found :(
+    </CentredText>
+  </View>
+</Page>
+`;
+
+exports[`EmptyRoomsScreen supports filtering by building 1`] = `
+<Page
+  bottomColour="#fefefe"
+  contentContainerStyle={Object {}}
+  keyboardAvoidingViewStyle={Object {}}
+  mainTabPage={false}
+  onRefresh={[Function]}
+  refreshEnabled={false}
+  refreshing={false}
+  safeAreaViewStyle={Object {}}
+  style={Object {}}
+  topColour="#fefefe"
+>
+  <View
+    style={
+      Object {
+        "paddingBottom": 20,
+      }
+    }
+  >
+    <BodyText
+      style={Object {}}
+    >
+      Filter by:
+    </BodyText>
+    <Picker
+      mode="dialog"
+      onValueChange={[Function]}
+      selectedValue="main"
+      testID="buildingPicker"
+    >
+      <PickerItem
+        label="< Building >"
+        value=""
+      />
+      <PickerItem
+        key="b"
+        label="Bentham House"
+        value="b"
+      />
+      <PickerItem
+        key="main"
+        label="Main Building"
+        value="main"
+      />
+    </Picker>
+    <BodyText
+      style={
+        Object {
+          "marginBottom": 10,
+        }
+      }
+    >
+      Rooms vacant for the next hour:
+    </BodyText>
+    <SearchResult
+      bottomText="Lecture Theatre"
+      buttonText="View"
+      indicator={false}
+      indicatorColor="#eaeaea"
+      indicatorLoading={false}
+      key="I-bbVlqJMi"
+      onPress={[Function]}
+      style={Object {}}
+      topText="Galactica"
+      type="location"
+    />
+    <SearchResult
+      bottomText="Classroom"
+      buttonText="View"
+      indicator={false}
+      indicatorColor="#eaeaea"
+      indicatorLoading={false}
+      key="-hfrlmbfrj"
+      onPress={[Function]}
+      style={Object {}}
+      topText="Denning"
+      type="location"
+    />
+  </View>
+</Page>
+`;

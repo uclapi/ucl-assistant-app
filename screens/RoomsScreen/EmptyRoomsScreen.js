@@ -1,6 +1,11 @@
 import PropTypes from "prop-types"
 import React from 'react'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import {
+  ActivityIndicator,
+  Picker,
+  StyleSheet,
+  View,
+} from 'react-native'
 import { connect } from "react-redux"
 import { generate } from "shortid"
 
@@ -18,10 +23,10 @@ const styles = StyleSheet.create({
   },
 })
 
-class EmptyRoomsScreen extends React.Component {
-  static navigationOptions = {
-    title: `Empty Rooms`,
-  }
+export class EmptyRoomsScreen extends React.Component {
+  static mapStateToProps = (state) => ({
+    token: state.user.token,
+  })
 
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
@@ -32,16 +37,14 @@ class EmptyRoomsScreen extends React.Component {
     token: ``,
   }
 
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
   constructor() {
     super()
     this.state = {
       emptyRooms: [],
       error: null,
       loadingEmptyRooms: true,
+      selectedSite: null,
+      sites: [],
     }
   }
 
@@ -53,7 +56,16 @@ class EmptyRoomsScreen extends React.Component {
     const { token } = this.props
     try {
       const emptyRooms = await ApiManager.rooms.getEmptyRooms(token)
-      this.setState({ emptyRooms, loadingEmptyRooms: false })
+      const sites = Array.from(new Set(emptyRooms.map(({ siteid }) => siteid)))
+        .map((siteid) => ({
+          siteid,
+          sitename: emptyRooms.find((r) => r.siteid === siteid).sitename,
+        }))
+      this.setState({
+        emptyRooms,
+        loadingEmptyRooms: false,
+        sites,
+      })
     } catch (error) {
       this.setState({ error: error.message })
     }
@@ -62,6 +74,12 @@ class EmptyRoomsScreen extends React.Component {
   navigateToRoomDetail = (room) => () => {
     const { navigation } = this.props
     navigation.navigate(`RoomDetail`, { room })
+  }
+
+  onSelectSite = (value, index) => {
+    if (index !== 0) { // ignore placeholder
+      this.setState({ selectedSite: value })
+    }
   }
 
   renderEmptyRoom = (room = null) => {
@@ -81,27 +99,67 @@ class EmptyRoomsScreen extends React.Component {
   }
 
   renderResults = () => {
-    const { emptyRooms, loadingEmptyRooms } = this.state
-    if (!loadingEmptyRooms && emptyRooms.length === 0) {
+    const { emptyRooms, selectedSite } = this.state
+    const matchingRooms = emptyRooms.filter(({ siteid }) => {
+      if (selectedSite === null) {
+        return true
+      }
+      return siteid === selectedSite
+    })
+
+    if (matchingRooms.length === 0) {
       return (
         <CentredText>No empty rooms found :(</CentredText>
       )
     }
-    if (!loadingEmptyRooms) {
-      return emptyRooms.map(this.renderEmptyRoom)
-    }
-    return <ActivityIndicator />
+    return matchingRooms.map(this.renderEmptyRoom)
+  }
+
+  static navigationOptions = {
+    title: `Empty Rooms`,
   }
 
   render() {
-    const { error } = this.state
+    const {
+      error,
+      sites,
+      selectedSite,
+      loadingEmptyRooms,
+    } = this.state
+
     if (error) {
       return <BodyText>{`Could not fetch empty rooms: ${error}`}</BodyText>
+    }
+    if (loadingEmptyRooms) {
+      return (
+        <Page>
+          <View style={styles.container}>
+            <ActivityIndicator size="large" />
+          </View>
+        </Page>
+      )
     }
     return (
       <Page>
         <View style={styles.container}>
-          <BodyText style={styles.subtitle}>Rooms vacant for the next hour:</BodyText>
+          <BodyText>
+            Filter by:
+          </BodyText>
+          <Picker
+            selectedValue={selectedSite}
+            onValueChange={this.onSelectSite}
+            testID="buildingPicker"
+          >
+            <Picker.Item label="< Building >" value="" />
+            {
+              sites.map(({ sitename, siteid }) => (
+                <Picker.Item key={siteid} label={sitename} value={siteid} />
+              ))
+            }
+          </Picker>
+          <BodyText style={styles.subtitle}>
+            Rooms vacant for the next hour:
+          </BodyText>
           {this.renderResults()}
         </View>
       </Page>
