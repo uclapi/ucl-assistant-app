@@ -3,7 +3,12 @@ import { Feather } from "@expo/vector-icons"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { momentObj } from "react-moment-proptypes"
-import { Image, StyleSheet, View } from "react-native"
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  View,
+} from "react-native"
 import { connect } from "react-redux"
 
 import {
@@ -152,6 +157,7 @@ class StudySpaceFavouritesScreen extends Component {
     const {
       studyspaces,
       favouriteSpaces,
+      lastModified,
     } = this.props
     const isLoading = !loadedSeatInfo
       || studyspaces.reduce(
@@ -171,7 +177,11 @@ class StudySpaceFavouritesScreen extends Component {
             ? this.renderFavouriteStudySpaces()
             : this.renderSuggestion()
         }
-        <Button onPress={this.viewStudySpacesList}>View All</Button>
+        {
+          (lastModified === null || typeof lastModified !== `object`)
+            ? <ActivityIndicator size="large" />
+            : <Button onPress={this.viewStudySpacesList}>View All</Button>
+        }
         <View style={styles.padder} />
       </Page>
     )
