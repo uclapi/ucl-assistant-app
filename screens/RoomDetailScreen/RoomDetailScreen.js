@@ -25,6 +25,8 @@ import {
 import MapStyle from "../../styles/Map"
 import FavouriteButton from "./FavouriteButton"
 
+const closedRoomDescriptions = [`Room Closed`, `UCL Closed`]
+
 const styles = StyleSheet.create({
   address: {
     marginVertical: 20,
@@ -163,8 +165,12 @@ class RoomDetailScreen extends Component {
         <SearchResultTopText>
           {`${LocalisationManager.parseToMoment(start).format(`HH:mm`)}hrs - ${LocalisationManager.parseToMoment(end).format(`HH:mm`)}hrs`}
         </SearchResultTopText>
-        {contact && (<BodyText>{`booked by ${contact}`}</BodyText>)}
-        <BodyText>{description}</BodyText>
+        {(contact && !closedRoomDescriptions.includes(description)) && (<BodyText>{`booked by ${contact}`}</BodyText>)}
+        {closedRoomDescriptions.includes(description) ? (
+          <ErrorText>Room is closed!</ErrorText>
+        ) : (
+          <BodyText>{description}</BodyText>
+        )}
       </View>
   )
 
