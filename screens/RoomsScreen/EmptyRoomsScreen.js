@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native'
 import { connect } from "react-redux"
-import { generate } from "shortid"
 
 import { Page } from "../../components/Containers"
 import SearchResult from "../../components/SearchResult"
@@ -88,7 +87,7 @@ export class EmptyRoomsScreen extends React.Component {
     }
     return (
       <SearchResult
-        key={generate()}
+        key={`${room.roomid}${room.roomname}${room.siteid}`}
         topText={room.roomname}
         bottomText={room.classification_name}
         type="location"
