@@ -75,10 +75,8 @@ export class EmptyRoomsScreen extends React.Component {
     navigation.navigate(`RoomDetail`, { room })
   }
 
-  onSelectSite = (value, index) => {
-    if (index !== 0) { // ignore placeholder
-      this.setState({ selectedSite: value })
-    }
+  onSelectSite = (value) => {
+    this.setState({ selectedSite: value })
   }
 
   renderEmptyRoom = (room = null) => {
@@ -149,7 +147,7 @@ export class EmptyRoomsScreen extends React.Component {
             onValueChange={this.onSelectSite}
             testID="buildingPicker"
           >
-            <Picker.Item label="< Building >" value="" />
+            <Picker.Item label="All Buildings" value={null} />
             {
               sites.map(({ sitename, siteid }) => (
                 <Picker.Item key={siteid} label={sitename} value={siteid} />

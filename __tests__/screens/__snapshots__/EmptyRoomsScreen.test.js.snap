@@ -62,8 +62,8 @@ exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
       testID="buildingPicker"
     >
       <PickerItem
-        label="< Building >"
-        value=""
+        label="All Buildings"
+        value={null}
       />
     </Picker>
     <BodyText
@@ -116,8 +116,8 @@ exports[`EmptyRoomsScreen supports filtering by building 1`] = `
       testID="buildingPicker"
     >
       <PickerItem
-        label="< Building >"
-        value=""
+        label="All Buildings"
+        value={null}
       />
       <PickerItem
         key="b"
