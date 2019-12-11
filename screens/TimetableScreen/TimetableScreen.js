@@ -2,7 +2,10 @@ import { Feather } from "@expo/vector-icons"
 import moment from "moment"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
-import { Platform, StyleSheet, View } from "react-native"
+import {
+ Platform, ScrollView, StyleSheet, View 
+} from "react-native"
+import Swiper from 'react-native-swiper'
 import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
@@ -13,7 +16,7 @@ import {
   setExpoPushToken as setExpoPushTokenAction,
 } from "../../actions/userActions"
 import Button from "../../components/Button"
-import { Page } from "../../components/Containers"
+import { Page, PageNoScroll } from "../../components/Containers"
 import { BodyText, ErrorText, TitleText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
@@ -31,9 +34,9 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   page: {
-    paddingBottom: 40,
     paddingLeft: 0,
     paddingRight: 0,
+    paddingTop: 40,
   },
 })
 
@@ -192,6 +195,31 @@ class TimetableScreen extends Component {
     ),
   }
 
+  renderDay = ([dateISO, { lastModified, timetable: dayTimetable }]) => {
+    const items = dayTimetable.sort(
+      (a, b) => LocalisationManager.parseToDate(`${dateISO}T${a.start_time}:00`)
+        - LocalisationManager.parseToDate(`${dateISO}T${b.start_time}:00`),
+    )
+    const pastItems = items.filter(
+      (item) => LocalisationManager.parseToDate(
+        `${dateISO}T${item.end_time}`,
+      ) - LocalisationManager.now() < 0,
+    )
+    const futureItems = items.filter(
+      (item) => LocalisationManager.parseToDate(
+        `${dateISO}T${item.end_time}`,
+      ) - LocalisationManager.now() > 0,
+    )
+
+    return (
+      <View key={dateISO}>
+        <ScrollView>
+          <BodyText>{JSON.stringify(dayTimetable)}</BodyText>
+        </ScrollView>
+      </View>
+    )
+  }
+
   render() {
     const {
       user,
@@ -202,42 +230,62 @@ class TimetableScreen extends Component {
     const { scopeNumber } = user
     const { date, error } = this.state
     const dateString = date.format(`ddd, Do MMMM`)
-    return (
-      <Page
-        refreshing={isFetchingTimetable}
-        onRefresh={this.onRefresh}
-        refreshEnabled
-        mainTabPage
-        contentContainerStyle={styles.page}
-      >
-        {scopeNumber < 0 && (
+
+    if (scopeNumber < 0) {
+      return (
+        <PageNoScroll style={styles.container}>
           <View>
             <BodyText>You are not signed in.</BodyText>
             <Button onPress={this.navigateToSignIn}>Sign In</Button>
           </View>
-        )}
-        {error && error !== `` ? (
+        </PageNoScroll>
+      )
+    }
+
+    /*
+      {error && error !== `` ? (
           <View>
             <ErrorText>{error}</ErrorText>
           </View>
         ) : null}
+    */
+
+    return (
+      <PageNoScroll
+        refreshing={isFetchingTimetable}
+        onRefresh={this.onRefresh}
+        refreshEnabled
+        mainTabPage
+        style={styles.page}
+      >
+
         <View style={styles.container}>
           <TitleText>{dateString}</TitleText>
         </View>
-        <DateControls
+        {/* <DateControls
           date={date}
           onDateChanged={this.onDateChanged}
-        />
-        <TimetableComponent
+        /> */}
+        {/* <TimetableComponent
           timetable={timetable}
           date={date}
           isLoading={isFetchingTimetable}
           navigation={navigation}
           changeDate={this.onDateChanged}
-        />
+        /> */}
         {/* <SubtitleText>Find A Timetable</SubtitleText>
         <TextInput placeholder="Search for a course or module..." /> */}
-      </Page>
+        <Swiper
+          horizontal
+          style={{ flex: 1 }}
+          height={300}
+          showsPagination={false}
+        >
+          {
+            Object.entries(timetable).map(this.renderDay)
+          }
+        </Swiper>
+      </PageNoScroll>
     )
   }
 }

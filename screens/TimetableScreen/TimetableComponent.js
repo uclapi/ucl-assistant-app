@@ -12,20 +12,11 @@ import { generate } from "shortid"
 import Button from "../../components/Button"
 import TimetableCard from "../../components/Card/TimetableCard"
 import { CentredText, SubtitleText } from "../../components/Typography"
-import { AssetManager, LocalisationManager, Random } from "../../lib"
+import { LocalisationManager } from "../../lib"
 import Styles from "../../styles/Containers"
+import FreeDay from "./components/FreeDay"
 import LastModified from "./LastModified"
 
-const relaxIllustration = Random.array([
-  AssetManager.undraw.relaxation,
-  AssetManager.undraw.chilling,
-  AssetManager.undraw.playfulCat,
-  AssetManager.undraw.dogWalking,
-  AssetManager.undraw.relaxingAtHome,
-])
-
-const timetableImageStyle = { height: 200, marginTop: 5, width: 300 }
-const topPadding = { height: 50 }
 const { width: windowWidth } = Dimensions.get(`window`)
 
 const styles = StyleSheet.create({
@@ -137,22 +128,15 @@ class TimetableComponent extends React.Component {
     }
 
     return (
-      <View style={styles.dayView}>
-        <View style={topPadding} />
-        <CentredText>
-          Nothing scheduled on&nbsp;
-          {date.format(`dddd`)}
-          . Take it easy!
-        </CentredText>
-        <Image
-          source={relaxIllustration}
-          resizeMethod="scale"
-          style={[Styles.image, timetableImageStyle]}
-          resizeMode="contain"
-        />
-        {this.renderJumpToToday()}
-        {this.renderLastModified(lastModified)}
-      </View>
+      <FreeDay
+        style={styles.dayView}
+        renderBottom={(
+          <>
+            {this.renderJumpToToday()}
+            {this.renderLastModified()}
+          </>
+        )}
+      />
     )
   }
 
@@ -189,7 +173,8 @@ class TimetableComponent extends React.Component {
       )
     }
 
-    return this.renderItem(1)
+    return null
+    // return this.renderItem(1)
   }
 }
 

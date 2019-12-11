@@ -66,8 +66,14 @@ export const Page = ({
   bottomColour,
   ...props
 }) => (
-    <>
-      <SafeAreaView style={[styles.safeAreaViewTop, { backgroundColor: topColour }]} />
+  <>
+      <SafeAreaView style={
+        [
+          styles.safeAreaViewTop,
+          { backgroundColor: topColour },
+        ]
+      }
+      />
       <SafeAreaView style={[
         Styles.pageContainer,
         safeAreaViewStyle,
@@ -83,7 +89,10 @@ export const Page = ({
           behavior="padding"
         >
           <ScrollView
-            contentContainerStyle={[Styles.pageScrollContent, contentContainerStyle]}
+            contentContainerStyle={[
+              Styles.pageScrollContent,
+              contentContainerStyle,
+            ]}
             style={[Styles.page, Styles.pageScrollView, style]}
             refreshControl={
               refreshEnabled ? (
@@ -101,13 +110,13 @@ export const Page = ({
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
-    </>
+  </>
 )
 Page.propTypes = propTypes
 Page.defaultProps = defaultProps
 
 export const PageNoScroll = ({ children, style, ...props }) => (
-  <SafeAreaView style={[Styles.pageContainer]}>
+  <SafeAreaView style={Styles.pageContainer}>
     <KeyboardAvoidingView
       style={[Styles.pageContainer, Styles.pageNoScrollContainer]}
       {...props}
