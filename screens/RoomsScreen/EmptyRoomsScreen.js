@@ -83,9 +83,12 @@ export class EmptyRoomsScreen extends React.Component {
     if (room === null) {
       return null
     }
+
+    const key = `${room.roomid}-${room.roomname}-${room.siteid}-${room.classification_name}`
+
     return (
       <SearchResult
-        key={`${room.roomid}${room.roomname}${room.siteid}`}
+        key={key}
         topText={room.roomname}
         bottomText={room.classification_name}
         type="location"
