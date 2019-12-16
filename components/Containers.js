@@ -66,7 +66,7 @@ export const Page = ({
   bottomColour,
   ...props
 }) => (
-  <>
+    <>
       <SafeAreaView style={
         [
           styles.safeAreaViewTop,
@@ -110,22 +110,31 @@ export const Page = ({
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
-  </>
-)
+    </>
+  )
 Page.propTypes = propTypes
 Page.defaultProps = defaultProps
 
-export const PageNoScroll = ({ children, style, ...props }) => (
-  <SafeAreaView style={Styles.pageContainer}>
-    <KeyboardAvoidingView
-      style={[Styles.pageContainer, Styles.pageNoScrollContainer]}
-      {...props}
-      behavior="padding"
-    >
-      <View style={[Styles.page, style]}>{children}</View>
-    </KeyboardAvoidingView>
-  </SafeAreaView>
-)
+export const PageNoScroll = ({
+  children,
+  style,
+  mainTabPage,
+  ...props
+}) => (
+    <SafeAreaView style={Styles.pageContainer}>
+      <KeyboardAvoidingView
+        style={[
+          Styles.pageContainer,
+          Styles.pageNoScrollContainer,
+          mainTabPage ? Styles.mainTab : null,
+        ]}
+        {...props}
+        behavior="padding"
+      >
+        <View style={[Styles.page, style]}>{children}</View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  )
 PageNoScroll.propTypes = propTypes
 PageNoScroll.defaultProps = defaultProps
 

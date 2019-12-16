@@ -4,9 +4,9 @@ import { momentObj } from "react-moment-proptypes"
 import { StyleSheet } from 'react-native'
 import DateTimerPicker from "react-native-modal-datetime-picker"
 
-import Button, { RoundButton } from "../../components/Button"
-import { Horizontal, Spacer } from "../../components/Containers"
-import { LocalisationManager } from "../../lib"
+import Button, { RoundButton } from "../../../components/Button"
+import { Horizontal, Spacer } from "../../../components/Containers"
+import { LocalisationManager } from "../../../lib"
 
 const styles = StyleSheet.create({
   dateControls: {
@@ -19,11 +19,13 @@ class DateControls extends React.Component {
   static propTypes = {
     date: momentObj,
     onDateChanged: PropTypes.func,
+    onIndexChanged: PropTypes.func,
   }
 
   static defaultProps = {
-    date: LocalisationManager.getMoment().startOf(`day`),
+    date: LocalisationManager.getMoment().startOf(`week`),
     onDateChanged: () => { },
+    onIndexChanged: () => { },
   }
 
   constructor(props) {
@@ -39,14 +41,9 @@ class DateControls extends React.Component {
     this.setState({ isDatePickerVisible: false })
   }
 
-  onPreviousDay = () => {
-    const { onDateChanged, date } = this.props
-    onDateChanged(date.clone().subtract(1, `day`))
-  }
-
-  onNextDay = () => {
-    const { onDateChanged, date } = this.props
-    onDateChanged(date.clone().add(1, `days`))
+  onIndexChanged = (change) => () => {
+    const { onIndexChanged } = this.props
+    onIndexChanged(change)
   }
 
   showDatePicker = () => this.setState({ isDatePickerVisible: true })
@@ -59,7 +56,7 @@ class DateControls extends React.Component {
     return (
       <Horizontal style={styles.dateControls}>
         <RoundButton
-          onPress={this.onPreviousDay}
+          onPress={this.onIndexChanged(-1)}
           icon="chevron-left"
         />
         <Spacer />
@@ -74,7 +71,7 @@ class DateControls extends React.Component {
         </Button>
         <Spacer />
         <RoundButton
-          onPress={this.onNextDay}
+          onPress={this.onIndexChanged(1)}
           icon="chevron-right"
         />
       </Horizontal>

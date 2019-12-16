@@ -70,12 +70,6 @@
       "error",
       2
     ],
-    "react/jsx-no-bind": [
-      "error",
-      {
-        "ignoreRefs": true
-      }
-    ],
     "react/jsx-closing-bracket-location": [
       "error"
     ],
