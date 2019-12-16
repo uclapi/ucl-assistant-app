@@ -46,7 +46,7 @@ class DateControls extends React.Component {
 
   onNextDay = () => {
     const { onDateChanged, date } = this.props
-    onDateChanged(date.clone().add(1, `day`))
+    onDateChanged(date.clone().add(1, `days`))
   }
 
   showDatePicker = () => this.setState({ isDatePickerVisible: true })

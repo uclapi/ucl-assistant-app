@@ -7,7 +7,7 @@ import {
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
-import { ApiManager, LocalisationManager } from "../lib"
+import { ApiManager } from "../lib"
 
 export const fetchTimetableSuccess = (timetableFrag: Object) => ({
   timetableFrag,
@@ -25,11 +25,11 @@ export const setIsFetchingTimetable = () => ({
 
 export const fetchTimetable = (
   token: String = null,
-  date: Moment = LocalisationManager.getMoment(),
+  date: Moment = null,
 ) => async (dispatch: Function) => {
   await dispatch(setIsFetchingTimetable())
   try {
-    const timetable = await ApiManager.timetable.getPersonalTimetable(
+    const timetable = await ApiManager.timetable.getPersonalWeekTimetable(
       token,
       date,
     )

@@ -1,9 +1,11 @@
 import { Feather } from "@expo/vector-icons"
+import _ from "lodash"
 import moment from "moment"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
- Platform, ScrollView, StyleSheet, View 
+  ActivityIndicator,
+  Platform, ScrollView, StyleSheet, View,
 } from "react-native"
 import Swiper from 'react-native-swiper'
 import { NavigationActions, StackActions } from "react-navigation"
@@ -25,6 +27,9 @@ import {
   LocalisationManager,
   PushNotificationsManager,
 } from '../../lib'
+import {
+  weeklyTimetableArraySelector,
+} from "../../selectors/timetableSelectors"
 import DateControls from "./DateControls"
 import TimetableComponent from "./TimetableComponent"
 
@@ -33,19 +38,30 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  loadingContainer: {
+    alignItems: `center`,
+    flex: 1,
+    justifyContent: `center`,
+  },
   page: {
     paddingLeft: 0,
     paddingRight: 0,
     paddingTop: 40,
   },
+  pageContainer: {
+    padding: 20,
+  },
+  spinner: {
+    marginBottom: 20,
+  },
+  swiper: { flex: 1 },
 })
 
 class TimetableScreen extends Component {
   static mapStateToProps = (state) => ({
     error: state.timetable.error,
     isFetchingTimetable: state.timetable.isFetching,
-    timetable: state.timetable.timetable,
-    timetableLastModified: state.timetable.lastModified,
+    timetable: weeklyTimetableArraySelector(state),
     user: state.user,
   })
 
@@ -63,7 +79,7 @@ class TimetableScreen extends Component {
     isFetchingTimetable: PropTypes.bool,
     navigation: PropTypes.shape().isRequired,
     setExpoPushToken: PropTypes.func,
-    timetable: PropTypes.shape(),
+    timetable: PropTypes.arrayOf(PropTypes.array),
     user: PropTypes.shape(),
   }
 
@@ -78,12 +94,13 @@ class TimetableScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: LocalisationManager.getMoment().startOf(`day`),
+      currentIndex: 1,
+      date: LocalisationManager.getMoment().startOf(`isoweek`),
+      initiallyLoading: true,
     }
   }
 
   async componentDidMount() {
-    const { date } = this.state
     const {
       user: {
         token,
@@ -93,9 +110,8 @@ class TimetableScreen extends Component {
       fetchTimetable,
       setExpoPushToken,
     } = this.props
-    if (this.loginCheck(this.props) && token !== ``) {
-      fetchTimetable(token, date)
-    }
+
+    this.loginCheck()
 
     if (Platform.OS === `android` && expoPushToken === ``) {
       try {
@@ -120,6 +136,19 @@ class TimetableScreen extends Component {
         navigation.navigate(`Notifications`)
       }
     }
+
+    const { date } = this.state
+    await fetchTimetable(token, date)
+    const { timetable } = this.props
+    const todayIndex = timetable.findIndex(
+      (week) => week.find(
+        ([dateISO]) => dateISO === date.clone().format(`YYYY-MM-DD`),
+      ),
+    ) + 1
+    this.setState({
+      currentIndex: todayIndex,
+      initiallyLoading: false,
+    })
   }
 
   fetchTimetablePeriod = async (date, forceUpdate = false) => {
@@ -161,8 +190,8 @@ class TimetableScreen extends Component {
     await this.fetchTimetablePeriod(newDay, forceUpdate)
   }
 
-  loginCheck = (props) => {
-    const { user, navigation } = props
+  loginCheck = () => {
+    const { user, navigation } = this.props
     if (Object.keys(user).length > 0 && user.scopeNumber < 0) {
       const resetAction = StackActions.reset({
         actions: [NavigationActions.navigate({ routeName: `Splash` })],
@@ -184,6 +213,36 @@ class TimetableScreen extends Component {
     navigate(`Splash`)
   }
 
+  onSwipe = (index) => {
+    const { fetchTimetable, user: { token }, timetable } = this.props
+
+    if (index === 0) {
+      const newDate = LocalisationManager.parseToMoment(
+        timetable[0][0][0],
+        `YYYY-MM-DD`,
+      ).subtract(1, `weeks`)
+      this.setState({ date: newDate })
+      return fetchTimetable(token, newDate)
+    }
+    if (index === (timetable.length + 1)) {
+      const newDate = LocalisationManager.parseToMoment(
+        _.last(timetable)[0][0],
+        `YYYY-MM-DD`,
+      ).add(1, `weeks`)
+      this.setState({ date: newDate })
+      return fetchTimetable(token, newDate)
+    }
+
+    const newDate = LocalisationManager.parseToMoment(
+      timetable[index - 1][0][0],
+      `YYYY-MM-DD`,
+    )
+    return this.setState({
+      currentIndex: index,
+      date: newDate,
+    })
+  }
+
   static navigationOptions = {
     header: null,
     tabBarIcon: ({ focused }) => (
@@ -195,26 +254,42 @@ class TimetableScreen extends Component {
     ),
   }
 
-  renderDay = ([dateISO, { lastModified, timetable: dayTimetable }]) => {
-    const items = dayTimetable.sort(
-      (a, b) => LocalisationManager.parseToDate(`${dateISO}T${a.start_time}:00`)
-        - LocalisationManager.parseToDate(`${dateISO}T${b.start_time}:00`),
-    )
-    const pastItems = items.filter(
-      (item) => LocalisationManager.parseToDate(
-        `${dateISO}T${item.end_time}`,
-      ) - LocalisationManager.now() < 0,
-    )
-    const futureItems = items.filter(
-      (item) => LocalisationManager.parseToDate(
-        `${dateISO}T${item.end_time}`,
-      ) - LocalisationManager.now() > 0,
+  renderWeek = (weekTimetable, index) => {
+    if (weekTimetable === null) {
+      return (
+        <View key={index}>
+          <BodyText>Loading...</BodyText>
+        </View>
+      )
+    }
+
+    const timetable = weekTimetable.map(
+      ([
+        dateISO,
+        { lastModified, timetable: dayTimetable },
+      ]) => {
+        const items = dayTimetable.sort(
+          (a, b) => LocalisationManager.parseToDate(`${dateISO}T${a.start_time}:00`)
+            - LocalisationManager.parseToDate(`${dateISO}T${b.start_time}:00`),
+        )
+        const pastItems = items.filter(
+          (item) => LocalisationManager.parseToDate(
+            `${dateISO}T${item.end_time}`,
+          ) - LocalisationManager.now() < 0,
+        )
+        const futureItems = items.filter(
+          (item) => LocalisationManager.parseToDate(
+            `${dateISO}T${item.end_time}`,
+          ) - LocalisationManager.now() > 0,
+        )
+        return { dateISO, lastModified, timetable: dayTimetable }
+      },
     )
 
     return (
-      <View key={dateISO}>
+      <View key={timetable[0].dateISO}>
         <ScrollView>
-          <BodyText>{JSON.stringify(dayTimetable)}</BodyText>
+          <BodyText>{JSON.stringify(timetable)}</BodyText>
         </ScrollView>
       </View>
     )
@@ -228,15 +303,28 @@ class TimetableScreen extends Component {
       navigation,
     } = this.props
     const { scopeNumber } = user
-    const { date, error } = this.state
+    const {
+      currentIndex, date, error, initiallyLoading,
+    } = this.state
     const dateString = date.format(`ddd, Do MMMM`)
 
     if (scopeNumber < 0) {
       return (
-        <PageNoScroll style={styles.container}>
+        <PageNoScroll style={styles.pageContainer}>
           <View>
             <BodyText>You are not signed in.</BodyText>
             <Button onPress={this.navigateToSignIn}>Sign In</Button>
+          </View>
+        </PageNoScroll>
+      )
+    }
+
+    if (initiallyLoading) {
+      return (
+        <PageNoScroll style={styles.pageContainer}>
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" style={styles.spinner} />
+            <BodyText>Loading timetable...</BodyText>
           </View>
         </PageNoScroll>
       )
@@ -276,13 +364,21 @@ class TimetableScreen extends Component {
         {/* <SubtitleText>Find A Timetable</SubtitleText>
         <TextInput placeholder="Search for a course or module..." /> */}
         <Swiper
+          key={timetable.length} // re-render only if array length changes
           horizontal
-          style={{ flex: 1 }}
+          style={styles.swiper}
           height={300}
           showsPagination={false}
+          index={currentIndex}
+          loop={false}
+          onIndexChanged={this.onSwipe}
         >
           {
-            Object.entries(timetable).map(this.renderDay)
+            [
+              null,
+              ...timetable,
+              null,
+            ].map(this.renderWeek)
           }
         </Swiper>
       </PageNoScroll>

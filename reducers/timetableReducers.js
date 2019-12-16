@@ -8,7 +8,7 @@ import {
 export const initialState = {
   error: ``,
   isFetching: false,
-  timetable: {},
+  weeklyTimetable: {},
 }
 
 export default (state = initialState, action = null) => {
@@ -37,8 +37,8 @@ export default (state = initialState, action = null) => {
       return {
         ...state,
         isFetching: false,
-        timetable: {
-          ...state.timetable,
+        weeklyTimetable: {
+          ...state.weeklyTimetable,
           ...timetableFrag,
         },
       }
