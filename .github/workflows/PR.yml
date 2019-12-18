@@ -30,6 +30,8 @@ jobs:
     - run: npm ci
     - run: npm run test
     - run: expo doctor
-    - run: expo publish --release-channel=dev.${${{ github.head_ref }}//\//-}
+    - run: |
+          github_branch="${{ github.head_ref }}"
+          expo publish --release-channel=dev.${github_branch//\//-}
       
         

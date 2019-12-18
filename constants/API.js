@@ -9,3 +9,4 @@ export const ROOMS_URL = `${ASSISTANT_API_URL}/search/rooms`
 export const ROOMBOOKINGS_URL = `${ASSISTANT_API_URL}/roombookings`
 export const FREE_ROOMS_URL = `${ASSISTANT_API_URL}/freerooms`
 export const EQUIPMENT_URL = `${ASSISTANT_API_URL}/equipment`
+export const SITES_URL = `${ASSISTANT_API_URL}/sites`

@@ -31,16 +31,9 @@ const styles = StyleSheet.create({
 })
 
 class RoomsFavouritesScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="map-pin"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
+  static mapStateToProps = (state) => ({
+    favouriteRooms: state.rooms.favourites,
+  })
 
   static propTypes = {
     favouriteRooms: PropTypes.arrayOf(PropTypes.shape()),
@@ -51,9 +44,6 @@ class RoomsFavouritesScreen extends React.Component {
     favouriteRooms: [],
   }
 
-  static mapStateToProps = (state) => ({
-    favouriteRooms: state.rooms.favourites,
-  })
 
   navigateToEmptyRoomsScreen = () => {
     const { navigation: { navigate } } = this.props
@@ -98,6 +88,17 @@ class RoomsFavouritesScreen extends React.Component {
     )
   }
 
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="map-pin"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+  }
+
   render() {
     const { navigation, favouriteRooms } = this.props
     return (
@@ -124,5 +125,5 @@ class RoomsFavouritesScreen extends React.Component {
 
 export default connect(
   RoomsFavouritesScreen.mapStateToProps,
-  () => ({})
+  () => ({}),
 )(RoomsFavouritesScreen)
