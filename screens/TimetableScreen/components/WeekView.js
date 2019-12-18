@@ -1,13 +1,15 @@
 import PropTypes from "prop-types"
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
 import { momentObj } from "react-moment-proptypes"
+import { FlatList, StyleSheet, View } from 'react-native'
 
+import Button from "../../../components/Button"
 import TimetableCard from "../../../components/Card/TimetableCard"
 import { BodyText, HeaderText, TitleText } from "../../../components/Typography"
 import { LocalisationManager } from "../../../lib"
-
 import DateControls from './DateControls'
+import FreeWeek from "./FreeWeek"
+import LastModified from "./LastModified"
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -19,12 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: `row`,
     justifyContent: `flex-start`,
-  },
-  dayEmpty: {
-    justifyContent: `space-between`,
-    alignContent: `center`,
-    alignItems: `center`,
-    flexDirection: `row`,
   },
   dayLeft: {
     alignItems: `flex-end`,
@@ -43,35 +39,111 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     paddingLeft: 10,
   },
+  footer: {
+    marginTop: 20,
+  },
+  freeDay: {
+    marginTop: 20,
+  },
   header: {
     marginBottom: 20,
   },
-  footer: {
+  jumpToToday: {
     marginTop: 20,
-  }
+  },
+  weekText: {
+    marginBottom: 10,
+  },
 })
 
 class WeekView extends React.Component {
   static propTypes = {
     date: momentObj,
-    onDateChanged: PropTypes.func,
-    onIndexChanged: PropTypes.func,
     isLoading: PropTypes.bool,
     navigation: PropTypes.shape().isRequired,
+    onDateChanged: PropTypes.func,
+    onIndexChanged: PropTypes.func,
     onRefresh: PropTypes.func,
-    timetable: PropTypes.arrayOf(PropTypes.array),
+    timetable: PropTypes.arrayOf(PropTypes.shape()),
   }
 
   static defaultProps = {
-    isLoading: false,
-    onRefresh: () => { },
-    timetable: {},
     date: LocalisationManager.getMoment().startOf(`week`),
+    isLoading: false,
     onDateChanged: () => { },
     onIndexChanged: () => { },
+    onRefresh: () => { },
+    timetable: {},
   }
 
   keyExtractor = (day) => day.dateISO
+
+  openFAQ = () => {
+    const { navigation } = this.props
+    navigation.navigate(`FAQ`)
+  }
+
+  jumpToToday = () => {
+    const { onDateChanged } = this.props
+    onDateChanged(LocalisationManager.getMoment())
+  }
+
+  renderHeader = () => {
+    const {
+      date,
+      onDateChanged,
+      onIndexChanged,
+      timetable: weekTimetable,
+    } = this.props
+
+    const firstDate = LocalisationManager.parseToMoment(
+      weekTimetable[0].dateISO,
+    ).format(`Do MMM`)
+    const secondDate = LocalisationManager.parseToMoment(
+      weekTimetable[0].dateISO,
+    ).endOf(`isoweek`).format(`Do MMM`)
+    const weekText = `${firstDate} - ${secondDate}`
+
+    return (
+      <View style={styles.header}>
+        <BodyText style={styles.weekText}>{weekText}</BodyText>
+        <DateControls
+          date={date}
+          onDateChanged={onDateChanged}
+          onIndexChanged={onIndexChanged}
+        />
+      </View>
+    )
+  }
+
+  renderJumpToToday = () => {
+    const { timetable: weekTimetable } = this.props
+    const sameWeek = LocalisationManager.parseToMoment(
+      weekTimetable[0].dateISO,
+    ).isoWeek() === LocalisationManager.getMoment().isoWeek()
+    if (!sameWeek) {
+      return (
+        <Button onPress={this.jumpToToday} style={styles.jumpToToday}>
+          Jump To Today
+        </Button>
+      )
+    }
+    return null
+  }
+
+  renderFooter = () => {
+    const { timetable: weekTimetable } = this.props
+    const { lastModified } = weekTimetable[0]
+    return (
+      <View style={styles.footer}>
+        <LastModified
+          lastModified={LocalisationManager.parseToMoment(lastModified)}
+          openFAQ={this.openFAQ}
+        />
+        {this.renderJumpToToday()}
+      </View>
+    )
+  }
 
   renderTimetableCard = (date) => (item) => {
     const { navigation } = this.props
@@ -111,23 +183,7 @@ class WeekView extends React.Component {
 
   renderDay = ({ item: { dateISO, timetable } }) => {
     const dayDate = LocalisationManager
-      .parseToMoment(dateISO, `YYYY-MM-DD`)
-
-    if (timetable.length === 0) {
-      return (
-        <View style={styles.dayEmpty}>
-          <TitleText style={styles.dayNumber}>
-            {dayDate.format(`D`)}
-            &nbsp;
-          </TitleText>
-          <HeaderText style={styles.dayOfWeek}>
-            {dayDate.format(`ddd`).toUpperCase()}
-          </HeaderText>
-          <BodyText>&nbsp;&nbsp;-&nbsp;&nbsp;</BodyText>
-          <BodyText>Nothing scheduled</BodyText>
-        </View>
-      )
-    }
+      .parseToMoment(dateISO)
 
     return (
       <View style={styles.dayContainer}>
@@ -140,7 +196,11 @@ class WeekView extends React.Component {
           </HeaderText>
         </View>
         <View style={styles.dayRight}>
-          {timetable.map(this.renderTimetableCard(dayDate))}
+          {
+            timetable.length === 0
+              ? <BodyText style={styles.freeDay}>Nothing scheduled</BodyText>
+              : timetable.map(this.renderTimetableCard(dayDate))
+          }
         </View>
       </View>
     )
@@ -148,30 +208,28 @@ class WeekView extends React.Component {
 
   render() {
     const {
-      timetable,
+      timetable: weekTimetable,
       onRefresh,
       isLoading,
-      date,
-      onDateChanged,
-      onIndexChanged,
     } = this.props
-    const weekTimetable = timetable.map(
-      ([
-        dateISO,
-        { lastModified, timetable: dayTimetable },
-      ]) => ({ dateISO, lastModified, timetable: dayTimetable }),
-    )
-    const { lastModified } = weekTimetable[0]
 
-    const firstDate = LocalisationManager.parseToMoment(
-      weekTimetable[0].dateISO,
-      `YYYY-MM-DD`,
-    ).format(`Do MMM`)
-    const secondDate = LocalisationManager.parseToMoment(
-      weekTimetable[weekTimetable.length - 1].dateISO,
-      `YYYY-MM-DD`,
-    ).format(`Do MMM`)
-    const weekText = `${firstDate} - ${secondDate}`
+    const emptyWeek = weekTimetable.every(
+      ({ timetable }) => timetable.length === 0,
+    )
+    if (emptyWeek) {
+      return (
+        <FlatList
+          onRefresh={onRefresh}
+          refreshing={isLoading}
+          contentContainerStyle={styles.contentContainer}
+          keyExtractor={() => weekTimetable[0].dateISO}
+          data={Array(1)}
+          renderItem={() => <FreeWeek />}
+          ListHeaderComponent={this.renderHeader()}
+          ListFooterComponent={this.renderFooter()}
+        />
+      )
+    }
 
     return (
       <FlatList
@@ -181,24 +239,8 @@ class WeekView extends React.Component {
         keyExtractor={this.keyExtractor}
         data={weekTimetable}
         renderItem={this.renderDay}
-        ListHeaderComponent={(
-          <View style={styles.header}>
-            <BodyText>{weekText}</BodyText>
-            <DateControls
-              date={date}
-              onDateChanged={onDateChanged}
-              currentIndex={onIndexChanged}
-            />
-          </View>
-        )}
-        ListFooterComponent={(
-          <View style={styles.footer}>
-            <BodyText>
-              Last modified&nbsp;
-              {LocalisationManager.parseToMoment(lastModified).fromNow()}
-            </BodyText>
-          </View>
-        )}
+        ListHeaderComponent={this.renderHeader()}
+        ListFooterComponent={this.renderFooter()}
       />
     )
   }

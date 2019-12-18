@@ -5,13 +5,12 @@ import { StyleSheet } from 'react-native'
 import DateTimerPicker from "react-native-modal-datetime-picker"
 
 import Button, { RoundButton } from "../../../components/Button"
-import { Horizontal, Spacer } from "../../../components/Containers"
+import { Horizontal } from "../../../components/Containers"
 import { LocalisationManager } from "../../../lib"
 
 const styles = StyleSheet.create({
   dateControls: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    justifyContent: `space-around`,
   },
 })
 
@@ -59,17 +58,16 @@ class DateControls extends React.Component {
           onPress={this.onIndexChanged(-1)}
           icon="chevron-left"
         />
-        <Spacer />
         <DateTimerPicker
           isVisible={isDatePickerVisible}
           onConfirm={this.onDatePickerConfirm}
           onCancel={this.hideDatePicker}
           date={date.toDate()}
+          locale="en_GB"
         />
         <Button onPress={this.showDatePicker}>
           Jump To Date
         </Button>
-        <Spacer />
         <RoundButton
           onPress={this.onIndexChanged(1)}
           icon="chevron-right"

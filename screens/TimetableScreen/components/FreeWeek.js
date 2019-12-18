@@ -1,6 +1,4 @@
-import PropTypes from "prop-types"
 import React from 'react'
-import { momentObj } from "react-moment-proptypes"
 import {
   Image,
   StyleSheet,
@@ -9,18 +7,22 @@ import {
 } from 'react-native'
 
 import { CentredText } from "../../../components/Typography"
-import { AssetManager, LocalisationManager, Random } from "../../../lib"
+import { AssetManager, Random } from "../../../lib"
 import Styles from "../../../styles/Containers"
 
 
 const styles = StyleSheet.create({
-  timetableImage: {
-    height: 150,
-    marginTop: 5,
-    width: 150,
+  container: {
+    alignItems: `center`,
+    flex: 1,
+    justifyContent: `center`,
+    paddingBottom: 20,
+    paddingTop: 20,
   },
-  topPadding: {
-    height: 50,
+  timetableImage: {
+    height: 200,
+    marginTop: 5,
+    width: 300,
   },
 })
 
@@ -32,36 +34,27 @@ const relaxIllustration = Random.array([
   AssetManager.undraw.relaxingAtHome,
 ])
 
-class FreeDay extends React.Component {
+// eslint-disable-next-line react/prefer-stateless-function
+class FreeWeek extends React.Component {
   static propTypes = {
-    date: momentObj,
-    renderBottom: PropTypes.func,
     style: ViewPropTypes.style,
   }
 
   static defaultProps = {
-    date: LocalisationManager.getMoment(),
-    renderBottom: () => null,
     style: {},
-  }
-
-  renderDate = () => {
-    const { date } = this.props
-    return date.format(`dddd`)
   }
 
   render() {
     const {
       style,
-      renderBottom,
     } = this.props
     return (
-      <View style={style}>
-        <View style={styles.topPadding} />
+      <View style={[styles.container, style]}>
         <CentredText>
-          Nothing scheduled on&nbsp;
-          {this.renderDate()}
-          . Take it easy!
+          Nothing scheduled this week.
+        </CentredText>
+        <CentredText>
+          Take it easy!
         </CentredText>
         <Image
           source={relaxIllustration}
@@ -69,10 +62,9 @@ class FreeDay extends React.Component {
           style={[Styles.image, styles.timetableImage]}
           resizeMode="contain"
         />
-        {renderBottom()}
       </View>
     )
   }
 }
 
-export default FreeDay
+export default FreeWeek

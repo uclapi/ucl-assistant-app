@@ -1,9 +1,7 @@
 import { Feather } from "@expo/vector-icons"
-import _ from "lodash"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
-  ActivityIndicator,
   Platform,
   StyleSheet,
   View,
@@ -22,6 +20,7 @@ import Button from "../../components/Button"
 import { PageNoScroll } from "../../components/Containers"
 import { BodyText, ErrorText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
+import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
 import {
   ErrorManager,
   LocalisationManager,
@@ -30,8 +29,8 @@ import {
 import {
   weeklyTimetableArraySelector,
 } from "../../selectors/timetableSelectors"
+import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
-import DateControls from "./components/DateControls"
 
 const styles = StyleSheet.create({
   messageContainer: {
@@ -45,9 +44,6 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     padding: 20,
-  },
-  spinner: {
-    marginBottom: 20,
   },
   swiper: { flex: 1 },
 })
@@ -74,7 +70,7 @@ class TimetableScreen extends Component {
     isFetchingTimetable: PropTypes.bool,
     navigation: PropTypes.shape().isRequired,
     setExpoPushToken: PropTypes.func,
-    timetable: PropTypes.arrayOf(PropTypes.array),
+    timetable: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
     user: PropTypes.shape(),
   }
 
@@ -91,8 +87,24 @@ class TimetableScreen extends Component {
     this.state = {
       currentIndex: 1,
       date: LocalisationManager.getMoment().startOf(`isoweek`),
-      initiallyLoading: true,
     }
+
+    const { date } = this.state
+    const { timetable } = props
+    const todayIndex = timetable.findIndex(
+      (week) => (
+        week !== null
+        && (
+          LocalisationManager.parseToMoment(week[0].dateISO).isoWeek()
+          === date.isoWeek()
+        )
+      ),
+    )
+    if (todayIndex !== -1) {
+      this.state.currentIndex = todayIndex
+    }
+
+    this.swiper = null
   }
 
   async componentDidMount() {
@@ -134,16 +146,6 @@ class TimetableScreen extends Component {
 
     const { date } = this.state
     await fetchTimetable(token, date)
-    const { timetable } = this.props
-    const todayIndex = timetable.findIndex(
-      (week) => week.find(
-        ([dateISO]) => dateISO === date.clone().format(`YYYY-MM-DD`),
-      ),
-    ) + 1
-    this.setState({
-      currentIndex: todayIndex,
-      initiallyLoading: false,
-    })
   }
 
   loginCheck = () => {
@@ -173,19 +175,13 @@ class TimetableScreen extends Component {
   onSwipe = (index) => {
     const { fetchTimetable, user: { token }, timetable } = this.props
 
-    if (index === 0) {
+    if (timetable[index] === null) {
+      // assumes closest valid index can always be found earlier, not later
+      const closestValidIndex = timetable.findIndex((w) => w !== null)
       const newDate = LocalisationManager.parseToMoment(
-        timetable[0][0][0],
-        `YYYY-MM-DD`,
-      ).subtract(1, `weeks`)
-      this.setState({ date: newDate })
-      return fetchTimetable(token, newDate)
-    }
-    if (index === (timetable.length + 1)) {
-      const newDate = LocalisationManager.parseToMoment(
-        _.last(timetable)[0][0],
-        `YYYY-MM-DD`,
-      ).add(1, `weeks`)
+        timetable[closestValidIndex][0].dateISO,
+      ).add(index - closestValidIndex, `weeks`)
+
       this.setState({ date: newDate })
       return fetchTimetable(token, newDate)
     }
@@ -197,13 +193,48 @@ class TimetableScreen extends Component {
     }
 
     const newDate = LocalisationManager.parseToMoment(
-      timetable[index - 1][0][0],
-      `YYYY-MM-DD`,
+      timetable[index][0].dateISO,
     )
-    return this.setState({
+
+    this.setState({
       currentIndex: index,
       date: newDate,
     })
+
+    const shouldUpdate = LocalisationManager.getMoment()
+      .diff(
+        LocalisationManager.parseToMoment(
+          timetable[index][0].lastModified,
+        ),
+        `hours`,
+      )
+      > TIMETABLE_CACHE_TIME_HOURS
+    if (shouldUpdate) {
+      return fetchTimetable(token, newDate)
+    }
+
+    return null
+  }
+
+  onDateChanged = async (newDate) => {
+    const { timetable } = this.props
+    const desiredIndex = timetable.findIndex(
+      (week) => (
+        week !== null && (
+          LocalisationManager.parseToMoment(week[0].dateISO).isoWeek()
+          === newDate.isoWeek()
+        )
+      ),
+    )
+    if (desiredIndex !== -1) {
+      const { currentIndex } = this.state
+      this.swiper.scrollBy(desiredIndex - currentIndex)
+    } else {
+      const { fetchTimetable, user: { token } } = this.props
+      await fetchTimetable(token, newDate.startOf(`isoweek`))
+
+      this.onDateChanged(newDate)
+    }
   }
 
   static navigationOptions = {
@@ -220,24 +251,25 @@ class TimetableScreen extends Component {
   renderWeek = (weekTimetable, index) => {
     if (weekTimetable === null) {
       return (
-        <View key={`loading-${index}`}>
-          <BodyText>Loading...</BodyText>
-        </View>
+        <LoadingTimetable key={`loading-${index}`} />
       )
     }
 
     const { navigation, isFetchingTimetable } = this.props
-    const { currentIndex } = this.state
 
     return (
       <WeekView
-        key={weekTimetable[0][0][0]}
+        key={weekTimetable[0].dateISO}
         navigation={navigation}
         timetable={weekTimetable}
         onRefresh={this.onRefresh}
         isLoading={isFetchingTimetable}
-        onDateChanged={() => {}}
-        onIndexChanged={(change) => this.onSwipe(currentIndex + change)}
+        onDateChanged={this.onDateChanged}
+        onIndexChanged={(change) => {
+          if (this.swiper) {
+            this.swiper.scrollBy(change)
+          }
+        }}
       />
     )
   }
@@ -251,7 +283,6 @@ class TimetableScreen extends Component {
     const { scopeNumber } = user
     const {
       currentIndex,
-      initiallyLoading,
       error,
     } = this.state
 
@@ -266,14 +297,9 @@ class TimetableScreen extends Component {
       )
     }
 
-    if (initiallyLoading) {
+    if (timetable.length <= 2) { // to account for padding nulls
       return (
-        <PageNoScroll style={styles.pageContainer}>
-          <View style={styles.messageContainer}>
-            <ActivityIndicator size="large" style={styles.spinner} />
-            <BodyText>Loading timetable...</BodyText>
-          </View>
-        </PageNoScroll>
+        <LoadingTimetable />
       )
     }
 
@@ -295,20 +321,10 @@ class TimetableScreen extends Component {
         mainTabPage
         style={styles.page}
       >
-        {/* <DateControls
-          date={date}
-          onDateChanged={this.onDateChanged}
-        /> */}
-        {/* <TimetableComponent
-          timetable={timetable}
-          date={date}
-          isLoading={isFetchingTimetable}
-          navigation={navigation}
-          changeDate={this.onDateChanged}
-        /> */}
         {/* <SubtitleText>Find A Timetable</SubtitleText>
         <TextInput placeholder="Search for a course or module..." /> */}
         <Swiper
+          ref={(ref) => { this.swiper = ref }}
           key={timetable.length} // re-render only if array length changes
           horizontal
           style={styles.swiper}
@@ -319,11 +335,7 @@ class TimetableScreen extends Component {
           onIndexChanged={this.onSwipe}
         >
           {
-            [
-              null,
-              ...timetable,
-              null,
-            ].map(this.renderWeek)
+            timetable.map(this.renderWeek)
           }
         </Swiper>
       </PageNoScroll>

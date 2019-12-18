@@ -7,7 +7,7 @@ import {
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
-import { ApiManager } from "../lib"
+import { ApiManager, ErrorManager } from "../lib"
 
 export const fetchTimetableSuccess = (timetableFrag: Object) => ({
   timetableFrag,
@@ -35,6 +35,8 @@ export const fetchTimetable = (
     )
     return dispatch(fetchTimetableSuccess(timetable))
   } catch (error) {
+    console.log(error)
+    ErrorManager.captureError(error)
     return dispatch(
       fetchTimetableFailure(error.message),
     )
