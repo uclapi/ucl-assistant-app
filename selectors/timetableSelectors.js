@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 
 import { LocalisationManager } from "../lib"
 
-const timetableSelector = (state) => state.timetable.weeklyTimetable
+export const timetableSelector = (state) => state.timetable.weeklyTimetable
 
 const padTimetable = (timetable) => {
   const differences = timetable.map(([{ dateISO }], i) => {

@@ -28,8 +28,14 @@ const TimetableCard = ({
   navigation,
   pastEvent,
 }) => {
-  const startMoment = LocalisationManager.parseToMoment(startTime, `YYYY-MM-DD HH:mm`)
-  const endMoment = LocalisationManager.parseToMoment(endTime, `YYYY-MM-DD HH:mm`)
+  const startMoment = LocalisationManager.parseToMoment(
+    startTime,
+    `YYYY-MM-DD HH:mm`,
+  )
+  const endMoment = LocalisationManager.parseToMoment(
+    endTime,
+    `YYYY-MM-DD HH:mm`,
+  )
   const start = startMoment.format(`HH:mma`)
   const end = endMoment.format(`HH:mma`)
   const happeningNow = (

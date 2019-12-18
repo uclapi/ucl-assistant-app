@@ -2,11 +2,16 @@ import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
+import { timetableSelector } from "../../selectors/timetableSelectors"
 import TimetableDetailView from "./TimetableDetailView"
 
 class TimetableDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: `Event: ${navigation.state.params.code}`,
+  })
+
+  static mapStateToProps = (state) => ({
+    timetable: timetableSelector(state),
   })
 
   static propTypes = {
@@ -17,10 +22,6 @@ class TimetableDetailScreen extends Component {
   static defaultProps = {
     timetable: {},
   }
-
-  static mapStateToProps = (state) => ({
-    timetable: state.timetable.timetable,
-  })
 
   constructor(props) {
     super(props)
