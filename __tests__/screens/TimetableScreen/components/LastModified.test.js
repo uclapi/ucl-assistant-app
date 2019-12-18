@@ -10,7 +10,7 @@ import React from 'react'
 
 import { LocalisationManager } from '../../../../lib'
 import LastModified from
-  "../../../../screens/TimetableScreen/LastModified"
+  "../../../../screens/TimetableScreen/components/LastModified"
 
 Enzyme.configure({ adapter: new Adapter() })
 

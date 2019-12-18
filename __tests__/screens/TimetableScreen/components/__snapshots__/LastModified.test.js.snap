@@ -17,7 +17,7 @@ exports[`LastUpdated renders the LastUpdated component 1`] = `
     <CentredText
       style={Object {}}
     >
-      Last updated yesterday at 9:47 pm
+      Last updated 11 hours ago
     </CentredText>
   </Link>
 </View>
@@ -33,16 +33,6 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
     }
   }
 >
-  <ErrorText
-    containerStyle={
-      Object {
-        "marginBottom": 20,
-      }
-    }
-    style={Object {}}
-  >
-    Our timetable data is stale. Sorry about that. We're working on getting this fixed as quickly as possible.
-  </ErrorText>
   <Link
     containerStyle={Object {}}
     href=""
@@ -52,7 +42,7 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
     <CentredText
       style={Object {}}
     >
-      Last updated yesterday at 7:47 pm
+      Last updated 13 hours ago
     </CentredText>
   </Link>
 </View>
