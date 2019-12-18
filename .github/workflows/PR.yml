@@ -10,26 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - name: Expo GitHub Action
-      uses: expo/expo-github-action@4.1.0
-      with:
-        expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
-        expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
-    - run: echo '${{ secrets.APP_JSON }}' > app.json
-    - run: npm ci
-    - run: npm run test
-    - run: expo doctor
-    - run: expo publish --release-channel=dev.${${{ github.head_ref }}//\//-}
+      - run: echo '${${{ github.head_ref }}//\//-}'
+#     - uses: actions/checkout@v1
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: 12
+#     - uses: actions/cache@v1
+#       with:
+#         path: ~/.npm
+#         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#         restore-keys: |
+#           ${{ runner.os }}-node-
+#     - name: Expo GitHub Action
+#       uses: expo/expo-github-action@4.1.0
+#       with:
+#         expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+#         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+#     - run: echo '${{ secrets.APP_JSON }}' > app.json
+#     - run: npm ci
+#     - run: npm run test
+#     - run: expo doctor
+#     - run: expo publish --release-channel=dev.${${{ github.head_ref }}//\//-}
       
         
