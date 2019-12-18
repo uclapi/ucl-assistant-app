@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo ${${{ github.head_ref }}//\//-}
+      - run: github_branch="${{ github.head_ref }}"
+      - run: echo ${github_branch//\//-}
 #     - uses: actions/checkout@v1
 #     - name: Use Node.js ${{ matrix.node-version }}
 #       uses: actions/setup-node@v1
