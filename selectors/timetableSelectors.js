@@ -6,6 +6,9 @@ import { LocalisationManager } from "../lib"
 export const timetableSelector = (state) => state.timetable.weeklyTimetable
 
 const padTimetable = (timetable) => {
+  if (typeof timetable === `undefined`) {
+    return []
+  }
   const differences = timetable.map(([{ dateISO }], i) => {
     if (i === 0) {
       return 0
