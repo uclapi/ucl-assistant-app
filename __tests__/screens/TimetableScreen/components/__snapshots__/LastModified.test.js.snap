@@ -4,7 +4,9 @@ exports[`LastUpdated renders the LastUpdated component 1`] = `
 <View
   style={
     Object {
+      "alignItems": "center",
       "marginTop": 20,
+      "width": "100%",
     }
   }
 >
@@ -29,7 +31,9 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
 <View
   style={
     Object {
+      "alignItems": "center",
       "marginTop": 20,
+      "width": "100%",
     }
   }
 >
