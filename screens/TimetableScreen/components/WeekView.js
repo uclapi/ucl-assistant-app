@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   header: {
+    alignItems: `center`,
     marginBottom: 20,
   },
   jumpToToday: {

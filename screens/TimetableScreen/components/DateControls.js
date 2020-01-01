@@ -11,6 +11,7 @@ import { LocalisationManager } from "../../../lib"
 const styles = StyleSheet.create({
   dateControls: {
     justifyContent: `space-around`,
+    width: `100%`,
   },
 })
 

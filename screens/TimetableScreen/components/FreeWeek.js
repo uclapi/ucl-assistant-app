@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     alignItems: `center`,
     flex: 1,
     justifyContent: `center`,
-    paddingBottom: 20,
     paddingTop: 20,
   },
   timetableImage: {
