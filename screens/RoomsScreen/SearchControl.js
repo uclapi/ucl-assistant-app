@@ -17,9 +17,16 @@ const styles = StyleSheet.create({
 })
 
 const MIN_QUERY_LENGTH = 4
+const SEARCH_DELAY = 500
 
 class SearchControl extends Component {
-  static SEARCH_DELAY = 500;
+  static mapStateToProps = (state) => ({
+    token: state.user.token,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    addRecentRoom: (room) => dispatch(addRecent(room)),
+  })
 
   static propTypes = {
     addRecentRoom: PropTypes.func,
@@ -31,14 +38,6 @@ class SearchControl extends Component {
     addRecentRoom: () => { },
     token: ``,
   }
-
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    addRecentRoom: (room) => dispatch(addRecent(room)),
-  })
 
   constructor(props) {
     super(props)
@@ -81,7 +80,7 @@ class SearchControl extends Component {
       clearTimeout(this.searchTimer)
       this.searchTimer = setTimeout(
         () => this.searchRooms(query),
-        SearchControl.SEARCH_DELAY,
+        SEARCH_DELAY,
       )
     }
     this.setState({ query })

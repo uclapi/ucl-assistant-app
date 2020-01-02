@@ -6,9 +6,6 @@ import { LocalisationManager } from "../lib"
 export const timetableSelector = (state) => state.timetable.weeklyTimetable
 
 const padTimetable = (timetable) => {
-  if (typeof timetable === `undefined`) {
-    return []
-  }
   const differences = timetable.map(([{ dateISO }], i) => {
     if (i === 0) {
       return 0
@@ -37,23 +34,28 @@ const padTimetable = (timetable) => {
 
 export const weeklyTimetableArraySelector = createSelector(
   [timetableSelector],
-  (timetable) => [
-    null,
-    ...padTimetable(
-      _.chunk(
-        Object.entries(timetable)
-          .sort((t1, t2) => (new Date(t1[0]) - new Date(t2[0])))
-          .map(
-            ([
-              dateISO,
-              { lastModified, timetable: dayTimetable },
-            ]) => ({ dateISO, lastModified, timetable: dayTimetable }),
-          ),
-        5,
+  (timetable) => {
+    if (typeof timetable === `undefined`) {
+      return []
+    }
+    return [
+      null,
+      ...padTimetable(
+        _.chunk(
+          Object.entries(timetable)
+            .sort((t1, t2) => (new Date(t1[0]) - new Date(t2[0])))
+            .map(
+              ([
+                dateISO,
+                { lastModified, timetable: dayTimetable },
+              ]) => ({ dateISO, lastModified, timetable: dayTimetable }),
+            ),
+          5,
+        ),
       ),
-    ),
-    null,
-  ],
+      null,
+    ]
+  },
 )
 
 export default {}

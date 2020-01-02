@@ -11,6 +11,14 @@ import SearchResult from "../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../components/Typography"
 
 export class RecentResults extends Component {
+  static mapDispatchToProps = (dispatch) => ({
+    clearRecents: () => dispatch(clearRecentsAction()),
+  })
+
+  static mapStateToProps = (state) => ({
+    recents: state.people.recents,
+  })
+
   static propTypes = {
     clearRecents: PropTypes.func,
     navigation: PropTypes.shape().isRequired,
@@ -21,14 +29,6 @@ export class RecentResults extends Component {
     clearRecents: () => { },
     recents: [],
   }
-
-  static mapStateToProps = (state) => ({
-    recents: state.people.recents,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    clearRecents: () => dispatch(clearRecentsAction()),
-  })
 
   viewPerson = (person) => () => {
     const { navigation } = this.props

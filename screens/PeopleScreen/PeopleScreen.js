@@ -20,16 +20,11 @@ const styles = StyleSheet.create({
 })
 
 export class PeopleScreen extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="users"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
+  static mapStateToProps = (state) => ({
+    isSearching: state.people.isSearching,
+    recents: state.people.recents,
+    searchResults: state.people.searchResults,
+  })
 
   static propTypes = {
     isSearching: PropTypes.bool,
@@ -44,11 +39,16 @@ export class PeopleScreen extends Component {
     searchResults: false,
   }
 
-  static mapStateToProps = (state) => ({
-    isSearching: state.people.isSearching,
-    recents: state.people.recents,
-    searchResults: state.people.searchResults,
-  })
+  static navigationOptions = {
+    header: null,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="users"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+  }
 
   render() {
     const {
@@ -83,5 +83,5 @@ export class PeopleScreen extends Component {
 
 export default connect(
   PeopleScreen.mapStateToProps,
-  () => ({})
+  () => ({}),
 )(PeopleScreen)

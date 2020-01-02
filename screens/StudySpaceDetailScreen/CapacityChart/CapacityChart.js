@@ -39,14 +39,14 @@ const CurrentTimeBar = ({
     <G key="tooltip" x={x(time)}>
       <Rect
         height={height}
-        width={width / 24}
+        width={Math.round(width / 24)}
         opacity={0.3}
         fill={Colors.graphCurrentTime}
       />
       <Rect
         y={y(occupied)}
         height={height - y(occupied)}
-        width={width / 24}
+        width={Math.round(width / 24)}
         fill={Colors.graphCurrentTime}
       />
     </G>
@@ -119,7 +119,7 @@ const CustomGrid = ({
             x1={x(index)}
             x2={x(index)}
             stroke="rgba(0,0,0,0)"
-            strokeWidth={width / 24}
+            strokeWidth={Math.round(width / 24)}
             onPress={() => {
               setIndex(index)
             }}
