@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   freeDay: {
-    marginTop: 20,
+    lineHeight: 36,
+    marginTop: 6,
+    textAlignVertical: `center`,
   },
   header: {
     alignItems: `center`,
@@ -199,7 +201,7 @@ class WeekView extends React.Component {
         <View style={styles.dayRight}>
           {
             timetable.length === 0
-              ? <BodyText style={styles.freeDay}>Nothing scheduled</BodyText>
+              ? <TitleText style={styles.freeDay}>Nothing scheduled</TitleText>
               : timetable.map(this.renderTimetableCard(dayDate))
           }
         </View>

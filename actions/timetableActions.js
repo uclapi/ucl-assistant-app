@@ -35,7 +35,6 @@ export const fetchTimetable = (
     )
     return dispatch(fetchTimetableSuccess(timetable))
   } catch (error) {
-    console.log(error)
     ErrorManager.captureError(error)
     return dispatch(
       fetchTimetableFailure(error.message),

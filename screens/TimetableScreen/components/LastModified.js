@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   },
   lastModified: {
     alignItems: `center`,
-    marginTop: 20,
     width: `100%`,
   },
 })

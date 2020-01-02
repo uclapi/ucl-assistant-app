@@ -237,6 +237,12 @@ class TimetableScreen extends Component {
     }
   }
 
+  onIndexChanged = (change) => {
+    if (this.swiper) {
+      this.swiper.scrollBy(change)
+    }
+  }
+
   static navigationOptions = {
     header: null,
     tabBarIcon: ({ focused }) => (
@@ -265,11 +271,7 @@ class TimetableScreen extends Component {
         onRefresh={this.onRefresh}
         isLoading={isFetchingTimetable}
         onDateChanged={this.onDateChanged}
-        onIndexChanged={(change) => {
-          if (this.swiper) {
-            this.swiper.scrollBy(change)
-          }
-        }}
+        onIndexChanged={this.onIndexChanged}
       />
     )
   }
