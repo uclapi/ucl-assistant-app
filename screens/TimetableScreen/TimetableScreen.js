@@ -329,8 +329,7 @@ class TimetableScreen extends Component {
           ref={(ref) => { this.swiper = ref }}
           key={timetable.length} // re-render only if array length changes
           horizontal
-          style={styles.swiper}
-          height={300}
+          containerStyle={styles.swiper}
           showsPagination={false}
           index={currentIndex}
           loop={false}
