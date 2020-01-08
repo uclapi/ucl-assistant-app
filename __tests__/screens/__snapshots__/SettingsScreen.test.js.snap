@@ -133,7 +133,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
     <BodyText
       style={Object {}}
     >
-      Version: 5.0.0
+      Version: 6.0.0
     </BodyText>
     <Horizontal
       bottomColour="#fefefe"
