@@ -119,6 +119,14 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
     </HeaderText>
     <Link
       containerStyle={Object {}}
+      href="https://uclapi.com"
+      onPress={null}
+      style={Object {}}
+    >
+      Website
+    </Link>
+    <Link
+      containerStyle={Object {}}
       href=""
       onPress={[Function]}
       style={
@@ -197,28 +205,11 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
     >
       Credits
     </HeaderText>
-    <View
-      style={
-        Object {
-          "flexDirection": "row",
-          "flexWrap": "wrap",
-        }
-      }
+    <BodyText
+      style={Object {}}
     >
-      <BodyText
-        style={Object {}}
-      >
-        Created by Matt Bell (class of 2018) using
-      </BodyText>
-      <Link
-        containerStyle={Object {}}
-        href="https://uclapi.com"
-        onPress={null}
-        style={Object {}}
-      >
-        UCL API
-      </Link>
-    </View>
+      Created by Matt Bell (class of 2018) using the UCL API.
+    </BodyText>
     <BodyText
       style={
         Object {
