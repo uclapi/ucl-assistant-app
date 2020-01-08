@@ -16,7 +16,10 @@ import CheckBox from 'react-native-check-box'
 import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
-import { setShouldTrackAnalytics as setShouldTrackAnalyticsAction, signOut as signOutAction } from "../../actions/userActions"
+import {
+  setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
+  signOut as signOutAction,
+} from "../../actions/userActions"
 import { SmallButton } from "../../components/Button"
 import { Horizontal, Page } from "../../components/Containers"
 import TextInput from "../../components/Input/TextInput"
@@ -38,10 +41,6 @@ const {
 } = require(`../../package.json`)
 
 const styles = StyleSheet.create({
-  createdBy: {
-    flexDirection: `row`,
-    flexWrap: `wrap`,
-  },
   faqButton: {
     marginBottom: 10,
   },
@@ -88,7 +87,9 @@ export class SettingsScreen extends Component {
   })
 
   static mapDispatchToProps = (dispatch) => ({
-    setShouldTrackAnalytics: (shouldTrackAnalytics) => dispatch(setShouldTrackAnalyticsAction(shouldTrackAnalytics)),
+    setShouldTrackAnalytics: (shouldTrackAnalytics) => dispatch(
+      setShouldTrackAnalyticsAction(shouldTrackAnalytics),
+    ),
     signOut: () => dispatch(signOutAction()),
   })
 
@@ -147,7 +148,12 @@ export class SettingsScreen extends Component {
   }
 
   toggleAnalytics = () => {
-    const { user: { settings: { shouldTrackAnalytics: value } }, setShouldTrackAnalytics } = this.props
+    const {
+      user: {
+        settings: { shouldTrackAnalytics: value },
+      },
+      setShouldTrackAnalytics,
+    } = this.props
 
     setShouldTrackAnalytics(!value)
   }
@@ -246,7 +252,8 @@ export class SettingsScreen extends Component {
               {
                 user.settings.shouldTrackAnalytics
                   ? `Allow UCL Assistant to send analytics data to UCL API`
-                  : `Disallow UCL Assistant from sending analytics data to UCL API`
+                  : `Disallow UCL Assistant from sending analytics data to `
+                  + `UCL API`
               }
             </BodyText>
             <CheckBox
@@ -259,6 +266,7 @@ export class SettingsScreen extends Component {
         </View>
         <View style={styles.section}>
           <HeaderText>App Info</HeaderText>
+          <Link href="https://uclapi.com">Website</Link>
           <Link
             onPress={this.navigateToFAQs}
             style={styles.faqButton}
@@ -302,12 +310,9 @@ export class SettingsScreen extends Component {
         </View>
         <View style={styles.section}>
           <HeaderText>Credits</HeaderText>
-          <View style={styles.createdBy}>
-            <BodyText>
-              Created by Matt Bell (class of 2018) using
-            </BodyText>
-            <Link href="https://uclapi.com">UCL API</Link>
-          </View>
+          <BodyText>
+            Created by Matt Bell (class of 2018) using the UCL API.
+          </BodyText>
           <BodyText style={styles.textWithUpperMargin}>
             Currently managed by the UCL API Team: a group of
             students working together within ISD to improve UCL
