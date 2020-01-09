@@ -22,6 +22,7 @@ import { BodyText, ErrorText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
 import {
+  DeviceManager,
   ErrorManager,
   LocalisationManager,
   PushNotificationsManager,
@@ -138,7 +139,7 @@ class TimetableScreen extends Component {
       const didGrant = (
         await PushNotificationsManager.hasPushNotificationPermissions()
       )
-      if (!didGrant) {
+      if (!didGrant && DeviceManager.isRealDevice()) {
         const { navigation } = this.props
         navigation.navigate(`Notifications`)
       }

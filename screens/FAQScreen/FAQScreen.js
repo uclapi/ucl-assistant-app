@@ -11,6 +11,9 @@ import WebBrowserManager from "../../lib/WebBrowserManager"
 import FAQ from './FAQ'
 
 const styles = StyleSheet.create({
+  about: {
+    marginTop: 20,
+  },
   answerContainer: {
     flexDirection: `row`,
     flexWrap: `wrap`,
@@ -46,17 +49,16 @@ class FAQScreen extends Component {
           answer={(
             <View style={styles.answerContainer}>
               <BodyText>
-                This app is powered by the&nbsp;
+                This app is powered by the UCL API – a student-run
+                platform for interacting with data not usually made available,
+                or that is difficult to access through other UCL systems.
               </BodyText>
-              <Link href="https://uclapi.com">UCL API</Link>
-              <BodyText>
-                &nbsp;– a student-run
-              </BodyText>
-              <BodyText>
-                platform for interacting with
-                data not usually made available, or that is difficult
-                to access, through other UCL systems.
-              </BodyText>
+              <Link
+                href="https://uclapi.com"
+                style={styles.about}
+              >
+                About the UCL API
+              </Link>
             </View>
           )}
         />
