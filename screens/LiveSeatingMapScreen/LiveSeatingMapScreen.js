@@ -1,68 +1,63 @@
-import React, { Component } from "react";
-import { View, ActivityIndicator, StyleSheet } from "react-native";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { ScreenOrientation } from "expo";
-import Svg from "../../components/Svg";
-import ApiManager from "../../lib/ApiManager";
+import PropTypes from "prop-types"
+import React, { Component } from "react"
+import { ActivityIndicator, StyleSheet, View } from "react-native"
+import { connect } from "react-redux"
+
+import Svg from "../../components/Svg"
+import ApiManager from "../../lib/ApiManager"
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    alignItems: "center",
+    alignItems: `center`,
     flex: 1,
-    justifyContent: "center",
+    justifyContent: `center`,
   },
   webview: {
     flex: 1,
   },
-});
+})
 
 class LiveSeatingMapScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam("name", "Live Seating Map"),
+    title: navigation.getParam(`name`, `Live Seating Map`),
   });
+
+  static mapStateToProps = (state) => ({
+    token: state.user.token,
+  });
+
+  static mapDispatchToProps = () => ({})
 
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
     token: PropTypes.string.isRequired,
-  };
-
-  static mapStateToProps = (state: Object) => ({
-    token: state.user.token,
-  });
-
-  static mapDispatchToProps = () => ({});
+  }
 
   constructor() {
-    super();
+    super()
     this.state = {
       svg: null,
-    };
+    }
   }
 
   componentDidMount() {
-    // ScreenOrientation.allowAsync(ScreenOrientation.Orientation.LANDSCAPE);
-    const { navigation, token } = this.props;
-    const { surveyId, mapId } = navigation.state.params;
+    const { navigation, token } = this.props
+    const { surveyId, mapId } = navigation.state.params
     ApiManager.workspaces
-      .getLiveImage(token, { surveyId, mapId })
-      .then(base64 => {
-        this.setState({ svg: base64 });
-      });
-  }
-
-  componentWillUnmount() {
-    // ScreenOrientation.allowAsync(ScreenOrientation.Orientation.PORTRAIT);
+      .getLiveImage(token, { mapId, surveyId })
+      .then((base64) => {
+        this.setState({ svg: base64 })
+      })
   }
 
   render() {
-    const { svg } = this.state;
+    const { svg } = this.state
     if (!svg) {
       return (
         <View style={styles.loadingContainer}>
           <ActivityIndicator />
         </View>
-      );
+      )
     }
     return (
       <Svg
@@ -72,11 +67,11 @@ class LiveSeatingMapScreen extends Component {
         bounces
         pointerEvents="auto"
       />
-    );
+    )
   }
 }
 
 export default connect(
   LiveSeatingMapScreen.mapStateToProps,
   LiveSeatingMapScreen.mapDispatchToProps,
-)(LiveSeatingMapScreen);
+)(LiveSeatingMapScreen)
