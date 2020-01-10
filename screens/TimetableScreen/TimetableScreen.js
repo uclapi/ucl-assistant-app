@@ -123,7 +123,9 @@ class TimetableScreen extends Component {
       setExpoPushToken,
     } = this.props
 
-    this.loginCheck()
+    if (!this.loginCheck()) {
+      return null
+    }
 
     if (Platform.OS === `android` && expoPushToken === ``) {
       try {
@@ -153,6 +155,8 @@ class TimetableScreen extends Component {
     await fetchTimetable(token, date)
 
     AppState.addEventListener(`change`, this.handleAppStateChange)
+
+    return null
   }
 
   componentWillUnmount() {
