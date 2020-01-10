@@ -3,7 +3,7 @@ import { AuthSession } from "expo"
 import configureStore from "../configureStore"
 import { ASSISTANT_API_URL } from "../constants/API"
 import * as constants from "../constants/userConstants"
-import AnalyticsManager from '../lib/AnalyticsManager'
+import { AnalyticsManager, ErrorManager } from "../lib"
 import { clearTimetable } from "./timetableActions"
 
 const { persistor } = configureStore
@@ -48,6 +48,7 @@ export const signIn = () => async (dispatch) => {
     const action = signInSuccess(result)
     AnalyticsManager.setUserId(action.user.upi)
     AnalyticsManager.setUserProperties(action.user)
+    ErrorManager.setUser(action.user)
     return dispatch(action)
   }
   // login cancelled by user.

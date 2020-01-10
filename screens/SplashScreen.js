@@ -22,7 +22,7 @@ import {
   SubtitleText,
 } from "../components/Typography"
 import Colors from "../constants/Colors"
-import { AnalyticsManager, AssetManager } from "../lib"
+import { AnalyticsManager, AssetManager, ErrorManager } from "../lib"
 import Styles from "../styles/Containers"
 import SplashStyle from "../styles/Splash"
 
@@ -132,6 +132,18 @@ class SplashScreen extends Component {
       givenName,
       scopeNumber,
       token,
+    })
+
+    ErrorManager.setUser({
+      apiToken,
+      cn,
+      department,
+      email,
+      fullName,
+      givenName,
+      scopeNumber,
+      token,
+      upi,
     })
   }
 
