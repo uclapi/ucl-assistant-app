@@ -2,6 +2,7 @@ import { Feather } from "@expo/vector-icons"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
+  AppState,
   Platform,
   StyleSheet,
   View,
@@ -86,6 +87,7 @@ class TimetableScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      appState: `active`,
       currentIndex: 1,
       date: LocalisationManager.getMoment().startOf(`isoweek`),
     }
@@ -147,6 +149,12 @@ class TimetableScreen extends Component {
 
     const { date } = this.state
     await fetchTimetable(token, date)
+
+    AppState.addEventListener(`change`, this.handleAppStateChange)
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener(`change`, this.handleAppStateChange)
   }
 
   loginCheck = () => {
@@ -244,6 +252,17 @@ class TimetableScreen extends Component {
     }
   }
 
+  handleAppStateChange = (nextAppState) => {
+    const { appState } = this.state
+    if (
+      appState.match(/inactive|background/)
+      && nextAppState === `active`
+    ) {
+      this.onIndexChanged(0)
+    }
+    this.setState({ appState: nextAppState })
+  }
+
   static navigationOptions = {
     header: null,
     tabBarIcon: ({ focused }) => (
@@ -301,6 +320,7 @@ class TimetableScreen extends Component {
     }
 
     if (timetable.length <= 2) { // to account for padding nulls
+      console.log(timetable)
       return (
         <LoadingTimetable />
       )
