@@ -95,6 +95,7 @@
     "react-native-svg": "9.13.3",
     "react-native-svg-charts": "^5.3.0",
     "react-native-swiper": "github:uclapi/react-native-swiper",
+    "react-native-webview": "7.4.3",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.3",
     "react-navigation-tabs": "^2.7.0",
