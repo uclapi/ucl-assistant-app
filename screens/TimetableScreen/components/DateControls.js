@@ -1,8 +1,8 @@
+import DateTimerPicker from "@react-native-community/datetimepicker"
 import PropTypes from "prop-types"
 import React from "react"
 import { momentObj } from "react-moment-proptypes"
 import { StyleSheet } from 'react-native'
-import DateTimerPicker from "react-native-modal-datetime-picker"
 
 import Button, { RoundButton } from "../../../components/Button"
 import { Horizontal } from "../../../components/Containers"
@@ -35,10 +35,14 @@ class DateControls extends React.Component {
     }
   }
 
-  onDatePickerConfirm = (date) => {
-    const { onDateChanged } = this.props
-    onDateChanged(LocalisationManager.parseToMoment(date))
-    this.setState({ isDatePickerVisible: false })
+  onDatePickerAction = ({ type, nativeEvent: { timestamp } }) => {
+    if (type === `dismissed`) {
+      this.setState({ isDatePickerVisible: false })
+    } else {
+      const { onDateChanged } = this.props
+      onDateChanged(LocalisationManager.parseToMoment(timestamp))
+      this.setState({ isDatePickerVisible: false })
+    }
   }
 
   onIndexChanged = (change) => () => {
@@ -47,8 +51,6 @@ class DateControls extends React.Component {
   }
 
   showDatePicker = () => this.setState({ isDatePickerVisible: true })
-
-  hideDatePicker = () => this.setState({ isDatePickerVisible: false })
 
   render() {
     const { date } = this.props
@@ -59,13 +61,19 @@ class DateControls extends React.Component {
           onPress={this.onIndexChanged(-1)}
           icon="chevron-left"
         />
-        <DateTimerPicker
-          isVisible={isDatePickerVisible}
-          onConfirm={this.onDatePickerConfirm}
-          onCancel={this.hideDatePicker}
-          date={date.toDate()}
-          locale="en_GB"
-        />
+        {
+          isDatePickerVisible
+            ? (
+              <DateTimerPicker
+                mode="date"
+                display="calendar"
+                onChange={this.onDatePickerAction}
+                value={date.toDate()}
+                locale="en-GB"
+              />
+            ) : null
+        }
+
         <Button onPress={this.showDatePicker}>
           Jump To Date
         </Button>

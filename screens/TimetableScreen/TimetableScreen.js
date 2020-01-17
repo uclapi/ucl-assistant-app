@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons"
+import ViewPager from '@react-native-community/viewpager'
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
@@ -7,7 +8,6 @@ import {
   StyleSheet,
   View,
 } from "react-native"
-import Swiper from 'react-native-swiper'
 import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
@@ -109,7 +109,7 @@ class TimetableScreen extends Component {
       this.state.currentIndex = todayIndex
     }
 
-    this.swiper = null
+    this.viewpager = null
   }
 
   async componentDidMount() {
@@ -187,7 +187,7 @@ class TimetableScreen extends Component {
     navigate(`Splash`)
   }
 
-  onSwipe = (index) => {
+  onSwipe = ({ nativeEvent: { position: index } }) => {
     const { fetchTimetable, user: { token }, timetable } = this.props
 
     if (timetable[index] === null) {
@@ -250,8 +250,7 @@ class TimetableScreen extends Component {
       ),
     )
     if (desiredIndex !== -1) {
-      const { currentIndex } = this.state
-      this.swiper.scrollBy(desiredIndex - currentIndex)
+      this.viewpager.setPage(desiredIndex)
     } else {
       const { fetchTimetable, user: { token } } = this.props
       await fetchTimetable(token, newDate.startOf(`isoweek`))
@@ -261,8 +260,9 @@ class TimetableScreen extends Component {
   }
 
   onIndexChanged = (change) => {
-    if (this.swiper) {
-      this.swiper.scrollBy(change)
+    const { currentIndex } = this.state
+    if (this.viewpager) {
+      this.viewpager.setPage(currentIndex + change)
     }
   }
 
@@ -359,20 +359,20 @@ class TimetableScreen extends Component {
       >
         {/* <SubtitleText>Find A Timetable</SubtitleText>
         <TextInput placeholder="Search for a course or module..." /> */}
-        <Swiper
-          ref={(ref) => { this.swiper = ref }}
+        <ViewPager
+          ref={(ref) => { this.viewpager = ref }}
           key={timetable.length} // re-render only if array length changes
-          horizontal
-          containerStyle={styles.swiper}
-          showsPagination={false}
-          index={currentIndex}
-          loop={false}
-          onIndexChanged={this.onSwipe}
+          orientation="horizontal"
+          style={styles.swiper}
+          showsPageIndicator={false}
+          initialPage={currentIndex}
+          scrollEnabled
+          onPageSelected={this.onSwipe}
         >
           {
             timetable.map(this.renderWeek)
           }
-        </Swiper>
+        </ViewPager>
       </PageNoScroll>
     )
   }
