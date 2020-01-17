@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { WebView } from "react-native";
+import PropTypes from "prop-types"
+import React from "react"
+import { WebView } from "react-native-webview"
 
-const Svg = ({ uri, style, scrollEnabled, bounces, pointerEvents }) => {
+const Svg = ({
+  uri, style, scrollEnabled, bounces, pointerEvents,
+}) => {
   // arbitrarily large width & height that caters to the largest floorplans
   const openingHtml = `<html>
     <head>
@@ -24,8 +26,8 @@ const Svg = ({ uri, style, scrollEnabled, bounces, pointerEvents }) => {
         }
       </style>
     </head>
-  <body>`;
-  const closingHtml = "</body></html>";
+  <body>`
+  const closingHtml = `</body></html>`
   return (
     <WebView
       source={{
@@ -40,25 +42,25 @@ const Svg = ({ uri, style, scrollEnabled, bounces, pointerEvents }) => {
       dataDetectorTypes="none"
       pointerEvents={pointerEvents}
     />
-  );
-};
+  )
+}
 
 const propTypes = {
-  uri: PropTypes.string,
-  style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
-  scrollEnabled: PropTypes.bool,
   bounces: PropTypes.bool,
   pointerEvents: PropTypes.string,
-};
+  scrollEnabled: PropTypes.bool,
+  style: PropTypes.oneOfType([PropTypes.shape(), PropTypes.number]),
+  uri: PropTypes.string,
+}
 const defaultProps = {
-  uri: "",
-  style: {},
-  scrollEnabled: false,
   bounces: false,
-  pointerEvents: "none",
-};
+  pointerEvents: `none`,
+  scrollEnabled: false,
+  style: {},
+  uri: ``,
+}
 
-Svg.propTypes = propTypes;
-Svg.defaultProps = defaultProps;
+Svg.propTypes = propTypes
+Svg.defaultProps = defaultProps
 
-export default Svg;
+export default Svg
