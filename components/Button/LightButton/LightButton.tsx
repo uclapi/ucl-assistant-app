@@ -14,7 +14,7 @@ interface StyleSheetType {
   active: TextStyle,
   activeText: TextStyle,
   lightButton: ViewStyle,
-  text: TextStyle
+  text: TextStyle,
 }
 
 const styles = StyleSheet.create<StyleSheetType>({
@@ -41,7 +41,7 @@ interface Props {
   style: any,
   children: any,
   active: boolean,
-  onPress: () => void
+  onPress: () => void,
 }
 
 const LightButton: React.FC<Props> = ({

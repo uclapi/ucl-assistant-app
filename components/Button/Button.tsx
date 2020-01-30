@@ -9,9 +9,9 @@ import { defaultProps, propTypes } from "./props"
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Button extends Component {
-  static propTypes = propTypes;
+  static propTypes = propTypes
 
-  static defaultProps = defaultProps;
+  static defaultProps = defaultProps
 
   render() {
     const { loading, disabled } = this.props

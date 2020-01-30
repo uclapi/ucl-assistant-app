@@ -2,14 +2,14 @@ import React from 'react'
 import { ActivityIndicator, Platform } from "react-native"
 
 import Colors from "../../constants/Colors"
-import { SmallButtonText } from "../Typography"
-import DisabledButton from "./DisabledButton"
 import Styles from "../../styles/Button"
+import { SmallButtonText } from "../Typography"
 import ActiveButton from "./ActiveButton"
+import DisabledButton from "./DisabledButton"
 
 interface Props {
   loading: boolean,
-  disabled: boolean
+  disabled: boolean,
 }
 
 const SmallButton: React.FC<Props> = (props) => {

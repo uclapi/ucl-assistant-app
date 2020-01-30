@@ -34,7 +34,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,json}": [
-      "eslint --fix",
+      "eslint --fix --ignore-pattern",
       "git add"
     ]
   },
@@ -111,7 +111,16 @@
     "@storybook/addon-knobs": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
     "@storybook/react-native": "^5.3.2",
+    "@types/jest": "^25.1.1",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "^0.61.8",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-test-renderer": "^16.9.2",
+    "@types/shortid": "0.0.29",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-typescript-to-proptypes": "^1.2.1",
     "babel-preset-expo": "^8.0.0",
     "codecov": "^3.6.2",
     "enzyme": "^3.11.0",
@@ -119,8 +128,9 @@
     "enzyme-to-json": "^3.4.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-no-secrets": "^0.3.4",
@@ -141,7 +151,8 @@
     "react-native-storybook-loader": "^1.8.1",
     "react-test-renderer": "16.8.3",
     "redux-logger": "^3.0.6",
-    "redux-mock-store": "^1.5.4"
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^3.7.5"
   },
   "engines": {
     "node": ">=12.14.0"

@@ -12,7 +12,7 @@ interface Props {
   buttonColor: string,
   icon?: string,
   iconColor?: string,
-  onPress?: () => void
+  onPress?: () => void,
 }
 
 class FloatingButton extends React.Component<Props> {

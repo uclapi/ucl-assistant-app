@@ -1,3 +1,4 @@
+import { ThunkDispatch, ThunkAction } from "redux-thunk"
 import { PEOPLE_URL } from "../constants/API"
 import {
   PEOPLE_CLEAR_RECENTS,
@@ -8,27 +9,31 @@ import {
   PEOPLE_SEARCH_CLEAR,
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
+  PeopleActionTypes
 } from "../constants/peopleConstants"
 
-export const setIsSearching = () => ({
+type PeopleThunkAction = ThunkAction<Promise<{}>, {}, {}, PeopleActionTypes>
+type PeopleDispatch = ThunkDispatch<{}, {}, PeopleActionTypes>
+
+export const setIsSearching = (): PeopleActionTypes => ({
   type: PEOPLE_IS_SEARCHING,
 })
 
-export const searchFailure = (error) => ({
+export const searchFailure = (error: string): PeopleActionTypes => ({
   error,
   type: PEOPLE_SEARCH_FAILURE,
 })
 
-export const searchSuccess = (results) => ({
+export const searchSuccess = (results: any): PeopleActionTypes => ({
   results,
   type: PEOPLE_SEARCH_SUCCESS,
 })
 
-export const searchClear = () => ({
+export const searchClear = (): PeopleActionTypes => ({
   type: PEOPLE_SEARCH_CLEAR,
 })
 
-export const search = (token = null, query) => async (dispatch) => {
+export const search = (token = null, query: string): PeopleThunkAction => async (dispatch: PeopleDispatch) => {
   if (query && query.length <= 3) {
     return {}
   }
@@ -49,26 +54,26 @@ export const search = (token = null, query) => async (dispatch) => {
     return dispatch(searchSuccess(json.content.people))
   } catch (error) {
     return dispatch(
-      searchFailure(typeof error === `string` ? error : error.message),
+      searchFailure(error.message),
     )
   }
 }
 
-export const setIsFetching = () => ({
+export const setIsFetching = (): PeopleActionTypes => ({
   type: PEOPLE_IS_FETCHING,
 })
 
-export const fetchFailure = (error) => ({
+export const fetchFailure = (error: string): PeopleActionTypes => ({
   error,
   type: PEOPLE_FETCH_FAILURE,
 })
 
-export const fetchSuccess = (person) => ({
+export const fetchSuccess = (person: any): PeopleActionTypes => ({
   person,
   type: PEOPLE_FETCH_SUCCESS,
 })
 
-export const fetchPerson = (token = null, email) => async (dispatch) => {
+export const fetchPerson = (token = null, email: string): PeopleThunkAction => async (dispatch: PeopleDispatch) => {
   dispatch(setIsFetching())
   try {
     const res = await fetch(
@@ -86,15 +91,11 @@ export const fetchPerson = (token = null, email) => async (dispatch) => {
     return dispatch(fetchSuccess(json.content.people[0]))
   } catch (error) {
     return dispatch(
-      fetchFailure(typeof error === `string` ? error : error.message),
+      fetchFailure(error.message),
     )
   }
 }
 
-export const clear = () => ({
-  type: `CLEAR`,
-})
-
-export const clearRecents = () => ({
+export const clearRecentResults = (): PeopleActionTypes => ({
   type: PEOPLE_CLEAR_RECENTS,
 })

@@ -1,32 +1,30 @@
-// @flow
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import { View } from "react-native"
 import { connect } from "react-redux"
 import { generate } from "shortid"
 
-import { clearRecents as clearRecentsAction } from "../../actions/peopleActions"
+import { clearRecentResults as clearRecentsResultsAction } from "../../actions/peopleActions"
 import Button from "../../components/Button"
 import SearchResult from "../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../components/Typography"
 
-export class RecentResults extends Component {
-  static mapDispatchToProps = (dispatch) => ({
-    clearRecents: () => dispatch(clearRecentsAction()),
+interface Props {
+  clearRecentResults: () => void,
+  navigation: any,
+  recents: any,
+}
+
+export class RecentResults extends React.Component<Props> {
+  static mapDispatchToProps = (dispatch): any => ({
+    clearRecentResults: (): any => dispatch(clearRecentsResultsAction()),
   })
 
-  static mapStateToProps = (state) => ({
+  static mapStateToProps = (state): any => ({
     recents: state.people.recents,
   })
 
-  static propTypes = {
-    clearRecents: PropTypes.func,
-    navigation: PropTypes.shape().isRequired,
-    recents: PropTypes.arrayOf(PropTypes.shape()),
-  }
-
   static defaultProps = {
-    clearRecents: () => { },
+    clearRecentResults: (): void => { },
     recents: [],
   }
 
@@ -52,7 +50,7 @@ export class RecentResults extends Component {
   }
 
   render() {
-    const { recents, clearRecents } = this.props
+    const { recents, clearRecentResults } = this.props
     if (recents.length === 0) {
       return null
     }
@@ -61,10 +59,10 @@ export class RecentResults extends Component {
         <SubtitleText>Recently Searched</SubtitleText>
         {recents.map(this.renderRecent)}
         {recents.length > 0 ? (
-          <Button onPress={clearRecents}>Clear</Button>
+          <Button onPress={clearRecentResults}>Clear</Button>
         ) : (
             <CentredText>Recent results will appear here.</CentredText>
-        )}
+          )}
       </View>
     )
   }
