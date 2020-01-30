@@ -1,12 +1,23 @@
 import React from 'react'
 import {
-  View, StyleSheet, TouchableOpacity, ViewPropTypes,
+  StyleSheet,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native'
-import PropTypes from "prop-types"
-import { SmallButtonText } from '../../Typography'
-import Colors from '../../../constants/Colors'
 
-const styles = StyleSheet.create({
+import Colors from '../../../constants/Colors'
+import { SmallButtonText } from '../../Typography'
+
+interface StyleSheetType {
+  active: TextStyle,
+  activeText: TextStyle,
+  lightButton: ViewStyle,
+  text: TextStyle
+}
+
+const styles = StyleSheet.create<StyleSheetType>({
   active: {
     backgroundColor: Colors.accentColor,
   },
@@ -26,7 +37,14 @@ const styles = StyleSheet.create({
   },
 })
 
-const LightButton = ({
+interface Props {
+  style: any,
+  children: any,
+  active: boolean,
+  onPress: () => void
+}
+
+const LightButton: React.FC<Props> = ({
   onPress,
   style,
   children,
@@ -51,20 +69,13 @@ const LightButton = ({
         }
       </View>
     </TouchableOpacity>
-)
-
-LightButton.propTypes = {
-  onPress: PropTypes.func,
-  active: PropTypes.bool,
-  style: ViewPropTypes.style,
-  children: PropTypes.node,
-}
+  )
 
 LightButton.defaultProps = {
+  active: false,
+  children: ``,
   onPress: () => { },
   style: {},
-  children: ``,
-  active: false,
 }
 
 

@@ -1,23 +1,22 @@
 import { Entypo } from "@expo/vector-icons"
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import ActionButton from "react-native-action-button"
 
 import Colors from "../../../constants/Colors"
 
-class FloatingButton extends Component {
-  static propTypes = {
-    active: PropTypes.bool,
-    activeButtonColor: PropTypes.string,
-    activeIcon: PropTypes.string,
-    activeIconColor: PropTypes.string,
-    buttonColor: PropTypes.string,
-    icon: PropTypes.string,
-    iconColor: PropTypes.string,
-    onPress: PropTypes.func,
-  }
+interface Props {
+  active?: boolean,
+  activeButtonColor?: string,
+  activeIcon?: string,
+  activeIconColor?: string,
+  buttonColor: string,
+  icon?: string,
+  iconColor?: string,
+  onPress?: () => void
+}
 
-  static defaultProps = {
+class FloatingButton extends React.Component<Props> {
+  public static defaultProps = {
     active: false,
     activeButtonColor: Colors.disabledButtonBackground,
     activeIcon: `heart`,
@@ -25,7 +24,7 @@ class FloatingButton extends Component {
     buttonColor: Colors.errorColor,
     icon: `heart-outlined`,
     iconColor: Colors.pageBackground,
-    onPress: () => { },
+    onPress: (): void => { },
   }
 
   renderIcon = () => {
