@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a SearchControl component 1`] = `
+<View>
+  <Horizontal
+    bottomColour="#fefefe"
+    contentContainerStyle={Object {}}
+    keyboardAvoidingViewStyle={Object {}}
+    mainTabPage={false}
+    onRefresh={[Function]}
+    refreshEnabled={false}
+    refreshing={false}
+    safeAreaViewStyle={Object {}}
+    style={Object {}}
+    topColour="#fefefe"
+  >
+    <TextInputComponent
+      allowFontScaling={true}
+      clearButtonMode="always"
+      onChangeText={[Function]}
+      placeholder="Search for a name or email..."
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "flex": 1,
+          "marginRight": 10,
+        }
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+  </Horizontal>
+  <CentredText
+    style={Object {}}
+  >
+    Start typing to get search results 
+  </CentredText>
+</View>
+`;

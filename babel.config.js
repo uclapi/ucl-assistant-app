@@ -1,21 +1,14 @@
 /* eslint-disable */
 
 module.exports = (api) => {
-  api.cache(false)
+  api.cache(true)
 
-  const plugins = [
-    `@babel/plugin-transform-flow-strip-types`
-  ]
-
-  if (process.env.NODE_ENV !== `production`) {
-    plugins.push(`babel-plugin-typescript-to-proptypes`)
-  }
+  const plugins = []
 
   return {
     plugins,
     presets: [
       `babel-preset-expo`,
-      "@babel/preset-flow"
     ],
   }
 }

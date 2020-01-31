@@ -266,10 +266,7 @@ exports[`SettingsScreen renders the SettingsScreen 1`] = `
         value="abc123"
       />
       <SmallButton
-        disabled={false}
-        loading={false}
         onPress={[Function]}
-        style={Object {}}
       >
         Copy
       </SmallButton>
