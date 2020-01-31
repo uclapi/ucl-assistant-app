@@ -8,7 +8,6 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:security/recommended",
-    "plugin:flowtype/recommended",
     "plugin:sonarjs/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
@@ -58,7 +57,6 @@
     "security",
     "no-secrets",
     "json-format",
-    "flowtype",
     "simple-import-sort",
     "sonarjs",
     "sort-keys-fix",

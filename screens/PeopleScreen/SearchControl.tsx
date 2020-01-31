@@ -1,5 +1,4 @@
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect } from "react-redux"
 import { generate } from "shortid"
@@ -23,49 +22,49 @@ const styles = StyleSheet.create({
 
 const MIN_QUERY_LENGTH = 4
 
-export class SearchControl extends Component {
-  static propTypes = {
-    clear: PropTypes.func,
-    error: PropTypes.string,
-    isSearching: PropTypes.bool,
-    navigation: PropTypes.shape().isRequired,
-    search: PropTypes.func,
-    searchResults: PropTypes.arrayOf(PropTypes.shape()),
-    token: PropTypes.string,
-  }
+interface Props {
+  clearRecentResults: () => {},
+  error: any,
+  isSearching: boolean,
+  navigation: any,
+  search: () => {},
+  searchResults: any,
+  token: string,
+}
 
-  static defaultProps = {
-    clear: () => { },
-    error: ``,
-    isSearching: false,
-    search: () => { },
-    searchResults: [],
-    token: ``,
-  }
-
-  static mapStateToProps = (state) => ({
+export class SearchControl extends React.Component<Props> {
+  static mapStateToProps = (state): any => ({
     error: state.people.searchError,
     isSearching: state.people.isSearching,
     searchResults: state.people.searchResults,
     token: state.user.token,
   })
 
-  static mapDispatchToProps = (dispatch) => ({
-    clear: () => dispatch(searchClearAction()),
-    search: (token, query) => dispatch(searchAction(token, query)),
+  static mapDispatchToProps = (dispatch): any => ({
+    clearRecentResults: (): any => dispatch(searchClearAction()),
+    search: (token, query): any => dispatch(searchAction(token, query)),
   })
 
-  static SEARCH_DELAY = 500;
+  searchTimer = null
+
+  public static defaultProps = {
+    clearRecentResults: (): void => { },
+    error: ``,
+    isSearching: false,
+    search: (): void => { },
+    searchResults: [],
+    token: ``,
+  }
 
   constructor(props) {
     super(props)
-    this.searchTimer = null
+
     this.state = {
       query: ``,
     }
   }
 
-  onQueryChange = (query: string) => {
+  onQueryChange = (query: string): void => {
     clearTimeout(this.searchTimer)
     this.searchTimer = setTimeout(
       () => this.search(query),
@@ -74,7 +73,7 @@ export class SearchControl extends Component {
     this.setState({ query })
   }
 
-  search = (query: string) => {
+  search = (query: string): void => {
     const { search, token } = this.props
     search(token, query)
   }
@@ -89,21 +88,23 @@ export class SearchControl extends Component {
     const { query } = this.state
     const { searchResults } = this.props
     if (query.length === 0) {
-      return <CentredText>Start typing to get search results < /CentredText>
+      return <CentredText>Start typing to get search results </CentredText>
     }
     if (query.length < MIN_QUERY_LENGTH && searchResults.length === 0) {
-      return <CentredText>Please enter a few more characters < /CentredText>
+      return <CentredText>Please enter a few more characters </CentredText>
     }
     if (query.length > 0 && searchResults.length === 0) {
-      return <CentredText>No results found.< /CentredText>
+      return <CentredText>No results found.</CentredText>
     }
     return null
   }
 
-  viewPerson = (person) => () => {
+  viewPerson = (person) => (): void => {
     const { navigation } = this.props
     navigation.navigate(`PersonDetail`, person)
   }
+
+  static SEARCH_DELAY = 500
 
   renderResult = (res = null) => {
     if (res === null) {
@@ -111,12 +112,12 @@ export class SearchControl extends Component {
     }
     return (
       <SearchResult
-        key= { generate() }
-    topText = { res.name }
-    bottomText = { res.department }
-    type = "person"
-    buttonText = "View"
-    onPress = { this.viewPerson(res) }
+        key={generate()}
+        topText={res.name}
+        bottomText={res.department}
+        type="person"
+        buttonText="View"
+        onPress={this.viewPerson(res)}
       />
     )
   }
@@ -130,34 +131,39 @@ export class SearchControl extends Component {
     } = this.props
     return (
       <View>
-      <Horizontal>
-      <TextInput
-            placeholder= "Search for a name or email..."
-    onChangeText = { this.onQueryChange }
-    value = { query }
-    clearButtonMode = "always"
-    style = { styles.textInput }
-      />
-    {
-      query.length > 0 ? (
-        <SmallButton onPress= { this.clear } > Clear < /SmallButton>
-          ) : null}
-      < /Horizontal>
-    {
-      error.length > 0 && query.length > 2 && (
-        <CentredText>{`Error! ${error} `} </CentredText>
-        )
-  }
+        <Horizontal>
+          <TextInput
+            placeholder="Search for a name or email..."
+            onChangeText={this.onQueryChange}
+            value={query}
+            clearButtonMode="always"
+            style={styles.textInput}
+          />
+          {
+            query.length > 0 ? (
+              <SmallButton onPress={this.clear}> Clear </SmallButton>
+            ) : null
+          }
+        </Horizontal>
+        {
+          error.length > 0 && query.length > 2 && (
+            <CentredText>
+              {`Error! ${error} `}
+              {` `}
+            </CentredText>
+          )
+        }
 
         {
-  isSearching && <ActivityIndicator />}
+          isSearching && <ActivityIndicator />
+        }
 
-  { this.renderStatusText() }
+        {this.renderStatusText()}
 
-  { searchResults.map(this.renderResult) }
-  </View>
+        {searchResults.map(this.renderResult)}
+      </View>
     )
-}
+  }
 }
 
 export default connect(

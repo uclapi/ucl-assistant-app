@@ -10,6 +10,7 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": false // not strict for now
+    "strict": false, // not strict for now
+    "sourceMap": true
   }
 }

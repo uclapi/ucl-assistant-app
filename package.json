@@ -17,7 +17,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "format": "eslint . --fix --ext .js --ext .jsx --cache --ignore-path .eslintignore",
+    "format": "eslint . --fix --ext .ts --ext tsx --ext .js --ext .jsx --cache --ignore-path .eslintignore",
     "lint:staged": "lint-staged",
     "publish": "node scripts/publish.js",
     "start": "expo start",
@@ -33,7 +33,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,json}": [
+    "*.{ts,tsx,js,jsx,json}": [
       "eslint --fix --ignore-pattern",
       "git add"
     ]
@@ -42,19 +42,6 @@
     "react-native-storybook-loader": {
       "pattern": "**/*-stories.js"
     }
-  },
-  "jest": {
-    "collectCoverage": true,
-    "preset": "jest-expo",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|jest-expo/.*|@unimodules/.*|unimodules-permissions-interface|sentry-expo|native-base|react-native-action-button|redux-persist.*|@sentry/react-native)"
-    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
@@ -107,6 +94,8 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-knobs": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
@@ -129,7 +118,6 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-typescript": "^2.0.0",
-    "eslint-plugin-flowtype": "^4.6.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
