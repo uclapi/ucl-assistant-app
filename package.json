@@ -34,8 +34,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json}": [
-      "eslint --fix --ignore-pattern",
-      "git add"
+      "eslint --fix --ignore-pattern"
     ]
   },
   "config": {
@@ -45,10 +44,10 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
-    "@react-native-community/datetimepicker": "2.1.0",
+    "@react-native-community/datetimepicker": "2.1.1",
     "@react-native-community/masked-view": "0.1.5",
     "@react-native-community/viewpager": "2.0.2",
-    "axios": "^0.19.1",
+    "axios": "^0.19.2",
     "babel-core": "^7.0.0-bridge.0",
     "base-64": "^0.1.0",
     "expo": "^36.0.2",
@@ -101,7 +100,7 @@
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-knobs": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
-    "@storybook/react-native": "^5.3.2",
+    "@storybook/react-native": "^5.3.9",
     "@types/jest": "^25.1.1",
     "@types/react": "^16.9.19",
     "@types/react-native": "^0.61.8",
@@ -113,7 +112,7 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-typescript-to-proptypes": "^1.2.1",
     "babel-preset-expo": "^8.0.0",
-    "codecov": "^3.6.2",
+    "codecov": "^3.6.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-typescript": "^2.0.0",
@@ -132,7 +131,7 @@
     "husky": "^4.2.1",
     "inquirer": "^7.0.4",
     "jest-expo": "^36.0.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.7",
     "mockdate": "^2.0.5",
     "react-dom": "16.9.0",
     "react-native-storybook-loader": "^1.8.1",
