@@ -40,7 +40,7 @@ export class PeopleScreen extends Component {
   }
 
   static navigationOptions = {
-    header: null,
+    headerShown: false,
     tabBarIcon: ({ focused }) => (
       <Feather
         name="users"

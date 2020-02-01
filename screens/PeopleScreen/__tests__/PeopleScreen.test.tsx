@@ -1,16 +1,16 @@
 import "react-native"
 
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import React from "react"
-import renderer from "react-test-renderer"
+import { cleanup, render } from 'react-native-testing-library'
 
-import { RecentResults } from "../../screens/PeopleScreen/RecentResults"
-import { SearchControl } from "../../screens/PeopleScreen/SearchControl"
-
-Enzyme.configure({ adapter: new Adapter() })
+import { RecentResults } from "../RecentResults"
+import { SearchControl } from "../SearchControl"
 
 describe(`RecentResults`, () => {
+  afterEach(() => {
+    cleanup()
+  })
+
   it(`renders an empty RecentResults component`, async () => {
     const props = {
       clearRecents: jest.fn(),
@@ -19,7 +19,7 @@ describe(`RecentResults`, () => {
       },
       recents: [],
     }
-    const tree = renderer.create(<RecentResults {...props} />).toJSON()
+    const tree = render(<RecentResults {...props} />).toJSON()
     expect(tree).toBe(null)
   })
 
@@ -44,7 +44,7 @@ describe(`RecentResults`, () => {
         },
       ],
     }
-    const tree = renderer.create(<RecentResults {...props} />).toJSON()
+    const tree = render(<RecentResults {...props} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })
@@ -61,6 +61,6 @@ it(`renders a SearchControl component`, async () => {
     searchResults: [],
     token: ``,
   }
-  const component = shallow(<SearchControl {...props} />)
+  const component = render(<SearchControl {...props} />)
   expect(component).toMatchSnapshot()
 })

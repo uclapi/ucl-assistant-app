@@ -3,20 +3,18 @@
  */
 import "react-native"
 
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import React from 'react'
+import { cleanup, fireEvent, render } from "react-native-testing-library"
 
-import { MailManager, WebBrowserManager } from '../../lib'
-import { SettingsScreen } from "../../screens/SettingsScreen"
+import { MailManager, WebBrowserManager } from '../../../lib'
+import * as packageJson from '../../../package.json'
+import { SettingsScreen } from "../SettingsScreen"
 
 const {
   repository: {
     url: githubURL,
   },
-} = require(`../../package.json`)
-
-Enzyme.configure({ adapter: new Adapter() })
+} = packageJson
 
 describe(`SettingsScreen`, () => {
   let wrapper
@@ -46,61 +44,51 @@ describe(`SettingsScreen`, () => {
   MailManager.composeAsync = mockComposeAsync
 
   beforeEach(() => {
-    wrapper = shallow(<SettingsScreen {...mockProps} />)
+    wrapper = render(<SettingsScreen {...mockProps} />)
+  })
+
+  afterEach(() => {
+    cleanup()
   })
 
   it(`renders the SettingsScreen`, () => {
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 
   it(`logs out when the signOut button is pressed`, async () => {
-    const signOutButton = wrapper.findWhere(
-      (node) => node.prop(`testID`) === `signOutButton`,
-    )
-    expect(signOutButton.exists())
-    signOutButton.props().onPress()
-
+    const { getByTestId } = wrapper
+    fireEvent.press(getByTestId(`sign-out-button`))
     expect(mockSignOut).toHaveBeenCalledTimes(1)
   })
 
   it(`opens Github repository when Github button is pressed`, async () => {
-    const githubButton = wrapper.findWhere(
-      (node) => node.prop(`testID`) === `githubButton`,
-    )
-    expect(githubButton.exists())
-    expect(githubButton.prop(`href`) === githubURL)
+    const { getByTestId } = wrapper
+    const githubButton = getByTestId(`github-button`)
+    expect(githubButton.props.href === githubURL)
   })
 
   it(`opens FAQ page when the FAQ button is pressed`, async () => {
-    const faqButton = wrapper.findWhere(
-      (node) => node.prop(`testID`) === `faqButton`,
-    )
-    expect(faqButton.exists())
-
-    faqButton.props().onPress()
+    const { getByTestId } = wrapper
+    const faqButton = getByTestId(`faq-button`)
+    fireEvent.press(faqButton)
 
     expect(mockNavigate).toHaveBeenCalledTimes(1)
     expect(mockNavigate).toHaveBeenCalledWith(`FAQ`)
   })
 
   it(`opens mail client when the feedback button is pressed`, async () => {
-    const feedbackButton = wrapper.findWhere(
-      (node) => node.prop(`testID`) === `feedbackButton`,
-    )
-    expect(feedbackButton.exists())
+    const { getByTestId } = wrapper
+    const feedbackButton = getByTestId(`feedback-button`)
+    fireEvent.press(feedbackButton)
 
-    feedbackButton.props().onPress()
     expect(mockComposeAsync).toHaveBeenCalledTimes(1)
     expect(mockComposeAsync.mock.calls).toMatchSnapshot()
   })
 
   it(`dispatches action when analytics checkbox is toggled`, async () => {
-    const analyticsCheckbox = wrapper.findWhere(
-      (node) => node.prop(`testID`) === `analyticsCheckbox`,
-    )
-    expect(analyticsCheckbox.exists())
-
-    analyticsCheckbox.props().onClick()
+    const { getByTestId } = wrapper
+    const analyticsCheckbox = getByTestId(`analytics-checkbox`)
+    fireEvent(analyticsCheckbox, `click`)
     expect(mockSetShouldTrackAnalytics).toHaveBeenCalledTimes(1)
     expect(mockSetShouldTrackAnalytics).toHaveBeenCalledWith(true)
   })

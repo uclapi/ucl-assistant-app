@@ -89,7 +89,7 @@ class RoomsFavouritesScreen extends React.Component {
   }
 
   static navigationOptions = {
-    header: null,
+    headerShown: false,
     tabBarIcon: ({ focused }) => (
       <Feather
         name="map-pin"

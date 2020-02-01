@@ -2,26 +2,32 @@ import { LinearGradient } from "expo-linear-gradient"
 import _ from "lodash"
 import React from "react"
 import {
+  GestureResponderEvent,
   Platform,
   TouchableNativeFeedback,
   TouchableOpacity,
+  ViewStyle,
 } from "react-native"
 
 import Colors from "../../constants/Colors"
 import Styles from "../../styles/Button"
-import { defaultProps, propTypes } from "./props"
+import { defaultProps } from "./props"
 
-class Wrapper extends React.Component {
-  debouncedOnPress = _.debounce(this.onPress, 200)
+interface WrapperProps {
+  children: any,
+  disabled: boolean,
+  loading: boolean,
+  onPress: (event: GestureResponderEvent) => void,
+  style: ViewStyle,
+}
 
-  static propTypes = propTypes
-
-  static defaultProps = defaultProps
-
-  onPress = (event) => {
+class Wrapper extends React.Component<WrapperProps, {}> {
+  debouncedOnPress = _.debounce((event) => {
     const { onPress } = this.props
     onPress(event)
-  }
+  }, 200)
+
+  static defaultProps = defaultProps
 
   render() {
     const { children, onPress, disabled } = this.props
@@ -55,9 +61,16 @@ class Wrapper extends React.Component {
   }
 }
 
-const Button = ({
+interface ActiveButtonProps {
+  onPress: Function,
+  style: ViewStyle,
+  children: any,
+  disabled: boolean,
+}
+
+const ActiveButton = ({
   onPress, style, children, disabled,
-}) => (
+}): React.Component<ActiveButtonProps> => (
     <Wrapper onPress={onPress} disabled={disabled}>
       <LinearGradient
         colors={[Colors.accentColor, Colors.buttonBackground]}
@@ -68,9 +81,8 @@ const Button = ({
         {children}
       </LinearGradient>
     </Wrapper>
-)
+  )
 
-Button.propTypes = propTypes
-Button.defaultProps = defaultProps
+ActiveButton.defaultProps = defaultProps
 
-export default Button
+export default ActiveButton

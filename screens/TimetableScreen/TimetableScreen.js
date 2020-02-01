@@ -278,7 +278,7 @@ class TimetableScreen extends Component {
   }
 
   static navigationOptions = {
-    header: null,
+    headerShown: false,
     tabBarIcon: ({ focused }) => (
       <Feather
         name="calendar"

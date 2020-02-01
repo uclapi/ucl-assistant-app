@@ -2,7 +2,7 @@ import { AppLoading, Notifications } from "expo"
 import { Asset } from "expo-asset"
 import * as Font from "expo-font"
 import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import { Platform, StatusBar, View } from "react-native"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/es/integration/react"
@@ -18,7 +18,18 @@ const { persistor, store } = configureStore
 
 ErrorManager.initialise()
 
-class App extends Component {
+interface Props {
+  skipLoadingScreen: boolean,
+}
+
+interface State {
+  isLoadingComplete: boolean,
+  store: any,
+}
+
+class App extends React.Component<Props, State> {
+  notificationSubscription = null
+
   static propTypes = {
     skipLoadingScreen: PropTypes.bool,
   }
@@ -27,7 +38,7 @@ class App extends Component {
     skipLoadingScreen: false,
   }
 
-  static getActiveRouteName(navigationState) {
+  static getActiveRouteName(navigationState): (string | void) {
     if (!navigationState) {
       return null
     }
@@ -50,7 +61,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (Platform.OS === `android`) {
       Object.keys(NotificationChannels).forEach((key) => {
         const channel = NotificationChannels[key]
@@ -63,27 +74,27 @@ class App extends Component {
     AnalyticsManager.initialise()
   }
 
-  loadResourcesAsync = async () => Promise.all([
+  loadResourcesAsync = async (): Promise<any> => Promise.all([
     Asset.loadAsync(Object.values(AssetManager.undraw)),
     Font.loadAsync({
       ...AssetManager.font,
     }),
   ])
 
-  handleLoadingError = (error) => {
+  handleLoadingError = (error): void => {
     ErrorManager.captureError(error)
   }
 
-  handleFinishLoading = () => {
+  handleFinishLoading = (): void => {
     this.setState({ isLoadingComplete: true })
   }
 
-  handleNotification = (notification) => console.log(
+  handleNotification = (notification): void => console.log(
     `Received notification`,
     notification,
   )
 
-  onNavigationStateChange = (prevState, currentState) => {
+  onNavigationStateChange = (prevState, currentState): void => {
     const currentScreen = App.getActiveRouteName(currentState)
     const prevScreen = App.getActiveRouteName(prevState)
 

@@ -11,6 +11,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": false, // not strict for now
-    "sourceMap": true
+    "sourceMap": true,
   }
 }

@@ -1,0 +1,484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecentResults renders a filled RecentResults component 1`] = `
+<View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#4D5061",
+          "fontFamily": "apercu-bold",
+          "fontSize": 28,
+          "marginBottom": 2,
+          "marginTop": 8,
+        },
+        Object {},
+      ]
+    }
+  >
+    Recently Searched
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#fff",
+              "borderRadius": 10,
+              "marginBottom": 10,
+              "marginLeft": 2,
+              "marginRight": 2,
+              "marginTop": 5,
+              "padding": 10,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+              },
+              "shadowOpacity": 0.1845,
+              "shadowRadius": 1.62,
+            },
+            Object {},
+          ],
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu-bold",
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
+              },
+              Object {},
+            ]
+          }
+        >
+          Mr Potato
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              Object {},
+            ]
+          }
+        >
+          Department of Agriculture
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#fff",
+              "borderRadius": 10,
+              "marginBottom": 10,
+              "marginLeft": 2,
+              "marginRight": 2,
+              "marginTop": 5,
+              "padding": 10,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+              },
+              "shadowOpacity": 0.1845,
+              "shadowRadius": 1.62,
+            },
+            Object {},
+          ],
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu-bold",
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
+              },
+              Object {},
+            ]
+          }
+        >
+          Chris P Bacon
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              Object {},
+            ]
+          }
+        >
+          Faculty of Medical Sciences
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Array [
+            Object {
+              "alignSelf": "stretch",
+              "backgroundColor": "#fff",
+              "borderRadius": 10,
+              "marginBottom": 10,
+              "marginLeft": 2,
+              "marginRight": 2,
+              "marginTop": 5,
+              "padding": 10,
+              "shadowColor": "#000",
+              "shadowOffset": Object {
+                "height": 2,
+              },
+              "shadowOpacity": 0.1845,
+              "shadowRadius": 1.62,
+            },
+            Object {},
+          ],
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu-bold",
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
+              },
+              Object {},
+            ]
+          }
+        >
+          Jeremy Bentham
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              Object {},
+            ]
+          }
+        >
+          Philosophy Department
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "opacity": 1,
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoLinearGradient
+      proxiedProperties={
+        Object {
+          "colors": Array [
+            4279998859,
+            4283151357,
+          ],
+          "endPoint": Array [
+            1,
+            0,
+          ],
+          "locations": undefined,
+          "startPoint": Array [
+            0,
+            1,
+          ],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 8,
+            "elevation": 2,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 5,
+            "marginTop": 5,
+            "minHeight": 55,
+            "minWidth": 150,
+            "padding": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "shadowColor": "#1B998B",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.75,
+            "shadowRadius": 3,
+          },
+          Object {},
+        ]
+      }
+    >
+       
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#fefefe",
+              "fontFamily": "apercu",
+              "fontSize": 20,
+              "marginBottom": 1,
+              "marginTop": 1,
+              "textAlign": "center",
+            },
+            Object {},
+          ]
+        }
+      >
+        Clear
+         
+      </Text>
+       
+    </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
+</View>
+`;
+
+exports[`renders a SearchControl component 1`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      clearButtonMode="always"
+      onChangeText={[Function]}
+      placeholder="Search for a name or email..."
+      placeholderTextColor="#6E707F"
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderColor": "#6E707F",
+            "borderRadius": 10,
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "height": 50,
+            "marginBottom": 10,
+            "marginLeft": 2,
+            "marginRight": 2,
+            "marginTop": 10,
+            "minWidth": 200,
+            "paddingBottom": 5,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "paddingTop": 5,
+          },
+          Object {
+            "flex": 1,
+            "marginRight": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#6E707F",
+          "fontFamily": "apercu",
+          "fontSize": 16,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    Start typing to get search results 
+  </Text>
+</View>
+`;

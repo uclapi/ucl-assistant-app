@@ -3,34 +3,35 @@
  */
 import "react-native"
 
-import Enzyme, { shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
 import MockDate from 'mockdate'
 import React from 'react'
+import { cleanup, render } from "react-native-testing-library"
 
-import { LocalisationManager } from '../../../../lib'
+import { LocalisationManager } from '../../../lib'
 import LastUpdated from
-  "../../../../screens/StudySpacesScreen/components/LastUpdated"
-
-Enzyme.configure({ adapter: new Adapter() })
+  "../components/LastUpdated"
 
 describe(`LastUpdated`, () => {
   MockDate.set(new Date(`2019-11-18T08:47:21`))
+
+  afterAll(() => {
+    cleanup()
+  })
 
   it(`renders the LastUpdated component`, () => {
     const mockProps = {
       lastModified: LocalisationManager.getMoment().subtract(4, `minutes`),
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
-    expect(wrapper).toMatchSnapshot()
+    const wrapper = render(<LastUpdated {...mockProps} />)
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 
   it(`renders the LastUpdated component loading`, () => {
     const mockProps = {
       lastModified: `${LocalisationManager.parseToDate()}`,
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
-    expect(wrapper).toMatchSnapshot()
+    const wrapper = render(<LastUpdated {...mockProps} />)
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 
   it(`shows error when studyspace info is stale`, async () => {
@@ -39,7 +40,7 @@ describe(`LastUpdated`, () => {
         .getMoment()
         .subtract(6, `minutes`),
     }
-    const wrapper = shallow(<LastUpdated {...mockProps} />)
-    expect(wrapper).toMatchSnapshot()
+    const wrapper = render(<LastUpdated {...mockProps} />)
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 })
