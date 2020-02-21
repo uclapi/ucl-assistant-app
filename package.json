@@ -80,7 +80,7 @@
     "lottie-react-native": "~2.6.1",
     "memoize-one": "^5.1.1",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.28",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-moment-proptypes": "^1.7.0",
