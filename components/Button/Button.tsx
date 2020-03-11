@@ -26,24 +26,19 @@ class Button extends Component {
       children = (
         <ButtonText>
           {children}
-          {` `}
         </ButtonText>
       )
     }
     if (disabled) {
       return (
         <DisabledButton {...this.props}>
-          {` `}
           {children}
-          {` `}
         </DisabledButton>
       )
     }
     return (
       <ActiveButton {...this.props}>
-        {` `}
         {children}
-        {` `}
       </ActiveButton>
     )
   }

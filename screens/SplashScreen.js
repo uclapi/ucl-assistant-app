@@ -13,7 +13,7 @@ import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
 import { signIn as signInAction } from "../actions/userActions"
-import CustomButton from "../components/Button"
+import Button from "../components/Button"
 import { Horizontal, Spacer } from "../components/Containers"
 import {
   BodyText,
@@ -180,7 +180,7 @@ class SplashScreen extends Component {
               One app to manage your life at UCL
             </SubtitleText>
             <Spacer />
-            <CustomButton
+            <Button
               onPress={signIn}
               loading={isSigningIn}
               style={SplashStyle.button}
@@ -196,7 +196,7 @@ class SplashScreen extends Component {
                   Sign In With UCL
                 </ButtonText>
               </Horizontal>
-            </CustomButton>
+            </Button>
             <View style={SplashStyle.disclaimer}>
               <BodyText style={SplashStyle.disclaimerText}>
                 By signing into this app, you agree to&nbsp;

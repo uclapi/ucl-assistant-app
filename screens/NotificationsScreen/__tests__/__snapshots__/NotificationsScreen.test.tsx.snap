@@ -263,7 +263,6 @@ Array [
                   ]
                 }
               >
-                 
                 <Text
                   style={
                     Array [
@@ -280,9 +279,7 @@ Array [
                   }
                 >
                   Enable Notifications
-                   
                 </Text>
-                 
               </ViewManagerAdapter_ExpoLinearGradient>
             </View>
             <View
