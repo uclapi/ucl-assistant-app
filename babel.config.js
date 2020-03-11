@@ -1,6 +1,14 @@
+/* eslint-disable */
+
 module.exports = (api) => {
   api.cache(true)
+
+  const plugins = []
+
   return {
-    presets: [`babel-preset-expo`],
+    plugins,
+    presets: [
+      `babel-preset-expo`,
+    ],
   }
 }

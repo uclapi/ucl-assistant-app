@@ -31,6 +31,7 @@ import {
   Link,
 } from "../../components/Typography"
 import { AnalyticsManager, MailManager } from "../../lib"
+import * as packageJson from '../../package.json'
 import common from "../../styles/common"
 
 const {
@@ -38,7 +39,7 @@ const {
     url: githubURL,
   },
   version,
-} = require(`../../package.json`)
+} = packageJson
 
 const styles = StyleSheet.create({
   faqButton: {
@@ -206,7 +207,7 @@ export class SettingsScreen extends Component {
   }
 
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   }
 
   renderDev = () => {
@@ -241,7 +242,7 @@ export class SettingsScreen extends Component {
           <Link
             onPress={this.signOut}
             style={styles.signOut}
-            testID="signOutButton"
+            testID="sign-out-button"
           >
             Sign Out
           </Link>
@@ -257,7 +258,7 @@ export class SettingsScreen extends Component {
               }
             </BodyText>
             <CheckBox
-              testID="analyticsCheckbox"
+              testID="analytics-checkbox"
               style={styles.settingsCheckBox}
               isChecked={user.settings.shouldTrackAnalytics}
               onClick={this.toggleAnalytics}
@@ -270,7 +271,7 @@ export class SettingsScreen extends Component {
           <Link
             onPress={this.navigateToFAQs}
             style={styles.faqButton}
-            testID="faqButton"
+            testID="faq-button"
           >
             Frequently Asked Questions
           </Link>
@@ -291,14 +292,14 @@ export class SettingsScreen extends Component {
           </Horizontal>
           <Link
             href={githubURL}
-            testID="githubButton"
+            testID="github-button"
           >
             Source Code
           </Link>
           <Link
             containerStyle={styles.feedbackButton}
             onPress={this.giveFeedback}
-            testID="feedbackButton"
+            testID="feedback-button"
           >
             Send Us Feedback
           </Link>

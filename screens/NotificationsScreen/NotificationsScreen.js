@@ -49,9 +49,14 @@ const styles = StyleSheet.create({
 })
 
 export class NotificationsScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  }
+  static mapStateToProps = (state) => ({
+    token: state.user.token,
+  })
+
+  static mapDispatchToProps = (dispatch) => ({
+    declinePushNotifications: () => dispatch(declinePushNotificationsAction()),
+    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
+  })
 
   static propTypes = {
     declinePushNotifications: PropTypes.func,
@@ -65,15 +70,6 @@ export class NotificationsScreen extends React.Component {
     setExpoPushToken: () => { },
     token: ``,
   }
-
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    declinePushNotifications: () => dispatch(declinePushNotificationsAction()),
-    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
-  })
 
   onEnableNotifications = async () => {
     const { token, setExpoPushToken } = this.props
@@ -103,6 +99,10 @@ export class NotificationsScreen extends React.Component {
     navigation.dispatch(resetAction)
   }
 
+  static navigationOptions = {
+    headerShown: false,
+  }
+
   render() {
     return (
       <Page>
@@ -117,8 +117,8 @@ export class NotificationsScreen extends React.Component {
           <View style={styles.description}>
             <BodyText>
               Find out when there&apos;s a new feature on UCL Assistant,&nbsp;
-              when your timetable changes, or if there&apos;s an upcoming event that might&nbsp;
-              interest you.
+              when your timetable changes, or if there&apos;s an upcoming&nbsp;
+              event that might interest you.
             </BodyText>
           </View>
           <View style={styles.subdescription}>
@@ -133,7 +133,7 @@ export class NotificationsScreen extends React.Component {
             Enable Notifications
           </Button>
           <View style={styles.skip}>
-            <Link onPress={this.onSkip}>
+            <Link onPress={this.onSkip} testID="skip-notifications-button">
               Skip
             </Link>
           </View>

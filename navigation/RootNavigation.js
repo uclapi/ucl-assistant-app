@@ -21,13 +21,13 @@ const RootStackNavigator = createStackNavigator(
     },
     Main: {
       navigationOptions: {
-        header: null,
+        headerShown: false,
       },
       screen: MainTabNavigator,
     },
     Notifications: {
       navigationOptions: {
-        header: null,
+        headerShown: false,
       },
       screen: NotificationsScreen,
     },
@@ -39,7 +39,7 @@ const RootStackNavigator = createStackNavigator(
     },
     Splash: {
       navigationOptions: {
-        header: null,
+        headerShown: false,
       },
       screen: SplashScreen,
     },

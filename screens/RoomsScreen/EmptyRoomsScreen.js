@@ -84,7 +84,8 @@ export class EmptyRoomsScreen extends React.Component {
       return null
     }
 
-    const key = `${room.roomid}-${room.roomname}-${room.siteid}-${room.classification_name}`
+    const key = `${room.roomid}-${room.roomname}-`
+      + `${room.siteid}-${room.classification_name}`
 
     return (
       <SearchResult
@@ -109,7 +110,9 @@ export class EmptyRoomsScreen extends React.Component {
 
     if (matchingRooms.length === 0) {
       return (
-        <CentredText>No empty rooms found :(</CentredText>
+        <CentredText testID="empty-rooms-message">
+          No empty rooms found :(
+        </CentredText>
       )
     }
     return matchingRooms.map(this.renderEmptyRoom)
@@ -148,7 +151,7 @@ export class EmptyRoomsScreen extends React.Component {
           <Picker
             selectedValue={selectedSite}
             onValueChange={this.onSelectSite}
-            testID="buildingPicker"
+            testID="building-picker"
           >
             <Picker.Item label="All Buildings" value={null} />
             {

@@ -25,3 +25,7 @@ update_configs:
           dependency_name: "lottie-react-native"
       - match:
           dependency_name: "react-native-svg"
+      - match:
+          dependency_name: "@react-native-community/datetimepicker"
+      - match:
+          dependency_name: "@react-native-community/viewpager"
