@@ -1,10 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
 import MockDate from 'mockdate'
 import React from 'react'
+import "react-native"
 import { cleanup, render } from "react-native-testing-library"
 
 import { LocalisationManager } from '../../../lib'
@@ -40,7 +39,7 @@ describe(`LastUpdated`, () => {
         .getMoment()
         .subtract(25, `hours`),
     }
-    const wrapper = render(<LastModified {...mockProps} />)
+    const wrapper = render(<LastModified {...mockProps} isLoading={false} />)
     expect(wrapper.toJSON()).toMatchSnapshot()
   })
 })
