@@ -135,13 +135,14 @@ class WeekView extends React.Component {
   }
 
   renderFooter = () => {
-    const { timetable: weekTimetable } = this.props
+    const { timetable: weekTimetable, isLoading } = this.props
     const { lastModified } = weekTimetable[0]
     return (
       <View style={styles.footer}>
         <LastModified
           lastModified={LocalisationManager.parseToMoment(lastModified)}
           openFAQ={this.openFAQ}
+          isLoading={isLoading}
         />
         {this.renderJumpToToday()}
       </View>
