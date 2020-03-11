@@ -13,13 +13,13 @@ import Styles from "../../../styles/Containers"
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: `center`,
     flex: 1,
     justifyContent: `center`,
     paddingBottom: 20,
     paddingTop: 20,
   },
   timetableImage: {
+    alignSelf: `center`,
     height: 200,
     marginTop: 5,
     width: 300,
