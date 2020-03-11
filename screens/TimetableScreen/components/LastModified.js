@@ -53,8 +53,10 @@ class LastModified extends React.Component {
         <Link onPress={openFAQ}>
           <CentredText>
             {`Last updated ${
-              lastModified.fromNow().toLowerCase()
-            }`}
+              lastModified.isAfter()
+                ? lastModified.fromNow().toLowerCase()
+                : `just now`
+              }`}
           </CentredText>
         </Link>
       </View>
