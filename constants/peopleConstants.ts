@@ -10,39 +10,39 @@ export const PEOPLE_CLEAR_RECENTS = `PEOPLE_CLEAR_RECENTS`
 export const PEOPLE_MAX_RECENTS = 10
 
 interface IsSearchingAction {
-  type: typeof PEOPLE_IS_SEARCHING
+  type: typeof PEOPLE_IS_SEARCHING,
 }
 
 interface SearchFailureAction {
   type: typeof PEOPLE_SEARCH_FAILURE,
-  error: string
+  error: string,
 }
 
 interface SearchSuccessAction {
   type: typeof PEOPLE_SEARCH_SUCCESS,
-  results: any
+  results: any,
 }
 
 interface SearchClearAction {
-  type: typeof PEOPLE_SEARCH_CLEAR
+  type: typeof PEOPLE_SEARCH_CLEAR,
 }
 
 interface IsFetchingAction {
-  type: typeof PEOPLE_IS_FETCHING
+  type: typeof PEOPLE_IS_FETCHING,
 }
 
 interface FetchFailureAction {
   type: typeof PEOPLE_FETCH_FAILURE,
-  error: string
+  error: string,
 }
 
 interface FetchSuccessAction {
   type: typeof PEOPLE_FETCH_SUCCESS,
-  person: any
+  person: any,
 }
 
 interface ClearRecentResultsAction {
-  type: typeof PEOPLE_CLEAR_RECENTS
+  type: typeof PEOPLE_CLEAR_RECENTS,
 }
 
 export type PeopleActionTypes = (

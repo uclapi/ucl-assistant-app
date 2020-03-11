@@ -1,4 +1,5 @@
-import { ThunkDispatch, ThunkAction } from "redux-thunk"
+import { ThunkAction, ThunkDispatch } from "redux-thunk"
+
 import { PEOPLE_URL } from "../constants/API"
 import {
   PEOPLE_CLEAR_RECENTS,
@@ -9,7 +10,7 @@ import {
   PEOPLE_SEARCH_CLEAR,
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
-  PeopleActionTypes
+  PeopleActionTypes,
 } from "../constants/peopleConstants"
 
 type PeopleThunkAction = ThunkAction<Promise<{}>, {}, {}, PeopleActionTypes>

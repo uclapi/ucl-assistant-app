@@ -1,32 +1,36 @@
-// @flow
 import { Moment } from "moment"
+import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
 import {
   CLEAR_TIMETABLE,
   TIMETABLE_FETCH_FAILURE,
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
+  TimetableActionTypes,
 } from "../constants/timetableConstants"
 import { ApiManager, ErrorManager } from "../lib"
 
-export const fetchTimetableSuccess = (timetableFrag: Object) => ({
+type TimetableThunkAction = ThunkAction<Promise<{}>, {}, {}, TimetableActionTypes>
+type TimetableDispatch = ThunkDispatch<{}, {}, TimetableActionTypes>
+
+export const fetchTimetableSuccess = (timetableFrag): TimetableActionTypes => ({
   timetableFrag,
   type: TIMETABLE_FETCH_SUCCESS,
 })
 
-export const fetchTimetableFailure = (error: String) => ({
+export const fetchTimetableFailure = (error): TimetableActionTypes => ({
   error,
   type: TIMETABLE_FETCH_FAILURE,
 })
 
-export const setIsFetchingTimetable = () => ({
+export const setIsFetchingTimetable = (): TimetableActionTypes => ({
   type: TIMETABLE_IS_FETCHING,
 })
 
 export const fetchTimetable = (
-  token: String = null,
+  token: string = null,
   date: Moment = null,
-) => async (dispatch: Function) => {
+): TimetableThunkAction => async (dispatch: TimetableDispatch) => {
   await dispatch(setIsFetchingTimetable())
   try {
     const timetable = await ApiManager.timetable.getPersonalWeekTimetable(
@@ -42,6 +46,6 @@ export const fetchTimetable = (
   }
 }
 
-export const clearTimetable = () => ({
+export const clearTimetable = (): TimetableActionTypes => ({
   type: CLEAR_TIMETABLE,
 })

@@ -19,7 +19,8 @@ import {
 } from "../../actions/userActions"
 import Button from "../../components/Button"
 import { PageNoScroll } from "../../components/Containers"
-import { BodyText, ErrorText } from "../../components/Typography"
+import { ErrorMessage } from '../../components/Message'
+import { BodyText } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
 import {
@@ -37,7 +38,6 @@ import WeekView from "./components/WeekView"
 const styles = StyleSheet.create({
   messageContainer: {
     alignItems: `center`,
-    flex: 1,
     justifyContent: `center`,
   },
   page: {
@@ -112,7 +112,7 @@ class TimetableScreen extends Component {
     this.viewpager = null
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const {
       user: {
         token,
@@ -339,16 +339,6 @@ class TimetableScreen extends Component {
       )
     }
 
-    if (error && error !== ``) {
-      return (
-        <PageNoScroll style={styles.pageContainer}>
-          <View style={styles.messageContainer}>
-            <ErrorText>{error}</ErrorText>
-          </View>
-        </PageNoScroll>
-      )
-    }
-
     return (
       <PageNoScroll
         refreshing={isFetchingTimetable}
@@ -357,6 +347,13 @@ class TimetableScreen extends Component {
         mainTabPage
         style={styles.page}
       >
+        {
+          (error && error !== ``) ? (
+            <ErrorMessage
+              error={error}
+            />
+          ) : null
+        }
         {/* <SubtitleText>Find A Timetable</SubtitleText>
         <TextInput placeholder="Search for a course or module..." /> */}
         <ViewPager
