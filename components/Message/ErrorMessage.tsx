@@ -15,11 +15,14 @@ const styles = StyleSheet.create({
     width: `100%`,
     ...Shadow(5),
   },
+  errorText: {
+    marginLeft: 10,
+  },
 })
 
 const ErrorMessage = ({ error }) => (
   <View style={styles.errorMessage}>
-    <ErrorText>{error}</ErrorText>
+    <ErrorText style={styles.errorText}>{error}</ErrorText>
   </View>
 )
 

@@ -8,7 +8,8 @@ import {
   TIMETABLE_IS_FETCHING,
   TimetableActionTypes,
 } from "../constants/timetableConstants"
-import { ApiManager, ErrorManager } from "../lib"
+import { ApiManager, DeviceManager, ErrorManager } from "../lib"
+
 
 type TimetableThunkAction = ThunkAction<Promise<{}>, {}, {}, TimetableActionTypes>
 type TimetableDispatch = ThunkDispatch<{}, {}, TimetableActionTypes>
@@ -40,6 +41,17 @@ export const fetchTimetable = (
     return dispatch(fetchTimetableSuccess(timetable))
   } catch (error) {
     ErrorManager.captureError(error)
+    try {
+      const isConnectedToInternet = await DeviceManager.isConnectedToInternet()
+      if (!isConnectedToInternet) {
+        return dispatch(
+          fetchTimetableFailure(`Check your internet connection 😢`),
+        )
+      }
+    } catch (deviceManagerError) {
+      ErrorManager.captureError(deviceManagerError)
+    }
+
     return dispatch(
       fetchTimetableFailure(error.message),
     )
