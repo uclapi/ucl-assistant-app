@@ -86,7 +86,7 @@
     "react-native-webview": "7.4.3",
     "react-navigation": "^4.2.2",
     "react-navigation-stack": "^2.2.3",
-    "react-navigation-tabs": "^2.8.2",
+    "react-navigation-tabs": "^2.8.3",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-persist": "^5.10.0",
