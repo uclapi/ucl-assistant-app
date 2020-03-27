@@ -103,7 +103,7 @@
     "@storybook/react-native": "^5.3.17",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.25",
-    "@types/react-native": "^0.61.22",
+    "@types/react-native": "^0.62.0",
     "@types/react-redux": "^7.1.7",
     "@types/react-test-renderer": "^16.9.2",
     "@types/shortid": "0.0.29",
