@@ -1,5 +1,6 @@
 import { Feather } from "@expo/vector-icons"
 import ViewPager from '@react-native-community/viewpager'
+import { CommonActions, StackActions } from "@react-navigation/native"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
@@ -8,7 +9,6 @@ import {
   StyleSheet,
   View,
 } from "react-native"
-import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
 import {
@@ -51,6 +51,17 @@ const styles = StyleSheet.create({
 })
 
 class TimetableScreen extends Component {
+  static navigationOptions = {
+    headerShown: false,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="calendar"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+  }
+
   static mapStateToProps = (state) => ({
     error: state.timetable.error,
     isFetchingTimetable: state.timetable.isFetching,
@@ -167,7 +178,7 @@ class TimetableScreen extends Component {
     const { user, navigation } = this.props
     if (Object.keys(user).length > 0 && user.scopeNumber < 0) {
       const resetAction = StackActions.reset({
-        actions: [NavigationActions.navigate({ routeName: `Splash` })],
+        actions: [CommonActions.navigate({ routeName: `Splash` })],
         index: 0,
       })
       navigation.dispatch(resetAction)
@@ -275,17 +286,6 @@ class TimetableScreen extends Component {
       this.onIndexChanged(0)
     }
     this.setState({ appState: nextAppState })
-  }
-
-  static navigationOptions = {
-    headerShown: false,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="calendar"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
   }
 
   renderWeek = (weekTimetable, index) => {

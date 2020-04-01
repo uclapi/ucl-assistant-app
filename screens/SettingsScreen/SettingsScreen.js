@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unused-state */
+import { CommonActions, StackActions } from "@react-navigation/native"
 import { StoreReview } from "expo"
 import Constants from "expo-constants"
 import * as IntentLauncherAndroid from "expo-intent-launcher"
@@ -13,7 +14,6 @@ import {
   View,
 } from "react-native"
 import CheckBox from 'react-native-check-box'
-import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
 import {
@@ -83,6 +83,10 @@ const styles = StyleSheet.create({
 })
 
 export class SettingsScreen extends Component {
+  static navigationOptions = {
+    headerShown: false,
+  }
+
   static mapStateToProps = (state) => ({
     user: state.user,
   })
@@ -119,7 +123,7 @@ export class SettingsScreen extends Component {
     const { user, navigation } = this.props
     if (prevState.isSigningOut && user.token === ``) {
       const action = StackActions.reset({
-        actions: [NavigationActions.navigate({ routeName: `Splash` })],
+        actions: [CommonActions.navigate({ routeName: `Splash` })],
         index: 0,
       })
       navigation.dispatch(action)
@@ -206,10 +210,6 @@ export class SettingsScreen extends Component {
     )
   }
 
-  static navigationOptions = {
-    headerShown: false,
-  }
-
   renderDev = () => {
     const { user } = this.props
     return __DEV__ && (
@@ -282,12 +282,12 @@ export class SettingsScreen extends Component {
             {__DEV__ ? (
               <LiveIndicator>Developer Mode</LiveIndicator>
             ) : (
-              <>
+                <>
                   <BodyText>Release Channel: </BodyText>
                   <LiveIndicator>
                     {Constants.manifest.releaseChannel || `dev`}
                   </LiveIndicator>
-              </>
+                </>
             )}
           </Horizontal>
           <Link

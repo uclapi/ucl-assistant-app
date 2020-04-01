@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons"
+import { CommonActions, StackActions } from "@react-navigation/native"
 import { LinearGradient } from "expo-linear-gradient"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
@@ -9,7 +10,6 @@ import {
   StyleSheet,
   View,
 } from "react-native"
-import { NavigationActions, StackActions } from "react-navigation"
 import { connect } from "react-redux"
 
 import { signIn as signInAction } from "../actions/userActions"
@@ -36,6 +36,17 @@ const styles = StyleSheet.create({
 })
 
 class SplashScreen extends Component {
+  static navigationOptions = {
+    headerShown: false,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="calendar"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+  }
+
   static mapStateToProps = (state) => ({
     error: state.user.signIn.error,
     isSigningIn: state.user.signIn.isSigningIn,
@@ -101,7 +112,7 @@ class SplashScreen extends Component {
   goHome = () => {
     const { navigation } = this.props
     const resetAction = StackActions.reset({
-      actions: [NavigationActions.navigate({ routeName: `Main` })],
+      actions: [CommonActions.navigate({ routeName: `Main` })],
       index: 0,
     })
     navigation.dispatch(resetAction)
@@ -146,17 +157,6 @@ class SplashScreen extends Component {
       token,
       upi,
     })
-  }
-
-  static navigationOptions = {
-    headerShown: false,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="calendar"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
   }
 
   render() {
