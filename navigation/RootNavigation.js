@@ -1,5 +1,6 @@
-import { createAppContainer } from "react-navigation"
-import { createStackNavigator } from "react-navigation-stack"
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from "@react-navigation/stack"
+import React from 'react'
 
 import FAQScreen from "../screens/FAQScreen"
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
@@ -11,54 +12,61 @@ import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
 import TimetableDetailScreen from "../screens/TimetableDetailScreen"
 import MainTabNavigator from "./MainTabNavigator"
 
-const RootStackNavigator = createStackNavigator(
-  {
-    FAQ: {
-      screen: FAQScreen,
-    },
-    LiveSeatingMap: {
-      screen: LiveSeatingMapScreen,
-    },
-    Main: {
-      navigationOptions: {
-        headerShown: false,
-      },
-      screen: MainTabNavigator,
-    },
-    Notifications: {
-      navigationOptions: {
-        headerShown: false,
-      },
-      screen: NotificationsScreen,
-    },
-    PersonDetail: {
-      screen: PersonDetailScreen,
-    },
-    RoomDetail: {
-      screen: RoomDetailScreen,
-    },
-    Splash: {
-      navigationOptions: {
-        headerShown: false,
-      },
-      screen: SplashScreen,
-    },
-    StudySpaceDetail: {
-      screen: StudySpaceDetailScreen,
-    },
-    TimetableDetail: {
-      screen: TimetableDetailScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: () => ({
-      headerTitleStyle: {
+const Stack = createStackNavigator()
+
+const RootNavigator = () => (
+  <NavigationContainer>
+    <Stack.Navigator
+      headerTitleStyle={{
         fontFamily: `apercu`,
         fontWeight: `normal`,
-      },
-    }),
-    initialRouteName: `Splash`,
-  },
+      }}
+      initialRouteName="Splash"
+    >
+      <Stack.Screen
+        name="FAQ"
+        component={FAQScreen}
+      />
+      <Stack.Screen
+        name="LiveSeatingMap"
+        component={LiveSeatingMapScreen}
+      />
+      <Stack.Screen
+        name="Main"
+        component={MainTabNavigator}
+      />
+      <Stack.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        navigationOptions={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="PersonDetail"
+        component={PersonDetailScreen}
+      />
+      <Stack.Screen
+        name="RoomDetail"
+        component={RoomDetailScreen}
+      />
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        navigationOptions={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="StudySpaceDetail"
+        component={StudySpaceDetailScreen}
+      />
+      <Stack.Screen
+        name="TimetableDetail"
+        component={TimetableDetailScreen}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
 )
 
-export default createAppContainer(RootStackNavigator)
+export default RootNavigator

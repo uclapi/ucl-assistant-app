@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
 })
 
 class StudySpacesListScreen extends React.Component {
+  static navigationOptions = {
+    title: `All Study Spaces`,
+  }
+
   static mapStateToProps = (state) => {
     const {
       studyspaces: {
@@ -57,8 +61,8 @@ class StudySpacesListScreen extends React.Component {
   static mapDispatchToProps = (dispatch) => ({
     clearQuery: () => dispatch(setSearchQuery(``)),
     fetchInfo: (ids, token) => dispatch(fetchSeatInfos(token, ids)),
-    setQuery: (query: String) => dispatch(setSearchQuery(query)),
-    setSort: (sortType: String) => dispatch(setSortType(sortType)),
+    setQuery: (query: string) => dispatch(setSearchQuery(query)),
+    setSort: (sortType: string) => dispatch(setSortType(sortType)),
   })
 
 
@@ -124,10 +128,6 @@ class StudySpacesListScreen extends React.Component {
     )
   }
 
-  static navigationOptions = {
-    title: `All Study Spaces`,
-  }
-
   render() {
     const { loadedSeatInfo } = this.state
     const {
@@ -167,7 +167,7 @@ class StudySpacesListScreen extends React.Component {
             <ErrorText>
               Looks like there was an error trying to fetch live seating info.
             </ErrorText>
-        )}
+          )}
 
         <StudySpaceFilters
           query={searchQuery}
