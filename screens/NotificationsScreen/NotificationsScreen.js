@@ -1,4 +1,4 @@
-import { CommonActions, StackActions } from "@react-navigation/native"
+import { CommonActions } from "@react-navigation/native"
 import PropTypes from "prop-types"
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
@@ -96,9 +96,9 @@ export class NotificationsScreen extends React.Component {
 
   goHome = () => {
     const { navigation } = this.props
-    const resetAction = StackActions.reset({
-      actions: [CommonActions.navigate({ routeName: `Main` })],
+    const resetAction = CommonActions.reset({
       index: 0,
+      routes: [CommonActions.navigate({ name: `Main` })],
     })
     navigation.dispatch(resetAction)
   }

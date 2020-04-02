@@ -4,6 +4,7 @@ import * as Font from "expo-font"
 import PropTypes from "prop-types"
 import React from "react"
 import { Platform, StatusBar, View } from "react-native"
+import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/es/integration/react"
 
@@ -14,9 +15,11 @@ import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
 import Styles from "./styles/Containers"
 
+
 const { persistor, store } = configureStore
 
 ErrorManager.initialise()
+enableScreens()
 
 interface Props {
   skipLoadingScreen: boolean,
@@ -29,6 +32,10 @@ interface State {
 
 class App extends React.Component<Props, State> {
   notificationSubscription = null
+
+  routeNameRef = null
+
+  navigationRef = null
 
   static propTypes = {
     skipLoadingScreen: PropTypes.bool,
@@ -47,7 +54,7 @@ class App extends React.Component<Props, State> {
     if (route.routes) {
       return App.getActiveRouteName(route)
     }
-    return route.routeName
+    return route.name
   }
 
   constructor(props) {
@@ -72,6 +79,11 @@ class App extends React.Component<Props, State> {
       this.handleNotification,
     )
     AnalyticsManager.initialise()
+
+    if (this.navigationRef !== null && this.navigationRef.current) {
+      const state = this.navigationRef.current.getRootState()
+      this.routeNameRef.current = App.getActiveRouteName(state)
+    }
   }
 
   loadResourcesAsync = async (): Promise<any> => Promise.all([
@@ -94,13 +106,15 @@ class App extends React.Component<Props, State> {
     notification,
   )
 
-  onNavigationStateChange = (prevState, currentState): void => {
+  onNavigationStateChange = (currentState): void => {
     const currentScreen = App.getActiveRouteName(currentState)
-    const prevScreen = App.getActiveRouteName(prevState)
+    const prevScreen = this.routeNameRef.current
 
     if (prevScreen !== currentScreen) {
       AnalyticsManager.logScreenView(currentScreen)
     }
+
+    this.routeNameRef.current = currentScreen
   }
 
   render() {
@@ -128,6 +142,7 @@ class App extends React.Component<Props, State> {
               backgroundColor={Colors.pageBackground}
             />
             <RootNavigation
+              ref={this.navigationRef}
               onNavigationStateChange={this.onNavigationStateChange}
             />
           </View>

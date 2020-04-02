@@ -1,5 +1,3 @@
-import { Feather } from "@expo/vector-icons"
-import { CommonActions, StackActions } from "@react-navigation/native"
 import { LinearGradient } from "expo-linear-gradient"
 import PropTypes from "prop-types"
 import React, { Component } from "react"
@@ -7,6 +5,7 @@ import {
   Alert,
   Image,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   View,
 } from "react-native"
@@ -36,17 +35,6 @@ const styles = StyleSheet.create({
 })
 
 class SplashScreen extends Component {
-  static navigationOptions = {
-    headerShown: false,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="calendar"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
-  }
-
   static mapStateToProps = (state) => ({
     error: state.user.signIn.error,
     isSigningIn: state.user.signIn.isSigningIn,
@@ -61,7 +49,6 @@ class SplashScreen extends Component {
   static propTypes = {
     error: PropTypes.string,
     isSigningIn: PropTypes.bool,
-    navigation: PropTypes.shape().isRequired,
     signIn: PropTypes.func,
     token: PropTypes.string,
     user: PropTypes.shape(),
@@ -76,30 +63,14 @@ class SplashScreen extends Component {
     user: {},
   }
 
-  componentDidMount() {
-    const { token } = this.props
-    if (token.length > 0) {
-      ErrorManager.addDetail({
-        message: `Component just mounted. Going to home. reason?`
-          + ` token = ${token}`,
-      })
-      this.goHome()
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const { token, error, isSigningIn } = this.props
-    if (token.length > 0) {
-      this.goHome()
-    }
 
     if (prevProps.isSigningIn === true && isSigningIn === false) {
       // did we just sign in?
       // eslint-disable-next-line security/detect-possible-timing-attacks
       if (token !== null) {
         this.updateAnalytics()
-        // yes, replace screen with home screen.
-        this.goHome()
       } else if (error.length < 1) {
         // cancelled
       } else {
@@ -107,15 +78,6 @@ class SplashScreen extends Component {
         setTimeout(() => Alert.alert(`Error Signing In`, error), 500)
       }
     }
-  }
-
-  goHome = () => {
-    const { navigation } = this.props
-    const resetAction = StackActions.reset({
-      actions: [CommonActions.navigate({ routeName: `Main` })],
-      index: 0,
-    })
-    navigation.dispatch(resetAction)
   }
 
   updateAnalytics = () => {
@@ -163,6 +125,7 @@ class SplashScreen extends Component {
     const { signIn, isSigningIn } = this.props
     return (
       <>
+        <StatusBar hidden />
         <LinearGradient
           colors={[Colors.accentColor, Colors.buttonBackground]}
           start={[0, 1]}

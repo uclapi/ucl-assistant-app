@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unused-state */
-import { CommonActions, StackActions } from "@react-navigation/native"
+import { CommonActions } from "@react-navigation/native"
 import { StoreReview } from "expo"
 import Constants from "expo-constants"
 import * as IntentLauncherAndroid from "expo-intent-launcher"
@@ -122,9 +122,9 @@ export class SettingsScreen extends Component {
   componentDidUpdate(_, prevState) {
     const { user, navigation } = this.props
     if (prevState.isSigningOut && user.token === ``) {
-      const action = StackActions.reset({
-        actions: [CommonActions.navigate({ routeName: `Splash` })],
+      const action = CommonActions.reset({
         index: 0,
+        routes: [CommonActions.navigate({ name: `Splash` })],
       })
       navigation.dispatch(action)
     }
