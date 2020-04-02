@@ -69,7 +69,7 @@ const tabBarOptions = {
     paddingBottom: 5,
     paddingTop: 5,
   },
-}
+},
 
 
 const MainTabNavigator = () => (
