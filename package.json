@@ -45,7 +45,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
     "@react-native-community/datetimepicker": "2.1.0",
-    "@react-native-community/masked-view": "0.1.5",
+    "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/viewpager": "2.0.2",
     "axios": "^0.19.2",
     "babel-core": "^7.0.0-bridge.0",
