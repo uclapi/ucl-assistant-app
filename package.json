@@ -52,7 +52,7 @@
     "base-64": "^0.1.0",
     "expo": "^36.0.2",
     "expo-analytics-amplitude": "^8.1.0",
-    "expo-asset": "^8.1.4",
+    "expo-asset": "^8.1.5",
     "expo-blur": "^8.1.0",
     "expo-constants": "~8.0.0",
     "expo-device": "^2.1.0",
