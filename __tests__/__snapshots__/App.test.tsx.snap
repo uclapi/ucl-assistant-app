@@ -31,7 +31,6 @@ exports[`renders the root without loading screen 1`] = `
         style={
           Object {
             "flex": 1,
-            "overflow": "hidden",
           }
         }
       >
@@ -75,8 +74,8 @@ exports[`renders the root without loading screen 1`] = `
                     "damping": 500,
                     "mass": 3,
                     "overshootClamping": true,
-                    "restDisplacementThreshold": 0.01,
-                    "restSpeedThreshold": 0.01,
+                    "restDisplacementThreshold": 10,
+                    "restSpeedThreshold": 10,
                     "stiffness": 1000,
                   },
                 },
@@ -86,8 +85,8 @@ exports[`renders the root without loading screen 1`] = `
                     "damping": 500,
                     "mass": 3,
                     "overshootClamping": true,
-                    "restDisplacementThreshold": 0.01,
-                    "restSpeedThreshold": 0.01,
+                    "restDisplacementThreshold": 10,
+                    "restSpeedThreshold": 10,
                     "stiffness": 1000,
                   },
                 },
@@ -124,7 +123,7 @@ exports[`renders the root without loading screen 1`] = `
                   pointerEvents="none"
                   style={
                     Object {
-                      "backgroundColor": "#fff",
+                      "backgroundColor": "rgb(242, 242, 242)",
                       "bottom": 0,
                       "left": 0,
                       "position": "absolute",

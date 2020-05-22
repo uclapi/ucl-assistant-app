@@ -1,9 +1,10 @@
 /**
  * @jest-environment jsdom
  */
+import "react-native"
+
 import MockDate from 'mockdate'
 import React from 'react'
-import "react-native"
 import { cleanup, render } from "react-native-testing-library"
 
 import { LocalisationManager } from '../../../lib'
@@ -38,6 +39,18 @@ describe(`LastUpdated`, () => {
       lastModified: LocalisationManager
         .getMoment()
         .subtract(25, `hours`),
+    }
+    const wrapper = render(<LastModified {...mockProps} isLoading={false} />)
+    expect(wrapper.toJSON()).toMatchSnapshot()
+  })
+
+  it(`does not show error when data is more recent than date`, async () => {
+    const mockDate = `2019-09-08`
+    const mockProps = {
+      date: mockDate,
+      lastModified: LocalisationManager
+        .parseToMoment(mockDate)
+        .add(24, `hours`),
     }
     const wrapper = render(<LastModified {...mockProps} isLoading={false} />)
     expect(wrapper.toJSON()).toMatchSnapshot()
