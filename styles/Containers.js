@@ -68,7 +68,7 @@ export default StyleSheet.create({
     paddingVertical: 2,
   },
   mainTab: {
-    paddingTop: StatusBar.currentHeight,
+
   },
   mainTabBlur: {
     bottom: 0,
