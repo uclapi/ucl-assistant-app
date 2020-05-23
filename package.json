@@ -52,6 +52,7 @@
     "expo": "^37.0.0",
     "expo-analytics-amplitude": "~8.1.0",
     "expo-asset": "~8.1.5",
+    "expo-auth-session": "~1.2.1",
     "expo-blur": "~8.1.0",
     "expo-constants": "~9.0.0",
     "expo-device": "~2.1.0",
