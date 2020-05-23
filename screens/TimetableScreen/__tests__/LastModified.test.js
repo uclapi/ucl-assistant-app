@@ -12,13 +12,13 @@ import LastModified from
   "../components/LastModified"
 
 describe(`LastUpdated`, () => {
-  MockDate.set(new Date(`2019-11-18T08:47:21`))
+  MockDate.set(`2019-11-18T08:47:21.000Z`)
 
   afterEach(() => {
     cleanup()
   })
 
-  it(`renders the LastUpdated component`, () => {
+  it(`renders the LastModified component`, () => {
     const mockProps = {
       lastModified: LocalisationManager.getMoment().subtract(11, `hours`),
     }

@@ -67,7 +67,7 @@ exports[`LastUpdated does not show error when data is more recent than date 1`] 
 </View>
 `;
 
-exports[`LastUpdated renders the LastUpdated component 1`] = `
+exports[`LastUpdated renders the LastModified component 1`] = `
 <View
   style={
     Object {
