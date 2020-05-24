@@ -12,9 +12,9 @@ import LastUpdated from
   "../components/LastUpdated"
 
 describe(`LastUpdated`, () => {
-  MockDate.set(new Date(`2019-11-18T08:47:21`))
+  MockDate.set(`2019-11-18T08:47:21.000Z`)
 
-  afterAll(() => {
+  afterEach(() => {
     cleanup()
   })
 

@@ -1,4 +1,4 @@
-import { AuthSession } from "expo"
+import * as AuthSession from 'expo-auth-session'
 
 import configureStore from "../configureStore"
 import { ASSISTANT_API_URL } from "../constants/API"

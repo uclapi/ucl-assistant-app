@@ -143,6 +143,7 @@ class WeekView extends React.Component {
           lastModified={LocalisationManager.parseToMoment(lastModified)}
           openFAQ={this.openFAQ}
           isLoading={isLoading}
+          date={weekTimetable[0].dateISO}
         />
         {this.renderJumpToToday()}
       </View>

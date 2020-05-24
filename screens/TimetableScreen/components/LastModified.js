@@ -18,12 +18,14 @@ const styles = StyleSheet.create({
 
 class LastModified extends React.Component {
   static propTypes = {
+    date: PropTypes.string,
     isLoading: PropTypes.bool,
     lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
     openFAQ: PropTypes.func,
   }
 
   static defaultProps = {
+    date: LocalisationManager.getMoment(),
     isLoading: true,
     lastModified: null,
     openFAQ: () => { },
@@ -37,15 +39,24 @@ class LastModified extends React.Component {
   )
 
   render() {
-    const { lastModified, openFAQ, isLoading } = this.props
+    const {
+      lastModified, openFAQ, isLoading, date,
+    } = this.props
 
     if (lastModified === null || typeof lastModified !== `object`) {
       return null
     }
 
-    const isStale = (!isLoading && lastModified.isBefore(
-      LocalisationManager.getMoment().subtract(24, `hour`),
-    ))
+    const isStale = (
+      !isLoading
+      && lastModified.isBefore(
+        LocalisationManager.getMoment().subtract(24, `hour`),
+      )
+      // not stale if the data is more recent than the date
+      && !lastModified.isAfter(
+        LocalisationManager.parseToMoment(date).endOf(`isoweek`),
+      )
+    )
 
     return (
       <View style={styles.lastModified}>

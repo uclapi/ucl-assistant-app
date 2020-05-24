@@ -152,11 +152,8 @@
     "simple-import-sort/sort": "error",
     "sort-keys-fix/sort-keys-fix": "warn",
     "camelcase": "off",
-    "@typescript-eslint/camelcase": [
-      "warn",
-      {
-        "properties": "always"
-      }
+    "@typescript-eslint/naming-convention": [
+      "warn"
     ]
   },
   "settings": {
