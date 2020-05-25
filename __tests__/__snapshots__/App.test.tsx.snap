@@ -453,25 +453,6 @@ exports[`renders the root without loading screen 1`] = `
           </View>
         </View>
       </View>
-      <View
-        pointerEvents="box-none"
-        style={
-          Object {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      >
-        <View
-          accessibilityElementsHidden={false}
-          importantForAccessibility="auto"
-          onLayout={[Function]}
-          pointerEvents="box-none"
-          style={null}
-        />
-      </View>
     </RNCSafeAreaView>
   </View>
 </View>

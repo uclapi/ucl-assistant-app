@@ -4,15 +4,18 @@ exports[`NotificationsScreen does not register when the skip button is pressed 1
 Array [
   Array [
     Object {
-      "actions": Array [
-        Object {
-          "routeName": "Main",
-          "type": "Navigation/NAVIGATE",
-        },
-      ],
-      "index": 0,
-      "key": null,
-      "type": "Navigation/RESET",
+      "payload": Object {
+        "index": 0,
+        "routes": Array [
+          Object {
+            "payload": Object {
+              "name": "Main",
+            },
+            "type": "NAVIGATE",
+          },
+        ],
+      },
+      "type": "RESET",
     },
   ],
 ]

@@ -15,6 +15,7 @@ const RoomsNavigator = () => (
         fontWeight: `normal`,
       },
     }}
+    headerMode="none"
     initialRouteName="RoomsFavourites"
   >
     <Stack.Screen

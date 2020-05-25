@@ -14,6 +14,7 @@ const StudySpaceNavigator = () => (
         fontWeight: `normal`,
       },
     }}
+    headerMode="none"
     initialRouteName="StudySpacesFavourites"
   >
     <Stack.Screen

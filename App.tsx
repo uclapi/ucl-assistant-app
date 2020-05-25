@@ -34,7 +34,6 @@ class App extends React.Component<Props, State> {
   notificationSubscription = null
 
   routeNameRef = null
-
   navigationRef = null
 
   static propTypes = {
@@ -51,8 +50,8 @@ class App extends React.Component<Props, State> {
     }
     const route = navigationState.routes[navigationState.index]
     // dive into nested navigators
-    if (route.routes) {
-      return App.getActiveRouteName(route)
+    if (route.state) {
+      return App.getActiveRouteName(route.state)
     }
     return route.name
   }
@@ -80,9 +79,9 @@ class App extends React.Component<Props, State> {
     )
     AnalyticsManager.initialise()
 
-    if (this.navigationRef !== null && this.navigationRef.current) {
-      const state = this.navigationRef.current.getRootState()
-      this.routeNameRef.current = App.getActiveRouteName(state)
+    if (this.navigationRef !== null && this.navigationRef) {
+      const state = this.navigationRef.getRootState()
+      this.routeNameRef = App.getActiveRouteName(state)
     }
   }
 
@@ -108,13 +107,13 @@ class App extends React.Component<Props, State> {
 
   onNavigationStateChange = (currentState): void => {
     const currentScreen = App.getActiveRouteName(currentState)
-    const prevScreen = this.routeNameRef.current
+    const prevScreen = this.routeNameRef
 
     if (prevScreen !== currentScreen) {
       AnalyticsManager.logScreenView(currentScreen)
     }
 
-    this.routeNameRef.current = currentScreen
+    this.routeNameRef = currentScreen
   }
 
   render() {
