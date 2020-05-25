@@ -94,7 +94,6 @@ class TimetableScreen extends Component {
       appState: `active`,
       currentIndex: 1,
       date: LocalisationManager.getMoment().startOf(`isoweek`),
-      jumpToDate: false
     }
 
     this.viewpager = null
