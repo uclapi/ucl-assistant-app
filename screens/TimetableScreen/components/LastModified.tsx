@@ -1,6 +1,5 @@
-import PropTypes from "prop-types"
+import moment from 'moment'
 import React from 'react'
-import { momentObj } from "react-moment-proptypes"
 import { StyleSheet, View } from 'react-native'
 
 import { CentredText, ErrorText, Link } from "../../../components/Typography"
@@ -16,19 +15,19 @@ const styles = StyleSheet.create({
   },
 })
 
-class LastModified extends React.Component {
-  static propTypes = {
-    date: PropTypes.string,
-    isLoading: PropTypes.bool,
-    lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
-    openFAQ: PropTypes.func,
-  }
+interface Props {
+  date: string,
+  isLoading: boolean,
+  lastModified: string | moment.Moment,
+  openFAQ: () => void,
+}
 
+class LastModified extends React.Component<Props> {
   static defaultProps = {
     date: LocalisationManager.getMoment(),
     isLoading: true,
     lastModified: null,
-    openFAQ: () => { },
+    openFAQ: () => null,
   }
 
   renderError = () => (

@@ -84,6 +84,7 @@ class WeekView extends React.Component {
   openFAQ = () => {
     const { navigation } = this.props
     navigation.navigate(`FAQ`)
+    return null
   }
 
   jumpToToday = () => {

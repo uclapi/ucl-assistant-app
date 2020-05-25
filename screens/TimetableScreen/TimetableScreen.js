@@ -94,10 +94,14 @@ class TimetableScreen extends Component {
       appState: `active`,
       currentIndex: 1,
       date: LocalisationManager.getMoment().startOf(`isoweek`),
+      jumpToDate: false
     }
+
+    this.viewpager = null
 
     const { date } = this.state
     const { timetable } = props
+
     const todayIndex = timetable.findIndex(
       (week) => (
         week !== null
@@ -110,8 +114,6 @@ class TimetableScreen extends Component {
     if (todayIndex !== -1) {
       this.state.currentIndex = todayIndex
     }
-
-    this.viewpager = null
   }
 
   componentDidMount = async () => {
@@ -121,7 +123,6 @@ class TimetableScreen extends Component {
         declinePushNotifications,
         expoPushToken,
       },
-      fetchTimetable,
       setExpoPushToken,
     } = this.props
 
@@ -153,8 +154,10 @@ class TimetableScreen extends Component {
       }
     }
 
-    const { date } = this.state
-    await fetchTimetable(token, date)
+    // const { date } = this.state
+    // await fetchTimetable(token, date)
+
+    this.onDateChanged(LocalisationManager.getMoment().startOf(`isoweek`))
 
     AppState.addEventListener(`change`, this.handleAppStateChange)
 
