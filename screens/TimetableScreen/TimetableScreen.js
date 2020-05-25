@@ -153,9 +153,6 @@ class TimetableScreen extends Component {
       }
     }
 
-    // const { date } = this.state
-    // await fetchTimetable(token, date)
-
     this.onDateChanged(LocalisationManager.getMoment().startOf(`isoweek`))
 
     AppState.addEventListener(`change`, this.handleAppStateChange)
