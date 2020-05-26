@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
   swiper: { flex: 1 },
 })
 
+const today = LocalisationManager.parseToMoment(`2020-02-06`)
+
 class TimetableScreen extends Component {
   static navigationOptions = {
     headerShown: false,
@@ -93,7 +95,7 @@ class TimetableScreen extends Component {
     this.state = {
       appState: `active`,
       currentIndex: 1,
-      date: LocalisationManager.getMoment().startOf(`isoweek`),
+      date: today,
     }
 
     this.viewpager = null
@@ -153,7 +155,7 @@ class TimetableScreen extends Component {
       }
     }
 
-    this.onDateChanged(LocalisationManager.getMoment().startOf(`isoweek`))
+    this.onDateChanged(today)
 
     AppState.addEventListener(`change`, this.handleAppStateChange)
 
@@ -199,14 +201,6 @@ class TimetableScreen extends Component {
       return null
     }
 
-    // temporary, for debugging an error here on Sentry
-    try {
-      ErrorManager.addDetail({
-        'timetable[index][0].dateISO': timetable[index][0].dateISO,
-      })
-    } catch (error) {
-      ErrorManager.captureError(error, { index, timetable })
-    }
     const newDate = LocalisationManager.parseToMoment(
       timetable[index][0].dateISO,
     )
@@ -245,7 +239,7 @@ class TimetableScreen extends Component {
       this.viewpager.setPage(desiredIndex)
     } else {
       const { fetchTimetable, user: { token } } = this.props
-      await fetchTimetable(token, newDate.startOf(`isoweek`))
+      await fetchTimetable(token, newDate.clone().startOf(`isoweek`))
 
       this.onDateChanged(newDate)
     }
@@ -322,8 +316,6 @@ class TimetableScreen extends Component {
             />
           ) : null
         }
-        {/* <SubtitleText>Find A Timetable</SubtitleText>
-        <TextInput placeholder="Search for a course or module..." /> */}
         <ViewPager
           ref={(ref) => { this.viewpager = ref }}
           key={timetable.length} // re-render only if array length changes

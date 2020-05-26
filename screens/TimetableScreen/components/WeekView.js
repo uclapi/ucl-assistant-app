@@ -241,6 +241,9 @@ class WeekView extends React.Component {
       <FlatList
         onRefresh={onRefresh}
         refreshing={isLoading}
+        initialScrollIndex={
+          LocalisationManager.getMoment().isoWeekday() - 1
+        }
         contentContainerStyle={styles.contentContainer}
         keyExtractor={this.keyExtractor}
         data={weekTimetable}
