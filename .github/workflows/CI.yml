@@ -1,8 +1,5 @@
-name: PR
-on:
-  pull_request:
-    branches:
-    - master
+name: build & test
+on: push
 
 jobs:
   build:
@@ -10,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v1
       with:
         node-version: 12
     - uses: actions/cache@v2
@@ -39,8 +36,9 @@ jobs:
 
     - run: expo doctor
 
-    - run: |
+    - name: deploy
+      if: github.ref != 'refs/heads/master'
+      run: |
           github_branch="${{ github.head_ref }}"
           expo publish --release-channel=dev.${github_branch//\//-}
-      
-        
+
