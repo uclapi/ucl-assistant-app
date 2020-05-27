@@ -78,182 +78,183 @@ export default (state = initialState, action = null) => {
   const oldSpace = id ? state.studyspaces.filter((s) => s.id === id)[0] : null
 
   switch (type) {
-    case WORKSPACES_IS_FETCHING_SEATINFOS: {
-      return {
-        ...state,
-        studyspaces: state.studyspaces.map((space) => ({
-          ...space,
-          fetchSeatInfoError: ``,
-          isFetchingSeatInfo: true,
-        })),
-      }
+  case WORKSPACES_IS_FETCHING_SEATINFOS: {
+    return {
+      ...state,
+      studyspaces: state.studyspaces.map((space) => ({
+        ...space,
+        fetchSeatInfoError: ``,
+        isFetchingSeatInfo: true,
+      })),
     }
+  }
 
-    case WORKSPACES_FETCH_SEATINFOS_FAILURE: {
-      return {
-        ...state,
-        lastStatusUpdate: moment(),
-        studyspaces: state.studyspaces.map((space) => ({
+  case WORKSPACES_FETCH_SEATINFOS_FAILURE: {
+    return {
+      ...state,
+      lastStatusUpdate: moment(),
+      studyspaces: state.studyspaces.map((space) => ({
+        ...space,
+        fetchSeatInfoError: error,
+        isFetchingSeatInfo: false,
+      })),
+    }
+  }
+
+  case WORKSPACES_FETCH_SEATINFOS_SUCCESS: {
+    const { lastModified } = action
+    const newStudyspaces = data
+      .reduce(
+        (spaces, space) => updateStudyspacesWithMaps(spaces, space.id, {
           ...space,
-          fetchSeatInfoError: error,
           isFetchingSeatInfo: false,
-        })),
-      }
+        }),
+        state.studyspaces,
+      )
+      .filter(({ id: spaceId }) => {
+        const spaceIsRemoved = data.filter(
+          ({ id: fetchedSpaceId }) => fetchedSpaceId === spaceId,
+        ).length === 0
+        return !spaceIsRemoved
+      })
+    return {
+      ...state,
+      lastModified,
+      lastStatusUpdate: moment(),
+      studyspaces: newStudyspaces,
     }
+  }
 
-    case WORKSPACES_FETCH_SEATINFOS_SUCCESS: {
-      const { lastModified } = action
-      const newStudyspaces = data
-        .reduce(
-          (spaces, space) => updateStudyspacesWithMaps(spaces, space.id, {
-            ...space,
-            isFetchingSeatInfo: false,
-          }),
-          state.studyspaces,
-        )
-        .filter(({ id: spaceId }) => {
-          const spaceIsRemoved = data.filter(
-            ({ id: fetchedSpaceId }) => fetchedSpaceId === spaceId,
-          ).length === 0
-          return !spaceIsRemoved
-        })
+  case WORKSPACES_IS_FETCHING_HISTORIC_DATA: {
+    if (oldSpace) {
+      const newStudyspaces = updateStudyspacesWithMaps(
+        state.studyspaces,
+        id,
+        {
+          ...oldSpace,
+          dailyAveragesError: ``,
+          isFetchingAverages: true,
+        },
+      )
       return {
         ...state,
-        lastModified,
+        studyspaces: newStudyspaces,
+      }
+    }
+    return state
+  }
+
+  case WORKSPACES_FETCH_HISTORIC_DATA_FAILURE: {
+    if (oldSpace) {
+      const newStudyspaces = updateStudyspacesWithMaps(
+        state.studyspaces,
+        id,
+        {
+          ...oldSpace,
+          dailyAveragesError: error,
+          isFetchingAverages: false,
+          lastUpdatedAverages: moment(),
+        },
+      )
+      return {
+        ...state,
         lastStatusUpdate: moment(),
         studyspaces: newStudyspaces,
       }
     }
-
-    case WORKSPACES_IS_FETCHING_HISTORIC_DATA: {
-      if (oldSpace) {
-        const newStudyspaces = updateStudyspacesWithMaps(
-          state.studyspaces,
-          id,
-          {
-            ...oldSpace,
-            dailyAveragesError: ``,
-            isFetchingAverages: true,
-          },
-        )
-        return {
-          ...state,
-          studyspaces: newStudyspaces,
-        }
-      }
-      return state
-    }
-
-    case WORKSPACES_FETCH_HISTORIC_DATA_FAILURE: {
-      if (oldSpace) {
-        const newStudyspaces = updateStudyspacesWithMaps(
-          state.studyspaces,
-          id,
-          {
-            ...oldSpace,
-            dailyAveragesError: error,
-            isFetchingAverages: false,
-            lastUpdatedAverages: moment(),
-          },
-        )
-        return {
-          ...state,
-          lastStatusUpdate: moment(),
-          studyspaces: newStudyspaces,
-        }
-      }
-      return state
-    }
-    case WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS: {
-      if (oldSpace) {
-        const newStudyspaces = updateStudyspacesWithMaps(
-          state.studyspaces,
-          id,
-          {
-            ...oldSpace,
-            dailyAverages,
-            isFetchingAverages: false,
-            lastUpdatedAverages: moment(),
-          },
-        )
-        return {
-          ...state,
-          lastStatusUpdate: moment(),
-          studyspaces: newStudyspaces,
-        }
-      }
-      return state
-    }
-
-    case WORKSPACES_TOGGLE_FAVOURITE: {
-      if (id >= 0) {
-        return {
-          ...state,
-          favourites: state.favourites.includes(id)
-            ? state.favourites.filter((x) => x !== id)
-            : [...state.favourites, id],
-        }
-      }
-      return state
-    }
-
-    case WORKSPACES_SET_SEARCH_QUERY: {
+    return state
+  }
+  case WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS: {
+    if (oldSpace) {
+      const newStudyspaces = updateStudyspacesWithMaps(
+        state.studyspaces,
+        id,
+        {
+          ...oldSpace,
+          dailyAverages,
+          dailyAveragesError: ``,
+          isFetchingAverages: false,
+          lastUpdatedAverages: moment(),
+        },
+      )
       return {
         ...state,
-        searchQuery: query,
+        lastStatusUpdate: moment(),
+        studyspaces: newStudyspaces,
       }
     }
+    return state
+  }
 
-    case WORKSPACES_SET_SORT_TYPE: {
+  case WORKSPACES_TOGGLE_FAVOURITE: {
+    if (id >= 0) {
       return {
         ...state,
-        sortType,
+        favourites: state.favourites.includes(id)
+          ? state.favourites.filter((x) => x !== id)
+          : [...state.favourites, id],
       }
     }
+    return state
+  }
 
-    case WORKSPACES_IS_FETCHING_DETAILS: {
-      return {
-        ...state,
-        isFetchingSpacesDetails: true,
-      }
+  case WORKSPACES_SET_SEARCH_QUERY: {
+    return {
+      ...state,
+      searchQuery: query,
     }
+  }
 
-    case WORKSPACES_FETCH_DETAILS_FAILURE: {
-      return {
-        ...state,
-        fetchingSpacesDetailsError: error,
-        isFetchingSpacesDetails: false,
-      }
+  case WORKSPACES_SET_SORT_TYPE: {
+    return {
+      ...state,
+      sortType,
     }
+  }
 
-    case WORKSPACES_FETCH_DETAILS_SUCCESS: {
-      const { studySpaces } = action
-      return {
-        ...state,
-        studyspaces: studySpaces.reduce(
-          (
-            spaces,
-            space,
-          ) => {
-            const {
-              id: surveyId,
-              start_time: startTime,
-              end_time: endTime,
-              location,
-            } = space
-            return updateStudyspaces(spaces, space.id, {
-              endTime,
-              id: surveyId,
-              location,
-              startTime,
-            })
-          },
-          state.studyspaces,
-        ),
-      }
+  case WORKSPACES_IS_FETCHING_DETAILS: {
+    return {
+      ...state,
+      isFetchingSpacesDetails: true,
     }
+  }
 
-    default:
-      return state
+  case WORKSPACES_FETCH_DETAILS_FAILURE: {
+    return {
+      ...state,
+      fetchingSpacesDetailsError: error,
+      isFetchingSpacesDetails: false,
+    }
+  }
+
+  case WORKSPACES_FETCH_DETAILS_SUCCESS: {
+    const { studySpaces } = action
+    return {
+      ...state,
+      studyspaces: studySpaces.reduce(
+        (
+          spaces,
+          space,
+        ) => {
+          const {
+            id: surveyId,
+            start_time: startTime,
+            end_time: endTime,
+            location,
+          } = space
+          return updateStudyspaces(spaces, space.id, {
+            endTime,
+            id: surveyId,
+            location,
+            startTime,
+          })
+        },
+        state.studyspaces,
+      ),
+    }
+  }
+
+  default:
+    return state
   }
 }

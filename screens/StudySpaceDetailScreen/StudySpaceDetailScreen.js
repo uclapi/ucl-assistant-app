@@ -16,6 +16,7 @@ import {
   Link,
   SubtitleText,
   TitleText,
+  WarningText,
 } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { LocalisationManager, MapsManager, Shadow } from "../../lib"
@@ -191,9 +192,21 @@ class StudySpaceDetailScreen extends Component {
   render() {
     const { navigation } = this.props
     const {
-      id, name, data, total, occupied, space,
+      id,
+      name,
+      data,
+      total,
+      occupied,
+      space: {
+        isFetchingAverages,
+        maps,
+        dailyAveragesError,
+        location: {
+          coordinates,
+          address,
+        },
+      },
     } = this.state
-    const { isFetchingAverages, maps } = space
     const hour = parseInt(
       LocalisationManager.getMoment()
         .format(`HH`),
@@ -215,7 +228,6 @@ class StudySpaceDetailScreen extends Component {
       </InfoText>
     ) : null
 
-    const { location: { coordinates, address } } = space
     const canNavigateTo = (hasCoordinates(coordinates) && hasAddress(address))
 
     return (
@@ -236,16 +248,25 @@ class StudySpaceDetailScreen extends Component {
               <BodyText>Seats Occupied</BodyText>
             </View>
           </Horizontal>
-          <View style={styles.popularTimes}>
-            <SubtitleText>Popular Times</SubtitleText>
-            <CapacityChart
-              id={id}
-              data={data}
-              occupied={occupied}
-              capacity={total}
-              isLoading={isFetchingAverages}
-            />
-          </View>
+          {
+            dailyAveragesError ? (
+              <View style={styles.popularTimes}>
+                <WarningText>No historical occupancy data available</WarningText>
+              </View>
+            ) : (
+              <View style={styles.popularTimes}>
+                <SubtitleText>Popular Times</SubtitleText>
+                <CapacityChart
+                  id={id}
+                  data={data}
+                  occupied={occupied}
+                  capacity={total}
+                  isLoading={isFetchingAverages}
+                />
+              </View>
+            )
+          }
+
           {timezoneInfo}
           <Horizontal style={styles.liveIndicatorContainer}>
             <LiveIndicator style={styles.liveIndicator} />

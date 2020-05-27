@@ -51,20 +51,20 @@ export const fetchSeatInfos = (
   token: string,
 ): StudyspacesThunkAction => async (
   dispatch: StudyspacesDispatch,
-): Promise<StudySpacesActionTypes> => {
-  await dispatch(setIsFetchingSeatInfos())
-  try {
-    const {
-      data,
-      lastModified,
-    } = await ApiManager.workspaces.getSummary(token)
-    return dispatch(fetchSeatInfosSuccess(data, lastModified))
-  } catch (error) {
-    return dispatch(
-      fetchSeatInfosFailure(error.message),
-    )
+  ): Promise<StudySpacesActionTypes> => {
+    await dispatch(setIsFetchingSeatInfos())
+    try {
+      const {
+        data,
+        lastModified,
+      } = await ApiManager.workspaces.getSummary(token)
+      return dispatch(fetchSeatInfosSuccess(data, lastModified))
+    } catch (error) {
+      return dispatch(
+        fetchSeatInfosFailure(error.message),
+      )
+    }
   }
-}
 
 export const setIsFetchingAverages = (id: number): StudySpacesActionTypes => ({
   id,
@@ -94,28 +94,30 @@ export const fetchAverages = (
   id: number,
 ): StudyspacesThunkAction => async (
   dispatch: StudyspacesDispatch,
-): Promise<StudySpacesActionTypes> => {
-  await dispatch(setIsFetchingAverages(id))
-  try {
-    const res = await fetch(`${WORKSPACES_URL}/historic?id=${id}`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-    const json = await res.json()
-    if (!res.ok) {
-      throw new Error(json.error || `There was a problem`)
+  ): Promise<StudySpacesActionTypes> => {
+    await dispatch(setIsFetchingAverages(id))
+    try {
+      const res = await fetch(`${WORKSPACES_URL}/historic?id=${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      const json = await res.json()
+      if (!res.ok) {
+        throw new Error(json.error || `There was a problem`)
+      }
+      return dispatch(fetchAveragesSuccess(id, json.content))
+    } catch (error) {
+      ErrorManager.addDetail({ id })
+      ErrorManager.captureError(error)
+      return dispatch(
+        fetchAveragesFailure(
+          id,
+          error.message,
+        ),
+      )
     }
-    return dispatch(fetchAveragesSuccess(id, json.content))
-  } catch (error) {
-    return dispatch(
-      fetchAveragesFailure(
-        id,
-        error.message,
-      ),
-    )
   }
-}
 
 export const toggleFavourite = (id: number): StudySpacesActionTypes => ({
   id,
