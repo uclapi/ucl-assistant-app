@@ -1,35 +1,44 @@
-name: Deployment from master
-on:
-  push:
-    branches: 
-      - master
+name: build & test
+on: push
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       with:
-        path: ~/.npm
+        path: |
+          ~/.npm
+          **/node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Expo GitHub Action
-      uses: expo/expo-github-action@4.1.0
+      uses: expo/expo-github-action@v5
       with:
         expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
+        expo-cache: true
     - run: echo '${{ secrets.APP_JSON }}' > app.json
     - run: npm ci
+
+    - name: codechecks
+      run: npx codechecks
+      env:
+        CC_SECRET: ${{ secrets.CC_SECRET }}
+
     - run: npm run test
+
     - run: expo doctor
-#     - run: expo publish --release-channel=production-6.0.0
-      
-        
+
+    - name: deploy
+      if: github.ref != 'refs/heads/master'
+      run: |
+          github_branch="${{ github.head_ref }}"
+          expo publish --release-channel=dev.${github_branch//\//-}
+

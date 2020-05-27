@@ -1,0 +1,5 @@
+checks:
+  - name: typecov
+settings:
+  branches:
+    - master
