@@ -79,12 +79,17 @@ const initialRegion = {
 }
 
 class RoomDetailScreen extends Component {
+  static navigationOptions = {
+    title: `Room Detail`,
+  }
+
   static mapStateToProps = (state) => ({
     token: state.user.token,
   })
 
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
     token: PropTypes.string,
   }
 
@@ -103,8 +108,8 @@ class RoomDetailScreen extends Component {
   }
 
   componentDidMount() {
-    const { token, navigation } = this.props
-    const { room } = navigation.state.params
+    const { token, route } = this.props
+    const { room } = route.params
     const { roomid, siteid } = room
     this.fetchEquipment(token, roomid, siteid)
     this.fetchRoomBookings(token, roomid, siteid)
@@ -136,10 +141,6 @@ class RoomDetailScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: `Room Detail`,
-  }
-
   renderEquipment = ({ description, units }) => {
     if (description === `Wheelchair accessible`) {
       return (
@@ -169,7 +170,7 @@ class RoomDetailScreen extends Component {
         {closedRoomDescriptions.includes(description) ? (
           <ErrorText>Room is closed!</ErrorText>
         ) : (
-          <BodyText>{description}</BodyText>
+            <BodyText>{description}</BodyText>
         )}
       </View>
   )

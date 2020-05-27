@@ -50,32 +50,32 @@ class SearchControl extends Component {
   }
 
   componentDidMount() {
-    const { navigation } = this.props
+    const { navigation, route } = this.props
     this.subscriptions = [
-      navigation.addListener(`didFocus`, this.componentDidFocus),
+      navigation.addListener(`focus`, this.componentDidFocus),
     ]
-    this.componentDidFocus({ state: navigation.state })
+    this.componentDidFocus({ state: route })
   }
 
   componentWillUnmount() {
     this.subscriptions.forEach((sub) => sub.remove())
   }
 
-  componentDidFocus = (payload) => {
+  componentDidFocus = (route) => {
     const { query } = this.state
-    const queryExists = this.queryExists(payload.state)
-    if (queryExists && query !== payload.state.params.query) {
-      this.setState({ query: payload.state.params.query })
-      this.searchRooms(payload.state.params.query, true)
+    const queryExists = this.queryExists(route)
+    if (queryExists && query !== route.params.query) {
+      this.setState({ query: route.params.query })
+      this.searchRooms(route.params.query, true)
     }
-  };
+  }
 
-  queryExists = (navigationState) => navigationState
-    && navigationState.params
-    && navigationState.params.query
-    && navigationState.params.query.length > 0;
+  queryExists = (route) => route
+    && route.params
+    && route.params.query
+    && route.params.query.length > 0
 
-  onChangeText = (query: String) => {
+  onChangeText = (query: string) => {
     if (query.length >= MIN_QUERY_LENGTH) {
       clearTimeout(this.searchTimer)
       this.searchTimer = setTimeout(
@@ -86,7 +86,7 @@ class SearchControl extends Component {
     this.setState({ query })
   }
 
-  searchRooms = async (query: String, autoNavigate = false) => {
+  searchRooms = async (query: string, autoNavigate = false) => {
     const { token } = this.props
     try {
       this.setState({ isSearching: true })

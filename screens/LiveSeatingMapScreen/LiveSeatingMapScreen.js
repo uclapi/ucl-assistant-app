@@ -18,18 +18,18 @@ const styles = StyleSheet.create({
 })
 
 class LiveSeatingMapScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam(`name`, `Live Seating Map`),
-  });
+  static navigationOptions = ({ route }) => ({
+    title: route.params?.name ?? `Live Seating Map`,
+  })
 
   static mapStateToProps = (state) => ({
     token: state.user.token,
-  });
+  })
 
   static mapDispatchToProps = () => ({})
 
   static propTypes = {
-    navigation: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
     token: PropTypes.string.isRequired,
   }
 
@@ -41,8 +41,8 @@ class LiveSeatingMapScreen extends Component {
   }
 
   componentDidMount() {
-    const { navigation, token } = this.props
-    const { surveyId, mapId } = navigation.state.params
+    const { route, token } = this.props
+    const { surveyId, mapId } = route.state.params
     ApiManager.workspaces
       .getLiveImage(token, { mapId, surveyId })
       .then((base64) => {

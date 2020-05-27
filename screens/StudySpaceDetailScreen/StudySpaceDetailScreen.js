@@ -32,6 +32,9 @@ const busyText = (
 ) => {
   const diff = data[time] - occupied
   const threshold = capacity > 100 ? 0.1 : 0.05
+  if (occupied === 0) {
+    return `empty`
+  }
   if (Math.abs(diff) / capacity < threshold) {
     return `as busy as normal`
   }
@@ -104,6 +107,10 @@ const hasAddress = (address) => (
 )
 
 class StudySpaceDetailScreen extends Component {
+  static navigationOptions = {
+    title: `Study Space Detail`,
+  }
+
   static mapStateToProps = (state) => ({
     studyspaces: state.studyspaces.studyspaces,
     token: state.user.token,
@@ -117,6 +124,7 @@ class StudySpaceDetailScreen extends Component {
     fetchAverages: PropTypes.func.isRequired,
     /* eslint-disable react/no-unused-prop-types */
     navigation: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
     /* eslint-enable react/no-unused-prop-types */
     studyspaces: PropTypes.arrayOf(PropTypes.shape()),
     token: PropTypes.string,
@@ -137,10 +145,10 @@ class StudySpaceDetailScreen extends Component {
 
   constructor(props) {
     super(props)
-    const { navigation } = this.props
+    const { route } = this.props
     const {
       id, name, occupied, total,
-    } = navigation.state.params
+    } = route.params
     this.state = {
       data: Array.from(Array(24)).map(() => 0),
       fetchingData: false,
@@ -180,10 +188,6 @@ class StudySpaceDetailScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: `Study Space Detail`,
-  }
-
   render() {
     const { navigation } = this.props
     const {
@@ -204,9 +208,9 @@ class StudySpaceDetailScreen extends Component {
     const timezoneInfo = londonTimeOffset !== localTimeOffset ? (
       <InfoText containerStyle={styles.timezoneInfo}>
         Using London time (
-          {hoursDifference > 0
-            ? `${hoursDifference}h behind`
-            : `${Math.abs(hoursDifference)}h ahead`}
+        {hoursDifference > 0
+          ? `${hoursDifference}h behind`
+          : `${Math.abs(hoursDifference)}h ahead`}
         ).
       </InfoText>
     ) : null

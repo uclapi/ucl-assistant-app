@@ -1,18 +1,19 @@
+import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { ActivityIndicator } from "react-native"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
+
 import { fetchPerson as fetchPersonAction } from "../actions/peopleActions"
-import MailManager from "../lib/MailManager"
 import Button from "../components/Button"
 import { PaddedIcon, PageNoScroll, Spacer } from "../components/Containers"
 import {
   BodyText,
+  ButtonText,
   ErrorText,
   TitleText,
-  ButtonText,
 } from "../components/Typography"
 import Colors from "../constants/Colors"
+import MailManager from "../lib/MailManager"
 
 class PersonDetailScreen extends Component {
   static navigationOptions = {
@@ -20,38 +21,39 @@ class PersonDetailScreen extends Component {
   }
 
   static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    token: PropTypes.string,
-    fetchPerson: PropTypes.func,
-    /* eslint-disable react/no-unused-prop-types */
-    name: PropTypes.string,
     department: PropTypes.string,
     email: PropTypes.string,
-    status: PropTypes.string,
-    isFetching: PropTypes.bool,
     error: PropTypes.string,
+    fetchPerson: PropTypes.func,
+    isFetching: PropTypes.bool,
+    /* eslint-disable react/no-unused-prop-types */
+    name: PropTypes.string,
+    navigation: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
+    status: PropTypes.string,
+    token: PropTypes.string,
     /* eslint-enable react/no-unused-prop-types */
   }
 
   static defaultProps = {
-    token: ``,
-    fetchPerson: () => { },
-    name: ``,
     department: ``,
     email: ``,
-    status: ``,
-    isFetching: false,
     error: ``,
+    fetchPerson: () => { },
+    isFetching: false,
+    name: ``,
+    status: ``,
+    token: ``,
   }
 
   static mapStateToProps = (state) => ({
-    name: state.people.person.name,
     department: state.people.person.department,
     email: state.people.person.email,
+    error: state.people.fetchError,
+    isFetching: state.people.isFetching,
+    name: state.people.person.name,
     status: state.people.person.status,
     token: state.user.token,
-    isFetching: state.people.isFetching,
-    error: state.people.fetchError,
   })
 
   static mapDispatchToProps = (dispatch) => ({
@@ -60,7 +62,7 @@ class PersonDetailScreen extends Component {
 
   constructor(props) {
     super(props)
-    const { params } = props.navigation.state
+    const { params } = props.route
     this.state = { ...params }
   }
 

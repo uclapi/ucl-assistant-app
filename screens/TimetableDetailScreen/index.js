@@ -6,8 +6,8 @@ import { timetableSelector } from "../../selectors/timetableSelectors"
 import TimetableDetailView from "./TimetableDetailView"
 
 class TimetableDetailScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `Event: ${navigation.state.params.code}`,
+  static navigationOptions = ({ route }) => ({
+    title: `Event: ${route.params.code}`,
   })
 
   static mapStateToProps = (state) => ({
@@ -16,6 +16,7 @@ class TimetableDetailScreen extends Component {
 
   static propTypes = {
     navigation: PropTypes.shape().isRequired,
+    route: PropTypes.shape().isRequired,
     timetable: PropTypes.shape(),
   }
 
@@ -25,7 +26,7 @@ class TimetableDetailScreen extends Component {
 
   constructor(props) {
     super(props)
-    const { params } = props.navigation.state
+    const { params } = props.route
     const { date = `2018-01-01`, time, code } = params
     this.state = {
       // pre-defined
