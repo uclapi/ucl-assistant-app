@@ -21,8 +21,6 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
           "height": 1334,
           "width": 750,
         },
@@ -37,12 +35,9 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
               "height": 1334,
               "width": 750,
             },
-            null,
             Object {},
           ],
           Object {
@@ -557,8 +552,6 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
           "height": 1334,
           "width": 750,
         },
@@ -573,12 +566,9 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
               "height": 1334,
               "width": 750,
             },
-            null,
             Object {},
           ],
           Object {
@@ -666,8 +656,6 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
           "height": 1334,
           "width": 750,
         },
@@ -682,12 +670,9 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
               "height": 1334,
               "width": 750,
             },
-            null,
             Object {},
           ],
           Object {
@@ -846,8 +831,6 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
           "height": 1334,
           "width": 750,
         },
@@ -862,12 +845,9 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
               "height": 1334,
               "width": 750,
             },
-            null,
             Object {},
           ],
           Object {
