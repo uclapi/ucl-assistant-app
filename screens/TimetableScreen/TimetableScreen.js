@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   swiper: { flex: 1 },
 })
 
-const today = LocalisationManager.parseToMoment(`2020-02-06`)
+const today = LocalisationManager.getMoment()
 
 class TimetableScreen extends Component {
   static navigationOptions = {

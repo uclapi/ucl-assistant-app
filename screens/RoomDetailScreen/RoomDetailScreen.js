@@ -171,9 +171,9 @@ class RoomDetailScreen extends Component {
           <ErrorText>Room is closed!</ErrorText>
         ) : (
             <BodyText>{description}</BodyText>
-        )}
+          )}
       </View>
-  )
+    )
 
   render() {
     const {
@@ -183,10 +183,8 @@ class RoomDetailScreen extends Component {
       roombookings,
     } = this.state
     const {
-      navigation: {
-        state: {
-          params: { room },
-        },
+      route: {
+        params: { room },
       },
     } = this.props
     const {
