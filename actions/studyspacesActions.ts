@@ -1,6 +1,9 @@
-// @flow
+import { Moment } from "moment"
+import { ThunkAction, ThunkDispatch } from "redux-thunk"
+
 import { WORKSPACES_URL } from "../constants/API"
 import {
+  StudySpacesActionTypes,
   WORKSPACES_FETCH_DETAILS_FAILURE,
   WORKSPACES_FETCH_DETAILS_SUCCESS,
   WORKSPACES_FETCH_HISTORIC_DATA_FAILURE,
@@ -12,26 +15,43 @@ import {
   WORKSPACES_IS_FETCHING_SEATINFOS,
   WORKSPACES_SET_SEARCH_QUERY,
   WORKSPACES_SET_SORT_TYPE,
+  WORKSPACES_SORT_TYPES_TYPE,
   WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
 import ApiManager from "../lib/ApiManager"
 
-export const setIsFetchingSeatInfos = () => ({
+type StudyspacesThunkAction = ThunkAction<
+  Promise<unknown>, unknown, unknown, StudySpacesActionTypes
+>
+type StudyspacesDispatch = ThunkDispatch<
+  unknown, unknown, StudySpacesActionTypes
+>
+
+export const setIsFetchingSeatInfos = (): StudySpacesActionTypes => ({
   type: WORKSPACES_IS_FETCHING_SEATINFOS,
 })
 
-export const fetchSeatInfosSuccess = (data, lastModified) => ({
+export const fetchSeatInfosSuccess = (
+  data: Record<string, unknown>,
+  lastModified: Moment,
+): StudySpacesActionTypes => ({
   data,
   lastModified,
   type: WORKSPACES_FETCH_SEATINFOS_SUCCESS,
 })
 
-export const fetchSeatInfosFailure = (error) => ({
+export const fetchSeatInfosFailure = (
+  error: Error,
+): StudySpacesActionTypes => ({
   error,
   type: WORKSPACES_FETCH_SEATINFOS_FAILURE,
 })
 
-export const fetchSeatInfos = (token: String) => async (dispatch: Function) => {
+export const fetchSeatInfos = (
+  token: string,
+): StudyspacesThunkAction => async (
+  dispatch: StudyspacesDispatch,
+): Promise<StudySpacesActionTypes> => {
   await dispatch(setIsFetchingSeatInfos())
   try {
     const {
@@ -46,26 +66,35 @@ export const fetchSeatInfos = (token: String) => async (dispatch: Function) => {
   }
 }
 
-export const setIsFetchingAverages = (id: Number) => ({
+export const setIsFetchingAverages = (id: number): StudySpacesActionTypes => ({
   id,
   type: WORKSPACES_IS_FETCHING_HISTORIC_DATA,
 })
 
-export const fetchAveragesSuccess = (id: Number, dailyAverages) => ({
+export const fetchAveragesSuccess = (
+  id: number,
+  dailyAverages: Record<string, any>,
+): StudySpacesActionTypes => ({
   dailyAverages,
   id,
   type: WORKSPACES_FETCH_HISTORIC_DATA_SUCCESS,
 })
 
-export const fetchAveragesFailure = (id: Number, error) => ({
+export const fetchAveragesFailure = (
+  id: number,
+  error: Error,
+): StudySpacesActionTypes => ({
   error,
   id,
   type: WORKSPACES_FETCH_HISTORIC_DATA_FAILURE,
 })
 
-export const fetchAverages = (token: String, id: Number) => async (
-  dispatch: Function,
-) => {
+export const fetchAverages = (
+  token: string,
+  id: number,
+): StudyspacesThunkAction => async (
+  dispatch: StudyspacesDispatch,
+): Promise<StudySpacesActionTypes> => {
   await dispatch(setIsFetchingAverages(id))
   try {
     const res = await fetch(`${WORKSPACES_URL}/historic?id=${id}`, {
@@ -88,38 +117,42 @@ export const fetchAverages = (token: String, id: Number) => async (
   }
 }
 
-export const toggleFavourite = (id: Number) => ({
+export const toggleFavourite = (id: number): StudySpacesActionTypes => ({
   id,
   type: WORKSPACES_TOGGLE_FAVOURITE,
 })
 
-export const setSearchQuery = (query: String) => ({
+export const setSearchQuery = (query: string): StudySpacesActionTypes => ({
   query,
   type: WORKSPACES_SET_SEARCH_QUERY,
 })
 
-export const setSortType = (sortType: String) => ({
+export const setSortType = (
+  sortType: WORKSPACES_SORT_TYPES_TYPE,
+): StudySpacesActionTypes => ({
   sortType,
   type: WORKSPACES_SET_SORT_TYPE,
 })
 
-export const setIsFetchingDetails = () => ({
+export const setIsFetchingDetails = (): StudySpacesActionTypes => ({
   type: WORKSPACES_IS_FETCHING_DETAILS,
 })
 
-export const fetchDetailsSuccess = (studySpaces) => ({
+export const fetchDetailsSuccess = (
+  studySpaces: Record<string, unknown>,
+): StudySpacesActionTypes => ({
   studySpaces,
   type: WORKSPACES_FETCH_DETAILS_SUCCESS,
 })
 
-export const fetchDetailsFailure = (error) => ({
+export const fetchDetailsFailure = (error: Error): StudySpacesActionTypes => ({
   error,
   type: WORKSPACES_FETCH_DETAILS_FAILURE,
 })
 
-export const fetchDetails = (token: String) => async (
-  dispatch: Function,
-) => {
+export const fetchDetails = (token: string): StudyspacesThunkAction => async (
+  dispatch: StudyspacesDispatch,
+): Promise<StudySpacesActionTypes> => {
   try {
     dispatch(setIsFetchingDetails())
 

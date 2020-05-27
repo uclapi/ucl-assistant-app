@@ -153,7 +153,21 @@
     "sort-keys-fix/sort-keys-fix": "warn",
     "camelcase": "off",
     "@typescript-eslint/naming-convention": [
-      "warn"
+      "warn",
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "UPPER_CASE",
+          "PascalCase"
+        ],
+        "leadingUnderscore": "forbid",
+        "trailingUnderscore": "forbid"
+      }
+    ],
+    "indent": [
+      "warn",
+      2
     ]
   },
   "settings": {
