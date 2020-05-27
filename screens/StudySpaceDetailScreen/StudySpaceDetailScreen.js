@@ -16,7 +16,6 @@ import {
   Link,
   SubtitleText,
   TitleText,
-  WarningText,
 } from "../../components/Typography"
 import Colors from "../../constants/Colors"
 import { LocalisationManager, MapsManager, Shadow } from "../../lib"
@@ -80,6 +79,10 @@ const styles = StyleSheet.create({
   liveIndicatorContainer: {
     justifyContent: `flex-start`,
     paddingRight: 40,
+  },
+  noDataNotice: {
+    marginBottom: 10,
+    marginTop: 10,
   },
   occupancySection: {
     flex: 1,
@@ -250,24 +253,25 @@ class StudySpaceDetailScreen extends Component {
           </Horizontal>
           {
             dailyAveragesError ? (
-              <View style={styles.popularTimes}>
-                <WarningText>No historical occupancy data available</WarningText>
+              <View style={styles.noDataNotice}>
+                <InfoText>No historical occupancy data available</InfoText>
               </View>
             ) : (
-              <View style={styles.popularTimes}>
-                <SubtitleText>Popular Times</SubtitleText>
-                <CapacityChart
-                  id={id}
-                  data={data}
-                  occupied={occupied}
-                  capacity={total}
-                  isLoading={isFetchingAverages}
-                />
-              </View>
+              <>
+                <View style={styles.popularTimes}>
+                  <SubtitleText>Popular Times</SubtitleText>
+                  <CapacityChart
+                    id={id}
+                    data={data}
+                    occupied={occupied}
+                    capacity={total}
+                    isLoading={isFetchingAverages}
+                  />
+                </View>
+                {timezoneInfo}
+              </>
             )
           }
-
-          {timezoneInfo}
           <Horizontal style={styles.liveIndicatorContainer}>
             <LiveIndicator style={styles.liveIndicator} />
             <BodyText>

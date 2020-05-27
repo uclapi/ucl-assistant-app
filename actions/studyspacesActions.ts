@@ -18,7 +18,9 @@ import {
   WORKSPACES_SORT_TYPES_TYPE,
   WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
-import ApiManager from "../lib/ApiManager"
+import {
+  ApiManager,
+} from "../lib"
 
 type StudyspacesThunkAction = ThunkAction<
   Promise<unknown>, unknown, unknown, StudySpacesActionTypes
@@ -108,8 +110,6 @@ export const fetchAverages = (
       }
       return dispatch(fetchAveragesSuccess(id, json.content))
     } catch (error) {
-      ErrorManager.addDetail({ id })
-      ErrorManager.captureError(error)
       return dispatch(
         fetchAveragesFailure(
           id,
