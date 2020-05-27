@@ -30,8 +30,8 @@ jobs:
     - run: echo '${{ secrets.APP_JSON }}' > app.json
     - run: npm ci
 
-    - run: |
-        npx codechecks
+    - name: codechecks
+      run: npx codechecks
       env:
         CC_SECRET: ${{ secrets.CC_SECRET }}
 
