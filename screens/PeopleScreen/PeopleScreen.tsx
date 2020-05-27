@@ -1,5 +1,4 @@
 import { Feather } from "@expo/vector-icons"
-import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { Image, StyleSheet } from 'react-native'
 import { connect } from "react-redux"
@@ -19,26 +18,14 @@ const styles = StyleSheet.create({
   },
 })
 
-export class PeopleScreen extends Component {
-  static mapStateToProps = (state) => ({
-    isSearching: state.people.isSearching,
-    recents: state.people.recents,
-    searchResults: state.people.searchResults,
-  })
+interface Props {
+  isSearching: boolean,
+  navigation: any,
+  recents: Array<any>,
+  searchResults: Array<any>,
+}
 
-  static propTypes = {
-    isSearching: PropTypes.bool,
-    navigation: PropTypes.shape().isRequired,
-    recents: PropTypes.arrayOf(PropTypes.shape()),
-    searchResults: PropTypes.arrayOf(PropTypes.shape()),
-  }
-
-  static defaultProps = {
-    isSearching: false,
-    recents: [],
-    searchResults: false,
-  }
-
+export class PeopleScreen extends Component<Props> {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -48,6 +35,18 @@ export class PeopleScreen extends Component {
         color={focused ? Colors.pageBackground : Colors.textColor}
       />
     ),
+  }
+
+  static mapStateToProps = (state) => ({
+    isSearching: state.people.isSearching,
+    recents: state.people.recents,
+    searchResults: state.people.searchResults,
+  })
+
+  static defaultProps = {
+    isSearching: false,
+    recents: [],
+    searchResults: false,
   }
 
   render() {

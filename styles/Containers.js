@@ -95,8 +95,8 @@ export default StyleSheet.create({
   },
   pageContainer: {
     backgroundColor: Colors.pageBackground,
-    flex: 1,
-    flexDirection: `column`,
+    // flex: 1,
+    // flexDirection: `column`,
     height,
     width,
   },

@@ -54,7 +54,6 @@ const tabBarOptions = {
   },
   inactiveBackgroundColor: Colors.tabBackground,
   inactiveTintColor: Colors.textColor,
-  keyboardHidesTabBar: true,
   labelStyle: {
     fontFamily: `apercu`,
   },

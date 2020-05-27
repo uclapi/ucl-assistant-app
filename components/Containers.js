@@ -4,9 +4,11 @@ import PropTypes from "prop-types"
 import React from "react"
 import {
   KeyboardAvoidingView,
+  Platform,
   RefreshControl,
   SafeAreaView,
   ScrollView,
+  StatusBar,
   StyleSheet,
   View,
   ViewPropTypes,
@@ -82,12 +84,13 @@ export const Page = ({
         <KeyboardAvoidingView
           style={[
             Styles.pageContainer,
-            mainTabPage ? Styles.mainTab : null,
             keyboardAvoidingViewStyle,
           ]}
           {...props}
           behavior="padding"
-          keyboardVerticalOffset={headerHeight}
+          keyboardVerticalOffset={
+            Platform.OS === `android` ? StatusBar.currentHeight : 0
+          }
         >
           <ScrollView
             contentContainerStyle={[

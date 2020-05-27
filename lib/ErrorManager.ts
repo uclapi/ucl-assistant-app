@@ -1,9 +1,9 @@
 import Constants from 'expo-constants'
 import * as Sentry from "sentry-expo"
 
-const initialise = () => {
+const initialise = (): void => {
   if (!__DEV__) {
-    const { extra: { sentry: { dsn } = {} } = {} } = Constants.manifest
+    const { extra: { sentry: { dsn = `` } = {} } = {} } = Constants.manifest
     Sentry.init({
       dsn,
     })
@@ -15,7 +15,7 @@ const initialise = () => {
   }
 }
 
-const addDetail = (details) => {
+const addDetail = (details: any): void => {
   if (!__DEV__) {
     Sentry.addBreadcrumb({
       ...details,
@@ -25,7 +25,7 @@ const addDetail = (details) => {
   }
 }
 
-const captureError = (error, details) => {
+const captureError = (error, details: any): void => {
   if (!__DEV__) {
     if (details) {
       Sentry.withScope((scope) => {
@@ -42,11 +42,11 @@ const captureError = (error, details) => {
       Sentry.captureException(error)
     }
   } else {
-    console.error(`ErrorManager.captureError`, error)
+    console.error(`ErrorManager.captureError`, error, details)
   }
 }
 
-const setUser = (user) => {
+const setUser = (user): void => {
   if (!__DEV__ && user) {
     Sentry.setUser(user)
   }
