@@ -99,6 +99,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.0",
+    "@codechecks/client": "^0.1.10",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
@@ -144,6 +145,7 @@
     "react-test-renderer": "^16.13.1",
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.4",
+    "typecov": "^0.2.2",
     "typescript": "^3.8.3"
   },
   "engines": {

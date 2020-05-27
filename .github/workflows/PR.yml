@@ -6,9 +6,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -28,8 +26,28 @@ jobs:
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
     - run: echo '${{ secrets.APP_JSON }}' > app.json
     - run: npm ci
+  run-typecov:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          npx codechecks
+        env:
+          CC_SECRET: ${{ secrets.CC_SECRET }}
+  run-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - run: npm run test
+  run-expo-doctor:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - run: expo doctor
+  run-expo-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - run: |
           github_branch="${{ github.head_ref }}"
           expo publish --release-channel=dev.${github_branch//\//-}
