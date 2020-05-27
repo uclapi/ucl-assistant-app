@@ -87,6 +87,7 @@ export const Page = ({
           ]}
           {...props}
           behavior="padding"
+          keyboardVerticalOffset={headerHeight}
         >
           <ScrollView
             contentContainerStyle={[

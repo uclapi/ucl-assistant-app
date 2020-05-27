@@ -46,6 +46,7 @@ const screenOptions = ({ route }) => ({
 const tabBarOptions = {
   activeBackgroundColor: Colors.accentColor,
   activeTintColor: Colors.pageBackground,
+  allowFontScaling: false,
   bottomNavigationOptions: {
     backgroundColor: Colors.accentColor,
     labelColor: Colors.pageBackground,
@@ -53,6 +54,7 @@ const tabBarOptions = {
   },
   inactiveBackgroundColor: Colors.tabBackground,
   inactiveTintColor: Colors.textColor,
+  keyboardHidesTabBar: true,
   labelStyle: {
     fontFamily: `apercu`,
   },

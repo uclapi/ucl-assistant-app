@@ -31,6 +31,17 @@ const styles = StyleSheet.create({
 })
 
 class RoomsFavouritesScreen extends React.Component {
+  static navigationOptions = {
+    headerShown: false,
+    tabBarIcon: ({ focused }) => (
+      <Feather
+        name="map-pin"
+        size={28}
+        color={focused ? Colors.pageBackground : Colors.textColor}
+      />
+    ),
+  }
+
   static mapStateToProps = (state) => ({
     favouriteRooms: state.rooms.favourites,
   })
@@ -58,7 +69,7 @@ class RoomsFavouritesScreen extends React.Component {
   renderSuggestion = () => (
     <>
       <BodyText>
-        Mark a room as one of your favourite rooms and&nbsp;
+        Mark a room as one of your favourite rooms and
         it will appear here for easy reference
       </BodyText>
       <Image
@@ -86,17 +97,6 @@ class RoomsFavouritesScreen extends React.Component {
         ))}
       </>
     )
-  }
-
-  static navigationOptions = {
-    headerShown: false,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="map-pin"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
   }
 
   render() {
