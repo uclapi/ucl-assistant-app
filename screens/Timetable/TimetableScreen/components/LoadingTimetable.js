@@ -1,8 +1,8 @@
 import React from 'react'
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 
-import { PageNoScroll } from '../../../components/Containers'
-import { BodyText } from '../../../components/Typography'
+import { PageNoScroll } from '../../../../components/Containers'
+import { BodyText } from '../../../../components/Typography'
 
 const styles = StyleSheet.create({
   loadingText: {

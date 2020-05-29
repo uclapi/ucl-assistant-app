@@ -3,10 +3,10 @@ import React from 'react'
 import { momentObj } from "react-moment-proptypes"
 import { FlatList, StyleSheet, View } from 'react-native'
 
-import Button from "../../../components/Button"
-import TimetableCard from "../../../components/Card/TimetableCard"
-import { BodyText, HeaderText, TitleText } from "../../../components/Typography"
-import { LocalisationManager } from "../../../lib"
+import Button from "../../../../components/Button"
+import TimetableCard from "../../../../components/Card/TimetableCard"
+import { BodyText, HeaderText, TitleText } from "../../../../components/Typography"
+import { LocalisationManager } from "../../../../lib"
 import DateControls from './DateControls'
 import FreeWeek from "./FreeWeek"
 import LastModified from "./LastModified"

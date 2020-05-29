@@ -11,24 +11,26 @@ import { connect } from "react-redux"
 
 import {
   fetchTimetable as fetchTimetableAction,
-} from "../../actions/timetableActions"
+} from "../../../actions/timetableActions"
 import {
   setExpoPushToken as setExpoPushTokenAction,
   signOut as signOutAction,
-} from "../../actions/userActions"
-import { PageNoScroll } from "../../components/Containers"
-import { ErrorMessage } from '../../components/Message'
-import Colors from "../../constants/Colors"
-import { TIMETABLE_CACHE_TIME_HOURS } from "../../constants/timetableConstants"
+} from "../../../actions/userActions"
+import { PageNoScroll } from "../../../components/Containers"
+import { ErrorMessage } from '../../../components/Message'
+import Colors from "../../../constants/Colors"
+import {
+  TIMETABLE_CACHE_TIME_HOURS,
+} from "../../../constants/timetableConstants"
 import {
   DeviceManager,
   ErrorManager,
   LocalisationManager,
   PushNotificationsManager,
-} from '../../lib'
+} from '../../../lib'
 import {
   weeklyTimetableArraySelector,
-} from "../../selectors/timetableSelectors"
+} from "../../../selectors/timetableSelectors"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
 

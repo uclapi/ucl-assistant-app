@@ -10,7 +10,6 @@ import PersonDetailScreen from "../screens/PersonDetailScreen"
 import RoomDetailScreen from "../screens/RoomDetailScreen"
 import SplashScreen from "../screens/SplashScreen"
 import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
-import TimetableDetailScreen from "../screens/TimetableDetailScreen"
 import MainTabNavigator from "./MainTabNavigator"
 
 const Stack = createStackNavigator()
@@ -58,11 +57,6 @@ export const RootNavigatorComponent = ({
           name="StudySpaceDetail"
           component={StudySpaceDetailScreen}
         />
-        <Stack.Screen
-          name="TimetableDetail"
-          component={TimetableDetailScreen}
-        />
-
       </>
     )
     : (

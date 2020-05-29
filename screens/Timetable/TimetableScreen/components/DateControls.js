@@ -4,9 +4,9 @@ import React from "react"
 import { momentObj } from "react-moment-proptypes"
 import { StyleSheet } from 'react-native'
 
-import Button, { RoundButton } from "../../../components/Button"
-import { Horizontal } from "../../../components/Containers"
-import { LocalisationManager } from "../../../lib"
+import Button, { RoundButton } from "../../../../components/Button"
+import { Horizontal } from "../../../../components/Containers"
+import { LocalisationManager } from "../../../../lib"
 
 const styles = StyleSheet.create({
   dateControls: {

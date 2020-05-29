@@ -6,9 +6,9 @@ import {
   ViewPropTypes,
 } from 'react-native'
 
-import { CentredText } from "../../../components/Typography"
-import { AssetManager, Random } from "../../../lib"
-import Styles from "../../../styles/Containers"
+import { CentredText } from "../../../../components/Typography"
+import { AssetManager, Random } from "../../../../lib"
+import Styles from "../../../../styles/Containers"
 
 
 const styles = StyleSheet.create({

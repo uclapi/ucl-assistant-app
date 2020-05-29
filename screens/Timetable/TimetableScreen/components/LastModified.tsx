@@ -2,8 +2,8 @@ import moment from 'moment'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { CentredText, ErrorText, Link } from "../../../components/Typography"
-import { LocalisationManager } from "../../../lib"
+import { CentredText, ErrorText, Link } from "../../../../components/Typography"
+import { LocalisationManager } from "../../../../lib"
 
 const styles = StyleSheet.create({
   error: {

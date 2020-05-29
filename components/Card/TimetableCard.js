@@ -47,11 +47,17 @@ const TimetableCard = ({
       old={pastEvent}
       title={moduleCode}
       onPress={() => {
-        navigation.navigate(`TimetableDetail`, {
-          code: moduleCode,
-          date: startMoment.format(`YYYY-MM-DD`),
-          module: moduleName,
-          time: startMoment.format(`HH:mm`),
+        navigation.navigate(`Main`, {
+          params: {
+            params: {
+              code: moduleCode,
+              date: startMoment.format(`YYYY-MM-DD`),
+              module: moduleName,
+              time: startMoment.format(`HH:mm`),
+            },
+            screen: `TimetableDetail`,
+          },
+          screen: `Timetable`,
         })
       }}
     >

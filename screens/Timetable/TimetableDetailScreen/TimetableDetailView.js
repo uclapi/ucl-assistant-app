@@ -3,17 +3,17 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import MapView from "react-native-maps"
 
-import Button from "../../components/Button"
-import { Page } from "../../components/Containers"
+import Button from "../../../components/Button"
+import { Page } from "../../../components/Containers"
 import {
   BodyText,
   ErrorText,
   Link,
   SubtitleText,
   TitleText,
-} from "../../components/Typography"
-import { LocalisationManager, MailManager, MapsManager } from "../../lib"
-import MapStyle from "../../styles/Map"
+} from "../../../components/Typography"
+import { LocalisationManager, MailManager, MapsManager } from "../../../lib"
+import MapStyle from "../../../styles/Map"
 
 const styles = StyleSheet.create({
   contactPerson: {
@@ -158,19 +158,19 @@ class TimetableDetailView extends React.Component {
     } = this.props
     const sessionType = sessionTypeStr.toLowerCase()
     switch (true) {
-      case sessionType === `lecture`:
-      case sessionType === `seminar`: {
-        contactTypeStr = `Lecturer`
-        break
-      }
-      case sessionType === `practical`:
-      case sessionType === `problem based learning`: {
-        contactTypeStr = `Instructor`
-        break
-      }
-      default: {
-        contactTypeStr = `Contact`
-      }
+    case sessionType === `lecture`:
+    case sessionType === `seminar`: {
+      contactTypeStr = `Lecturer`
+      break
+    }
+    case sessionType === `practical`:
+    case sessionType === `problem based learning`: {
+      contactTypeStr = `Instructor`
+      break
+    }
+    default: {
+      contactTypeStr = `Contact`
+    }
     }
 
     const { lat, lng } = location.coordinates
@@ -190,7 +190,7 @@ class TimetableDetailView extends React.Component {
             {locationName}
           </Link>
         ) : (
-            <BodyText>{locationName}</BodyText>
+          <BodyText>{locationName}</BodyText>
         )}
         <BodyText>
           {`Type: ${sessionTypeStr}`}
