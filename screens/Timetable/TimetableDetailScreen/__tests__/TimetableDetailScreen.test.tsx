@@ -1,15 +1,16 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
 
 import React from 'react'
-import ShallowRenderer from 'react-test-renderer/shallow'
+import { cleanup, render } from "react-native-testing-library"
 
 import { TimetableDetailScreen } from '../TimetableDetailScreen'
 
+jest.mock(`../TimetableDetailView`, () => (props) => JSON.stringify(props))
+
 describe(`TimetableDetailScreen`, () => {
-  const renderer = new ShallowRenderer()
+  let wrapper
 
   const mockProps = {
     navigation: {
@@ -49,9 +50,15 @@ describe(`TimetableDetailScreen`, () => {
     },
   }
 
-  it(`renders the TimetableDetailScreen`, () => {
-    renderer.render(<TimetableDetailScreen {...mockProps} />)
-    const result = renderer.getRenderOutput()
-    expect(result).toMatchSnapshot()
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+  afterEach(() => {
+    cleanup()
+  })
+
+  it(`renders the TimetableDetailScreen`, async () => {
+    wrapper = render(<TimetableDetailScreen {...mockProps} />)
+    expect(wrapper.toJSON()).toMatchSnapshot()
   })
 })
