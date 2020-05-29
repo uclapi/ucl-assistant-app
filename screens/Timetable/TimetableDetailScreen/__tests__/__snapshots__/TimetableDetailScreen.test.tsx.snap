@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimetableDetailScreen renders the TimetableDetailScreen 1`] = `
+<TimetableDetailView
+  contact=""
+  date="2020-01-01"
+  end_time=""
+  initialRegion={
+    Object {
+      "latitude": 51.5246586,
+      "latitudeDelta": 0.0012,
+      "longitude": -0.1339784,
+      "longitudeDelta": 0.0071,
+    }
+  }
+  location={
+    Object {
+      "address": Array [],
+      "coordinates": Object {
+        "lat": "51.5246586",
+        "lng": "-0.1339784",
+      },
+      "name": "",
+      "type": "DB",
+    }
+  }
+  module={
+    Object {
+      "department_name": "",
+      "email": "",
+      "lecturer": Object {
+        "department_id": "",
+        "department_name": "",
+        "email": "",
+        "name": "",
+      },
+      "name": "",
+    }
+  }
+  navigation={
+    Object {
+      "navigate": [MockFunction],
+    }
+  }
+  session_group=""
+  session_type_str=""
+  start_time=""
+/>
+`;

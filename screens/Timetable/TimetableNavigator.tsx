@@ -1,10 +1,22 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import {
+  createStackNavigator,
+} from '@react-navigation/stack'
 import React from 'react'
 
 import TimetableDetailScreen from "./TimetableDetailScreen"
 import TimetableScreen from "./TimetableScreen"
 
-const Stack = createStackNavigator()
+type TimetableNavigatorParamList = {
+  TimetableScreen: undefined,
+  TimetableDetail: {
+    code: string,
+    date: string,
+    module: string,
+    time: string,
+  },
+}
+
+const Stack = createStackNavigator<TimetableNavigatorParamList>()
 
 const TimetableNavigator = () => (
   <Stack.Navigator>

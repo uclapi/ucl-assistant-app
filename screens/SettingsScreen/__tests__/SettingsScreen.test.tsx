@@ -1,8 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import React from 'react'
 import "react-native"
+
+import React from 'react'
 import { cleanup, fireEvent, render } from "react-native-testing-library"
 
 import { MailManager, WebBrowserManager } from '../../../lib'
