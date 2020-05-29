@@ -1,0 +1,1221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyRoomsScreen calls getEmptyRooms 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "flex": 0,
+        },
+        Object {
+          "backgroundColor": "#fefefe",
+        },
+      ]
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fefefe",
+          "height": 1334,
+          "width": 750,
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "height": 1334,
+              "width": 750,
+            },
+            Object {},
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 10,
+            },
+            Object {},
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            },
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "height": 10,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              Filter by:
+            </Text>
+            <View>
+              <RCTPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                    Object {
+                      "label": "Bentham House",
+                      "textColor": undefined,
+                      "value": "b",
+                    },
+                    Object {
+                      "label": "Main Building",
+                      "textColor": undefined,
+                      "value": "main",
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                selectedIndex={0}
+                style={
+                  Array [
+                    Object {
+                      "height": 216,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Bentham
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Classroom
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Galactica
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Lecture Theatre
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Denning
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Classroom
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
+`;
+
+exports[`EmptyRoomsScreen renders the loading screen 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "flex": 0,
+        },
+        Object {
+          "backgroundColor": "#fefefe",
+        },
+      ]
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fefefe",
+          "height": 1334,
+          "width": 750,
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "height": 1334,
+              "width": 750,
+            },
+            Object {},
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 10,
+            },
+            Object {},
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            },
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "height": 10,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#999999"
+              hidesWhenStopped={true}
+              size="large"
+            />
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
+`;
+
+exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "flex": 0,
+        },
+        Object {
+          "backgroundColor": "#fefefe",
+        },
+      ]
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fefefe",
+          "height": 1334,
+          "width": 750,
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "height": 1334,
+              "width": 750,
+            },
+            Object {},
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 10,
+            },
+            Object {},
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            },
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "height": 10,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              Filter by:
+            </Text>
+            <View>
+              <RCTPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                selectedIndex={0}
+                style={
+                  Array [
+                    Object {
+                      "height": 216,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#6E707F",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 5,
+                    "marginTop": 5,
+                    "textAlign": "center",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              No empty rooms found :(
+            </Text>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
+`;
+
+exports[`EmptyRoomsScreen supports filtering by building 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "flex": 0,
+        },
+        Object {
+          "backgroundColor": "#fefefe",
+        },
+      ]
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#fefefe",
+          "height": 1334,
+          "width": 750,
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "height": 1334,
+              "width": 750,
+            },
+            Object {},
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 10,
+            },
+            Object {},
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+            },
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "height": 10,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {},
+                ]
+              }
+            >
+              Filter by:
+            </Text>
+            <View>
+              <RCTPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                    Object {
+                      "label": "Bentham House",
+                      "textColor": undefined,
+                      "value": "b",
+                    },
+                    Object {
+                      "label": "Main Building",
+                      "textColor": undefined,
+                      "value": "main",
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                selectedIndex={2}
+                style={
+                  Array [
+                    Object {
+                      "height": 216,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Galactica
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Lecture Theatre
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              isTVSelectable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Denning
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Classroom
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
+`;

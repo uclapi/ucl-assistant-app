@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LastUpdated does not render if date is missing 1`] = `null`;
+
+exports[`LastUpdated does not show error when data is more recent than date 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "marginBottom": 1,
+            "marginTop": 1,
+          },
+          Object {
+            "color": "#2980b9",
+          },
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#6E707F",
+              "fontFamily": "apercu",
+              "fontSize": 16,
+              "marginBottom": 5,
+              "marginTop": 5,
+              "textAlign": "center",
+            },
+            Object {},
+          ]
+        }
+      >
+        Last updated 2 months ago
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`LastUpdated renders the LastModified component 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "marginBottom": 1,
+            "marginTop": 1,
+          },
+          Object {
+            "color": "#2980b9",
+          },
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#6E707F",
+              "fontFamily": "apercu",
+              "fontSize": 16,
+              "marginBottom": 5,
+              "marginTop": 5,
+              "textAlign": "center",
+            },
+            Object {},
+          ]
+        }
+      >
+        Last updated 11 hours ago
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`LastUpdated shows error when studyspace info is stale 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+        },
+        Array [
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 5,
+          },
+          Object {
+            "marginBottom": 20,
+          },
+        ],
+      ]
+    }
+  >
+    <Text />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "rgba(215, 38, 61, 1)",
+            "flex": 1,
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "marginBottom": 1,
+            "marginLeft": 5,
+            "marginTop": -1,
+          },
+          Object {},
+        ]
+      }
+    >
+      Our timetable data is stale. Sorry about that. We're working on getting this fixed as quickly as possible.
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "marginBottom": 1,
+            "marginTop": 1,
+          },
+          Object {
+            "color": "#2980b9",
+          },
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#6E707F",
+              "fontFamily": "apercu",
+              "fontSize": 16,
+              "marginBottom": 5,
+              "marginTop": 5,
+              "textAlign": "center",
+            },
+            Object {},
+          ]
+        }
+      >
+        Last updated a day ago
+      </Text>
+    </Text>
+  </View>
+</View>
+`;

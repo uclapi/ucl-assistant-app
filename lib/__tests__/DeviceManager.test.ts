@@ -17,6 +17,21 @@ describe(`DeviceManager`, () => {
     jest.doMock(`expo-network`, () => ({
       __esModule: true,
       getNetworkStateAsync: jest.fn(
+        () => Promise.resolve({ isInternetReachable: false }),
+      ),
+      isAirplaneModeEnabledAsync: jest.fn(() => Promise.resolve(true)),
+    }))
+
+    const DeviceManager = (await import(`../DeviceManager`)).default
+
+    const isConnected = await DeviceManager.isConnectedToInternet()
+    expect(isConnected).toBe(false)
+  })
+
+  it(`checks if connected to internet`, async () => {
+    jest.doMock(`expo-network`, () => ({
+      __esModule: true,
+      getNetworkStateAsync: jest.fn(
         () => Promise.resolve({ isInternetReachable: true }),
       ),
       isAirplaneModeEnabledAsync: jest.fn(() => Promise.resolve(false)),
@@ -27,25 +42,4 @@ describe(`DeviceManager`, () => {
     const isConnected = await DeviceManager.isConnectedToInternet()
     expect(isConnected).toBe(true)
   })
-
-  // it(`checks if connected to internet (android)`, async () => {
-  //   jest.doMock(`react-native/Libraries/Utilities/Platform`, () => ({
-  //     OS: `android`,
-  //   }))
-  //   const isConnected = await DeviceManager.isConnectedToInternet()
-  //   expect(isConnected).toBe(false)
-  // })
-
-  // it(`checks if connected to internet (ios)`, async () => {
-  //   jest.doMock(`react-native/Libraries/Utilities/Platform`, () => ({
-  //     OS: `ios`,
-  //   }))
-  //   jest.doMock(`expo-network`, () => ({
-  //     getNetworkStateAsync: jest.fn(
-  //       () => Promise.resolve({ isInternetReachable: true }),
-  //     ),
-  //   }))
-  //   const isConnected = await DeviceManager.isConnectedToInternet()
-  //   expect(isConnected).toBe(false)
-  // })
 })

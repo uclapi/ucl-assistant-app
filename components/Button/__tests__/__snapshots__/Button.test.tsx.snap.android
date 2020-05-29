@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button handles onPress events 1`] = `
+Array [
+  Array [],
+]
+`;
+
+exports[`Button renders the disabled state 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  isTVSelectable={true}
+  nativeBackgroundAndroid={
+    Object {
+      "attribute": "selectableItemBackground",
+      "type": "ThemeAttrAndroid",
+    }
+  }
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "elevation": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 5,
+        "marginTop": 5,
+        "minHeight": 55,
+        "minWidth": 150,
+        "padding": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "shadowColor": "#1B998B",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.75,
+        "shadowRadius": 3,
+      },
+      Object {
+        "backgroundColor": "rgba(231, 231, 233, 1)",
+      },
+      Object {},
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fefefe",
+          "fontFamily": "apercu",
+          "fontSize": 20,
+          "marginBottom": 1,
+          "marginTop": 1,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    This is a disabled button
+  </Text>
+</View>
+`;
+
+exports[`Button renders the loading state 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  nativeBackgroundAndroid={
+    Object {
+      "borderless": true,
+      "color": -9188158,
+      "type": "RippleAndroid",
+    }
+  }
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "elevation": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 5,
+        "marginTop": 5,
+        "minHeight": 55,
+        "minWidth": 150,
+        "padding": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "shadowColor": "#1B998B",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.75,
+        "shadowRadius": 3,
+      },
+      Object {},
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    proxiedProperties={
+      Object {
+        "borderRadii": Array [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
+        "colors": Array [
+          -14968437,
+          -11815939,
+        ],
+        "endPoint": Array [
+          1,
+          0,
+        ],
+        "locations": undefined,
+        "startPoint": Array [
+          0,
+          1,
+        ],
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <ActivityIndicator
+    animating={true}
+    color="#fefefe"
+    hidesWhenStopped={true}
+    size={24}
+  />
+</View>
+`;
+
+exports[`Button renders with raw text as child 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  nativeBackgroundAndroid={
+    Object {
+      "borderless": true,
+      "color": -9188158,
+      "type": "RippleAndroid",
+    }
+  }
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "elevation": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 5,
+        "marginTop": 5,
+        "minHeight": 55,
+        "minWidth": 150,
+        "padding": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "shadowColor": "#1B998B",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.75,
+        "shadowRadius": 3,
+      },
+      Object {},
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    proxiedProperties={
+      Object {
+        "borderRadii": Array [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
+        "colors": Array [
+          -14968437,
+          -11815939,
+        ],
+        "endPoint": Array [
+          1,
+          0,
+        ],
+        "locations": undefined,
+        "startPoint": Array [
+          0,
+          1,
+        ],
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fefefe",
+          "fontFamily": "apercu",
+          "fontSize": 20,
+          "marginBottom": 1,
+          "marginTop": 1,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    Press Me
+  </Text>
+</View>
+`;
+
+exports[`Button renders with text element as child 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  isTVSelectable={true}
+  nativeBackgroundAndroid={
+    Object {
+      "borderless": true,
+      "color": -9188158,
+      "type": "RippleAndroid",
+    }
+  }
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 8,
+        "elevation": 2,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginBottom": 5,
+        "marginTop": 5,
+        "minHeight": 55,
+        "minWidth": 150,
+        "padding": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "shadowColor": "#1B998B",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.75,
+        "shadowRadius": 3,
+      },
+      Object {},
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    proxiedProperties={
+      Object {
+        "borderRadii": Array [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+        ],
+        "colors": Array [
+          -14968437,
+          -11815939,
+        ],
+        "endPoint": Array [
+          1,
+          0,
+        ],
+        "locations": undefined,
+        "startPoint": Array [
+          0,
+          1,
+        ],
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fefefe",
+          "fontFamily": "apercu",
+          "fontSize": 20,
+          "marginBottom": 1,
+          "marginTop": 1,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    Press Me
+  </Text>
+</View>
+`;
