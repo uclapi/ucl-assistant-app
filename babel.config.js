@@ -3,7 +3,9 @@
 module.exports = (api) => {
   api.cache(true)
 
-  const plugins = []
+  const plugins = [
+    "dynamic-import-node"
+  ]
 
   return {
     plugins,
