@@ -6,7 +6,7 @@ import React from "react"
 import { Platform, StatusBar, View } from "react-native"
 import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
-import { PersistGate } from "redux-persist/es/integration/react"
+import { PersistGate } from "redux-persist/lib/integration/react"
 
 import configureStore from "./configureStore"
 import Colors from './constants/Colors'
@@ -34,6 +34,7 @@ class App extends React.Component<Props, State> {
   notificationSubscription = null
 
   routeNameRef = null
+
   navigationRef = null
 
   static propTypes = {

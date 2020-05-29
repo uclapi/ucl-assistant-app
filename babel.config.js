@@ -5,10 +5,21 @@ module.exports = (api) => {
 
   const plugins = []
 
+  const presets = [
+    `babel-preset-expo`,
+  ]
+
   return {
     plugins,
-    presets: [
-      `babel-preset-expo`,
-    ],
+    presets,
+    env: {
+      test: {
+        presets,
+        plugins: [
+          ...plugins,
+          "dynamic-import-node"
+        ]
+      }
+    }
   }
 }
