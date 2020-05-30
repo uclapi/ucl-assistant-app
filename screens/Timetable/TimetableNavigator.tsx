@@ -20,8 +20,16 @@ const Stack = createStackNavigator<TimetableNavigatorParamList>()
 
 const TimetableNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="TimetableScreen" component={TimetableScreen} />
-    <Stack.Screen name="TimetableDetail" component={TimetableDetailScreen} />
+    <Stack.Screen
+      options={{ headerShown: false }}
+      name="TimetableScreen"
+      component={TimetableScreen}
+    />
+    <Stack.Screen
+      name="TimetableDetail"
+      component={TimetableDetailScreen}
+      options={{ title: `` }}
+    />
   </Stack.Navigator>
 )
 

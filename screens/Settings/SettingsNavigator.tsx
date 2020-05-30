@@ -15,8 +15,16 @@ const Stack = createStackNavigator<SettingsNavigatorParamList>()
 
 const SettingsNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="FAQ" component={FAQScreen} />
-    <Stack.Screen name="Settings" component={SettingsScreen} />
+    <Stack.Screen
+      name="FAQ"
+      options={{ title: `` }}
+      component={FAQScreen}
+    />
+    <Stack.Screen
+      options={{ headerShown: false }}
+      name="Settings"
+      component={SettingsScreen}
+    />
   </Stack.Navigator>
 )
 
