@@ -2,7 +2,7 @@ import DateTimerPicker from "@react-native-community/datetimepicker"
 import PropTypes from "prop-types"
 import React from "react"
 import { momentObj } from "react-moment-proptypes"
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform, Modal, View } from 'react-native'
 
 import Button, { RoundButton } from "../../../../components/Button"
 import { Horizontal } from "../../../../components/Containers"
@@ -63,14 +63,44 @@ class DateControls extends React.Component {
         />
         {
           isDatePickerVisible
-            ? (
-              <DateTimerPicker
-                mode="date"
-                display="calendar"
-                onChange={this.onDatePickerAction}
-                value={date.toDate()}
-                locale="en-GB"
-              />
+            ? (Platform.OS === `ios`?
+              (
+                <Modal
+                  animationType="fade"
+                  transparent
+                  presentationStyle="overFullScreen"
+                  visible
+                >
+                  <View
+                    style={{
+                      flex: 1,
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+      alignItems: `center`
+                    }}
+                  >
+                    <View style={{ alignItems: 'center' }}>
+        <Button onPress={this.onDatePickerAction}>Done</Button>
+      </View>
+                  <DateTimerPicker
+                  mode="date"
+                  display="calendar"
+                  onChange={this.onDatePickerAction}
+                  value={date.toDate()}
+                  locale="en-GB"
+                  style={{width: `100%`}}
+                />
+                  </View>
+                </Modal>
+              ) : (
+                <DateTimerPicker
+                  mode="date"
+                  display="calendar"
+                  onChange={this.onDatePickerAction}
+                  value={date.toDate()}
+                  locale="en-GB"
+                />
+              )
             ) : null
         }
 
