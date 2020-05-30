@@ -1,8 +1,9 @@
-import DateTimerPicker from "@react-native-community/datetimepicker"
+import DateTimerPicker, {
+  Event,
+} from "@react-native-community/datetimepicker"
 import { BlurView } from "expo-blur"
-import PropTypes from "prop-types"
+import { Moment } from "moment"
 import React from "react"
-import { momentObj } from "react-moment-proptypes"
 import {
   Modal, Platform, StyleSheet, View,
 } from 'react-native'
@@ -26,48 +27,50 @@ const styles = StyleSheet.create({
   },
 })
 
-class DateControls extends React.Component {
-  static propTypes = {
-    date: momentObj,
-    onDateChanged: PropTypes.func,
-    onIndexChanged: PropTypes.func,
-  }
+interface Props {
+  date: Moment,
+  onDateChanged: (date: Moment) => undefined,
+  onIndexChanged: (change: number) => undefined,
+}
 
-  static defaultProps = {
-    date: LocalisationManager.getMoment().startOf(`week`),
-    onDateChanged: () => { },
-    onIndexChanged: () => { },
-  }
+interface State {
+  isDatePickerVisible: boolean,
+}
 
-  constructor(props) {
+class DateControls extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       isDatePickerVisible: false,
     }
   }
 
-  dismissDatePicker = () => this.setState({ isDatePickerVisible: false })
+  dismissDatePicker = (): void => this.setState({ isDatePickerVisible: false })
 
-  onDatePickerAction = ({ type, nativeEvent: { timestamp } }) => {
+  onDatePickerAction = (
+    event: Event,
+    date: Date,
+  ): void => {
+    const { type } = event
     if (type === `dismissed`) {
       return this.dismissDatePicker()
     }
     const { onDateChanged } = this.props
-    onDateChanged(LocalisationManager.parseToMoment(timestamp))
+    onDateChanged(LocalisationManager.parseToMoment(date))
 
     if (Platform.OS === `android`) {
       this.dismissDatePicker()
-    } else {
-      return null
     }
+
+    return null
   }
 
-  onIndexChanged = (change) => () => {
+  onIndexChanged = (change: number) => () => {
     const { onIndexChanged } = this.props
     onIndexChanged(change)
   }
 
-  showDatePicker = () => this.setState({ isDatePickerVisible: true })
+  showDatePicker = (): void => this.setState({ isDatePickerVisible: true })
 
   renderDatePicker = () => {
     const { isDatePickerVisible } = this.state

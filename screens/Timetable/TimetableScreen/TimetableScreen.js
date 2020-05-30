@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons"
 import ViewPager from '@react-native-community/viewpager'
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import { Moment } from 'moment'
+import React from "react"
 import {
   AppState,
   Platform,
@@ -44,7 +44,24 @@ const styles = StyleSheet.create({
 
 const today = LocalisationManager.getMoment()
 
-class TimetableScreen extends Component {
+interface Props {
+  error: string,
+  fetchTimetable: (token: string, date: Moment) => null,
+  isFetchingTimetable: boolean,
+  navigation: any,
+  setExpoPushToken: (pushToken: string) => void,
+  timetable: any,
+  user: any,
+  signOut: () => void,
+}
+
+interface State {
+  appState: string,
+  currentIndex: number,
+  date: Moment,
+}
+
+class TimetableScreen extends React.Component<Props, State> {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -72,16 +89,6 @@ class TimetableScreen extends Component {
     ),
     signOut: () => dispatch(signOutAction()),
   })
-
-  static propTypes = {
-    error: PropTypes.string,
-    fetchTimetable: PropTypes.func,
-    isFetchingTimetable: PropTypes.bool,
-    navigation: PropTypes.shape().isRequired,
-    setExpoPushToken: PropTypes.func,
-    timetable: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape())),
-    user: PropTypes.shape(),
-  }
 
   static defaultProps = {
     error: ``,

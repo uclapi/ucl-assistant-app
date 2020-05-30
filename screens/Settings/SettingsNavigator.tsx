@@ -1,7 +1,7 @@
 import {
   createStackNavigator,
 } from '@react-navigation/stack'
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import FAQScreen from "./FAQScreen"
 import SettingsScreen from "./SettingsScreen"
@@ -13,7 +13,7 @@ type SettingsNavigatorParamList = {
 
 const Stack = createStackNavigator<SettingsNavigatorParamList>()
 
-const SettingsNavigator = () => (
+const SettingsNavigator = (): ReactElement => (
   <Stack.Navigator initialRouteName="Settings">
     <Stack.Screen
       name="FAQ"

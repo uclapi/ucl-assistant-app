@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import {
   Image,
   StyleSheet,
   View,
+  ViewStyle,
 } from 'react-native'
 
 import { CentredText } from "../../../../components/Typography"
 import { AssetManager, Random } from "../../../../lib"
-import Styles from "../../../../styles/Containers"
 
 
 const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ const relaxIllustration = Random.array([
   AssetManager.undraw.relaxingAtHome,
 ])
 
-const FreeWeek = ({ style }) => (
+const FreeWeek = ({ style }: { style?: ViewStyle, }): ReactElement => (
   <View style={[styles.container, style]}>
     <CentredText>
       Nothing scheduled this week.
