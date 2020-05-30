@@ -203,7 +203,7 @@ class TimetableScreen extends Component {
       return null
     }
 
-    const newDate = LocalisationManager.parseToMoment(
+    const newDate = LocalisationManager.parseToMoment( // sets date to Monday
       timetable[index][0].dateISO,
     )
 
@@ -273,6 +273,7 @@ class TimetableScreen extends Component {
     }
 
     const { navigation, isFetchingTimetable } = this.props
+    const { date } = this.state
 
     return (
       <WeekView
@@ -283,6 +284,7 @@ class TimetableScreen extends Component {
         isLoading={isFetchingTimetable}
         onDateChanged={this.onDateChanged}
         onIndexChanged={this.onIndexChanged}
+        date={date}
       />
     )
   }

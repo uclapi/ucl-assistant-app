@@ -86,7 +86,6 @@ class DateControls extends React.Component {
           <BlurView style={styles.modal} intensity={100}>
             <DateTimerPicker
               mode="date"
-              display="calendar"
               onChange={this.onDatePickerAction}
               value={date.toDate()}
               locale="en-GB"
@@ -106,7 +105,6 @@ class DateControls extends React.Component {
           display="calendar"
           onChange={this.onDatePickerAction}
           value={date.toDate()}
-          locale="en-GB"
         />
       )
     }
