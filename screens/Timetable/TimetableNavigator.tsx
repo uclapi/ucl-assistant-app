@@ -7,7 +7,7 @@ import TimetableDetailScreen from "./TimetableDetailScreen"
 import TimetableScreen from "./TimetableScreen"
 
 type TimetableNavigatorParamList = {
-  TimetableScreen: undefined,
+  Timetable: undefined,
   TimetableDetail: {
     code: string,
     date: string,
@@ -19,10 +19,10 @@ type TimetableNavigatorParamList = {
 const Stack = createStackNavigator<TimetableNavigatorParamList>()
 
 const TimetableNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Timetable">
     <Stack.Screen
       options={{ headerShown: false }}
-      name="TimetableScreen"
+      name="Timetable"
       component={TimetableScreen}
     />
     <Stack.Screen

@@ -14,7 +14,7 @@ type SettingsNavigatorParamList = {
 const Stack = createStackNavigator<SettingsNavigatorParamList>()
 
 const SettingsNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Settings">
     <Stack.Screen
       name="FAQ"
       options={{ title: `` }}
