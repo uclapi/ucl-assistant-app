@@ -2,12 +2,12 @@ import PropTypes from "prop-types"
 import React, { Component } from "react"
 import { StyleSheet, View } from "react-native"
 
-import { Page } from "../../components/Containers"
+import { Page } from "../../../components/Containers"
 import {
   BodyText,
   Link,
-} from "../../components/Typography"
-import WebBrowserManager from "../../lib/WebBrowserManager"
+} from "../../../components/Typography"
+import WebBrowserManager from "../../../lib/WebBrowserManager"
 import FAQ from './FAQ'
 
 const styles = StyleSheet.create({
@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
 })
 
 class FAQScreen extends Component {
+  static navigationOptions = {
+    title: `FAQs`,
+  }
+
   static propTypes = () => ({
     navigation: PropTypes.shape().isRequired,
   })
@@ -35,10 +39,6 @@ class FAQScreen extends Component {
   openSettings = () => {
     const { navigation } = this.props
     navigation.navigate(`Settings`)
-  }
-
-  static navigationOptions = {
-    title: `FAQs`,
   }
 
   render() {

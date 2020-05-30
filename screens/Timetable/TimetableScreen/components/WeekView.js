@@ -83,7 +83,12 @@ class WeekView extends React.Component {
 
   openFAQ = () => {
     const { navigation } = this.props
-    navigation.navigate(`FAQ`)
+    navigation.navigate(`Main`, {
+      params: {
+        screen: `FAQ`,
+      },
+      screen: `Settings`,
+    })
     return null
   }
 

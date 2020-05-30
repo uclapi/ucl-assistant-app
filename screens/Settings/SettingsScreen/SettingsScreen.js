@@ -19,20 +19,20 @@ import { connect } from "react-redux"
 import {
   setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
   signOut as signOutAction,
-} from "../../actions/userActions"
-import { SmallButton } from "../../components/Button"
-import { Horizontal, Page } from "../../components/Containers"
-import TextInput from "../../components/Input/TextInput"
+} from "../../../actions/userActions"
+import { SmallButton } from "../../../components/Button"
+import { Horizontal, Page } from "../../../components/Containers"
+import TextInput from "../../../components/Input/TextInput"
 // import NotificationSwitch from "./NotificationSwitch"
-import LiveIndicator from "../../components/LiveIndicator"
+import LiveIndicator from "../../../components/LiveIndicator"
 import {
   BodyText,
   HeaderText,
   Link,
-} from "../../components/Typography"
-import { AnalyticsManager, MailManager } from "../../lib"
-import * as packageJson from '../../package.json'
-import common from "../../styles/common"
+} from "../../../components/Typography"
+import { AnalyticsManager, MailManager } from "../../../lib"
+import * as packageJson from '../../../package.json'
+import common from "../../../styles/common"
 
 const {
   repository: {
@@ -282,12 +282,12 @@ export class SettingsScreen extends Component {
             {__DEV__ ? (
               <LiveIndicator>Developer Mode</LiveIndicator>
             ) : (
-                <>
-                  <BodyText>Release Channel: </BodyText>
-                  <LiveIndicator>
-                    {Constants.manifest.releaseChannel || `dev`}
-                  </LiveIndicator>
-                </>
+              <>
+                <BodyText>Release Channel: </BodyText>
+                <LiveIndicator>
+                  {Constants.manifest.releaseChannel || `dev`}
+                </LiveIndicator>
+              </>
             )}
           </Horizontal>
           <Link

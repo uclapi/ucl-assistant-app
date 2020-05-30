@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack"
 import React from 'react'
 import { connect } from "react-redux"
 
-import FAQScreen from "../screens/FAQScreen"
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
 import NotificationsScreen from "../screens/NotificationsScreen"
 import PersonDetailScreen from "../screens/PersonDetailScreen"
@@ -29,10 +28,6 @@ export const RootNavigatorComponent = ({
   const screens = isLoggedIn
     ? (
       <>
-        <Stack.Screen
-          name="FAQ"
-          component={FAQScreen}
-        />
         <Stack.Screen
           name="LiveSeatingMap"
           component={LiveSeatingMapScreen}

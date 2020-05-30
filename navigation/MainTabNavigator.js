@@ -5,7 +5,7 @@ import React from "react"
 import Colors from "../constants/Colors"
 import PeopleScreen from "../screens/PeopleScreen"
 import RoomsScreen from "../screens/RoomsScreen"
-import SettingsScreen from "../screens/SettingsScreen"
+import SettingsNavigator from "../screens/Settings"
 import StudySpacesScreen from "../screens/StudySpacesScreen"
 import TimetableNavigator from "../screens/Timetable"
 
@@ -15,23 +15,23 @@ const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused }) => {
     let iconName
     switch (route.name) {
-    case `Timetable`:
-      iconName = `calendar`
-      break
-    case `StudySpaces`:
-      iconName = `book`
-      break
-    case `People`:
-      iconName = `users`
-      break
-    case `Rooms`:
-      iconName = `map-pin`
-      break
-    case `Settings`:
-      iconName = `settings`
-      break
-    default:
-      iconName = `info`
+      case `Timetable`:
+        iconName = `calendar`
+        break
+      case `StudySpaces`:
+        iconName = `book`
+        break
+      case `People`:
+        iconName = `users`
+        break
+      case `Rooms`:
+        iconName = `map-pin`
+        break
+      case `Settings`:
+        iconName = `settings`
+        break
+      default:
+        iconName = `info`
     }
     return (
       <Feather
@@ -95,7 +95,7 @@ const MainTabNavigator = () => (
     />
     <Tab.Screen
       name="Settings"
-      component={SettingsScreen}
+      component={SettingsNavigator}
     />
   </Tab.Navigator>
 )

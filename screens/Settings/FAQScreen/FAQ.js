@@ -2,9 +2,9 @@ import PropTypes from "prop-types"
 import React from 'react'
 import { StyleSheet, View } from "react-native"
 
-import Button from "../../components/Button"
-import Colors from "../../constants/Colors"
-import { Shadow } from "../../lib"
+import Button from "../../../components/Button"
+import Colors from "../../../constants/Colors"
+import { Shadow } from "../../../lib"
 
 const styles = StyleSheet.create({
   answerContainer: {
