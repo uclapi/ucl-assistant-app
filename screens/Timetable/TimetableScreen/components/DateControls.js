@@ -46,18 +46,19 @@ class DateControls extends React.Component {
     }
   }
 
+  dismissDatePicker = () => this.setState({ isDatePickerVisible: false })
+
   onDatePickerAction = ({ type, nativeEvent: { timestamp } }) => {
     if (type === `dismissed`) {
-      this.setState({ isDatePickerVisible: false })
-    } else {
-      const { onDateChanged } = this.props
-      onDateChanged(LocalisationManager.parseToMoment(timestamp))
+      return this.dismissDatePicker()
+    }
+    const { onDateChanged } = this.props
+    onDateChanged(LocalisationManager.parseToMoment(timestamp))
 
-      if (Platform.OS === `android`) {
-        this.setState({ isDatePickerVisible: false })
-      } else {
-        return null
-      }
+    if (Platform.OS === `android`) {
+      this.dismissDatePicker()
+    } else {
+      return null
     }
   }
 
@@ -92,7 +93,7 @@ class DateControls extends React.Component {
               style={styles.iosPicker}
             />
             <View style={styles.buttonContainer}>
-              <Button onPress={this.onDatePickerAction}>Done</Button>
+              <Button onPress={this.dismissDatePicker}>Done</Button>
             </View>
           </BlurView>
         </Modal>
