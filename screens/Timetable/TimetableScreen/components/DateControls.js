@@ -1,17 +1,28 @@
 import DateTimerPicker from "@react-native-community/datetimepicker"
+import { BlurView } from "expo-blur"
 import PropTypes from "prop-types"
 import React from "react"
 import { momentObj } from "react-moment-proptypes"
-import { StyleSheet, Platform, Modal, View } from 'react-native'
+import {
+  Modal, Platform, StyleSheet, View,
+} from 'react-native'
 
 import Button, { RoundButton } from "../../../../components/Button"
 import { Horizontal } from "../../../../components/Containers"
 import { LocalisationManager } from "../../../../lib"
 
 const styles = StyleSheet.create({
+  buttonContainer: { alignItems: `center` },
   dateControls: {
     justifyContent: `space-around`,
     width: `100%`,
+  },
+  iosPicker: { width: `100%` },
+  modal: {
+    alignItems: `center`,
+    backgroundColor: `#fff`,
+    flex: 1,
+    justifyContent: `center`,
   },
 })
 
@@ -41,7 +52,12 @@ class DateControls extends React.Component {
     } else {
       const { onDateChanged } = this.props
       onDateChanged(LocalisationManager.parseToMoment(timestamp))
-      this.setState({ isDatePickerVisible: false })
+
+      if (Platform.OS === `android`) {
+        this.setState({ isDatePickerVisible: false })
+      } else {
+        return null
+      }
     }
   }
 
@@ -52,58 +68,58 @@ class DateControls extends React.Component {
 
   showDatePicker = () => this.setState({ isDatePickerVisible: true })
 
-  render() {
-    const { date } = this.props
+  renderDatePicker = () => {
     const { isDatePickerVisible } = this.state
+    if (!isDatePickerVisible) {
+      return null
+    }
+    const { date } = this.props
+    if (Platform.OS === `ios`) {
+      return (
+        <Modal
+          animationType="fade"
+          transparent
+          presentationStyle="overFullScreen"
+          visible
+        >
+          <BlurView style={styles.modal} intensity={100}>
+            <DateTimerPicker
+              mode="date"
+              display="calendar"
+              onChange={this.onDatePickerAction}
+              value={date.toDate()}
+              locale="en-GB"
+              style={styles.iosPicker}
+            />
+            <View style={styles.buttonContainer}>
+              <Button onPress={this.onDatePickerAction}>Done</Button>
+            </View>
+          </BlurView>
+        </Modal>
+      )
+    }
+    if (Platform.OS === `android`) {
+      return (
+        <DateTimerPicker
+          mode="date"
+          display="calendar"
+          onChange={this.onDatePickerAction}
+          value={date.toDate()}
+          locale="en-GB"
+        />
+      )
+    }
+    return null
+  }
+
+  render() {
     return (
       <Horizontal style={styles.dateControls}>
         <RoundButton
           onPress={this.onIndexChanged(-1)}
           icon="chevron-left"
         />
-        {
-          isDatePickerVisible
-            ? (Platform.OS === `ios`?
-              (
-                <Modal
-                  animationType="fade"
-                  transparent
-                  presentationStyle="overFullScreen"
-                  visible
-                >
-                  <View
-                    style={{
-                      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center',
-      alignItems: `center`
-                    }}
-                  >
-                    <View style={{ alignItems: 'center' }}>
-        <Button onPress={this.onDatePickerAction}>Done</Button>
-      </View>
-                  <DateTimerPicker
-                  mode="date"
-                  display="calendar"
-                  onChange={this.onDatePickerAction}
-                  value={date.toDate()}
-                  locale="en-GB"
-                  style={{width: `100%`}}
-                />
-                  </View>
-                </Modal>
-              ) : (
-                <DateTimerPicker
-                  mode="date"
-                  display="calendar"
-                  onChange={this.onDatePickerAction}
-                  value={date.toDate()}
-                  locale="en-GB"
-                />
-              )
-            ) : null
-        }
-
+        {this.renderDatePicker()}
         <Button onPress={this.showDatePicker}>
           Jump To Date
         </Button>
