@@ -3,7 +3,6 @@ import {
   Image,
   StyleSheet,
   View,
-  ViewPropTypes,
 } from 'react-native'
 
 import { CentredText } from "../../../../components/Typography"
@@ -34,37 +33,21 @@ const relaxIllustration = Random.array([
   AssetManager.undraw.relaxingAtHome,
 ])
 
-// eslint-disable-next-line react/prefer-stateless-function
-class FreeWeek extends React.Component {
-  static propTypes = {
-    style: ViewPropTypes.style,
-  }
-
-  static defaultProps = {
-    style: {},
-  }
-
-  render() {
-    const {
-      style,
-    } = this.props
-    return (
-      <View style={[styles.container, style]}>
-        <CentredText>
-          Nothing scheduled this week.
-        </CentredText>
-        <CentredText>
-          Take it easy!
-        </CentredText>
-        <Image
-          source={relaxIllustration}
-          resizeMethod="scale"
-          style={[Styles.image, styles.timetableImage]}
-          resizeMode="contain"
-        />
-      </View>
-    )
-  }
-}
+const FreeWeek = ({ style }) => (
+  <View style={[styles.container, style]}>
+    <CentredText>
+      Nothing scheduled this week.
+    </CentredText>
+    <CentredText>
+      Take it easy!
+    </CentredText>
+    <Image
+      source={relaxIllustration}
+      resizeMethod="scale"
+      style={[Styles.image, styles.timetableImage]}
+      resizeMode="contain"
+    />
+  </View>
+)
 
 export default FreeWeek
