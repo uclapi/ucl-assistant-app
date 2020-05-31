@@ -1,19 +1,17 @@
+import BodyText from './BodyText'
+import ButtonText from './ButtonText'
+import CardTitleText from './CardTitleText'
+import CentredText from './CentredText'
+import ErrorText from './ErrorText'
 import HeaderText from "./HeaderText"
+import InfoText from './InfoText'
 import Link from "./Link"
+import SearchResultBottomText from './SearchResultBottomText'
+import SearchResultTopText from './SearchResultTopText'
+import SmallButtonText from './SmallButtonText'
+import SubtitleText from './SubtitleText'
 import TitleText from './TitleText'
-import {
-  BodyText,
-  ButtonText,
-  CardTitleText,
-  CentredText,
-  ErrorText,
-  InfoText,
-  SearchResultBottomText,
-  SearchResultTopText,
-  SmallButtonText,
-  SubtitleText,
-  WarningText,
-} from "./Typography"
+import WarningText from './WarningText'
 
 export {
   TitleText,
