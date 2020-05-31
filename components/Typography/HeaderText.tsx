@@ -1,24 +1,23 @@
-import PropTypes from "prop-types"
 import React from "react"
 import {
-  Text,
+  Text, TextStyle,
 } from "react-native"
 
 import Style from "../../styles/Typography"
 
-const propTypes = {
-  children: PropTypes.node,
-  style: Text.propTypes.style,
-}
 const defaultProps = {
-  children: ``,
+  children: <></>,
   style: {},
 }
 
-const HeaderText = ({ children, style }) => (
+interface Props {
+  children: React.ReactElement,
+  style: TextStyle,
+}
+
+const HeaderText: React.FunctionComponent<Props> = ({ children, style }) => (
   <Text style={[Style.headerText, style]}>{children}</Text>
 )
-HeaderText.propTypes = propTypes
 HeaderText.defaultProps = defaultProps
 
 export default HeaderText

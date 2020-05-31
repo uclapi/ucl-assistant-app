@@ -18,12 +18,6 @@ const defaultProps = {
   style: {},
 }
 
-export const TitleText = ({ children, style }) => (
-  <Text style={[Style.titleText, style]}>{children}</Text>
-)
-TitleText.propTypes = propTypes
-TitleText.defaultProps = defaultProps
-
 export const SubtitleText = ({ children, style }) => (
   <Text style={[Style.subtitleText, style]}>{children}</Text>
 )
@@ -84,10 +78,10 @@ WarningText.defaultProps = { ...defaultProps, icon: `info` }
 export const InfoText = ({
   children, icon, style, containerStyle,
 }) => (
-    <Horizontal style={[Style.infoTextContainer, containerStyle]}>
-      <Feather size={18} color={Colors.infoColor} name={icon} />
-      <Text style={[Style.infoText, style]}>{children}</Text>
-    </Horizontal>
+  <Horizontal style={[Style.infoTextContainer, containerStyle]}>
+    <Feather size={18} color={Colors.infoColor} name={icon} />
+    <Text style={[Style.infoText, style]}>{children}</Text>
+  </Horizontal>
 )
 InfoText.propTypes = { ...propTypes, containerStyle: ViewPropTypes.style, icon: PropTypes.string }
 InfoText.defaultProps = { ...defaultProps, containerStyle: {}, icon: `info` }

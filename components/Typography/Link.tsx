@@ -1,10 +1,10 @@
-import PropTypes from "prop-types"
 import React from "react"
 import {
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
-  ViewPropTypes,
+  ViewStyle,
 } from "react-native"
 
 import Colors from "../../constants/Colors"
@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
   },
 })
 
-class Link extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-    containerStyle: ViewPropTypes.style,
-    href: PropTypes.string,
-    onPress: PropTypes.func,
-    style: Text.propTypes.style,
-  }
+interface Props {
+  children: React.ReactElement,
+  containerStyle: ViewStyle,
+  href: string,
+  onPress: () => void,
+  style: TextStyle,
+}
 
+class Link extends React.Component<Props> {
   static defaultProps = {
     children: ``,
     containerStyle: {},
@@ -34,14 +34,14 @@ class Link extends React.Component {
     style: {},
   }
 
-  openLink = () => {
+  openLink = (): void => {
     const { href } = this.props
     if (href) {
       WebBrowserManager.openLink(href)
     }
   }
 
-  render() {
+  render(): React.ReactElement {
     const {
       children,
       containerStyle,

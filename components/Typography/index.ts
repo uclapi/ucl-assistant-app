@@ -1,5 +1,6 @@
 import HeaderText from "./HeaderText"
 import Link from "./Link"
+import TitleText from './TitleText'
 import {
   BodyText,
   ButtonText,
@@ -11,7 +12,6 @@ import {
   SearchResultTopText,
   SmallButtonText,
   SubtitleText,
-  TitleText,
   WarningText,
 } from "./Typography"
 
