@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
-  children: React.ReactElement,
-  containerStyle: ViewStyle,
-  href: string,
-  onPress: () => void,
-  style: TextStyle,
+  children: React.ReactElement | string,
+  containerStyle?: ViewStyle,
+  href?: string,
+  onPress?: () => void,
+  style?: TextStyle,
 }
 
 class Link extends React.Component<Props> {

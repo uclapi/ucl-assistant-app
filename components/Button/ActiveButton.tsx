@@ -14,14 +14,14 @@ import Styles from "../../styles/Button"
 import { defaultProps } from "./props"
 
 interface WrapperProps {
-  children: any,
-  disabled: boolean,
-  loading: boolean,
+  children: React.ReactNode,
+  disabled?: boolean,
+  loading?: boolean,
   onPress: (event: GestureResponderEvent) => void,
-  style: ViewStyle,
+  style?: ViewStyle,
 }
 
-class Wrapper extends React.Component<WrapperProps, {}> {
+class Wrapper extends React.Component<WrapperProps> {
   debouncedOnPress = _.debounce((event) => {
     const { onPress } = this.props
     onPress(event)
@@ -61,16 +61,16 @@ class Wrapper extends React.Component<WrapperProps, {}> {
   }
 }
 
-interface ActiveButtonProps {
-  onPress: Function,
-  style: ViewStyle,
-  children: any,
-  disabled: boolean,
+export interface ActiveButtonProps {
+  onPress: (event: GestureResponderEvent) => void,
+  style?: ViewStyle,
+  children: React.ReactNode,
+  disabled?: boolean,
 }
 
-const ActiveButton = ({
+const ActiveButton: React.FC<ActiveButtonProps> = ({
   onPress, style, children, disabled,
-}): React.Component<ActiveButtonProps> => (
+}) => (
     <Wrapper onPress={onPress} disabled={disabled}>
       <LinearGradient
         colors={[Colors.accentColor, Colors.buttonBackground]}
@@ -82,7 +82,5 @@ const ActiveButton = ({
       </LinearGradient>
     </Wrapper>
   )
-
-ActiveButton.defaultProps = defaultProps
 
 export default ActiveButton

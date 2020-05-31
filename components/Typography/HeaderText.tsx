@@ -5,19 +5,13 @@ import {
 
 import Style from "../../styles/Typography"
 
-const defaultProps = {
-  children: <></>,
-  style: {},
-}
-
 interface Props {
-  children: React.ReactElement,
-  style: TextStyle,
+  children: React.ReactElement | string,
+  style?: TextStyle,
 }
 
 const HeaderText: React.FunctionComponent<Props> = ({ children, style }) => (
   <Text style={[Style.headerText, style]}>{children}</Text>
 )
-HeaderText.defaultProps = defaultProps
 
 export default HeaderText

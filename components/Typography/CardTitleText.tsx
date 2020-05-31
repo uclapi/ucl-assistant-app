@@ -7,10 +7,10 @@ import Style from "../../styles/Typography"
 
 
 interface Props {
-  containerStyle: ViewStyle,
-  style: TextStyle,
-  viewStyle: ViewStyle,
-  children: React.ReactElement,
+  containerStyle?: ViewStyle,
+  style?: TextStyle,
+  viewStyle?: ViewStyle,
+  children: React.ReactElement | string,
 }
 
 const CardTitleText: React.FunctionComponent<Props> = ({

@@ -4,17 +4,25 @@ import { ActivityIndicator, Platform } from "react-native"
 import Colors from "../../constants/Colors"
 import Styles from "../../styles/Button"
 import { SmallButtonText } from "../Typography"
-import ActiveButton from "./ActiveButton"
+import ActiveButton, { ActiveButtonProps } from "./ActiveButton"
 import DisabledButton from "./DisabledButton"
 
-interface Props {
-  loading: boolean,
-  disabled: boolean,
+// https://github.com/microsoft/TypeScript/issues/29331
+// eslint-disable-next-line quotes
+interface Props extends Omit<ActiveButtonProps, "children"> {
+  loading?: boolean,
+  children: React.ReactNode,
 }
 
 const SmallButton: React.FC<Props> = (props) => {
-  const { loading, disabled } = props
-  let { children } = props
+  let {
+    children,
+  } = props
+  const {
+    loading,
+    disabled,
+    ...otherProps
+  } = props
   const buttonSize = Platform.OS === `android` ? 24 : 1
   if (loading) {
     children = (
@@ -26,13 +34,13 @@ const SmallButton: React.FC<Props> = (props) => {
   }
   if (disabled) {
     return (
-      <DisabledButton {...props} style={Styles.smallButton}>
+      <DisabledButton {...otherProps} style={Styles.smallButton}>
         {children}
       </DisabledButton>
     )
   }
   return (
-    <ActiveButton {...props} style={Styles.smallButton}>
+    <ActiveButton {...otherProps} style={Styles.smallButton}>
       {children}
     </ActiveButton>
   )

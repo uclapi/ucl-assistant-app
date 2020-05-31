@@ -1,11 +1,16 @@
 import React from "react"
-import { TouchableNativeFeedback, View } from "react-native"
+import { TouchableNativeFeedback, View, ViewStyle } from "react-native"
 
 import Styles from "../../styles/Button"
-import { defaultProps, propTypes } from "./props"
 
-const DisabledButton = ({
-  style, children,
+interface DisabledButtonProps {
+  style: ViewStyle,
+  children: React.ReactNode,
+}
+
+const DisabledButton: React.FC<DisabledButtonProps> = ({
+  style,
+  children,
 }) => (
     <TouchableNativeFeedback
       background={TouchableNativeFeedback.SelectableBackground()}
@@ -16,8 +21,5 @@ const DisabledButton = ({
       <View style={[Styles.button, Styles.disabled, style]}>{children}</View>
     </TouchableNativeFeedback>
 )
-
-DisabledButton.propTypes = propTypes
-DisabledButton.defaultProps = defaultProps
 
 export default DisabledButton

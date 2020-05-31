@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import PropTypes from "prop-types"
-import { Horizontal } from "../../Containers"
+
 import { SmallButton } from "../../Button"
+import { Horizontal } from "../../Containers"
 import TextInput from "../TextInput"
 
 const styles = StyleSheet.create({
@@ -12,8 +12,18 @@ const styles = StyleSheet.create({
   },
 })
 
-const SearchInput = ({
-  query, clear, onChangeQuery, placeholder,
+interface Props {
+  query: string,
+  clear: () => void,
+  onChangeQuery: () => void,
+  placeholder?: string,
+}
+
+const SearchInput: React.FunctionComponent<Props> = ({
+  query = ``,
+  clear = () => { },
+  onChangeQuery = () => { },
+  placeholder = `Search`,
 }) => (
     <Horizontal>
       <TextInput
@@ -28,19 +38,5 @@ const SearchInput = ({
       ) : null}
     </Horizontal>
 )
-
-SearchInput.propTypes = {
-  query: PropTypes.string,
-  clear: PropTypes.func,
-  placeholder: PropTypes.string,
-  onChangeQuery: PropTypes.func,
-}
-
-SearchInput.defaultProps = {
-  query: ``,
-  clear: () => { },
-  placeholder: `Search`,
-  onChangeQuery: () => { },
-}
 
 export default SearchInput

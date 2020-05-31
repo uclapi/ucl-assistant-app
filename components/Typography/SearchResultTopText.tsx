@@ -4,8 +4,8 @@ import { Text, TextStyle } from 'react-native'
 import Style from "../../styles/Typography"
 
 interface Props {
-  style: TextStyle,
-  children: React.ReactElement,
+  style?: TextStyle,
+  children: React.ReactElement | string,
 }
 
 const SearchResultTopText: React.FunctionComponent<Props> = ({

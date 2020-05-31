@@ -10,9 +10,9 @@ import { Horizontal } from "../Containers"
 
 
 interface Props {
-  containerStyle: ViewStyle,
-  style: TextStyle,
-  children: React.ReactElement,
+  containerStyle?: ViewStyle,
+  style?: TextStyle,
+  children: React.ReactElement | string,
   icon?: string,
 }
 

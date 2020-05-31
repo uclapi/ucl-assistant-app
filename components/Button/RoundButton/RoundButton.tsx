@@ -1,3 +1,4 @@
+
 import { Feather } from "@expo/vector-icons"
 import React from "react"
 import { ActivityIndicator, Platform } from "react-native"
@@ -5,10 +6,19 @@ import { ActivityIndicator, Platform } from "react-native"
 import Colors from "../../../constants/Colors"
 import ActiveButton from "./ActiveButton"
 import DisabledButton from "./DisabledButton"
-import { defaultProps, propTypes } from "./props"
 
-const RoundButton = (props) => {
-  const { icon, loading, disabled } = props
+export interface RoundButtonProps {
+  icon: string,
+  loading: boolean,
+  disabled: boolean,
+}
+
+const RoundButton: React.FC<RoundButtonProps> = ({
+  icon = `info`,
+  loading = false,
+  disabled = false,
+  ...otherProps
+}) => {
   const buttonSize = Platform.OS === `android` ? 24 : 16
   let child = (
     <Feather size={buttonSize} name={icon} color={Colors.pageBackground} />
@@ -19,12 +29,9 @@ const RoundButton = (props) => {
     )
   }
   if (disabled) {
-    return <DisabledButton {...props}>{child}</DisabledButton>
+    return <DisabledButton {...otherProps}>{child}</DisabledButton>
   }
-  return <ActiveButton {...props}>{child}</ActiveButton>
+  return <ActiveButton {...otherProps}>{child}</ActiveButton>
 }
-
-RoundButton.propTypes = propTypes
-RoundButton.defaultProps = defaultProps
 
 export default RoundButton
