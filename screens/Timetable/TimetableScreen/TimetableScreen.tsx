@@ -18,6 +18,7 @@ import {
 } from "../../../actions/userActions"
 import { PageNoScroll } from "../../../components/Containers"
 import { ErrorMessage } from '../../../components/Message'
+import { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import {
   TIMETABLE_CACHE_TIME_HOURS,
@@ -73,7 +74,7 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
     ),
   }
 
-  static mapStateToProps = (state) => ({
+  static mapStateToProps = (state: AppStateType) => ({
     error: state.timetable.error,
     isFetchingTimetable: state.timetable.isFetching,
     timetable: weeklyTimetableArraySelector(state),

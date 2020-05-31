@@ -1,9 +1,10 @@
 import _ from "lodash"
 import { createSelector } from 'reselect'
 
+import { AppStateType } from '../configureStore'
 import { LocalisationManager } from "../lib"
 
-export const timetableSelector = (state) => state.timetable.weeklyTimetable
+export const timetableSelector = (state: AppStateType) => state.timetable.weeklyTimetable
 
 const padTimetable = (timetable) => {
   const differences = timetable.map(([{ dateISO }], i) => {
@@ -43,7 +44,7 @@ export const weeklyTimetableArraySelector = createSelector(
       ...padTimetable(
         _.chunk(
           Object.entries(timetable)
-            .sort((t1, t2) => (new Date(t1[0]) - new Date(t2[0])))
+            .sort((t1, t2) => ((new Date(t1[0])).getTime() - (new Date(t2[0])).getTime()))
             .map(
               ([
                 dateISO,

@@ -1,13 +1,22 @@
 import { createSelector } from 'reselect'
 
+import { AppStateType } from '../configureStore'
 import { WORKSPACES_SORT_TYPES } from '../constants/studyspacesConstants'
 import ErrorManager from '../lib/ErrorManager'
 
-const studySpacesSelector = (state) => state.studyspaces.studyspaces
-const studySpacesSearchQuerySelector = (state) => state.studyspaces.searchQuery
-const studySpacesSortTypeSelector = (state) => state.studyspaces.sortType
+const studySpacesSelector = (
+  state: AppStateType,
+) => state.studyspaces.studyspaces
+const studySpacesSearchQuerySelector = (
+  state: AppStateType,
+) => state.studyspaces.searchQuery
+const studySpacesSortTypeSelector = (
+  state: AppStateType,
+) => state.studyspaces.sortType
 
-const studySpacesFavouriteIdsSelector = (state) => state.studyspaces.favourites
+const studySpacesFavouriteIdsSelector = (
+  state: AppStateType,
+) => state.studyspaces.favourites
 
 export const matchingStudySpacesSelector = createSelector(
   studySpacesSelector,

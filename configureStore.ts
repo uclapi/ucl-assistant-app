@@ -1,8 +1,7 @@
 import { AsyncStorage } from "react-native"
 import { applyMiddleware, combineReducers, createStore } from "redux"
-import { persistStore } from "redux-persist"
+import { persistReducer, persistStore } from "redux-persist"
 import createSecureStore from "redux-persist-expo-securestore"
-import persistReducer from "redux-persist/lib/persistReducer"
 import thunk from "redux-thunk"
 
 import { SIGN_OUT_USER } from "./constants/userConstants"
@@ -42,10 +41,11 @@ const appReducer = combineReducers({
   ...otherReducers,
 })
 
+export type AppStateType = ReturnType<typeof appReducer>
+
 const rootReducer = (state, action) => appReducer(
   action.type === SIGN_OUT_USER ? undefined : state, action,
 )
-
 
 const persistRootReducer = persistReducer(config, rootReducer)
 
