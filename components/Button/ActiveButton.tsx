@@ -11,7 +11,6 @@ import {
 
 import Colors from "../../constants/Colors"
 import Styles from "../../styles/Button"
-import { defaultProps } from "./props"
 
 interface WrapperProps {
   children: React.ReactNode,
@@ -26,8 +25,6 @@ class Wrapper extends React.Component<WrapperProps> {
     const { onPress } = this.props
     onPress(event)
   }, 200)
-
-  static defaultProps = defaultProps
 
   render() {
     const { children, onPress, disabled } = this.props
@@ -62,7 +59,7 @@ class Wrapper extends React.Component<WrapperProps> {
 }
 
 export interface ActiveButtonProps {
-  onPress: (event: GestureResponderEvent) => void,
+  onPress?: (event: GestureResponderEvent) => void,
   style?: ViewStyle,
   children: React.ReactNode,
   disabled?: boolean,
@@ -81,6 +78,6 @@ const ActiveButton: React.FC<ActiveButtonProps> = ({
         {children}
       </LinearGradient>
     </Wrapper>
-  )
+)
 
 export default ActiveButton

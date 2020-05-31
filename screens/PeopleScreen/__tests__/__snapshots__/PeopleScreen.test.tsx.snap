@@ -12,7 +12,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
           "marginBottom": 2,
           "marginTop": 8,
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -94,7 +94,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 0,
                 "marginTop": 1,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -111,7 +111,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 1,
                 "marginTop": 0,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -196,7 +196,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 0,
                 "marginTop": 1,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -213,7 +213,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 1,
                 "marginTop": 0,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -298,7 +298,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 0,
                 "marginTop": 1,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -315,7 +315,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
                 "marginBottom": 1,
                 "marginTop": 0,
               },
-              Object {},
+              undefined,
             ]
           }
         >
@@ -383,7 +383,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
             "shadowOpacity": 0.75,
             "shadowRadius": 3,
           },
-          Object {},
+          undefined,
         ]
       }
     >
@@ -398,7 +398,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
               "marginTop": 1,
               "textAlign": "center",
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -471,7 +471,7 @@ exports[`renders a SearchControl component 1`] = `
           "marginTop": 5,
           "textAlign": "center",
         },
-        Object {},
+        undefined,
       ]
     }
   >

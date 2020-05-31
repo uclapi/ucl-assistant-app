@@ -44,7 +44,7 @@ exports[`Button renders the disabled state 1`] = `
 exports[`Button renders the loading state 1`] = `
 <View
   accessible={true}
-  focusable={true}
+  focusable={false}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -101,7 +101,7 @@ exports[`Button renders the loading state 1`] = `
           "shadowOpacity": 0.75,
           "shadowRadius": 3,
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -118,7 +118,7 @@ exports[`Button renders the loading state 1`] = `
 exports[`Button renders with raw text as child 1`] = `
 <View
   accessible={true}
-  focusable={true}
+  focusable={false}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -175,7 +175,7 @@ exports[`Button renders with raw text as child 1`] = `
           "shadowOpacity": 0.75,
           "shadowRadius": 3,
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -190,7 +190,7 @@ exports[`Button renders with raw text as child 1`] = `
             "marginTop": 1,
             "textAlign": "center",
           },
-          Object {},
+          undefined,
         ]
       }
     >
@@ -203,7 +203,7 @@ exports[`Button renders with raw text as child 1`] = `
 exports[`Button renders with text element as child 1`] = `
 <View
   accessible={true}
-  focusable={true}
+  focusable={false}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -260,7 +260,7 @@ exports[`Button renders with text element as child 1`] = `
           "shadowOpacity": 0.75,
           "shadowRadius": 3,
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -275,7 +275,7 @@ exports[`Button renders with text element as child 1`] = `
             "marginTop": 1,
             "textAlign": "center",
           },
-          Object {},
+          undefined,
         ]
       }
     >

@@ -11,7 +11,7 @@ exports[`renders a BodyText component 1`] = `
         "marginBottom": 1,
         "marginTop": 1,
       },
-      Object {},
+      undefined,
     ]
   }
 >
@@ -30,7 +30,7 @@ exports[`renders a SubtitleText component 1`] = `
         "marginBottom": 2,
         "marginTop": 8,
       },
-      Object {},
+      undefined,
     ]
   }
 >

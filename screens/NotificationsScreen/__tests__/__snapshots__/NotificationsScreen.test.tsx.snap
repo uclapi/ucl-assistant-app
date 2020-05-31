@@ -167,7 +167,7 @@ Array [
                       "marginBottom": 1,
                       "marginTop": 1,
                     },
-                    Object {},
+                    undefined,
                   ]
                 }
               >
@@ -191,7 +191,7 @@ Array [
                       "marginBottom": 1,
                       "marginTop": 1,
                     },
-                    Object {},
+                    undefined,
                   ]
                 }
               >
@@ -257,7 +257,7 @@ Array [
                       "shadowOpacity": 0.75,
                       "shadowRadius": 3,
                     },
-                    Object {},
+                    undefined,
                   ]
                 }
               >
@@ -272,7 +272,7 @@ Array [
                         "marginTop": 1,
                         "textAlign": "center",
                       },
-                      Object {},
+                      undefined,
                     ]
                   }
                 >

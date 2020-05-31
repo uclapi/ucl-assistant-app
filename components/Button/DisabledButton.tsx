@@ -4,7 +4,7 @@ import { TouchableNativeFeedback, View, ViewStyle } from "react-native"
 import Styles from "../../styles/Button"
 
 interface DisabledButtonProps {
-  style: ViewStyle,
+  style?: ViewStyle,
   children: React.ReactNode,
 }
 

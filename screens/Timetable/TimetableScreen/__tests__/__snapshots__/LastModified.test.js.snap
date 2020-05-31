@@ -56,7 +56,7 @@ exports[`LastUpdated does not show error when data is more recent than date 1`] 
               "marginTop": 5,
               "textAlign": "center",
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -121,7 +121,7 @@ exports[`LastUpdated renders the LastModified component 1`] = `
               "marginTop": 5,
               "textAlign": "center",
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -176,7 +176,7 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
             "marginLeft": 5,
             "marginTop": -1,
           },
-          Object {},
+          undefined,
         ]
       }
     >
@@ -228,7 +228,7 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
               "marginTop": 5,
               "textAlign": "center",
             },
-            Object {},
+            undefined,
           ]
         }
       >

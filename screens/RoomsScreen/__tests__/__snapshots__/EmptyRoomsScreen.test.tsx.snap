@@ -100,7 +100,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -255,7 +255,7 @@ Array [
                           "marginBottom": 0,
                           "marginTop": 1,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -272,7 +272,7 @@ Array [
                           "marginBottom": 1,
                           "marginTop": 0,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -376,7 +376,7 @@ Array [
                           "marginBottom": 0,
                           "marginTop": 1,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -393,7 +393,7 @@ Array [
                           "marginBottom": 1,
                           "marginTop": 0,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -497,7 +497,7 @@ Array [
                           "marginBottom": 0,
                           "marginTop": 1,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -514,7 +514,7 @@ Array [
                           "marginBottom": 1,
                           "marginTop": 0,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -735,7 +735,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -796,7 +796,7 @@ Array [
                     "marginTop": 5,
                     "textAlign": "center",
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -910,7 +910,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -1065,7 +1065,7 @@ Array [
                           "marginBottom": 0,
                           "marginTop": 1,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -1082,7 +1082,7 @@ Array [
                           "marginBottom": 1,
                           "marginTop": 0,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -1186,7 +1186,7 @@ Array [
                           "marginBottom": 0,
                           "marginTop": 1,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -1203,7 +1203,7 @@ Array [
                           "marginBottom": 1,
                           "marginTop": 0,
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >

@@ -122,7 +122,7 @@ Array [
                     "marginBottom": 10,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -138,7 +138,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -154,7 +154,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -282,7 +282,7 @@ Array [
                     "marginBottom": 10,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -374,7 +374,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -543,7 +543,7 @@ Array [
                     "marginBottom": 10,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -559,7 +559,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -620,7 +620,7 @@ Array [
                     "marginBottom": 10,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -765,7 +765,7 @@ Array [
                           "marginTop": 1,
                           "textAlign": "center",
                         },
-                        Object {},
+                        undefined,
                       ]
                     }
                   >
@@ -784,7 +784,7 @@ Array [
                     "marginBottom": 10,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
@@ -800,7 +800,7 @@ Array [
                     "marginBottom": 1,
                     "marginTop": 1,
                   },
-                  Object {},
+                  undefined,
                 ]
               }
             >
