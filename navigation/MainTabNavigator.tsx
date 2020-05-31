@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import React from "react"
+import React, { ReactElement } from "react"
 
 import Colors from "../constants/Colors"
 import PeopleScreen from "../screens/PeopleScreen"
@@ -71,7 +71,7 @@ const tabBarOptions = {
   },
 }
 
-const MainTabNavigator = () => (
+const MainTabNavigator = (): ReactElement => (
   <Tab.Navigator
     screenOptions={screenOptions}
     initialRouteName="Timetable"

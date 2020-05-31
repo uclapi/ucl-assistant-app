@@ -16,6 +16,7 @@ const secureStorage = createSecureStore()
 const middleware = [debounce.middleware(), thunk]
 
 if (process.env.NODE_ENV === `development`) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { logger } = require(`redux-logger`)
   middleware.push(logger)
 }
@@ -42,7 +43,7 @@ const appReducer = combineReducers({
 })
 
 const rootReducer = (state, action) => appReducer(
-  action.type === SIGN_OUT_USER ? undefined : state, action
+  action.type === SIGN_OUT_USER ? undefined : state, action,
 )
 
 

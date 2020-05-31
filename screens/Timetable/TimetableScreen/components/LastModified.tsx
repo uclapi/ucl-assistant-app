@@ -53,7 +53,7 @@ class LastModified extends React.Component<Props> {
       )
       // not stale if the data is more recent than the date
       && !lastModified.isAfter(
-        LocalisationManager.parseToMoment(date).endOf(`isoweek`),
+        LocalisationManager.parseToMoment(date).endOf(`isoWeek`),
       )
     )
 

@@ -8,9 +8,32 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_OUT_USER,
 } from "../../constants/userConstants"
-import signIn, { initialState as signInState } from "./signInReducer"
+import signIn, {
+  initialState as signInState,
+  SignInState,
+} from "./signInReducer"
 
-export const initialState = {
+interface Settings {
+  shouldTrackAnalytics: boolean,
+}
+
+export interface UserState {
+  apiToken: string,
+  cn: string,
+  declinePushNotifications: boolean,
+  department: string,
+  email: string,
+  expoPushToken: string,
+  fullName: string,
+  givenName: string,
+  scopeNumber: number,
+  settings: Settings,
+  signIn: SignInState,
+  token: string,
+  upi: string,
+}
+
+export const initialState: UserState = {
   apiToken: ``,
   cn: ``,
   declinePushNotifications: false,
@@ -32,14 +55,14 @@ export const initialState = {
  * Combines user state together into a single state object.
  * @param {The current Redux state} state
  * @param {The dispatched action} action
- * @param {(Optional) When true, reset user values to the initial values.} clearUser
+ * @param {When true, reset user values to the initial values.} clearUser
  */
 const combineState = (state, action, clearUser = false) => ({
   ...(clearUser ? initialState : state),
   signIn: signIn(state.signIn, action),
 })
 
-export default (state = initialState, action = null) => {
+export default (state = initialState, action = null): UserState => {
   const { type, user } = action
   switch (type) {
     case IS_SIGNING_IN: {
@@ -73,7 +96,13 @@ export default (state = initialState, action = null) => {
 
     case SET_SHOULD_TRACK_ANALYTICS: {
       const { shouldTrack } = action
-      return { ...state, settings: { ...state.settings, shouldTrackAnalytics: shouldTrack } }
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          shouldTrackAnalytics: shouldTrack,
+        },
+      }
     }
 
     default: {

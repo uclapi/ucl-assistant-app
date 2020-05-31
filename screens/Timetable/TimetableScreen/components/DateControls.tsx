@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
 
 interface Props {
   date: Moment,
-  onDateChanged: (date: Moment) => undefined,
-  onIndexChanged: (change: number) => undefined,
+  onDateChanged: (date: Moment) => Promise<void>,
+  onIndexChanged: (change: number) => void,
 }
 
 interface State {

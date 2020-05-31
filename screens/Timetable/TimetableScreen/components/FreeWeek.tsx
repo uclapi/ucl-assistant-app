@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { FunctionComponent, ReactElement } from 'react'
 import {
   Image,
   StyleSheet,
@@ -8,6 +8,7 @@ import {
 
 import { CentredText } from "../../../../components/Typography"
 import { AssetManager, Random } from "../../../../lib"
+import Styles from "../../../../styles/Containers"
 
 
 const styles = StyleSheet.create({
@@ -33,7 +34,11 @@ const relaxIllustration = Random.array([
   AssetManager.undraw.relaxingAtHome,
 ])
 
-const FreeWeek = ({ style }: { style?: ViewStyle, }): ReactElement => (
+type Props = {
+  style?: ViewStyle,
+}
+
+const FreeWeek: FunctionComponent<Props> = ({ style }): ReactElement => (
   <View style={[styles.container, style]}>
     <CentredText>
       Nothing scheduled this week.

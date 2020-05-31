@@ -6,12 +6,24 @@ import {
 } from "../constants/roomsConstants"
 import { addToRecents } from "./utils"
 
-export const initialState = {
+export interface Room {
+  roomid: string,
+  siteid: string,
+  roomname?: string,
+  classification_name?: string,
+}
+
+export interface RoomsState {
+  favourites: Array<Room>,
+  recents: Array<Room>,
+}
+
+export const initialState: RoomsState = {
   favourites: [],
   recents: [],
 }
 
-export const getRoomUniqueId = (room) => {
+export const getRoomUniqueId = (room: Room): string => {
   const { roomid, siteid } = room
   if (!roomid || !siteid) {
     return null
@@ -19,7 +31,7 @@ export const getRoomUniqueId = (room) => {
   return `${roomid}|${siteid}`
 }
 
-export default (state = initialState, action = null) => {
+export default (state = initialState, action = null): RoomsState => {
   const { type } = action
   switch (type) {
     case ROOMS_ADD_RECENT: {
@@ -43,8 +55,12 @@ export default (state = initialState, action = null) => {
         }
         return {
           ...state,
-          favourites: state.favourites.map(getRoomUniqueId).includes(getRoomUniqueId(room))
-            ? state.favourites.filter((fav) => getRoomUniqueId(fav) !== getRoomUniqueId(room))
+          favourites: state.favourites.map(
+            getRoomUniqueId,
+          ).includes(getRoomUniqueId(room))
+            ? state.favourites.filter(
+              (fav) => getRoomUniqueId(fav) !== getRoomUniqueId(room),
+            )
             : [...state.favourites, room],
         }
       }

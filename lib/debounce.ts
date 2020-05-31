@@ -1,6 +1,6 @@
 // inspiration:
 // https://codeburst.io/throttling-and-debouncing-in-javascript-646d076d0a44
-const debounceFn = (fn, delay) => {
+const debounceFn = (fn: any, delay: number) => {
   let timer
   return function (...args) {
     if (timer) {
@@ -20,6 +20,7 @@ const redux = () => {
   const timers = {}
 
   /* eslint-disable consistent-return */
+  /* eslint-disable sonarjs/cognitive-complexity */
   const middleware = () => (dispatch) => (action) => {
     const { meta: { debounce = {} } = {}, type } = action
 
@@ -31,7 +32,9 @@ const redux = () => {
       trailing = true,
     } = debounce
 
-    const shouldDebounce = ((time && key) || (cancel && key)) && (trailing || leading)
+    const shouldDebounce = (
+      (time && key) || (cancel && key)
+    ) && (trailing || leading)
     const dispatchNow = leading && !timers[key]
 
     const later = (resolve) => () => {

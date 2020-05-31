@@ -7,7 +7,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
 import {
   fetchTimetable as fetchTimetableAction,
@@ -61,7 +61,7 @@ interface State {
   date: Moment,
 }
 
-class TimetableScreen extends React.Component<Props, State> {
+class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -99,17 +99,10 @@ class TimetableScreen extends React.Component<Props, State> {
     user: {},
   }
 
+  private viewpager = React.createRef<ViewPager>()
+
   constructor(props) {
     super(props)
-    this.state = {
-      appState: `active`,
-      currentIndex: 1,
-      date: today,
-    }
-
-    this.viewpager = null
-
-    const { date } = this.state
     const { timetable } = props
 
     const todayIndex = timetable.findIndex(
@@ -117,12 +110,15 @@ class TimetableScreen extends React.Component<Props, State> {
         week !== null
         && (
           LocalisationManager.parseToMoment(week[0].dateISO).isoWeek()
-          === date.isoWeek()
+          === today.isoWeek()
         )
       ),
     )
-    if (todayIndex !== -1) {
-      this.state.currentIndex = todayIndex
+
+    this.state = {
+      appState: `active`,
+      currentIndex: (todayIndex === -1) ? 1 : todayIndex,
+      date: today,
     }
   }
 
@@ -234,7 +230,7 @@ class TimetableScreen extends React.Component<Props, State> {
     return null
   }
 
-  onDateChanged = async (newDate) => {
+  onDateChanged = async (newDate: Moment) => {
     const { timetable } = this.props
     const desiredIndex = timetable.findIndex(
       (week) => (
@@ -245,19 +241,19 @@ class TimetableScreen extends React.Component<Props, State> {
       ),
     )
     if (desiredIndex !== -1) {
-      this.viewpager.setPage(desiredIndex)
+      this.viewpager.current.setPage(desiredIndex)
     } else {
       const { fetchTimetable, user: { token } } = this.props
-      await fetchTimetable(token, newDate.clone().startOf(`isoweek`))
+      await fetchTimetable(token, newDate.clone().startOf(`isoWeek`))
 
       this.onDateChanged(newDate)
     }
   }
 
-  onIndexChanged = (change) => {
+  onIndexChanged = (change: number): void => {
     const { currentIndex } = this.state
     if (this.viewpager) {
-      this.viewpager.setPage(currentIndex + change)
+      this.viewpager.current.setPage(currentIndex + change)
     }
   }
 
@@ -328,11 +324,11 @@ class TimetableScreen extends React.Component<Props, State> {
           ) : null
         }
         <ViewPager
-          ref={(ref) => { this.viewpager = ref }}
+          ref={this.viewpager}
           key={timetable.length} // re-render only if array length changes
           orientation="horizontal"
           style={styles.swiper}
-          showsPageIndicator={false}
+          showPageIndicator={false}
           initialPage={currentIndex}
           scrollEnabled
           onPageSelected={this.onSwipe}
@@ -346,7 +342,11 @@ class TimetableScreen extends React.Component<Props, State> {
   }
 }
 
-export default connect(
+const connector = connect(
   TimetableScreen.mapStateToProps,
   TimetableScreen.mapDispatchToProps,
-)(TimetableScreen)
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(TimetableScreen)

@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack"
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { connect } from "react-redux"
 
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
@@ -18,7 +18,7 @@ export const RootNavigatorComponent = ({
   token,
   upi,
   scopeNumber,
-}) => {
+}): ReactElement => {
   const isLoggedIn = (
     token && typeof token === `string` && token.length > 0
     && upi && typeof upi === `string` && upi.length > 0
@@ -68,9 +68,11 @@ export const RootNavigatorComponent = ({
       onStateChange={onNavigationStateChange}
     >
       <Stack.Navigator
-        headerTitleStyle={{
-          fontFamily: `apercu`,
-          fontWeight: `normal`,
+        screenOptions={{
+          headerTitleStyle: {
+            fontFamily: `apercu`,
+            fontWeight: `normal`,
+          },
         }}
         headerMode="none"
         initialRouteName={isLoggedIn ? `Main` : `Splash`}
@@ -88,6 +90,8 @@ export default connect(
       upi,
       scopeNumber,
     },
+  }: {
+    user: any,
   }) => ({
     scopeNumber,
     token,

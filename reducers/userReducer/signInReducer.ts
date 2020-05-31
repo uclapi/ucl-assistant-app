@@ -5,12 +5,17 @@ import {
   SIGN_IN_SUCCESS,
 } from "../../constants/userConstants"
 
-export const initialState = {
+export interface SignInState {
+  error: string,
+  isSigningIn: boolean,
+}
+
+export const initialState: SignInState = {
   error: ``,
   isSigningIn: false,
 }
 
-export default (state = initialState, action = null) => {
+export default (state = initialState, action = null): SignInState => {
   const { type, error } = action
   switch (type) {
     case IS_SIGNING_IN: {

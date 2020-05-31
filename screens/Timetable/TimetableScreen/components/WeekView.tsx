@@ -66,8 +66,8 @@ interface Props {
   date: Moment,
   isLoading: boolean,
   navigation: any,
-  onDateChanged: (date: Moment) => null,
-  onIndexChanged: (index: number) => null,
+  onDateChanged: (date: Moment) => Promise<void>,
+  onIndexChanged: (index: number) => void,
   onRefresh: () => null,
   timetable: any,
 }
@@ -104,7 +104,7 @@ class WeekView extends React.Component<Props> {
     ).format(`Do MMM`)
     const secondDate = LocalisationManager.parseToMoment(
       weekTimetable[0].dateISO,
-    ).endOf(`isoweek`).format(`Do MMM`)
+    ).endOf(`isoWeek`).format(`Do MMM`)
     const weekText = `${firstDate} - ${secondDate}`
 
     return (

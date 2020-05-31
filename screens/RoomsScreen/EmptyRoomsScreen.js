@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
 })
 
 export class EmptyRoomsScreen extends React.Component {
+  static navigationOptions = {
+    title: `Empty Rooms`,
+  }
+
   static mapStateToProps = (state) => ({
     token: state.user.token,
   })
@@ -116,10 +120,6 @@ export class EmptyRoomsScreen extends React.Component {
       )
     }
     return matchingRooms.map(this.renderEmptyRoom)
-  }
-
-  static navigationOptions = {
-    title: `Empty Rooms`,
   }
 
   render() {
