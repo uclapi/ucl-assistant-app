@@ -1,19 +1,34 @@
-// import { NavigationContainer } from '@react-navigation/native'
-// import React from 'react'
-// import { cleanup, render } from "react-native-testing-library"
+import { NavigationContainer } from '@react-navigation/native'
+import React from 'react'
+import { cleanup, render } from "react-native-testing-library"
+import { Provider } from "react-redux"
+import configureStore from 'redux-mock-store'
+import thunk from "redux-thunk"
 
-// import MainTabNavigator from '../MainTabNavigator'
+import debounce from "../../lib/debounce"
+import { initialState } from '../../reducers'
+import MainTabNavigator from '../MainTabNavigator'
 
-// describe(`MainTabNavigator`, () => {
-//   afterEach(() => {
-//     cleanup()
-//   })
-//   it(`renders`, () => {
-//     const component = render(
-//       <NavigationContainer>
-//         <MainTabNavigator />
-//       </NavigationContainer>,
-//     )
-//     expect(component.toJSON()).toMatchSnapshot()
-//   })
-// })
+const middlewares = [
+  debounce.middleware,
+  thunk,
+]
+const mockStore = configureStore(middlewares)
+
+describe(`MainTabNavigator`, () => {
+  afterEach(() => {
+    cleanup()
+  })
+  it(`renders without error`, () => {
+    const store = mockStore(initialState)
+
+    const component = render(
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainTabNavigator />
+        </NavigationContainer>
+      </Provider>,
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
