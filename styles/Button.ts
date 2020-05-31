@@ -1,29 +1,30 @@
 import { StyleSheet } from "react-native"
+
 import Colors from "../constants/Colors"
 
 const buttonStyle = {
+  alignItems: `center`,
+  borderRadius: 8,
+  elevation: 2,
+  flexDirection: `row`,
+  justifyContent: `center`,
+  minHeight: 55,
+  minWidth: 150,
   padding: 8,
   paddingLeft: 16,
   paddingRight: 16,
-  borderRadius: 8,
-  elevation: 2,
-  minHeight: 55,
-  minWidth: 150,
-  alignItems: `center`,
-  justifyContent: `center`,
-  flexDirection: `row`,
   shadowColor: Colors.accentColor,
-  shadowOffset: { width: 0, height: 2 },
-  shadowRadius: 3,
+  shadowOffset: { height: 2, width: 0 },
   shadowOpacity: 0.75,
+  shadowRadius: 3,
 }
 
 export default StyleSheet.create({
   button: StyleSheet.flatten([
     buttonStyle,
     {
-      marginTop: 5,
       marginBottom: 5,
+      marginTop: 5,
     },
   ]),
   buttonWrapper: {
@@ -37,9 +38,9 @@ export default StyleSheet.create({
   roundButton: StyleSheet.flatten([
     buttonStyle,
     {
-      minWidth: 55,
-      borderRadius: 30,
       alignItems: `center`,
+      borderRadius: 30,
+      minWidth: 55,
     },
   ]),
   roundButtonWrapper: {
@@ -53,8 +54,8 @@ export default StyleSheet.create({
   smallButton: StyleSheet.flatten([
     buttonStyle,
     {
-      marginTop: 5,
       marginBottom: 5,
+      marginTop: 5,
       minHeight: 30,
       minWidth: 90,
     },
