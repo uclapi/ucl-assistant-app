@@ -11,9 +11,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": false, // not strict for now
-    "sourceMap": true,
-    "include": [
-      "./scripts/customTypes.d.ts"
-    ]
-  }
+    "sourceMap": true
+  },
+  "include": [
+    "./scripts/customTypes.d.ts" // for @testing-library/jest-native
+  ]
 }
