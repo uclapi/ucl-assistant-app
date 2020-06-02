@@ -21,10 +21,10 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "height": 1334,
-          "width": 750,
+          "flex": 1,
+          "flexDirection": "column",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -35,10 +35,10 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "height": 1334,
-              "width": 750,
+              "flex": 1,
+              "flexDirection": "column",
             },
-            Object {},
+            undefined,
           ],
           Object {
             "paddingBottom": 0,
@@ -54,7 +54,7 @@ Array [
               "paddingRight": 20,
               "paddingTop": 10,
             },
-            Object {},
+            undefined,
           ]
         }
         keyboardDismissMode="on-drag"
@@ -71,7 +71,7 @@ Array [
               "paddingLeft": 0,
               "paddingRight": 0,
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -185,25 +185,23 @@ Array [
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    Array [
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
                       },
-                      Object {},
-                    ],
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
                   ]
                 }
               >
@@ -306,25 +304,23 @@ Array [
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    Array [
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
                       },
-                      Object {},
-                    ],
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
                   ]
                 }
               >
@@ -427,25 +423,23 @@ Array [
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    Array [
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
                       },
-                      Object {},
-                    ],
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
                   ]
                 }
               >
@@ -552,10 +546,10 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "height": 1334,
-          "width": 750,
+          "flex": 1,
+          "flexDirection": "column",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -566,10 +560,10 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "height": 1334,
-              "width": 750,
+              "flex": 1,
+              "flexDirection": "column",
             },
-            Object {},
+            undefined,
           ],
           Object {
             "paddingBottom": 0,
@@ -585,7 +579,7 @@ Array [
               "paddingRight": 20,
               "paddingTop": 10,
             },
-            Object {},
+            undefined,
           ]
         }
         keyboardDismissMode="on-drag"
@@ -602,7 +596,7 @@ Array [
               "paddingLeft": 0,
               "paddingRight": 0,
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -656,10 +650,10 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "height": 1334,
-          "width": 750,
+          "flex": 1,
+          "flexDirection": "column",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -670,10 +664,10 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "height": 1334,
-              "width": 750,
+              "flex": 1,
+              "flexDirection": "column",
             },
-            Object {},
+            undefined,
           ],
           Object {
             "paddingBottom": 0,
@@ -689,7 +683,7 @@ Array [
               "paddingRight": 20,
               "paddingTop": 10,
             },
-            Object {},
+            undefined,
           ]
         }
         keyboardDismissMode="on-drag"
@@ -706,7 +700,7 @@ Array [
               "paddingLeft": 0,
               "paddingRight": 0,
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -831,10 +825,10 @@ Array [
       Array [
         Object {
           "backgroundColor": "#fefefe",
-          "height": 1334,
-          "width": 750,
+          "flex": 1,
+          "flexDirection": "column",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -845,10 +839,10 @@ Array [
           Array [
             Object {
               "backgroundColor": "#fefefe",
-              "height": 1334,
-              "width": 750,
+              "flex": 1,
+              "flexDirection": "column",
             },
-            Object {},
+            undefined,
           ],
           Object {
             "paddingBottom": 0,
@@ -864,7 +858,7 @@ Array [
               "paddingRight": 20,
               "paddingTop": 10,
             },
-            Object {},
+            undefined,
           ]
         }
         keyboardDismissMode="on-drag"
@@ -881,7 +875,7 @@ Array [
               "paddingLeft": 0,
               "paddingRight": 0,
             },
-            Object {},
+            undefined,
           ]
         }
       >
@@ -995,25 +989,23 @@ Array [
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    Array [
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
                       },
-                      Object {},
-                    ],
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
                   ]
                 }
               >
@@ -1116,25 +1108,23 @@ Array [
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    Array [
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
                       },
-                      Object {},
-                    ],
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
                   ]
                 }
               >

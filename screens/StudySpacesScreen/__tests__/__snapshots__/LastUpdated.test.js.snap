@@ -48,17 +48,13 @@ Array [
           "flexDirection": "row",
           "justifyContent": "center",
         },
-        Array [
-          Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginTop": 5,
-          },
-          Object {
-            "marginBottom": 10,
-          },
-        ],
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "flexDirection": "row",
+          "marginBottom": 10,
+          "marginTop": 5,
+        },
       ]
     }
   >

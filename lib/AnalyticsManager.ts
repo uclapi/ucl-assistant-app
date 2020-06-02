@@ -14,7 +14,9 @@ const AMPLITUDE_API_KEY = Constants.manifest.extra
 const initialise = (): Promise<void> => Amplitude.initialize(AMPLITUDE_API_KEY)
 
 const shouldTrackAnalytics = (): boolean => (
-  AMPLITUDE_API_KEY && !__DEV__ && store.getState().user.settings.shouldTrackAnalytics
+  AMPLITUDE_API_KEY
+  && !__DEV__
+  && store.getState().user.settings.shouldTrackAnalytics
 )
 
 const setUserId = (userId): void => {

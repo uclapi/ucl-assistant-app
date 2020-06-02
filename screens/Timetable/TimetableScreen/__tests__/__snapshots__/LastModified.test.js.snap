@@ -149,17 +149,13 @@ exports[`LastUpdated shows error when studyspace info is stale 1`] = `
           "flexDirection": "row",
           "justifyContent": "center",
         },
-        Array [
-          Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginTop": 5,
-          },
-          Object {
-            "marginBottom": 20,
-          },
-        ],
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "flexDirection": "row",
+          "marginBottom": 20,
+          "marginTop": 5,
+        },
       ]
     }
   >

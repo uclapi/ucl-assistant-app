@@ -11,9 +11,10 @@ import { PushNotificationsManager } from '../../../lib'
 
 describe(`NotificationsScreen`, () => {
   let wrapper
-  const mockDispatch = jest.fn()
   const mockProps = {
-    navigation: { dispatch: mockDispatch },
+    declinePushNotifications: jest.fn(),
+    navigation: { dispatch: jest.fn() } as any,
+    setExpoPushToken: jest.fn(),
     token: `abc123`,
   }
 
@@ -46,8 +47,9 @@ describe(`NotificationsScreen`, () => {
     expect(mockRegisterForPushNotifications).toHaveBeenCalledWith(
       mockProps.token,
     )
+    expect(mockProps.setExpoPushToken).toHaveBeenCalledTimes(1)
 
-    expect(mockDispatch).toHaveBeenCalledTimes(1)
+    expect(mockProps.navigation.dispatch).toHaveBeenCalledTimes(1)
   })
 
   it(`does not register when the skip button is pressed`, async () => {
@@ -58,7 +60,7 @@ describe(`NotificationsScreen`, () => {
     expect(
       mockRegisterForPushNotifications,
     ).toHaveBeenCalledTimes(0) // i.e. not be called again
-    expect(mockDispatch).toHaveBeenCalledTimes(1)
-    expect(mockDispatch.mock.calls).toMatchSnapshot()
+    expect(mockProps.navigation.dispatch).toHaveBeenCalledTimes(1)
+    expect(mockProps.navigation.dispatch.mock.calls).toMatchSnapshot()
   })
 })

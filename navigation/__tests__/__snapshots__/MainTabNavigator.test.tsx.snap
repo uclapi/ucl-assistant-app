@@ -222,38 +222,30 @@ exports[`MainTabNavigator renders without error 1`] = `
                                 style={
                                   Object {
                                     "backgroundColor": "#fefefe",
-                                    "height": 1334,
-                                    "width": 750,
+                                    "flex": 1,
+                                    "flexDirection": "column",
                                   }
                                 }
                               >
                                 <View
-                                  bottomColour="#fefefe"
-                                  keyboardAvoidingViewStyle={Object {}}
                                   onLayout={[Function]}
-                                  onRefresh={[Function]}
-                                  refreshEnabled={false}
-                                  refreshing={false}
-                                  safeAreaViewStyle={Object {}}
                                   style={
                                     Array [
                                       Array [
                                         Object {
                                           "backgroundColor": "#fefefe",
-                                          "height": 1334,
-                                          "width": 750,
+                                          "flex": 1,
+                                          "flexDirection": "column",
                                         },
                                         Object {
                                           "paddingTop": 10,
                                         },
-                                        null,
                                       ],
                                       Object {
                                         "paddingBottom": 0,
                                       },
                                     ]
                                   }
-                                  topColour="#fefefe"
                                 >
                                   <View
                                     style={
