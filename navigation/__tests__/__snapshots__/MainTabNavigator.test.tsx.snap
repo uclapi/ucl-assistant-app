@@ -224,6 +224,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                                     "backgroundColor": "#fefefe",
                                     "flex": 1,
                                     "flexDirection": "column",
+                                    "paddingBottom": 60,
                                   }
                                 }
                               >
@@ -231,16 +232,12 @@ exports[`MainTabNavigator renders without error 1`] = `
                                   onLayout={[Function]}
                                   style={
                                     Array [
-                                      Array [
-                                        Object {
-                                          "backgroundColor": "#fefefe",
-                                          "flex": 1,
-                                          "flexDirection": "column",
-                                        },
-                                        Object {
-                                          "paddingTop": 10,
-                                        },
-                                      ],
+                                      Object {
+                                        "backgroundColor": "#fefefe",
+                                        "flex": 1,
+                                        "flexDirection": "column",
+                                        "paddingBottom": 60,
+                                      },
                                       Object {
                                         "paddingBottom": 0,
                                       },

@@ -5,41 +5,29 @@ Array [
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "flex": 0,
-        },
-        Object {
-          "backgroundColor": "#fefefe",
-        },
-      ]
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
     }
   />,
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
-        },
-        undefined,
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
       onLayout={[Function]}
       style={
         Array [
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            undefined,
-          ],
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
           Object {
             "paddingBottom": 0,
           },
@@ -50,9 +38,10 @@ Array [
         contentContainerStyle={
           Array [
             Object {
+              "paddingBottom": 60,
               "paddingLeft": 20,
               "paddingRight": 20,
-              "paddingTop": 10,
+              "paddingTop": 20,
             },
             undefined,
           ]
@@ -64,10 +53,6 @@ Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            },
-            Object {
               "paddingLeft": 0,
               "paddingRight": 0,
             },
@@ -76,13 +61,6 @@ Array [
         }
       >
         <View>
-          <View
-            style={
-              Object {
-                "height": 10,
-              }
-            }
-          />
           <View
             style={
               Object {
@@ -530,41 +508,29 @@ Array [
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "flex": 0,
-        },
-        Object {
-          "backgroundColor": "#fefefe",
-        },
-      ]
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
     }
   />,
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
-        },
-        undefined,
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
       onLayout={[Function]}
       style={
         Array [
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            undefined,
-          ],
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
           Object {
             "paddingBottom": 0,
           },
@@ -575,9 +541,10 @@ Array [
         contentContainerStyle={
           Array [
             Object {
+              "paddingBottom": 60,
               "paddingLeft": 20,
               "paddingRight": 20,
-              "paddingTop": 10,
+              "paddingTop": 20,
             },
             undefined,
           ]
@@ -589,10 +556,6 @@ Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            },
-            Object {
               "paddingLeft": 0,
               "paddingRight": 0,
             },
@@ -601,13 +564,6 @@ Array [
         }
       >
         <View>
-          <View
-            style={
-              Object {
-                "height": 10,
-              }
-            }
-          />
           <View
             style={
               Object {
@@ -634,41 +590,29 @@ Array [
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "flex": 0,
-        },
-        Object {
-          "backgroundColor": "#fefefe",
-        },
-      ]
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
     }
   />,
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
-        },
-        undefined,
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
       onLayout={[Function]}
       style={
         Array [
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            undefined,
-          ],
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
           Object {
             "paddingBottom": 0,
           },
@@ -679,9 +623,10 @@ Array [
         contentContainerStyle={
           Array [
             Object {
+              "paddingBottom": 60,
               "paddingLeft": 20,
               "paddingRight": 20,
-              "paddingTop": 10,
+              "paddingTop": 20,
             },
             undefined,
           ]
@@ -693,10 +638,6 @@ Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            },
-            Object {
               "paddingLeft": 0,
               "paddingRight": 0,
             },
@@ -705,13 +646,6 @@ Array [
         }
       >
         <View>
-          <View
-            style={
-              Object {
-                "height": 10,
-              }
-            }
-          />
           <View
             style={
               Object {
@@ -779,23 +713,27 @@ Array [
             >
               Rooms vacant for the next hour:
             </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#6E707F",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 5,
-                    "marginTop": 5,
-                    "textAlign": "center",
-                  },
-                  undefined,
-                ]
-              }
+            <View
+              testID="empty-rooms-message"
             >
-              No empty rooms found :(
-            </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#6E707F",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                No empty rooms found :(
+              </Text>
+            </View>
           </View>
         </View>
       </RCTScrollView>
@@ -809,41 +747,29 @@ Array [
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "flex": 0,
-        },
-        Object {
-          "backgroundColor": "#fefefe",
-        },
-      ]
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
     }
   />,
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 1,
-          "flexDirection": "column",
-        },
-        undefined,
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
       onLayout={[Function]}
       style={
         Array [
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            undefined,
-          ],
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
           Object {
             "paddingBottom": 0,
           },
@@ -854,9 +780,10 @@ Array [
         contentContainerStyle={
           Array [
             Object {
+              "paddingBottom": 60,
               "paddingLeft": 20,
               "paddingRight": 20,
-              "paddingTop": 10,
+              "paddingTop": 20,
             },
             undefined,
           ]
@@ -868,10 +795,6 @@ Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-            },
-            Object {
               "paddingLeft": 0,
               "paddingRight": 0,
             },
@@ -880,13 +803,6 @@ Array [
         }
       >
         <View>
-          <View
-            style={
-              Object {
-                "height": 10,
-              }
-            }
-          />
           <View
             style={
               Object {
