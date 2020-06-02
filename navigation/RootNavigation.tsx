@@ -6,7 +6,6 @@ import { connect } from "react-redux"
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
 import NotificationsScreen from "../screens/NotificationsScreen"
 import PersonDetailScreen from "../screens/PersonDetailScreen"
-import RoomDetailScreen from "../screens/RoomDetailScreen"
 import SplashScreen from "../screens/SplashScreen"
 import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
 import MainTabNavigator from "./MainTabNavigator"
@@ -19,7 +18,6 @@ export type RootStackParamList = {
   Main: undefined,
   Notifications: undefined,
   PersonDetail: undefined,
-  RoomDetail: undefined,
   StudySpaceDetail: undefined,
   Splash: undefined,
 }
@@ -56,10 +54,6 @@ export const RootNavigatorComponent = ({
         <Stack.Screen
           name="PersonDetail"
           component={PersonDetailScreen}
-        />
-        <Stack.Screen
-          name="RoomDetail"
-          component={RoomDetailScreen}
         />
         <Stack.Screen
           name="StudySpaceDetail"

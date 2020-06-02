@@ -1,29 +1,33 @@
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import React from "react"
 import { StyleSheet, View } from "react-native"
-import MapView from "react-native-maps"
-import { connect } from "react-redux"
+import MapView, { Marker } from "react-native-maps"
+import { connect, ConnectedProps } from "react-redux"
 import { generate } from "shortid"
 
-import Button from "../../components/Button"
-import { Horizontal, Page } from "../../components/Containers"
+import Button from "../../../components/Button"
+import { Horizontal, Page } from "../../../components/Containers"
 import {
   BodyText,
   ErrorText,
   SearchResultTopText,
   SubtitleText,
   TitleText,
-} from "../../components/Typography"
-import Colors from "../../constants/Colors"
+} from "../../../components/Typography"
+import type { AppStateType } from '../../../configureStore'
+import Colors from "../../../constants/Colors"
 import {
   ApiManager,
   ErrorManager,
   LocalisationManager,
   MapsManager,
   Shadow,
-} from "../../lib"
-import MapStyle from "../../styles/Map"
+} from "../../../lib"
+import MapStyle from "../../../styles/Map"
+import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 import FavouriteButton from "./FavouriteButton"
+
 
 const closedRoomDescriptions = [`Room Closed`, `UCL Closed`]
 
@@ -78,27 +82,26 @@ const initialRegion = {
   longitudeDelta: 0.0071,
 }
 
-class RoomDetailScreen extends Component {
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<RoomsNavigatorParamList>,
+  // eslint-disable-next-line quotes
+  route: RouteProp<RoomsNavigatorParamList, 'RoomsDetail'>,
+}
+
+interface State {
+  equipment: Array<unknown>,
+  fetchBookingsError: Error,
+  fetchEquipmentError: Error,
+  roombookings: Array<unknown>,
+}
+
+class RoomsDetailScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: `Room Detail`,
   }
 
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
-  static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    route: PropTypes.shape().isRequired,
-    token: PropTypes.string,
-  }
-
-  static defaultProps = {
-    token: ``,
-  }
-
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       equipment: [],
       fetchBookingsError: null,
@@ -164,16 +167,23 @@ class RoomDetailScreen extends Component {
   }) => (
       <View style={styles.booking} key={generate()}>
         <SearchResultTopText>
-          {`${LocalisationManager.parseToMoment(start).format(`HH:mm`)}hrs - ${LocalisationManager.parseToMoment(end).format(`HH:mm`)}hrs`}
+          {`${
+            LocalisationManager.parseToMoment(start).format(`HH:mm`)
+          }hrs - ${
+            LocalisationManager.parseToMoment(end).format(`HH:mm`)
+          }hrs`}
         </SearchResultTopText>
-        {(contact && !closedRoomDescriptions.includes(description)) && (<BodyText>{`booked by ${contact}`}</BodyText>)}
+        {(
+          contact
+          && !closedRoomDescriptions.includes(description))
+          && (<BodyText>{`booked by ${contact}`}</BodyText>)}
         {closedRoomDescriptions.includes(description) ? (
           <ErrorText>Room is closed!</ErrorText>
         ) : (
             <BodyText>{description}</BodyText>
-          )}
+        )}
       </View>
-    )
+  )
 
   render() {
     const {
@@ -205,8 +215,8 @@ class RoomDetailScreen extends Component {
       && location.coordinates.lng
     ) {
       const { lat, lng } = location.coordinates
-      latitude = Number.parseFloat(lat, 10)
-      longitude = Number.parseFloat(lng, 10)
+      latitude = Number.parseFloat(lat)
+      longitude = Number.parseFloat(lng)
     } else {
       invalidCoordinates = true
     }
@@ -244,24 +254,30 @@ class RoomDetailScreen extends Component {
               longitudeDelta: initialRegion.longitudeDelta,
             }}
           >
-            <MapView.Marker coordinate={{ latitude, longitude }} />
+            <Marker coordinate={{ latitude, longitude }} />
           </MapView>
-          <View style={styles.navigate}>
+          <View>
             <Button onPress={navigateToLocation}>Directions</Button>
           </View>
           {fetchEquipmentError ? (
-            <ErrorText>Error: We couldn&apos;t fetch equipment data for this venue.</ErrorText>
+            <ErrorText>
+              Error: We couldn&apos;t fetch equipment data for this venue.
+            </ErrorText>
           ) : null}
           {equipment.length > 0 ? (
             <View>
-              <SubtitleText style={styles.cardHeader}>In This Room</SubtitleText>
+              <SubtitleText style={styles.cardHeader}>
+                In This Room
+              </SubtitleText>
               <View style={styles.cardList}>
                 {equipment.map(this.renderEquipment)}
               </View>
             </View>
           ) : null}
           {fetchBookingsError ? (
-            <ErrorText>Error: We couldn&apos;t fetch room booking data for this venue.</ErrorText>
+            <ErrorText>
+              Error: We couldn&apos;t fetch room booking data for this venue.
+            </ErrorText>
           ) : null}
           {roombookings.length > 0 ? (
             <View style={styles.bookingList}>
@@ -279,7 +295,14 @@ class RoomDetailScreen extends Component {
   }
 }
 
-export default connect(
-  RoomDetailScreen.mapStateToProps,
+const connector = connect(
+  (state: AppStateType) => ({
+    token: state.user.token,
+  }),
   () => ({}),
-)(RoomDetailScreen)
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+
+export default connector(RoomsDetailScreen)

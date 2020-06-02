@@ -4,7 +4,7 @@ import React, { ReactElement } from "react"
 
 import Colors from "../constants/Colors"
 import PeopleScreen from "../screens/PeopleScreen"
-import RoomsScreen from "../screens/RoomsScreen"
+import RoomsNavigator from "../screens/Rooms"
 import SettingsNavigator from "../screens/Settings"
 import StudySpacesScreen from "../screens/StudySpacesScreen"
 import TimetableNavigator from "../screens/Timetable"
@@ -91,7 +91,7 @@ const MainTabNavigator = (): ReactElement => (
     />
     <Tab.Screen
       name="Rooms"
-      component={RoomsScreen}
+      component={RoomsNavigator}
     />
     <Tab.Screen
       name="Settings"

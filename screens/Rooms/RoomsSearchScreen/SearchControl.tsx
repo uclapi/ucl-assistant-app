@@ -1,14 +1,16 @@
-// @flow
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import React from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-import { addRecent } from "../../actions/roomsActions"
-import { SearchInput } from "../../components/Input"
-import SearchResult from "../../components/SearchResult"
-import { CentredText } from "../../components/Typography"
-import ApiManager from "../../lib/ApiManager"
+import { addRecent } from "../../../actions/roomsActions"
+import { SearchInput } from "../../../components/Input"
+import SearchResult from "../../../components/SearchResult"
+import { CentredText } from "../../../components/Typography"
+import type { AppStateType } from '../../../configureStore'
+import ApiManager from "../../../lib/ApiManager"
+import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
 const styles = StyleSheet.create({
   container: {
@@ -19,25 +21,23 @@ const styles = StyleSheet.create({
 const MIN_QUERY_LENGTH = 4
 const SEARCH_DELAY = 500
 
-class SearchControl extends Component {
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<RoomsNavigatorParamList>,
+  // eslint-disable-next-line quotes
+  route: RouteProp<RoomsNavigatorParamList, 'RoomsSearch'>,
+}
 
-  static mapDispatchToProps = (dispatch) => ({
-    addRecentRoom: (room) => dispatch(addRecent(room)),
-  })
+interface State {
+  error: Error,
+  isSearching: boolean,
+  query: string,
+  searchResults: Array<unknown>,
+}
 
-  static propTypes = {
-    addRecentRoom: PropTypes.func,
-    navigation: PropTypes.shape().isRequired,
-    token: PropTypes.string,
-  }
+class SearchControl extends React.Component<Props, State> {
+  private subscriptions
 
-  static defaultProps = {
-    addRecentRoom: () => { },
-    token: ``,
-  }
+  private searchTimer
 
   constructor(props) {
     super(props)
@@ -107,7 +107,7 @@ class SearchControl extends Component {
   navigateToRoomDetail = (room) => () => {
     const { navigation, addRecentRoom } = this.props
     addRecentRoom(room)
-    navigation.navigate(`RoomDetail`, { room })
+    navigation.navigate(`RoomsDetail`, { room })
   }
 
   clear = () => this.setState({ query: ``, searchResults: [] })
@@ -118,7 +118,6 @@ class SearchControl extends Component {
       topText={searchResult.roomname}
       bottomText={searchResult.classification_name}
       type="location"
-      buttonText="View"
       onPress={this.navigateToRoomDetail(searchResult)}
     />
   )
@@ -162,7 +161,15 @@ class SearchControl extends Component {
   }
 }
 
-export default connect(
-  SearchControl.mapStateToProps,
-  SearchControl.mapDispatchToProps,
-)(SearchControl)
+const connector = connect(
+  (state: AppStateType) => ({
+    token: state.user.token,
+  }),
+  (dispatch) => ({
+    addRecentRoom: (room) => dispatch(addRecent(room)),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(SearchControl)

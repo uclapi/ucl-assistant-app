@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import {
   ActivityIndicator,
@@ -6,12 +6,15 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-import { Page } from "../../components/Containers"
-import SearchResult from "../../components/SearchResult"
-import { BodyText, CentredText } from "../../components/Typography"
-import ApiManager from "../../lib/ApiManager"
+import { Page } from "../../../components/Containers"
+import SearchResult from "../../../components/SearchResult"
+import { BodyText, CentredText } from "../../../components/Typography"
+import type { AppStateType } from '../../../configureStore'
+import ApiManager from "../../../lib/ApiManager"
+import type { Room } from '../../../reducers/roomsReducer'
+import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
 const styles = StyleSheet.create({
   container: {
@@ -22,26 +25,28 @@ const styles = StyleSheet.create({
   },
 })
 
-export class EmptyRoomsScreen extends React.Component {
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<RoomsNavigatorParamList>,
+}
+
+interface State {
+  emptyRooms: Array<unknown>,
+  error: Error,
+  loadingEmptyRooms: boolean,
+  selectedSite: string,
+  sites: Array<unknown>,
+}
+
+export class EmptyRoomsScreen extends React.Component<
+  Props,
+  State
+  > {
   static navigationOptions = {
     title: `Empty Rooms`,
   }
 
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
-  static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    token: PropTypes.string,
-  }
-
-  static defaultProps = {
-    token: ``,
-  }
-
-  constructor() {
-    super()
+  constructor(props: Props) {
+    super(props)
     this.state = {
       emptyRooms: [],
       error: null,
@@ -51,11 +56,11 @@ export class EmptyRoomsScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.fetchEmptyRooms()
   }
 
-  fetchEmptyRooms = async () => {
+  fetchEmptyRooms = async (): Promise<void> => {
     const { token } = this.props
     try {
       const emptyRooms = await ApiManager.rooms.getEmptyRooms(token)
@@ -74,16 +79,16 @@ export class EmptyRoomsScreen extends React.Component {
     }
   }
 
-  navigateToRoomDetail = (room) => () => {
+  navigateToRoomDetail = (room: Room) => (): void => {
     const { navigation } = this.props
-    navigation.navigate(`RoomDetail`, { room })
+    navigation.navigate(`RoomsDetail`, { room })
   }
 
-  onSelectSite = (value) => {
+  onSelectSite = (value: string): void => {
     this.setState({ selectedSite: value })
   }
 
-  renderEmptyRoom = (room = null) => {
+  renderEmptyRoom = (room = null): React.ReactNode => {
     if (room === null) {
       return null
     }
@@ -97,13 +102,12 @@ export class EmptyRoomsScreen extends React.Component {
         topText={room.roomname}
         bottomText={room.classification_name}
         type="location"
-        buttonText="View"
         onPress={this.navigateToRoomDetail(room)}
       />
     )
   }
 
-  renderResults = () => {
+  renderResults = (): React.ReactNode => {
     const { emptyRooms, selectedSite } = this.state
     const matchingRooms = emptyRooms.filter(({ siteid }) => {
       if (selectedSite === null) {
@@ -114,15 +118,18 @@ export class EmptyRoomsScreen extends React.Component {
 
     if (matchingRooms.length === 0) {
       return (
-        <CentredText testID="empty-rooms-message">
-          No empty rooms found :(
-        </CentredText>
+        <View testID="empty-rooms-message">
+          <CentredText>
+            No empty rooms found :(
+          </CentredText>
+        </View>
+
       )
     }
     return matchingRooms.map(this.renderEmptyRoom)
   }
 
-  render() {
+  render(): React.ReactElement {
     const {
       error,
       sites,
@@ -170,7 +177,13 @@ export class EmptyRoomsScreen extends React.Component {
   }
 }
 
-export default connect(
-  EmptyRoomsScreen.mapStateToProps,
+const connector = connect(
+  (state: AppStateType) => ({
+    token: state.user.token,
+  }),
   () => ({}),
-)(EmptyRoomsScreen)
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(EmptyRoomsScreen)

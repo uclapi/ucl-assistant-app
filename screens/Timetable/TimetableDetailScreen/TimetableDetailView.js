@@ -111,7 +111,12 @@ class TimetableDetailView extends React.Component {
 
   openRoomSearch = (roomName) => () => {
     const { navigation } = this.props
-    navigation.navigate(`RoomsSearch`, { query: roomName })
+    navigation.navigate(`Main`, {
+      params: {
+        params: { query: roomName },
+        screen: `RoomsSearch`,
+      },
+    })
   }
 
   renderContactPerson = ({
@@ -158,19 +163,19 @@ class TimetableDetailView extends React.Component {
     } = this.props
     const sessionType = sessionTypeStr.toLowerCase()
     switch (true) {
-    case sessionType === `lecture`:
-    case sessionType === `seminar`: {
-      contactTypeStr = `Lecturer`
-      break
-    }
-    case sessionType === `practical`:
-    case sessionType === `problem based learning`: {
-      contactTypeStr = `Instructor`
-      break
-    }
-    default: {
-      contactTypeStr = `Contact`
-    }
+      case sessionType === `lecture`:
+      case sessionType === `seminar`: {
+        contactTypeStr = `Lecturer`
+        break
+      }
+      case sessionType === `practical`:
+      case sessionType === `problem based learning`: {
+        contactTypeStr = `Instructor`
+        break
+      }
+      default: {
+        contactTypeStr = `Contact`
+      }
     }
 
     const { lat, lng } = location.coordinates
@@ -190,7 +195,7 @@ class TimetableDetailView extends React.Component {
             {locationName}
           </Link>
         ) : (
-          <BodyText>{locationName}</BodyText>
+            <BodyText>{locationName}</BodyText>
         )}
         <BodyText>
           {`Type: ${sessionTypeStr}`}

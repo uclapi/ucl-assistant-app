@@ -1,18 +1,20 @@
 import { Feather } from "@expo/vector-icons"
-import PropTypes from "prop-types"
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-import Button from "../../components/Button"
-import { Page } from "../../components/Containers"
-import SearchResult from "../../components/SearchResult"
-import { BodyText, SubtitleText } from "../../components/Typography"
-import Colors from "../../constants/Colors"
-import { AssetManager } from '../../lib'
-import { getRoomUniqueId } from '../../reducers/roomsReducer'
-import Styles from "../../styles/Containers"
-import SearchButton from './SearchButton'
+import Button from "../../../components/Button"
+import { Page } from "../../../components/Containers"
+import SearchResult from "../../../components/SearchResult"
+import { BodyText, SubtitleText } from "../../../components/Typography"
+import type { AppStateType } from "../../../configureStore"
+import Colors from "../../../constants/Colors"
+import { AssetManager } from '../../../lib'
+import { getRoomUniqueId } from '../../../reducers/roomsReducer'
+import Styles from "../../../styles/Containers"
+import type { RoomsNavigatorParamList } from "../RoomsNavigator"
+import SearchButton from '../RoomsSearchScreen/SearchButton'
 
 const styles = StyleSheet.create({
   container: {
@@ -30,7 +32,11 @@ const styles = StyleSheet.create({
   },
 })
 
-class RoomsFavouritesScreen extends React.Component {
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<RoomsNavigatorParamList>,
+}
+
+class RoomsFavouritesScreen extends React.Component<Props> {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -42,20 +48,6 @@ class RoomsFavouritesScreen extends React.Component {
     ),
   }
 
-  static mapStateToProps = (state) => ({
-    favouriteRooms: state.rooms.favourites,
-  })
-
-  static propTypes = {
-    favouriteRooms: PropTypes.arrayOf(PropTypes.shape()),
-    navigation: PropTypes.shape().isRequired,
-  }
-
-  static defaultProps = {
-    favouriteRooms: [],
-  }
-
-
   navigateToEmptyRoomsScreen = () => {
     const { navigation: { navigate } } = this.props
     navigate(`EmptyRooms`)
@@ -63,7 +55,7 @@ class RoomsFavouritesScreen extends React.Component {
 
   navigateToRoomDetail = (room) => () => {
     const { navigation: { navigate } } = this.props
-    navigate(`RoomDetail`, { room })
+    navigate(`RoomsDetail`, { room })
   }
 
   renderSuggestion = () => (
@@ -91,7 +83,6 @@ class RoomsFavouritesScreen extends React.Component {
             topText={room.roomname}
             bottomText={room.classification_name}
             type="location"
-            buttonText="View"
             onPress={this.navigateToRoomDetail(room)}
           />
         ))}
@@ -123,7 +114,13 @@ class RoomsFavouritesScreen extends React.Component {
   }
 }
 
-export default connect(
-  RoomsFavouritesScreen.mapStateToProps,
+const connector = connect(
+  (state: AppStateType) => ({
+    favouriteRooms: state.rooms.favourites,
+  }),
   () => ({}),
-)(RoomsFavouritesScreen)
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(RoomsFavouritesScreen)

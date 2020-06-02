@@ -1,9 +1,10 @@
 import React from 'react'
 import { Text, TextStyle } from 'react-native'
+import { TextProps } from 'react-native-svg'
 
 import Style from "../../styles/Typography"
 
-interface Props {
+interface Props extends TextProps {
   style?: TextStyle,
   children: React.ReactNode,
 }

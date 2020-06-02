@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 interface Props {
   query: string,
   clear: () => void,
-  onChangeQuery: () => void,
+  onChangeQuery: (s: string) => void,
   placeholder?: string,
 }
 
@@ -37,6 +37,6 @@ const SearchInput: React.FunctionComponent<Props> = ({
         <SmallButton onPress={clear}>Clear</SmallButton>
       ) : null}
     </Horizontal>
-)
+  )
 
 export default SearchInput

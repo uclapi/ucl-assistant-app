@@ -8,7 +8,7 @@ import {
   cleanup, fireEvent, render, waitForElement,
 } from 'react-native-testing-library'
 
-import ApiManager from "../../../lib/ApiManager"
+import ApiManager from "../../../../lib/ApiManager"
 import { EmptyRoomsScreen } from '../EmptyRoomsScreen'
 
 describe(`EmptyRoomsScreen`, () => {
@@ -17,10 +17,10 @@ describe(`EmptyRoomsScreen`, () => {
   const mockProps = {
     navigation: {
       navigate: mockNavigate,
-    },
+    } as any,
+    token: ``,
   }
 
-  /* eslint-disable @typescript-eslint/camelcase */
   const sampleRooms = [
     {
       classification_name: `Classroom`,
@@ -41,7 +41,6 @@ describe(`EmptyRoomsScreen`, () => {
       sitename: `Main Building`,
     },
   ]
-  /* eslint-enable @typescript-eslint/camelcase */
 
   const mockGetEmptyRooms = jest.fn(
     () => Promise.resolve(sampleRooms),
