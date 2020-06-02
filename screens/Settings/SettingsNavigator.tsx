@@ -17,7 +17,7 @@ const SettingsNavigator = (): ReactElement => (
   <Stack.Navigator initialRouteName="Settings">
     <Stack.Screen
       name="FAQ"
-      options={{ title: `` }}
+      options={{ title: `FAQs` }}
       component={FAQScreen}
     />
     <Stack.Screen

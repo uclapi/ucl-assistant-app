@@ -103,7 +103,7 @@ class RoomsFavouritesScreen extends React.Component {
     const { navigation, favouriteRooms } = this.props
     return (
       <View style={styles.container}>
-        <Page mainTabPage>
+        <Page>
           <SubtitleText style={styles.subtitle}>Your Favourites</SubtitleText>
           {
             (favouriteRooms.length > 0)

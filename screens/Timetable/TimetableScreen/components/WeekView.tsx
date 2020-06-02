@@ -16,6 +16,7 @@ import LastModified from "./LastModified"
 
 const styles = StyleSheet.create({
   contentContainer: {
+    flex: 1,
     paddingHorizontal: 20,
     paddingVertical: 20,
   },

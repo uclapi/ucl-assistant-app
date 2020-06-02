@@ -20,34 +20,32 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.pageBackground,
     flex: 1,
     flexDirection: `column`,
-  },
-  pageNoScrollContainer: {
-    paddingTop: 10,
+    paddingBottom: 60,
   },
 })
 
 interface Props {
   children: React.ReactNode,
   style?: ViewStyle,
+  keyboardAvoidingViewStyle?: ViewStyle,
 }
 
 const PageNoScroll: React.FC<Props> = ({
   children,
   style,
-  ...props
+  keyboardAvoidingViewStyle,
 }) => (
     <SafeAreaView style={styles.pageContainer}>
       <KeyboardAvoidingView
-        style={[
+        style={StyleSheet.flatten([
           styles.pageContainer,
-          styles.pageNoScrollContainer,
-        ]}
-        {...props}
+          keyboardAvoidingViewStyle,
+        ])}
         behavior="padding"
       >
         <View style={[styles.page, style]}>{children}</View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  )
+)
 
 export default PageNoScroll

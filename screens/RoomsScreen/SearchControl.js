@@ -58,7 +58,11 @@ class SearchControl extends Component {
   }
 
   componentWillUnmount() {
-    this.subscriptions.forEach((sub) => sub.remove())
+    this.subscriptions.forEach((sub) => {
+      if (sub) {
+        sub.remove()
+      }
+    })
   }
 
   componentDidFocus = (route) => {

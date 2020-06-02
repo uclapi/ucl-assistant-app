@@ -7,34 +7,33 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  View,
   ViewStyle,
 } from "react-native"
 
 import Colors from "../../constants/Colors"
 
 const styles = StyleSheet.create({
-  page: {
-    backgroundColor: Colors.pageBackground,
-    flex: 1,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
   pageContainer: {
     backgroundColor: Colors.pageBackground,
     flex: 1,
     flexDirection: `column`,
   },
   pageScrollContent: {
+    paddingBottom: 60,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 10,
+    paddingTop: 20,
   },
   pageScrollView: {
+    backgroundColor: Colors.pageBackground,
+    flex: 1,
     paddingLeft: 0,
     paddingRight: 0,
   },
   pageTopPadding: { height: 10 },
+  safeAreaView: {
+    flex: 1,
+  },
   safeAreaViewTop: {
     flex: 0,
   },
@@ -62,27 +61,25 @@ const Page: React.FC<Props> = ({
   onRefresh = () => { },
   refreshing = false,
   topColour = Colors.pageBackground,
-  ...props
 }) => (
-  <>
+    <>
       <SafeAreaView style={
-        [
+        StyleSheet.flatten([
           styles.safeAreaViewTop,
           { backgroundColor: topColour },
-        ]
+        ])
       }
       />
-      <SafeAreaView style={[
-        styles.pageContainer,
+      <SafeAreaView style={StyleSheet.flatten([
+        styles.safeAreaView,
         safeAreaViewStyle,
-      ]}
+      ])}
       >
         <KeyboardAvoidingView
-          style={[
+          style={StyleSheet.flatten([
             styles.pageContainer,
             keyboardAvoidingViewStyle,
-          ]}
-          {...props}
+          ])}
           behavior="padding"
           keyboardVerticalOffset={
             Platform.OS === `android` ? StatusBar.currentHeight : 0
@@ -93,7 +90,7 @@ const Page: React.FC<Props> = ({
               styles.pageScrollContent,
               contentContainerStyle,
             ]}
-            style={[styles.page, styles.pageScrollView, style]}
+            style={[styles.pageScrollView, style]}
             refreshControl={
               refreshEnabled ? (
                 <RefreshControl
@@ -105,12 +102,11 @@ const Page: React.FC<Props> = ({
             }
             keyboardDismissMode="on-drag"
           >
-            <View style={styles.pageTopPadding} />
             {children}
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
-  </>
-)
+    </>
+  )
 
 export default Page

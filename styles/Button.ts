@@ -3,11 +3,8 @@ import { StyleSheet } from "react-native"
 import Colors from "../constants/Colors"
 
 const buttonStyle = {
-  // alignItems: `center`,
   borderRadius: 8,
   elevation: 2,
-  // flexDirection: `row`,
-  // justifyContent: `center`,
   minHeight: 55,
   minWidth: 150,
   padding: 8,
@@ -23,6 +20,9 @@ export default StyleSheet.create({
   button: StyleSheet.flatten([
     buttonStyle,
     {
+      alignItems: `center`,
+      flexDirection: `row`,
+      justifyContent: `center`,
       marginBottom: 5,
       marginTop: 5,
     },
@@ -40,6 +40,8 @@ export default StyleSheet.create({
     {
       alignItems: `center`,
       borderRadius: 30,
+      flexDirection: `row`,
+      justifyContent: `center`,
       minWidth: 55,
     },
   ]),
@@ -54,6 +56,9 @@ export default StyleSheet.create({
   smallButton: StyleSheet.flatten([
     buttonStyle,
     {
+      alignItems: `center`,
+      flexDirection: `row`,
+      justifyContent: `center`,
       marginBottom: 5,
       marginTop: 5,
       minHeight: 30,

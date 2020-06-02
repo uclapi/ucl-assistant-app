@@ -18,7 +18,7 @@ type TimetableNavigatorParamList = {
 
 const Stack = createStackNavigator<TimetableNavigatorParamList>()
 
-const TimetableNavigator = () => (
+const TimetableNavigator = (): React.ReactElement => (
   <Stack.Navigator initialRouteName="Timetable">
     <Stack.Screen
       options={{ headerShown: false }}

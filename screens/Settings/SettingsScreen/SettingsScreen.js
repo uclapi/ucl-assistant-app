@@ -230,7 +230,7 @@ export class SettingsScreen extends Component {
   render() {
     const { user } = this.props
     return (
-      <Page mainTabPage>
+      <Page>
         <View style={styles.section}>
           <HeaderText>User</HeaderText>
           <BodyText>
@@ -283,10 +283,10 @@ export class SettingsScreen extends Component {
               <LiveIndicator>Developer Mode</LiveIndicator>
             ) : (
               <>
-                <BodyText>Release Channel: </BodyText>
-                <LiveIndicator>
-                  {Constants.manifest.releaseChannel || `dev`}
-                </LiveIndicator>
+                  <BodyText>Release Channel: </BodyText>
+                  <LiveIndicator>
+                    {Constants.manifest.releaseChannel || `dev`}
+                  </LiveIndicator>
               </>
             )}
           </Horizontal>
