@@ -91,15 +91,6 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
     signOut: () => dispatch(signOutAction()),
   })
 
-  static defaultProps = {
-    error: ``,
-    fetchTimetable: () => { },
-    isFetchingTimetable: false,
-    setExpoPushToken: () => { },
-    timetable: {},
-    user: {},
-  }
-
   private viewpager = React.createRef<ViewPager>()
 
   constructor(props) {
@@ -296,7 +287,6 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
   render() {
     const {
       timetable,
-      isFetchingTimetable,
       error,
     } = this.props
     const {
@@ -311,10 +301,6 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
 
     return (
       <PageNoScroll
-        refreshing={isFetchingTimetable}
-        onRefresh={this.onRefresh}
-        refreshEnabled
-        mainTabPage
         style={styles.page}
       >
         {

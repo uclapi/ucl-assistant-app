@@ -14,7 +14,7 @@ const AMPLITUDE_API_KEY = Constants.manifest.extra
 const initialise = (): Promise<void> => Amplitude.initialize(AMPLITUDE_API_KEY)
 
 const shouldTrackAnalytics = (): boolean => (
-  store.getState().user.settings.shouldTrackAnalytics
+  AMPLITUDE_API_KEY && !__DEV__ && store.getState().user.settings.shouldTrackAnalytics
 )
 
 const setUserId = (userId): void => {
@@ -71,12 +71,4 @@ export const AnalyticsManager = {
   setUserProperties,
 }
 
-export default (AMPLITUDE_API_KEY && !__DEV__)
-  ? AnalyticsManager
-  : (
-    new Proxy({}, {
-      get() {
-        return (): void => { } // do nothing in development mode
-      },
-    })
-  )
+export default AnalyticsManager

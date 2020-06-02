@@ -1,5 +1,4 @@
 import { LinearGradient } from "expo-linear-gradient"
-import PropTypes from "prop-types"
 import React, { Component } from "react"
 import {
   Alert,
@@ -20,6 +19,7 @@ import {
   Link,
   SubtitleText,
 } from "../components/Typography"
+import { AppStateType } from "../configureStore"
 import Colors from "../constants/Colors"
 import { AnalyticsManager, AssetManager, ErrorManager } from "../lib"
 import Styles from "../styles/Containers"
@@ -34,8 +34,16 @@ const styles = StyleSheet.create({
   },
 })
 
-class SplashScreen extends Component {
-  static mapStateToProps = (state) => ({
+interface Props {
+  error: string,
+  isSigningIn: boolean,
+  signIn: () => void,
+  token: string,
+  user: any,
+}
+
+class SplashScreen extends Component<Props> {
+  static mapStateToProps = (state: AppStateType) => ({
     error: state.user.signIn.error,
     isSigningIn: state.user.signIn.isSigningIn,
     token: state.user.token,
@@ -45,14 +53,6 @@ class SplashScreen extends Component {
   static mapDispatchToProps = (dispatch) => ({
     signIn: () => dispatch(signInAction()),
   })
-
-  static propTypes = {
-    error: PropTypes.string,
-    isSigningIn: PropTypes.bool,
-    signIn: PropTypes.func,
-    token: PropTypes.string,
-    user: PropTypes.shape(),
-  }
 
 
   static defaultProps = {
@@ -178,7 +178,9 @@ class SplashScreen extends Component {
   }
 }
 
-export default connect(
+const connector = connect(
   SplashScreen.mapStateToProps,
   SplashScreen.mapDispatchToProps,
-)(SplashScreen)
+)
+
+export default connector(SplashScreen)
