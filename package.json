@@ -33,6 +33,9 @@
     }
   },
   "lint-staged": {
+    "*.{ts,tsx,d.ts}": [
+      "tsc --allowSyntheticDefaultImports --jsx react-native --noEmit --esModuleInterop --moduleResolution node --skipLibCheck"
+    ],
     "*.{ts,tsx,js,jsx,json}": [
       "eslint --fix --ignore-pattern"
     ]

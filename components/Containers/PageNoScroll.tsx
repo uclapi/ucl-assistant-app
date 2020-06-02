@@ -48,6 +48,6 @@ const PageNoScroll: React.FC<Props> = ({
         <View style={[styles.page, style]}>{children}</View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-)
+  )
 
 export default PageNoScroll
