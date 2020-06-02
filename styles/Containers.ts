@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   Platform,
   StyleSheet,
 } from "react-native"
@@ -8,19 +7,19 @@ import Colors from "../constants/Colors"
 import { BORDER_RADIUS } from "../constants/styleConstants"
 import Shadow from "../lib/Shadow"
 
-const { height, width } = Dimensions.get(`window`)
-
-const cardShared = {
-  alignSelf: `stretch`,
-  backgroundColor: Colors.cardBackground,
-  borderRadius: BORDER_RADIUS,
-  marginBottom: 5,
-  marginLeft: Platform.OS === `ios` ? 1 : 0,
-  marginRight: Platform.OS === `ios` ? 1 : 0,
-  ...Shadow(3),
-  marginTop: 5,
-  padding: 10,
-}
+const styles = StyleSheet.create({
+  cardShared: {
+    alignSelf: `stretch`,
+    backgroundColor: Colors.cardBackground,
+    borderRadius: BORDER_RADIUS,
+    marginBottom: 5,
+    marginLeft: Platform.OS === `ios` ? 1 : 0,
+    marginRight: Platform.OS === `ios` ? 1 : 0,
+    ...Shadow(3),
+    marginTop: 5,
+    padding: 10,
+  },
+})
 
 export default StyleSheet.create({
   app: {
@@ -28,7 +27,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   card: StyleSheet.flatten([
-    cardShared,
+    styles.cardShared,
     {
       flexDirection: `column`,
     },
@@ -39,17 +38,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     height: 10,
     width: 10,
-  },
-  circularIcon: {
-    backgroundColor: Colors.textInputBackground,
-    borderRadius: 80,
-    marginRight: 10,
-    padding: 10,
-  },
-  horizontal: {
-    alignItems: `center`,
-    flexDirection: `row`,
-    justifyContent: `center`,
   },
   image: {
     alignSelf: `stretch`,
@@ -66,27 +54,13 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 2,
   },
-  mainTab: {
-
-  },
-  mainTabBlur: {
-    bottom: 0,
-    height: 60,
-    left: 0,
-    right: 0,
-    top: undefined,
-  },
   oldCard: StyleSheet.flatten([
-    cardShared,
+    styles.cardShared,
     {
       backgroundColor: Colors.oldCardBackground,
       flexDirection: `column`,
     },
   ]),
-  paddedIcon: {
-    marginLeft: 5,
-    marginRight: 5,
-  },
   page: {
     backgroundColor: Colors.pageBackground,
     flex: 1,
@@ -95,10 +69,8 @@ export default StyleSheet.create({
   },
   pageContainer: {
     backgroundColor: Colors.pageBackground,
-    // flex: 1,
-    // flexDirection: `column`,
-    height,
-    width,
+    flex: 1,
+    flexDirection: `column`,
   },
   pageNoScrollContainer: {
     paddingTop: 10,
@@ -113,7 +85,7 @@ export default StyleSheet.create({
     paddingRight: 0,
   },
   resultCard: StyleSheet.flatten([
-    cardShared,
+    styles.cardShared,
     {
       marginBottom: 10,
       marginLeft: 2,
@@ -121,7 +93,4 @@ export default StyleSheet.create({
       marginTop: 5,
     },
   ]),
-  spacer: {
-    flex: 1,
-  },
 })

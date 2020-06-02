@@ -10,7 +10,8 @@
     "plugin:security/recommended",
     "plugin:sonarjs/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
   ],
   "globals": {
     "__DEV__": true
