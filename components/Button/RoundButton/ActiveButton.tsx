@@ -58,14 +58,14 @@ const Wrapper: React.FC<Props> = ({
 export interface ActiveButtonProps {
   onPress?: (e: GestureResponderEvent) => void,
   styles?: ViewStyle,
-  children: React.ReactElement,
+  children?: React.ReactNode,
   disabled?: boolean,
 }
 
 const Button: React.FC<ActiveButtonProps> = ({
   onPress = () => { },
   styles,
-  children,
+  children = null,
   disabled = false,
 }) => (
     <Wrapper onPress={onPress} disabled={disabled}>

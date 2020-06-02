@@ -1,10 +1,11 @@
-import PropTypes from "prop-types"
+import { RouteProp } from '@react-navigation/native'
 import React, { Component } from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect } from "react-redux"
 
 import Svg from "../../components/Svg"
 import ApiManager from "../../lib/ApiManager"
+import type { RootStackParamList } from '../../navigation/RootNavigation'
 
 const styles = StyleSheet.create({
   loadingContainer: {
@@ -17,7 +18,22 @@ const styles = StyleSheet.create({
   },
 })
 
-class LiveSeatingMapScreen extends Component {
+type LiveSeatingMapScreenRouteProp = RouteProp<
+  RootStackParamList,
+  // eslint-disable-next-line quotes
+  'LiveSeatingMap'
+>
+
+interface Props {
+  route: LiveSeatingMapScreenRouteProp,
+  token: string,
+}
+
+interface State {
+  svg: string,
+}
+
+class LiveSeatingMapScreen extends Component<Props, State> {
   static navigationOptions = ({ route }) => ({
     title: route.params?.name ?? `Live Seating Map`,
   })
@@ -28,13 +44,8 @@ class LiveSeatingMapScreen extends Component {
 
   static mapDispatchToProps = () => ({})
 
-  static propTypes = {
-    route: PropTypes.shape().isRequired,
-    token: PropTypes.string.isRequired,
-  }
-
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       svg: null,
     }

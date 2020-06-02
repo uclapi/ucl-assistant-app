@@ -3,10 +3,13 @@ import { View } from "react-native"
 import { connect } from "react-redux"
 import { generate } from "shortid"
 
-import { clearRecentResults as clearRecentsResultsAction } from "../../actions/peopleActions"
+import {
+  clearRecentResults as clearRecentsResultsAction,
+} from "../../actions/peopleActions"
 import Button from "../../components/Button"
 import SearchResult from "../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../components/Typography"
+import type { AppStateType } from '../../configureStore'
 
 interface Props {
   clearRecentResults: () => void,
@@ -19,7 +22,7 @@ export class RecentResults extends React.Component<Props> {
     clearRecentResults: (): any => dispatch(clearRecentsResultsAction()),
   })
 
-  static mapStateToProps = (state): any => ({
+  static mapStateToProps = (state: AppStateType): any => ({
     recents: state.people.recents,
   })
 
@@ -28,7 +31,7 @@ export class RecentResults extends React.Component<Props> {
     recents: [],
   }
 
-  viewPerson = (person) => () => {
+  viewPerson = (person) => (): void => {
     const { navigation } = this.props
     navigation.navigate(`PersonDetail`, person)
   }
@@ -43,13 +46,12 @@ export class RecentResults extends React.Component<Props> {
         topText={recent.name}
         bottomText={recent.department}
         type="person"
-        buttonText="View"
         onPress={this.viewPerson(recent)}
       />
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     const { recents, clearRecentResults } = this.props
     if (recents.length === 0) {
       return null
@@ -62,7 +64,7 @@ export class RecentResults extends React.Component<Props> {
           <Button onPress={clearRecentResults}>Clear</Button>
         ) : (
             <CentredText>Recent results will appear here.</CentredText>
-          )}
+        )}
       </View>
     )
   }

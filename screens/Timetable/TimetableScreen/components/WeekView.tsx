@@ -170,7 +170,7 @@ class WeekView extends React.Component<Props> {
 
     const past = LocalisationManager.parseToDate(
       `${dateISO}T${item.end_time}`,
-    ) - LocalisationManager.now() < 0
+    ).getTime() - LocalisationManager.now().getTime() < 0
     return (
       <TimetableCard
         moduleName={moduleName}

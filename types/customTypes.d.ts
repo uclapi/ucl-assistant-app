@@ -1,3 +1,4 @@
+// for @testing-library/jest-native
 
 declare global {
   namespace jest {

@@ -8,7 +8,7 @@ import {
 interface timetableState {
   error: string,
   isFetching: boolean,
-  weeklyTimetable: any
+  weeklyTimetable: unknown,
 }
 
 export const initialState: timetableState = {
@@ -44,7 +44,7 @@ export default (state: timetableState = initialState, action = null) => {
         ...state,
         isFetching: false,
         weeklyTimetable: {
-          ...state.weeklyTimetable,
+          ...(state.weeklyTimetable as Record<string, unknown>),
           ...timetableFrag,
         },
       }

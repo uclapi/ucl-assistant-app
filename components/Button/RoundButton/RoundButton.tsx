@@ -4,13 +4,13 @@ import React from "react"
 import { ActivityIndicator, Platform } from "react-native"
 
 import Colors from "../../../constants/Colors"
-import ActiveButton from "./ActiveButton"
+import ActiveButton, { ActiveButtonProps } from "./ActiveButton"
 import DisabledButton from "./DisabledButton"
 
-export interface RoundButtonProps {
-  icon: string,
-  loading: boolean,
-  disabled: boolean,
+export interface RoundButtonProps extends ActiveButtonProps {
+  icon?: string,
+  loading?: boolean,
+  disabled?: boolean,
 }
 
 const RoundButton: React.FC<RoundButtonProps> = ({

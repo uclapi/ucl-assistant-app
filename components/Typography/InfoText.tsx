@@ -1,7 +1,10 @@
 import { Feather } from "@expo/vector-icons"
 import React from 'react'
 import {
-  Text, TextStyle, ViewStyle,
+  StyleSheet,
+  Text,
+  TextStyle,
+  ViewStyle,
 } from 'react-native'
 
 import Colors from "../../constants/Colors"
@@ -19,7 +22,7 @@ interface Props {
 const InfoText: React.FunctionComponent<Props> = ({
   children, icon = `info`, style, containerStyle,
 }) => (
-    <Horizontal style={[Style.infoTextContainer, containerStyle]}>
+    <Horizontal style={StyleSheet.flatten([Style.infoTextContainer, containerStyle])}>
       <Feather size={18} color={Colors.infoColor} name={icon} />
       <Text style={[Style.infoText, style]}>{children}</Text>
     </Horizontal>

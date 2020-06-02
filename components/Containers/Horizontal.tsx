@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, ViewProps } from 'react-native'
+import { StyleSheet, View, ViewStyle } from 'react-native'
 
 const styles = StyleSheet.create({
   horizontal: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
-  style?: ViewProps,
+  style?: ViewStyle,
   children: React.ReactNode,
 }
 

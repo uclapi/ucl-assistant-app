@@ -16,6 +16,12 @@ const SAMPLE_DETAILS = {
 }
 const SAMPLE_ERROR = new Error(`HTTP 418`)
 
+interface Global {
+  __DEV__: boolean,
+}
+
+declare const global: Global
+
 describe(`ErrorManager`, () => {
   const mockConsoleError = jest.fn()
 
@@ -84,9 +90,11 @@ describe(`ErrorManager`, () => {
     // eslint-disable-next-line no-underscore-dangle
     global.__DEV__ = false
 
+    const mockWithScope = jest.spyOn(Sentry, `withScope`)
     ErrorManager.captureError(SAMPLE_ERROR, SAMPLE_DETAILS)
 
-    const callback = Sentry.withScope.mock.calls[0][0]
+
+    const callback = (mockWithScope as jest.Mock).mock.calls[0][0]
     const scope = { setExtra: jest.fn() }
     callback(scope)
 

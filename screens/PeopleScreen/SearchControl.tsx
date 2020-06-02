@@ -12,6 +12,7 @@ import { Horizontal } from "../../components/Containers"
 import { TextInput } from "../../components/Input"
 import SearchResult from "../../components/SearchResult"
 import { CentredText } from "../../components/Typography"
+import type { AppStateType } from '../../configureStore'
 
 const styles = StyleSheet.create({
   textInput: {
@@ -23,17 +24,23 @@ const styles = StyleSheet.create({
 const MIN_QUERY_LENGTH = 4
 
 interface Props {
-  clearRecentResults: () => {},
+  clearRecentResults: () => void,
   error: any,
   isSearching: boolean,
   navigation: any,
-  search: () => {},
+  search: (t: string, q: string) => void,
   searchResults: any,
   token: string,
 }
 
-export class SearchControl extends React.Component<Props> {
-  static mapStateToProps = (state): any => ({
+interface State {
+  query: string,
+}
+
+export class SearchControl extends React.Component<Props, State> {
+  static SEARCH_DELAY = 500
+
+  static mapStateToProps = (state: AppStateType): any => ({
     error: state.people.searchError,
     isSearching: state.people.isSearching,
     searchResults: state.people.searchResults,
@@ -42,7 +49,7 @@ export class SearchControl extends React.Component<Props> {
 
   static mapDispatchToProps = (dispatch): any => ({
     clearRecentResults: (): any => dispatch(searchClearAction()),
-    search: (token, query): any => dispatch(searchAction(token, query)),
+    search: (token: string, query: string): any => dispatch(searchAction(token, query)),
   })
 
   searchTimer = null
@@ -56,7 +63,7 @@ export class SearchControl extends React.Component<Props> {
     token: ``,
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -104,8 +111,6 @@ export class SearchControl extends React.Component<Props> {
     navigation.navigate(`PersonDetail`, person)
   }
 
-  static SEARCH_DELAY = 500
-
   renderResult = (res = null) => {
     if (res === null) {
       return null
@@ -116,7 +121,6 @@ export class SearchControl extends React.Component<Props> {
         topText={res.name}
         bottomText={res.department}
         type="person"
-        buttonText="View"
         onPress={this.viewPerson(res)}
       />
     )

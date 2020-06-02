@@ -5,4 +5,4 @@ const TIMEZONES = {
   London: `Europe/London`,
 }
 
-module.exports = TIMEZONES
+export default TIMEZONES

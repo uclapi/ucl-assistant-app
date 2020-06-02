@@ -5,7 +5,7 @@ import Style from "../../styles/Typography"
 
 interface Props {
   style?: TextStyle,
-  children: React.ReactElement | string,
+  children: React.ReactNode,
 }
 
 const CentredText: React.FunctionComponent<Props> = ({ children, style }) => (

@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons"
-import { IconProps } from "@expo/vector-icons/build/createIconSet"
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import type { IconProps } from "react-native-vector-icons/Icon"
 
 import Colors from "../../constants/Colors"
 
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 })
 
 // eslint-disable-next-line quotes
-const CircularIcon: React.FC<IconProps<"Feather">> = (props) => (
+const CircularIcon: React.FC<IconProps> = (props) => (
   <View style={styles.circularIcon}>
     <Feather {...props} />
   </View>

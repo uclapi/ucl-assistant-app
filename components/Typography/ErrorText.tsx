@@ -1,7 +1,10 @@
 import { Feather } from "@expo/vector-icons"
 import React from 'react'
 import {
-  Text, TextStyle, ViewStyle,
+  StyleSheet,
+  Text,
+  TextStyle,
+  ViewStyle,
 } from 'react-native'
 
 import Colors from "../../constants/Colors"
@@ -18,7 +21,7 @@ interface Props {
 const ErrorText: React.FunctionComponent<Props> = ({
   children, style, containerStyle,
 }) => (
-    <Horizontal style={[Style.infoTextContainer, containerStyle]}>
+    <Horizontal style={StyleSheet.flatten([Style.infoTextContainer, containerStyle])}>
       <Feather size={18} color={Colors.errorColor} name="alert-circle" />
       <Text style={[Style.errorText, style]}>{children}</Text>
     </Horizontal>

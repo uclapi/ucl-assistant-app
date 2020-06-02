@@ -6,6 +6,7 @@ import {
   Platform,
   TouchableNativeFeedback,
   TouchableOpacity,
+  ViewProps,
   ViewStyle,
 } from "react-native"
 
@@ -58,7 +59,7 @@ class Wrapper extends React.Component<WrapperProps> {
   }
 }
 
-export interface ActiveButtonProps {
+export interface ActiveButtonProps extends ViewProps {
   onPress?: (event: GestureResponderEvent) => void,
   style?: ViewStyle,
   children: React.ReactNode,

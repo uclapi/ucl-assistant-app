@@ -4,6 +4,7 @@ import {
   Text,
   TextStyle,
   TouchableOpacity,
+  ViewProps,
   ViewStyle,
 } from "react-native"
 
@@ -25,7 +26,7 @@ interface Props {
   style?: TextStyle,
 }
 
-class Link extends React.Component<Props> {
+class Link extends React.Component<Props & ViewProps> {
   static defaultProps = {
     children: ``,
     containerStyle: {},

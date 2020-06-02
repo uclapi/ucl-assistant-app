@@ -11,7 +11,20 @@ import SplashScreen from "../screens/SplashScreen"
 import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
 import MainTabNavigator from "./MainTabNavigator"
 
-const Stack = createStackNavigator()
+export type RootStackParamList = {
+  LiveSeatingMap: {
+    surveyId: string,
+    mapId: string,
+  },
+  Main: undefined,
+  Notifications: undefined,
+  PersonDetail: undefined,
+  RoomDetail: undefined,
+  StudySpaceDetail: undefined,
+  Splash: undefined,
+}
+
+const Stack = createStackNavigator<RootStackParamList>()
 
 export const RootNavigatorComponent = ({
   onNavigationStateChange,

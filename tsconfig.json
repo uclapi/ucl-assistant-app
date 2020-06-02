@@ -15,6 +15,6 @@
     "esModuleInterop": true,
   },
   "include": [
-    "./scripts/customTypes.d.ts" // for @testing-library/jest-native
+    "./types",
   ]
 }

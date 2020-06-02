@@ -58,10 +58,10 @@ const LightButton: React.FC<Props> = ({
         {
           (typeof children === `string`) ? (
             <SmallButtonText
-              style={[
+              style={StyleSheet.flatten([
                 styles.text,
                 active ? styles.activeText : {},
-              ]}
+              ])}
             >
               {children}
             </SmallButtonText>
@@ -69,7 +69,7 @@ const LightButton: React.FC<Props> = ({
         }
       </View>
     </TouchableOpacity>
-  )
+)
 
 LightButton.defaultProps = {
   active: false,

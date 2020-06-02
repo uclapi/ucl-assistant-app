@@ -89,6 +89,14 @@
       "error",
       "always-multiline"
     ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "__DEV__"
+        ]
+      }
+    ],
     "global-require": "off",
     "import/extensions": [
       "error",
@@ -164,7 +172,11 @@
           "PascalCase"
         ],
         "leadingUnderscore": "forbid",
-        "trailingUnderscore": "forbid"
+        "trailingUnderscore": "forbid",
+        "filter": {
+          "regex": "__DEV__",
+          "match": false
+        }
       }
     ],
     "indent": [

@@ -43,12 +43,6 @@ export class PeopleScreen extends Component<Props> {
     searchResults: state.people.searchResults,
   })
 
-  static defaultProps = {
-    isSearching: false,
-    recents: [],
-    searchResults: false,
-  }
-
   render() {
     const {
       navigation,
@@ -57,7 +51,7 @@ export class PeopleScreen extends Component<Props> {
       searchResults,
     } = this.props
     return (
-      <Page mainTabPage>
+      <Page>
         <TitleText>People</TitleText>
         <SearchControl navigation={navigation} />
         <RecentResults navigation={navigation} />

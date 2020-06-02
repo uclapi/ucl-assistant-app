@@ -44,11 +44,11 @@ interface Props {
   children: React.ReactNode,
   style?: ViewStyle,
   safeAreaViewStyle?: ViewStyle,
-  keyboardAvoidingViewStyle: ViewStyle,
-  contentContainerStyle: ViewStyle,
-  refreshEnabled: boolean,
-  onRefresh: () => void,
-  refreshing: boolean,
+  keyboardAvoidingViewStyle?: ViewStyle,
+  contentContainerStyle?: ViewStyle,
+  refreshEnabled?: boolean,
+  onRefresh?: () => void,
+  refreshing?: boolean,
   topColour?: string,
 }
 

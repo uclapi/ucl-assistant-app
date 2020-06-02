@@ -1,5 +1,5 @@
 import { CommonActions } from "@react-navigation/native"
-import PropTypes from "prop-types"
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { connect } from "react-redux"
@@ -15,12 +15,14 @@ import {
   Link,
   TitleText,
 } from "../../components/Typography"
+import { AppStateType } from "../../configureStore"
 import {
   AnalyticsManager,
   AssetManager,
   ErrorManager,
   PushNotificationsManager,
 } from "../../lib"
+import type { RootStackParamList } from "../../navigation/RootNavigation"
 import Styles from "../../styles/Containers"
 
 
@@ -48,38 +50,40 @@ const styles = StyleSheet.create({
   },
 })
 
-export class NotificationsScreen extends React.Component {
+type NotificationsScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  // eslint-disable-next-line quotes
+  'Notifications'
+>
+
+interface Props {
+  navigation: NotificationsScreenNavigationProp,
+  token: string,
+  declinePushNotifications: () => void,
+  setExpoPushToken: (t: string) => void,
+}
+
+export class NotificationsScreen extends React.Component<Props> {
   static navigationOptions = {
     headerShown: false,
   }
 
-  static mapStateToProps = (state) => ({
+  static mapStateToProps = (state: AppStateType) => ({
     token: state.user.token,
   })
 
   static mapDispatchToProps = (dispatch) => ({
     declinePushNotifications: () => dispatch(declinePushNotificationsAction()),
-    setExpoPushToken: (pushToken) => dispatch(setExpoPushTokenAction(pushToken)),
+    setExpoPushToken: (pushToken: string) => dispatch(setExpoPushTokenAction(pushToken)),
   })
 
-  static propTypes = {
-    declinePushNotifications: PropTypes.func,
-    navigation: PropTypes.shape().isRequired,
-    setExpoPushToken: PropTypes.func,
-    token: PropTypes.string,
-  }
-
-  static defaultProps = {
-    declinePushNotifications: () => { },
-    setExpoPushToken: () => { },
-    token: ``,
-  }
-
-  onEnableNotifications = async () => {
+  onEnableNotifications = async (): Promise<void> => {
     const { token, setExpoPushToken } = this.props
     AnalyticsManager.logEvent(AnalyticsManager.events.NOTIFICATIONS_ENABLE)
     try {
-      const pushToken = await PushNotificationsManager.registerForPushNotifications(token)
+      const pushToken = (
+        await PushNotificationsManager.registerForPushNotifications(token)
+      )
       setExpoPushToken(pushToken)
     } catch (error) {
       ErrorManager.captureError(error)
@@ -87,23 +91,23 @@ export class NotificationsScreen extends React.Component {
     return this.goHome()
   }
 
-  onSkip = () => {
+  onSkip = (): void => {
     const { declinePushNotifications } = this.props
     declinePushNotifications()
     AnalyticsManager.logEvent(AnalyticsManager.events.NOTIFICATIONS_SKIP)
     this.goHome()
   }
 
-  goHome = () => {
+  goHome = (): void => {
     const { navigation } = this.props
     const resetAction = CommonActions.reset({
       index: 0,
-      routes: [CommonActions.navigate({ name: `Main` })],
+      routes: [{ name: `Main` }],
     })
     navigation.dispatch(resetAction)
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Page>
         <View style={styles.container}>
@@ -144,7 +148,9 @@ export class NotificationsScreen extends React.Component {
 }
 
 
-export default connect(
+const connector = connect(
   NotificationsScreen.mapStateToProps,
   NotificationsScreen.mapDispatchToProps,
-)(NotificationsScreen)
+)
+
+export default connector(NotificationsScreen)

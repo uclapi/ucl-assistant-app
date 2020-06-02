@@ -72,7 +72,7 @@ class DateControls extends React.Component<Props, State> {
 
   showDatePicker = (): void => this.setState({ isDatePickerVisible: true })
 
-  renderDatePicker = () => {
+  renderDatePicker = (): React.ReactElement => {
     const { isDatePickerVisible } = this.state
     if (!isDatePickerVisible) {
       return null
@@ -114,7 +114,7 @@ class DateControls extends React.Component<Props, State> {
     return null
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Horizontal style={styles.dateControls}>
         <RoundButton
