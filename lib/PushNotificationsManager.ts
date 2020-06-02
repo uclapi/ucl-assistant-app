@@ -8,7 +8,7 @@ import AnalyticsManager from "./AnalyticsManager"
 import ErrorManager from "./ErrorManager"
 
 
-const registerForPushNotifications = async (token) => {
+const registerForPushNotifications = async (token: string): Promise<string> => {
   if (!Constants.isDevice) {
     ErrorManager.addDetail({
       message: `Remote notifications do not work in simulators, `
@@ -76,7 +76,7 @@ const registerForPushNotifications = async (token) => {
   return pushToken
 }
 
-const hasPushNotificationPermissions = async () => {
+const hasPushNotificationPermissions = async (): Promise<boolean> => {
   let result
   try {
     result = await Permissions.getAsync(Permissions.NOTIFICATIONS)

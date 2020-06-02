@@ -11,13 +11,13 @@ const AMPLITUDE_API_KEY = Constants.manifest.extra
   ? Constants.manifest.extra.amplitude.apiKey
   : null
 
-const initialise = () => Amplitude.initialize(AMPLITUDE_API_KEY)
+const initialise = (): Promise<void> => Amplitude.initialize(AMPLITUDE_API_KEY)
 
-const shouldTrackAnalytics = () => (
+const shouldTrackAnalytics = (): boolean => (
   store.getState().user.settings.shouldTrackAnalytics
 )
 
-const setUserId = (userId) => {
+const setUserId = (userId): void => {
   if (!shouldTrackAnalytics()) { return }
 
   // make sure this is unique
@@ -26,17 +26,17 @@ const setUserId = (userId) => {
   }
 }
 
-const setUserProperties = ({ ...userProperties }) => {
+const setUserProperties = ({ ...userProperties }): void => {
   if (!shouldTrackAnalytics()) { return }
 
   Amplitude.setUserProperties({ ...userProperties })
 }
 
-const clearUserProperties = () => {
+const clearUserProperties = (): void => {
   Amplitude.clearUserProperties()
 }
 
-const logEvent = (eventName, eventProperties) => {
+const logEvent = (eventName: string, eventProperties?): void => {
   if (!shouldTrackAnalytics()) { return }
 
   if (eventProperties) {
@@ -46,7 +46,7 @@ const logEvent = (eventName, eventProperties) => {
   }
 }
 
-const logScreenView = (screenName) => {
+const logScreenView = (screenName: string): void => {
   if (!shouldTrackAnalytics()) { return }
 
   logEvent(`VIEW_SCREEN_${screenName}`)
@@ -76,7 +76,7 @@ export default (AMPLITUDE_API_KEY && !__DEV__)
   : (
     new Proxy({}, {
       get() {
-        return () => { } // do nothing in development mode
+        return (): void => { } // do nothing in development mode
       },
     })
   )
