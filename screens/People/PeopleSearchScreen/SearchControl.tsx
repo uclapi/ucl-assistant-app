@@ -1,18 +1,22 @@
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 import { generate } from "shortid"
 
 import {
+  PeopleDispatch,
   search as searchAction,
   searchClear as searchClearAction,
-} from "../../actions/peopleActions"
-import { SmallButton } from "../../components/Button"
-import { Horizontal } from "../../components/Containers"
-import { TextInput } from "../../components/Input"
-import SearchResult from "../../components/SearchResult"
-import { CentredText } from "../../components/Typography"
-import type { AppStateType } from '../../configureStore'
+} from "../../../actions/peopleActions"
+import { SmallButton } from "../../../components/Button"
+import { Horizontal } from "../../../components/Containers"
+import { TextInput } from "../../../components/Input"
+import SearchResult from "../../../components/SearchResult"
+import { CentredText } from "../../../components/Typography"
+import type { AppStateType } from '../../../configureStore'
+import type { Person } from '../../../reducers/peopleReducer'
+import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
 const styles = StyleSheet.create({
   textInput: {
@@ -23,14 +27,8 @@ const styles = StyleSheet.create({
 
 const MIN_QUERY_LENGTH = 4
 
-interface Props {
-  clearRecentResults: () => void,
-  error: any,
-  isSearching: boolean,
-  navigation: any,
-  search: (t: string, q: string) => void,
-  searchResults: any,
-  token: string,
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
 interface State {
@@ -40,28 +38,7 @@ interface State {
 export class SearchControl extends React.Component<Props, State> {
   static SEARCH_DELAY = 500
 
-  static mapStateToProps = (state: AppStateType): any => ({
-    error: state.people.searchError,
-    isSearching: state.people.isSearching,
-    searchResults: state.people.searchResults,
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch): any => ({
-    clearRecentResults: (): any => dispatch(searchClearAction()),
-    search: (token: string, query: string): any => dispatch(searchAction(token, query)),
-  })
-
-  searchTimer = null
-
-  public static defaultProps = {
-    clearRecentResults: (): void => { },
-    error: ``,
-    isSearching: false,
-    search: (): void => { },
-    searchResults: [],
-    token: ``,
-  }
+  private searchTimer = null
 
   constructor(props: Props) {
     super(props)
@@ -91,7 +68,7 @@ export class SearchControl extends React.Component<Props, State> {
     this.setState({ query: `` })
   }
 
-  renderStatusText = () => {
+  renderStatusText = (): React.ReactNode => {
     const { query } = this.state
     const { searchResults } = this.props
     if (query.length === 0) {
@@ -106,12 +83,12 @@ export class SearchControl extends React.Component<Props, State> {
     return null
   }
 
-  viewPerson = (person) => (): void => {
+  viewPerson = (person: Person) => (): void => {
     const { navigation } = this.props
-    navigation.navigate(`PersonDetail`, person)
+    navigation.navigate(`PeopleDetail`, person)
   }
 
-  renderResult = (res = null) => {
+  renderResult = (res = null): React.ReactNode => {
     if (res === null) {
       return null
     }
@@ -126,7 +103,7 @@ export class SearchControl extends React.Component<Props, State> {
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     const { query } = this.state
     const {
       error,
@@ -170,7 +147,22 @@ export class SearchControl extends React.Component<Props, State> {
   }
 }
 
-export default connect(
-  SearchControl.mapStateToProps,
-  SearchControl.mapDispatchToProps,
-)(SearchControl)
+const connector = connect(
+  (state: AppStateType): any => ({
+    error: state.people.searchError,
+    isSearching: state.people.isSearching,
+    searchResults: state.people.searchResults,
+    token: state.user.token,
+  }),
+  (dispatch: PeopleDispatch) => ({
+    clearRecentResults: () => dispatch(searchClearAction()),
+    search: (
+      token: string,
+      query: string,
+    ) => dispatch(searchAction(token, query)),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(SearchControl)

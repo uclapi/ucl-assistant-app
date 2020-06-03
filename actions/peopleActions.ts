@@ -1,5 +1,7 @@
+import { Action } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
+import { AppStateType } from "../configureStore"
 import { PEOPLE_URL } from "../constants/API"
 import {
   PEOPLE_CLEAR_RECENTS,
@@ -12,9 +14,15 @@ import {
   PEOPLE_SEARCH_SUCCESS,
   PeopleActionTypes,
 } from "../constants/peopleConstants"
+import type { Person } from "../reducers/peopleReducer"
 
-type PeopleThunkAction = ThunkAction<Promise<{}>, {}, {}, PeopleActionTypes>
-type PeopleDispatch = ThunkDispatch<{}, {}, PeopleActionTypes>
+export type PeopleThunkAction = ThunkAction<
+  Promise<unknown>,
+  AppStateType,
+  unknown,
+  Action<PeopleActionTypes>
+>
+export type PeopleDispatch = ThunkDispatch<unknown, unknown, PeopleActionTypes>
 
 export const setIsSearching = (): PeopleActionTypes => ({
   type: PEOPLE_IS_SEARCHING,
@@ -25,7 +33,7 @@ export const searchFailure = (error: string): PeopleActionTypes => ({
   type: PEOPLE_SEARCH_FAILURE,
 })
 
-export const searchSuccess = (results: any): PeopleActionTypes => ({
+export const searchSuccess = (results: Array<Person>): PeopleActionTypes => ({
   results,
   type: PEOPLE_SEARCH_SUCCESS,
 })
@@ -34,9 +42,12 @@ export const searchClear = (): PeopleActionTypes => ({
   type: PEOPLE_SEARCH_CLEAR,
 })
 
-export const search = (token = null, query: string): PeopleThunkAction => async (dispatch: PeopleDispatch) => {
+export const search = (
+  token: string = null,
+  query: string = null,
+): PeopleThunkAction => async (dispatch: PeopleDispatch): Promise<void> => {
   if (query && query.length <= 3) {
-    return {}
+    return null
   }
   dispatch(setIsSearching())
   try {
@@ -52,11 +63,13 @@ export const search = (token = null, query: string): PeopleThunkAction => async 
     if (!res.ok) {
       throw new Error(json.error || `There was a problem`)
     }
-    return dispatch(searchSuccess(json.content.people))
+    dispatch(searchSuccess(json.content.people))
+    return null
   } catch (error) {
-    return dispatch(
+    dispatch(
       searchFailure(error.message),
     )
+    return null
   }
 }
 
@@ -69,12 +82,15 @@ export const fetchFailure = (error: string): PeopleActionTypes => ({
   type: PEOPLE_FETCH_FAILURE,
 })
 
-export const fetchSuccess = (person: any): PeopleActionTypes => ({
+export const fetchSuccess = (person: Person): PeopleActionTypes => ({
   person,
   type: PEOPLE_FETCH_SUCCESS,
 })
 
-export const fetchPerson = (token = null, email: string): PeopleThunkAction => async (dispatch: PeopleDispatch) => {
+export const fetchPerson = (
+  token: string = null,
+  email: string = null,
+): PeopleThunkAction => async (dispatch: PeopleDispatch): Promise<void> => {
   dispatch(setIsFetching())
   try {
     const res = await fetch(
@@ -89,11 +105,13 @@ export const fetchPerson = (token = null, email: string): PeopleThunkAction => a
     if (!res.ok) {
       throw new Error(json.error || `There was a problem!`)
     }
-    return dispatch(fetchSuccess(json.content.people[0]))
+    dispatch(fetchSuccess(json.content.people[0]))
+    return null
   } catch (error) {
-    return dispatch(
+    dispatch(
       fetchFailure(error.message),
     )
+    return null
   }
 }
 

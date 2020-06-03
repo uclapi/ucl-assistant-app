@@ -8,9 +8,9 @@ import {
   StyleSheet,
   View,
 } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-import { signIn as signInAction } from "../actions/userActions"
+import { signIn as signInAction, UserDispatch } from "../actions/userActions"
 import Button from "../components/Button"
 import { Horizontal, Spacer } from "../components/Containers"
 import {
@@ -34,35 +34,7 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
-  error: string,
-  isSigningIn: boolean,
-  signIn: () => void,
-  token: string,
-  user: any,
-}
-
-class SplashScreen extends Component<Props> {
-  static mapStateToProps = (state: AppStateType) => ({
-    error: state.user.signIn.error,
-    isSigningIn: state.user.signIn.isSigningIn,
-    token: state.user.token,
-    user: state.user,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    signIn: () => dispatch(signInAction()),
-  })
-
-
-  static defaultProps = {
-    error: ``,
-    isSigningIn: false,
-    signIn: () => { },
-    token: ``,
-    user: {},
-  }
-
+class SplashScreen extends Component<PropsFromRedux> {
   componentDidUpdate(prevProps) {
     const { token, error, isSigningIn } = this.props
 
@@ -179,8 +151,17 @@ class SplashScreen extends Component<Props> {
 }
 
 const connector = connect(
-  SplashScreen.mapStateToProps,
-  SplashScreen.mapDispatchToProps,
+  (state: AppStateType) => ({
+    error: state.user.signIn.error,
+    isSigningIn: state.user.signIn.isSigningIn,
+    token: state.user.token,
+    user: state.user,
+  }),
+  (dispatch: UserDispatch) => ({
+    signIn: () => dispatch(signInAction()),
+  }),
 )
+
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 export default connector(SplashScreen)

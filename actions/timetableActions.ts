@@ -1,6 +1,7 @@
 import { Moment } from "moment"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
+import type { AppStateType } from "../configureStore"
 import {
   CLEAR_TIMETABLE,
   TIMETABLE_FETCH_FAILURE,
@@ -11,8 +12,17 @@ import {
 import { ApiManager, DeviceManager, ErrorManager } from "../lib"
 
 
-type TimetableThunkAction = ThunkAction<Promise<unknown>, unknown, unknown, TimetableActionTypes>
-type TimetableDispatch = ThunkDispatch<unknown, unknown, TimetableActionTypes>
+export type TimetableThunkAction = ThunkAction<
+  Promise<unknown>,
+  AppStateType,
+  unknown,
+  TimetableActionTypes
+>
+export type TimetableDispatch = ThunkDispatch<
+  unknown,
+  unknown,
+  TimetableActionTypes
+>
 
 export const fetchTimetableSuccess = (
   timetableFrag: Record<string, any>,

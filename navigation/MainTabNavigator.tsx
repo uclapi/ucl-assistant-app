@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import React, { ReactElement } from "react"
 
 import Colors from "../constants/Colors"
-import PeopleScreen from "../screens/PeopleScreen"
+import PeopleNavigator from "../screens/People"
 import RoomsNavigator from "../screens/Rooms"
 import SettingsNavigator from "../screens/Settings"
 import StudySpacesScreen from "../screens/StudySpacesScreen"
@@ -87,7 +87,7 @@ const MainTabNavigator = (): ReactElement => (
     />
     <Tab.Screen
       name="People"
-      component={PeopleScreen}
+      component={PeopleNavigator}
     />
     <Tab.Screen
       name="Rooms"

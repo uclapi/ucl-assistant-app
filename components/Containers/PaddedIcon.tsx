@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons"
-import { IconProps } from "@expo/vector-icons/build/createIconSet"
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import type { IconProps } from "react-native-vector-icons/Icon"
 
 const styles = StyleSheet.create({
   paddedIcon: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 })
 
 // eslint-disable-next-line quotes
-const PaddedIcon: React.FC<IconProps<"Feather">> = (props) => (
+const PaddedIcon: React.FC<IconProps> = (props) => (
   <Feather {...props} style={styles.paddedIcon} />
 )
 

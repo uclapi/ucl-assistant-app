@@ -3,7 +3,7 @@ import {
 } from '@react-navigation/stack'
 import React from 'react'
 
-import { Room } from '../../reducers/roomsReducer'
+import type { Room } from '../../reducers/roomsReducer'
 import EmptyRoomsScreen from './EmptyRoomsScreen'
 import RoomsDetailScreen from './RoomsDetailScreen'
 import RoomsFavouritesScreen from './RoomsFavouritesScreen'

@@ -16,7 +16,7 @@ describe(`RecentResults`, () => {
       clearRecents: jest.fn(),
       navigation: {
         navigate: jest.fn(),
-      },
+      } as any,
       recents: [],
     }
     const tree = render(<RecentResults {...props} />).toJSON()
@@ -28,7 +28,7 @@ describe(`RecentResults`, () => {
       clearRecents: jest.fn(),
       navigation: {
         navigate: jest.fn(),
-      },
+      } as any,
       recents: [
         {
           department: `Department of Agriculture`,
@@ -56,7 +56,7 @@ it(`renders a SearchControl component`, async () => {
     isSearching: false,
     navigation: {
       navigate: jest.fn(),
-    },
+    } as any,
     search: jest.fn(),
     searchResults: [],
     token: ``,

@@ -1,18 +1,37 @@
 import * as AuthSession from 'expo-auth-session'
+import { Action } from "redux"
+import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
-import configureStore from "../configureStore"
+import configureStore, { AppStateType } from "../configureStore"
 import { ASSISTANT_API_URL } from "../constants/API"
+import type {
+  SignInSuccessAction,
+  UserActionTypes,
+} from "../constants/userConstants"
 import * as constants from "../constants/userConstants"
 import { AnalyticsManager, ErrorManager } from "../lib"
-import { clearTimetable } from "./timetableActions"
+import { clearTimetable, TimetableDispatch } from "./timetableActions"
 
 const { persistor } = configureStore
 
-export const isSigningIn = () => ({
+export type UserThunkAction = ThunkAction<
+  Promise<unknown>,
+  AppStateType,
+  unknown,
+  Action<UserActionTypes>
+>
+
+export type UserDispatch = ThunkDispatch<
+  unknown,
+  unknown,
+  UserActionTypes
+>
+
+export const isSigningIn = (): UserActionTypes => ({
   type: constants.IS_SIGNING_IN,
 })
 
-export const signInSuccess = (result) => ({
+export const signInSuccess = (result): SignInSuccessAction => ({
   type: constants.SIGN_IN_SUCCESS,
   user: {
     apiToken: result.params.apiToken,
@@ -27,16 +46,18 @@ export const signInSuccess = (result) => ({
   },
 })
 
-export const signInFailure = (error) => ({
+export const signInFailure = (error: Error): UserActionTypes => ({
   error,
   type: constants.SIGN_IN_FAILURE,
 })
 
-export const signInCancel = () => ({
+export const signInCancel = (): UserActionTypes => ({
   type: constants.SIGN_IN_CANCEL,
 })
 
-export const signIn = () => async (dispatch) => {
+export const signIn = (): UserThunkAction => async (
+  dispatch: UserDispatch,
+): Promise<void> => {
   await dispatch(isSigningIn())
   const returnUrl = AuthSession.getRedirectUrl()
   const result = await AuthSession.startAsync({
@@ -49,34 +70,40 @@ export const signIn = () => async (dispatch) => {
     AnalyticsManager.setUserId(action.user.upi)
     AnalyticsManager.setUserProperties(action.user)
     ErrorManager.setUser(action.user)
-    return dispatch(action)
+    dispatch(action)
+    return null
   }
   // login cancelled by user.
-  return dispatch(signInCancel())
+  dispatch(signInCancel())
+  return null
 }
 
-export const signOutUser = () => ({
+export const signOutUser = (): UserActionTypes => ({
   type: constants.SIGN_OUT_USER,
 })
 
-export const signOut = () => async (dispatch) => {
+export const signOut = (): UserThunkAction => async (
+  dispatch: (UserDispatch),
+): Promise<void> => {
   AnalyticsManager.clearUserProperties()
-  await dispatch(clearTimetable())
+  await (dispatch as TimetableDispatch)(clearTimetable())
   await dispatch(signOutUser())
   await persistor.purge()
-  return {}
+  return null
 }
 
-export const declinePushNotifications = () => ({
+export const declinePushNotifications = (): UserActionTypes => ({
   type: constants.DECLINE_PUSH_NOTIFICATIONS,
 })
 
-export const setExpoPushToken = (pushToken) => ({
+export const setExpoPushToken = (pushToken: string): UserActionTypes => ({
   pushToken,
   type: constants.SET_EXPO_PUSH_TOKEN,
 })
 
-export const setShouldTrackAnalytics = (shouldTrack) => ({
+export const setShouldTrackAnalytics = (
+  shouldTrack: boolean,
+): UserActionTypes => ({
   shouldTrack,
   type: constants.SET_SHOULD_TRACK_ANALYTICS,
 })

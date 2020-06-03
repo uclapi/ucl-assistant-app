@@ -1,13 +1,14 @@
-import { Feather } from "@expo/vector-icons"
+import type { StackNavigationProp } from "@react-navigation/stack"
 import React, { Component } from "react"
 import { Image, StyleSheet } from 'react-native'
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-import { Page } from "../../components/Containers"
-import { TitleText } from "../../components/Typography"
-import Colors from "../../constants/Colors"
-import { AssetManager } from "../../lib"
-import Styles from "../../styles/Containers"
+import { Page } from "../../../components/Containers"
+import { TitleText } from "../../../components/Typography"
+import { AppStateType } from "../../../configureStore"
+import { AssetManager } from "../../../lib"
+import Styles from "../../../styles/Containers"
+import type { PeopleNavigatorParamList } from "../PeopleNavigator"
 import RecentResults from "./RecentResults"
 import SearchControl from "./SearchControl"
 
@@ -18,32 +19,16 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
-  isSearching: boolean,
-  navigation: any,
-  recents: Array<any>,
-  searchResults: Array<any>,
+interface Props extends PropsFromRedux {
+  navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
 export class PeopleScreen extends Component<Props> {
   static navigationOptions = {
     headerShown: false,
-    tabBarIcon: ({ focused }) => (
-      <Feather
-        name="users"
-        size={28}
-        color={focused ? Colors.pageBackground : Colors.textColor}
-      />
-    ),
   }
 
-  static mapStateToProps = (state) => ({
-    isSearching: state.people.isSearching,
-    recents: state.people.recents,
-    searchResults: state.people.searchResults,
-  })
-
-  render() {
+  render(): React.ReactElement {
     const {
       navigation,
       recents,
@@ -74,7 +59,15 @@ export class PeopleScreen extends Component<Props> {
   }
 }
 
-export default connect(
-  PeopleScreen.mapStateToProps,
+const connector = connect(
+  (state: AppStateType) => ({
+    isSearching: state.people.isSearching,
+    recents: state.people.recents,
+    searchResults: state.people.searchResults,
+  }),
   () => ({}),
-)(PeopleScreen)
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(PeopleScreen)

@@ -17,20 +17,23 @@ interface Settings {
   shouldTrackAnalytics: boolean,
 }
 
-export interface UserState {
+export interface User {
   apiToken: string,
   cn: string,
-  declinePushNotifications: boolean,
   department: string,
   email: string,
-  expoPushToken: string,
   fullName: string,
   givenName: string,
   scopeNumber: number,
-  settings: Settings,
-  signIn: SignInState,
   token: string,
   upi: string,
+}
+
+export interface UserState extends User {
+  declinePushNotifications: boolean,
+  expoPushToken: string,
+  settings: Settings,
+  signIn: SignInState,
 }
 
 export const initialState: UserState = {
@@ -63,7 +66,7 @@ const combineState = (state, action, clearUser = false) => ({
 })
 
 export default (state = initialState, action = null): UserState => {
-  const { type, user } = action
+  const { type, user }: { type, user: User, } = action
   switch (type) {
     case IS_SIGNING_IN: {
       return {

@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 
 import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
 import NotificationsScreen from "../screens/NotificationsScreen"
-import PersonDetailScreen from "../screens/PersonDetailScreen"
 import SplashScreen from "../screens/SplashScreen"
 import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
 import MainTabNavigator from "./MainTabNavigator"
@@ -50,10 +49,6 @@ export const RootNavigatorComponent = ({
         <Stack.Screen
           name="Notifications"
           component={NotificationsScreen}
-        />
-        <Stack.Screen
-          name="PersonDetail"
-          component={PersonDetailScreen}
         />
         <Stack.Screen
           name="StudySpaceDetail"

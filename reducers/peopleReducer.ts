@@ -11,14 +11,21 @@ import {
 } from "../constants/peopleConstants"
 import { addToRecents } from "./utils"
 
+export interface Person {
+  name?: string,
+  status?: string,
+  department?: string,
+  email?: string,
+}
+
 export interface PeopleState {
   fetchError: string,
   isFetching: boolean,
   isSearching: boolean,
-  person: any,
-  recents: any,
+  person: Person,
+  recents: Array<Person>,
   searchError: string,
-  searchResults: any,
+  searchResults: Array<Person>,
 }
 
 export const initialState: PeopleState = {
