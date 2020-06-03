@@ -1,7 +1,10 @@
-import PropTypes from "prop-types"
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import { CompositeNavigationProp } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { MailComposerResult } from "expo-mail-composer"
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import MapView from "react-native-maps"
+import MapView, { Marker } from "react-native-maps"
 
 import Button from "../../../components/Button"
 import { Page } from "../../../components/Containers"
@@ -13,7 +16,13 @@ import {
   TitleText,
 } from "../../../components/Typography"
 import { LocalisationManager, MailManager, MapsManager } from "../../../lib"
+import type {
+  MainTabNavigatorParamList,
+} from "../../../navigation/MainTabNavigator"
+import type { RootStackParamList } from '../../../navigation/RootNavigation'
 import MapStyle from "../../../styles/Map"
+import type { Region, TimetableEvent } from "../../../types/uclapi"
+import type { TimetableNavigatorParamList } from "../TimetableNavigator"
 
 const styles = StyleSheet.create({
   contactPerson: {
@@ -25,79 +34,30 @@ const styles = StyleSheet.create({
   },
 })
 
-class TimetableDetailView extends React.Component {
-  static propTypes = {
-    contact: PropTypes.string,
-    date: PropTypes.string,
-    end_time: PropTypes.string,
-    initialRegion: PropTypes.shape({
-      latitude: PropTypes.number,
-      latitudeDelta: PropTypes.number,
-      longitude: PropTypes.number,
-      longitudeDelta: PropTypes.number,
-    }),
-    location: PropTypes.shape({
-      address: PropTypes.arrayOf(PropTypes.string),
-      coordinates: PropTypes.shape({
-        lat: PropTypes.string,
-        lng: PropTypes.string,
-      }),
-      name: PropTypes.string,
-      type: PropTypes.string,
-    }),
-    module: PropTypes.shape({
-      department_name: PropTypes.string,
-      email: PropTypes.string,
-      lecturer: PropTypes.shape({
-        department_id: PropTypes.string,
-        department_name: PropTypes.string,
-        email: PropTypes.string,
-        name: PropTypes.string,
-      }),
-      name: PropTypes.string,
-    }),
-    navigation: PropTypes.shape().isRequired,
-    session_group: PropTypes.string,
-    session_type_str: PropTypes.string,
-    start_time: PropTypes.string,
-  }
+interface Props extends TimetableEvent {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<TimetableNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
+  initialRegion: Region,
+}
 
-  static defaultProps = {
-    contact: ``,
-    date: `2019-01-01`,
-    end_time: ``,
-    initialRegion: {
-      latitude: 51.5246586,
-      latitudeDelta: 0.0012,
-      longitude: -0.1339784,
-      longitudeDelta: 0.0071,
-    },
-    location: {
-      address: [],
-      coordinates: {
-        lat: `51.5246586`,
-        lng: `-0.1339784`,
-      },
-      name: ``,
-      type: `DB`,
-    },
-    module: {
-      department_name: ``,
-      email: ``,
-      lecturer: {
-        department_id: ``,
-        department_name: ``,
-        email: ``,
-        name: ``,
-      },
-      name: ``,
-    },
-    session_group: ``,
-    session_type_str: ``,
-    start_time: ``,
-  }
 
-  navigateToLocation = ({ lat, lng, address }) => () => {
+class TimetableDetailView extends React.Component<Props> {
+  navigateToLocation = (
+    {
+      lat,
+      lng,
+      address,
+    }: {
+      lat: string,
+      lng: string,
+      address: Array<string>,
+    },
+  ) => (): void => {
     if (lat && lng) {
       MapsManager.navigateToCoords({ lat, lng })
     } else {
@@ -105,17 +65,20 @@ class TimetableDetailView extends React.Component {
     }
   }
 
-  sendEmail = (email) => () => MailManager.composeAsync({
+  sendEmail = (
+    email: string,
+  ) => (): Promise<MailComposerResult> => MailManager.composeAsync({
     recipients: [email],
   })
 
-  openRoomSearch = (roomName) => () => {
+  openRoomSearch = (roomName: string) => (): void => {
     const { navigation } = this.props
     navigation.navigate(`Main`, {
       params: {
         params: { query: roomName },
         screen: `RoomsSearch`,
       },
+      screen: `Rooms`,
     })
   }
 
@@ -124,7 +87,12 @@ class TimetableDetailView extends React.Component {
     contactPerson,
     departmentName,
     email,
-  }) => {
+  }: {
+    contactTypeStr: string,
+    contactPerson: string,
+    departmentName: string,
+    email: string,
+  }): React.ReactNode => {
     const validContactPerson = contactPerson && contactPerson.length > 0
     const validDepartment = departmentName && departmentName.length > 0
     const validEmail = email && email.length > 0
@@ -148,12 +116,17 @@ class TimetableDetailView extends React.Component {
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     let contactTypeStr = ``
     const {
-      date,
+      date = `2019-01-01`,
       location,
-      initialRegion,
+      initialRegion = {
+        latitude: 51.5246586,
+        latitudeDelta: 0.0012,
+        longitude: -0.1339784,
+        longitudeDelta: 0.0071,
+      },
       contact: contactPerson,
       module: { name: moduleName, department_name: departmentName, email },
       session_type_str: sessionTypeStr,
@@ -179,14 +152,16 @@ class TimetableDetailView extends React.Component {
     }
 
     const { lat, lng } = location.coordinates
-    const latitude = parseFloat(lat, 10) || initialRegion.latitude
-    const longitude = parseFloat(lng, 10) || initialRegion.longitude
+    const latitude = parseFloat(lat) || initialRegion.latitude
+    const longitude = parseFloat(lng) || initialRegion.longitude
     const { address, type: locationType, name: locationName } = location
 
     return (
       <Page>
         <TitleText>{moduleName}</TitleText>
-        <BodyText>{LocalisationManager.parseToMoment(date).format(`dddd, Do MMMM YYYY`)}</BodyText>
+        <BodyText>
+          {LocalisationManager.parseToMoment(date).format(`dddd, Do MMMM YYYY`)}
+        </BodyText>
         <BodyText>
           {`${startTime} - ${endTime}`}
         </BodyText>
@@ -221,7 +196,7 @@ class TimetableDetailView extends React.Component {
             longitudeDelta: initialRegion.longitudeDelta,
           }}
         >
-          <MapView.Marker coordinate={{ latitude, longitude }} />
+          <Marker coordinate={{ latitude, longitude }} />
         </MapView>
         <Button onPress={this.navigateToLocation({ address, lat, lng })}>
           Directions

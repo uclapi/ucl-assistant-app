@@ -1,52 +1,36 @@
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import { ActivityIndicator, Alert, Switch } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
-// import { registerForNotifications } from "../../../actions/notificationsActions"
+/* import {
+  registerForNotifications
+} from "../../../actions/notificationsActions" */
 import { Horizontal } from "../../../components/Containers"
 import { BodyText, ErrorText } from "../../../components/Typography"
+import { AppStateType } from "../../../configureStore"
 import common from "../../../styles/common"
 
-class NotificationSwitch extends Component {
-  static mapStateToProps = (state) => ({
-    changing: state.notifications.stateChanging,
-    error: state.notifications.stateChangeError,
-    registered: state.notifications.registered,
-    token: state.user.token,
-  })
+interface State {
+  spin: boolean,
+}
 
-  static mapDispatchToProps = (dispatch) => ({
-    register: (token) => dispatch(token/* registerForNotifications(token) */),
-  })
-
-  static propTypes = {
-    changing: PropTypes.bool,
-    error: PropTypes.string,
-    register: PropTypes.func,
-    registered: PropTypes.bool,
-    token: PropTypes.string,
+class NotificationSwitch extends React.Component<PropsFromRedux, State> {
+  constructor(props) {
+    super(props)
+    this.state = {
+      spin: false,
+    }
   }
 
-  static defaultProps = {
-    changing: false,
-    error: ``,
-    register: () => { },
-    registered: false,
-    token: ``,
-  }
-
-  // state = {
-  //   spin: false,
-  // }
-
-  async onSwitchChange() {
+  onSwitchChange = async () => {
     const { registered, register, token } = this.props
     if (!registered) {
       await this.setState({ spin: true })
       Alert.alert(
         `Register for notifications?`,
-        `The only information stored on our servers is a unique key used to send notifications to your device. Are you sure you want to continue?`,
+        `The only information stored on our servers is a unique key`
+        + ` used to send notifications to your device.`
+        + ` Are you sure you want to continue?`,
         [
           {
             onPress: () => this.setState({ spin: false }),
@@ -88,10 +72,10 @@ class NotificationSwitch extends Component {
           {changing || spin ? (
             <ActivityIndicator />
           ) : (
-            <Switch
-              onValueChange={(b) => this.onSwitchChange(b)}
-              value={registered}
-            />
+              <Switch
+                onValueChange={this.onSwitchChange}
+                value={registered}
+              />
           )}
         </Horizontal>
       </>
@@ -99,7 +83,18 @@ class NotificationSwitch extends Component {
   }
 }
 
-export default connect(
-  NotificationSwitch.mapStateToProps,
-  NotificationSwitch.mapDispatchToProps,
-)(NotificationSwitch)
+const connector = connect(
+  (state: AppStateType) => ({
+    changing: state.notifications.stateChanging,
+    error: state.notifications.stateChangeError,
+    registered: state.notifications.registered,
+    token: state.user.token,
+  }),
+  (dispatch) => ({
+    register: (token) => dispatch(token/* registerForNotifications(token) */),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(NotificationSwitch)

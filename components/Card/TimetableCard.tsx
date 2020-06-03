@@ -1,5 +1,4 @@
 import { Feather } from "@expo/vector-icons"
-import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet } from "react-native"
 
@@ -7,7 +6,7 @@ import { LocalisationManager } from "../../lib"
 import { Horizontal } from "../Containers"
 import LiveIndicator from "../LiveIndicator"
 import { BodyText } from "../Typography"
-import Card from "."
+import Card from "./Card"
 
 const styles = StyleSheet.create({
   nowIndicator: {
@@ -18,15 +17,26 @@ const styles = StyleSheet.create({
   },
 })
 
-const TimetableCard = ({
-  moduleName,
-  moduleCode,
-  startTime,
-  endTime,
-  location,
-  lecturer,
+interface Props {
+  moduleName?: string,
+  moduleCode?: string,
+  startTime?: string | Date,
+  endTime?: string | Date,
+  location?: string,
+  lecturer?: string,
+  pastEvent?: boolean,
+  navigation?: any,
+}
+
+const TimetableCard: React.FC<Props> = ({
+  moduleName = ``,
+  moduleCode = `ABCD123D`,
+  startTime = LocalisationManager.getMoment().toISOString(),
+  endTime = LocalisationManager.getMoment().toISOString(),
+  location = `TBC`,
+  lecturer = `Unknown Lecturer`,
   navigation,
-  pastEvent,
+  pastEvent = false,
 }) => {
   const startMoment = LocalisationManager.parseToMoment(
     startTime,
@@ -87,27 +97,6 @@ const TimetableCard = ({
       )}
     </Card>
   )
-}
-
-TimetableCard.propTypes = {
-  endTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  lecturer: PropTypes.string,
-  location: PropTypes.string,
-  moduleCode: PropTypes.string,
-  moduleName: PropTypes.string,
-  navigation: PropTypes.shape().isRequired,
-  pastEvent: PropTypes.bool,
-  startTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-}
-
-TimetableCard.defaultProps = {
-  endTime: LocalisationManager.getMoment().toISOString(),
-  lecturer: `Unknown Lecturer`,
-  location: `TBC`,
-  moduleCode: `ABCD123D`,
-  moduleName: ``,
-  pastEvent: false,
-  startTime: LocalisationManager.getMoment().toISOString(),
 }
 
 export default TimetableCard

@@ -7,14 +7,15 @@ import LiveSeatingMapScreen from "../screens/LiveSeatingMapScreen"
 import NotificationsScreen from "../screens/NotificationsScreen"
 import SplashScreen from "../screens/SplashScreen"
 import StudySpaceDetailScreen from "../screens/StudySpaceDetailScreen"
-import MainTabNavigator from "./MainTabNavigator"
+import { NestedNavigator } from '../types/uclapi'
+import MainTabNavigator, { MainTabNavigatorParamList } from "./MainTabNavigator"
 
 export type RootStackParamList = {
   LiveSeatingMap: {
     surveyId: string,
     mapId: string,
   },
-  Main: undefined,
+  Main: NestedNavigator<MainTabNavigatorParamList>,
   Notifications: undefined,
   PersonDetail: undefined,
   StudySpaceDetail: undefined,

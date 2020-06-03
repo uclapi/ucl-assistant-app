@@ -6,7 +6,7 @@ import React from 'react'
 import TimetableDetailScreen from "./TimetableDetailScreen"
 import TimetableScreen from "./TimetableScreen"
 
-type TimetableNavigatorParamList = {
+export type TimetableNavigatorParamList = {
   Timetable: undefined,
   TimetableDetail: {
     code: string,

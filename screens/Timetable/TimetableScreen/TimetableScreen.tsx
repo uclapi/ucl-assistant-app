@@ -1,5 +1,8 @@
 import { Feather } from "@expo/vector-icons"
 import ViewPager from '@react-native-community/viewpager'
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import type { CompositeNavigationProp } from "@react-navigation/native"
+import type { StackNavigationProp } from "@react-navigation/stack"
 import { Moment } from 'moment'
 import React from "react"
 import {
@@ -11,10 +14,12 @@ import { connect, ConnectedProps } from "react-redux"
 
 import {
   fetchTimetable as fetchTimetableAction,
+  TimetableDispatch,
 } from "../../../actions/timetableActions"
 import {
   setExpoPushToken as setExpoPushTokenAction,
   signOut as signOutAction,
+  UserDispatch,
 } from "../../../actions/userActions"
 import { PageNoScroll } from "../../../components/Containers"
 import { ErrorMessage } from '../../../components/Message'
@@ -29,9 +34,14 @@ import {
   LocalisationManager,
   PushNotificationsManager,
 } from '../../../lib'
+import type {
+  MainTabNavigatorParamList,
+} from '../../../navigation/MainTabNavigator'
+import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import {
   weeklyTimetableArraySelector,
 } from "../../../selectors/timetableSelectors"
+import type { TimetableNavigatorParamList } from "../TimetableNavigator"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
 
@@ -45,15 +55,14 @@ const styles = StyleSheet.create({
 
 const today = LocalisationManager.getMoment()
 
-interface Props {
-  error: string,
-  fetchTimetable: (token: string, date: Moment) => null,
-  isFetchingTimetable: boolean,
-  navigation: any,
-  setExpoPushToken: (pushToken: string) => void,
-  timetable: any,
-  user: any,
-  signOut: () => void,
+interface Props extends PropsFromRedux {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<TimetableNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
 }
 
 interface State {
@@ -62,7 +71,7 @@ interface State {
   date: Moment,
 }
 
-class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
+class TimetableScreen extends React.Component<Props, State> {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -74,26 +83,9 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
     ),
   }
 
-  static mapStateToProps = (state: AppStateType) => ({
-    error: state.timetable.error,
-    isFetchingTimetable: state.timetable.isFetching,
-    timetable: weeklyTimetableArraySelector(state),
-    user: state.user,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    fetchTimetable: (token, date) => dispatch(
-      fetchTimetableAction(token, date),
-    ),
-    setExpoPushToken: (pushToken) => dispatch(
-      setExpoPushTokenAction(pushToken),
-    ),
-    signOut: () => dispatch(signOutAction()),
-  })
-
   private viewpager = React.createRef<ViewPager>()
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props)
     const { timetable } = props
 
@@ -172,7 +164,7 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
     return true
   }
 
-  onRefresh = () => {
+  onRefresh = (): Promise<unknown> => {
     const { fetchTimetable, user: { token } } = this.props
     const { date } = this.state
     return fetchTimetable(token, date)
@@ -330,8 +322,21 @@ class TimetableScreen extends React.Component<Props & PropsFromRedux, State> {
 }
 
 const connector = connect(
-  TimetableScreen.mapStateToProps,
-  TimetableScreen.mapDispatchToProps,
+  (state: AppStateType) => ({
+    error: state.timetable.error,
+    isFetchingTimetable: state.timetable.isFetching,
+    timetable: weeklyTimetableArraySelector(state),
+    user: state.user,
+  }),
+  (dispatch) => ({
+    fetchTimetable: (token, date) => (dispatch as TimetableDispatch)(
+      fetchTimetableAction(token, date),
+    ),
+    setExpoPushToken: (pushToken) => dispatch(
+      setExpoPushTokenAction(pushToken),
+    ),
+    signOut: () => (dispatch as UserDispatch)(signOutAction()),
+  }),
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>

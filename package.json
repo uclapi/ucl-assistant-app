@@ -34,7 +34,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,d.ts}": [
-      "tsc --allowSyntheticDefaultImports --jsx react-native --noEmit --esModuleInterop --moduleResolution node --skipLibCheck"
+      "tsc --allowSyntheticDefaultImports --jsx react-native --noEmit --esModuleInterop --moduleResolution node --skipLibCheck --resolveJsonModule"
     ],
     "*.{ts,tsx,js,jsx,json}": [
       "eslint --fix --ignore-pattern"
@@ -98,7 +98,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "sentry-expo": "^2.0.3",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "expo-store-review": "~2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

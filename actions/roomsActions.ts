@@ -4,7 +4,7 @@ import {
   ROOMS_TOGGLE_FAVOURITE,
   RoomsActionTypes,
 } from "../constants/roomsConstants"
-import type { Room } from "../reducers/roomsReducer"
+import type { Room } from "../types/uclapi"
 
 export const addRecent = (room: Room): RoomsActionTypes => ({
   room,

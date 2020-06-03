@@ -4,12 +4,33 @@ import React, { ReactElement } from "react"
 
 import Colors from "../constants/Colors"
 import PeopleNavigator from "../screens/People"
+import type {
+  PeopleNavigatorParamList,
+} from "../screens/People/PeopleNavigator"
 import RoomsNavigator from "../screens/Rooms"
+import type {
+  RoomsNavigatorParamList,
+} from "../screens/Rooms/RoomsNavigator"
 import SettingsNavigator from "../screens/Settings"
+import type {
+  SettingsNavigatorParamList,
+} from "../screens/Settings/SettingsNavigator"
 import StudySpacesScreen from "../screens/StudySpacesScreen"
 import TimetableNavigator from "../screens/Timetable"
+import type {
+  TimetableNavigatorParamList,
+} from "../screens/Timetable/TimetableNavigator"
+import type { NestedNavigator } from "../types/uclapi"
 
-const Tab = createBottomTabNavigator()
+export type MainTabNavigatorParamList = {
+  Timetable: NestedNavigator<TimetableNavigatorParamList>,
+  StudySpaces: undefined,
+  People: NestedNavigator<PeopleNavigatorParamList>,
+  Rooms: NestedNavigator<RoomsNavigatorParamList>,
+  Settings: NestedNavigator<SettingsNavigatorParamList>,
+}
+
+const Tab = createBottomTabNavigator<MainTabNavigatorParamList>()
 
 const screenOptions = ({ route }) => ({
   tabBarIcon: ({ focused }) => {

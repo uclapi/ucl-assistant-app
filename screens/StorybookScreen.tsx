@@ -1,12 +1,11 @@
 import { Feather } from "@expo/vector-icons"
-import React, { Component } from "react"
+import React from "react"
 import { View } from "react-native"
 
 import Colors from "../constants/Colors"
 import StorybookUI from "../storybook"
-import Styles from "../styles/Containers"
 
-class StorybookScreen extends Component {
+class StorybookScreen extends React.Component {
   static navigationOptions = {
     headerShown: false,
     tabBarIcon: ({ focused }) => (
@@ -21,7 +20,7 @@ class StorybookScreen extends Component {
 
   render() {
     return (
-      <View style={[Styles.pageScrollContainer, Styles.mainTabPage]}>
+      <View>
         <StorybookUI />
       </View>
     )

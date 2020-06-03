@@ -6,7 +6,7 @@ import React from 'react'
 import FAQScreen from "./FAQScreen"
 import SettingsScreen from "./SettingsScreen"
 
-type SettingsNavigatorParamList = {
+export type SettingsNavigatorParamList = {
   FAQ: undefined,
   Settings: undefined,
 }

@@ -9,7 +9,7 @@ import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
-import { Room } from '../../../reducers/roomsReducer'
+import type { Room } from '../../../types/uclapi'
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
 interface Props {

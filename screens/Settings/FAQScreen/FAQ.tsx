@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import React from 'react'
 import { StyleSheet, View } from "react-native"
 
@@ -23,28 +22,29 @@ const styles = StyleSheet.create({
   },
 })
 
-class FAQ extends React.Component {
-  static propTypes = () => ({
-    answer: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(React.Fragment),
-    ]),
-    question: PropTypes.string,
-  })
+interface Props {
+  answer: string | React.ReactNode,
+  question: string,
+}
 
-  constructor() {
-    super()
+interface State {
+  showAnswer: boolean,
+}
+
+class FAQ extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
     this.state = {
       showAnswer: false,
     }
   }
 
-  toggleQuestion = () => {
+  toggleQuestion = (): void => {
     const { showAnswer } = this.state
     this.setState({ showAnswer: !showAnswer })
   }
 
-  render() {
+  render(): React.ReactElement {
     const { question, answer } = this.props
     const { showAnswer } = this.state
     return (

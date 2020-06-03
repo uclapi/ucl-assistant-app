@@ -13,7 +13,7 @@ import SearchResult from "../../../components/SearchResult"
 import { BodyText, CentredText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
 import ApiManager from "../../../lib/ApiManager"
-import type { Room } from '../../../reducers/roomsReducer'
+import type { Room } from '../../../types/uclapi'
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
 const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ interface Props extends PropsFromRedux {
 }
 
 interface State {
-  emptyRooms: Array<unknown>,
+  emptyRooms: Array<Room>,
   error: Error,
   loadingEmptyRooms: boolean,
   selectedSite: string,

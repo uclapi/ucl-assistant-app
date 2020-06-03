@@ -69,7 +69,7 @@ interface Props {
   navigation: any,
   onDateChanged: (date: Moment) => Promise<void>,
   onIndexChanged: (index: number) => void,
-  onRefresh: () => null,
+  onRefresh: () => Promise<unknown>,
   timetable: any,
 }
 

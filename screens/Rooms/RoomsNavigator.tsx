@@ -3,14 +3,14 @@ import {
 } from '@react-navigation/stack'
 import React from 'react'
 
-import type { Room } from '../../reducers/roomsReducer'
+import type { Room } from '../../types/uclapi'
 import EmptyRoomsScreen from './EmptyRoomsScreen'
 import RoomsDetailScreen from './RoomsDetailScreen'
 import RoomsFavouritesScreen from './RoomsFavouritesScreen'
 import RoomsSearchScreen from './RoomsSearchScreen'
 
 export type RoomsNavigatorParamList = {
-  RoomsSearch: undefined,
+  RoomsSearch: { query?: string, } | undefined,
   EmptyRooms: undefined,
   RoomsFavourites: undefined,
   RoomsDetail: { room: Room, },

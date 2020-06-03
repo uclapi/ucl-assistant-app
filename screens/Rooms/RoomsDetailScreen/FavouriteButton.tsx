@@ -6,7 +6,8 @@ import {
 } from "../../../actions/roomsActions"
 import { FloatingButton } from "../../../components/Button"
 import { AppStateType } from "../../../configureStore"
-import { getRoomUniqueId, Room } from '../../../reducers/roomsReducer'
+import { getRoomUniqueId } from '../../../reducers/roomsReducer'
+import type { Room } from "../../../types/uclapi"
 
 interface Props {
   room: Room,

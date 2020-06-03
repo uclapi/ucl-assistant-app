@@ -4,26 +4,8 @@ import {
   ROOMS_MAX_RECENTS,
   ROOMS_TOGGLE_FAVOURITE,
 } from "../constants/roomsConstants"
+import type { Room } from "../types/uclapi"
 import { addToRecents } from "./utils"
-
-export interface Coordinates {
-  lat?: string,
-  lng?: string,
-}
-
-export interface Location {
-  address?: Array<string>,
-  coordinates?: Coordinates,
-}
-
-export interface Room {
-  roomid: string,
-  siteid: string,
-  roomname?: string,
-  classification_name?: string,
-  capacity?: number,
-  location?: Location,
-}
 
 export interface RoomsState {
   favourites: Array<Room>,

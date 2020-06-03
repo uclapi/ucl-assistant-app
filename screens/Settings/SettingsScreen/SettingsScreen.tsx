@@ -1,10 +1,13 @@
-/* eslint-disable react/no-unused-state */
-import { CommonActions } from "@react-navigation/native"
-import { StoreReview } from "expo"
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import {
+  CommonActions,
+  CompositeNavigationProp,
+} from "@react-navigation/native"
+import type { StackNavigationProp } from "@react-navigation/stack"
 import Constants from "expo-constants"
 import * as IntentLauncherAndroid from "expo-intent-launcher"
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import * as StoreReview from 'expo-store-review'
+import React from "react"
 import {
   Alert,
   Clipboard,
@@ -14,11 +17,12 @@ import {
   View,
 } from "react-native"
 import CheckBox from 'react-native-check-box'
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
 import {
   setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
   signOut as signOutAction,
+  UserDispatch,
 } from "../../../actions/userActions"
 import { SmallButton } from "../../../components/Button"
 import { Horizontal, Page } from "../../../components/Containers"
@@ -30,9 +34,15 @@ import {
   HeaderText,
   Link,
 } from "../../../components/Typography"
+import { AppStateType } from "../../../configureStore"
 import { AnalyticsManager, MailManager } from "../../../lib"
+import type {
+  MainTabNavigatorParamList,
+} from "../../../navigation/MainTabNavigator"
+import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import * as packageJson from '../../../package.json'
 import common from "../../../styles/common"
+import type { SettingsNavigatorParamList } from "../SettingsNavigator"
 
 const {
   repository: {
@@ -82,55 +92,44 @@ const styles = StyleSheet.create({
   },
 })
 
-export class SettingsScreen extends Component {
+interface Props extends PropsFromRedux {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<SettingsNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
+}
+
+interface State {
+  isSigningOut: boolean,
+}
+
+export class SettingsScreen extends React.Component<Props, State> {
   static navigationOptions = {
     headerShown: false,
   }
 
-  static mapStateToProps = (state) => ({
-    user: state.user,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    setShouldTrackAnalytics: (shouldTrackAnalytics) => dispatch(
-      setShouldTrackAnalyticsAction(shouldTrackAnalytics),
-    ),
-    signOut: () => dispatch(signOutAction()),
-  })
-
-  static propTypes = {
-    navigation: PropTypes.shape(),
-    setShouldTrackAnalytics: PropTypes.func,
-    signOut: PropTypes.func,
-    user: PropTypes.shape(),
-  }
-
-  static defaultProps = {
-    navigation: {},
-    setShouldTrackAnalytics: () => { },
-    signOut: () => { },
-    user: {},
-  }
-
-  constructor() {
-    super()
+  constructor(props: Props) {
+    super(props)
     this.state = {
       isSigningOut: false,
     }
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(_, prevState: State): void {
     const { user, navigation } = this.props
     if (prevState.isSigningOut && user.token === ``) {
       const action = CommonActions.reset({
         index: 0,
-        routes: [CommonActions.navigate({ name: `Splash` })],
+        routes: [{ name: `Splash` }],
       })
       navigation.dispatch(action)
     }
   }
 
-  launchNotificationSettings = () => {
+  launchNotificationSettings = (): void => {
     // note that this will only work on standalone apps
     // because the bundleIdentifier/packageName will
     // only be used when an APK/IPA is built
@@ -140,7 +139,7 @@ export class SettingsScreen extends Component {
         {
           "android.provider.extra.APP_PACKAGE":
             Constants.manifest.android.package,
-        },
+        } as any,
       )
     } else {
       // is iOS
@@ -152,7 +151,7 @@ export class SettingsScreen extends Component {
     }
   }
 
-  toggleAnalytics = () => {
+  toggleAnalytics = (): void => {
     const {
       user: {
         settings: { shouldTrackAnalytics: value },
@@ -163,25 +162,25 @@ export class SettingsScreen extends Component {
     setShouldTrackAnalytics(!value)
   }
 
-  signOut = () => {
+  signOut = (): void => {
     const { signOut } = this.props
     signOut()
     this.setState({ isSigningOut: true })
   }
 
-  navigateToFAQs = () => {
+  navigateToFAQs = (): void => {
     const { navigation } = this.props
     navigation.navigate(`FAQ`)
     AnalyticsManager.logEvent(AnalyticsManager.events.SETTINGS_VIEW_FAQS)
   }
 
-  copyTokenToClipboard = async () => {
+  copyTokenToClipboard = async (): Promise<void> => {
     const { user: { token } } = this.props
     await Clipboard.setString(token)
     Alert.alert(`Copied`, `Token copied to clipboard.`)
   }
 
-  giveFeedback = () => {
+  giveFeedback = (): void => {
     const { user: { upi } } = this.props
     const { deviceName, platform, manifest: { releaseChannel } } = Constants
     MailManager.composeAsync({
@@ -199,8 +198,8 @@ export class SettingsScreen extends Component {
     AnalyticsManager.logEvent(AnalyticsManager.events.SETTINGS_GIVE_FEEDBACK)
   }
 
-  rateApp = () => {
-    const isSupported = StoreReview.isSupported()
+  rateApp = async (): Promise<void> => {
+    const isSupported = await StoreReview.isAvailableAsync()
     if (isSupported) {
       StoreReview.requestReview()
     }
@@ -210,7 +209,7 @@ export class SettingsScreen extends Component {
     )
   }
 
-  renderDev = () => {
+  renderDev = (): React.ReactNode => {
     const { user } = this.props
     return __DEV__ && (
       <View style={styles.section}>
@@ -222,12 +221,12 @@ export class SettingsScreen extends Component {
           </SmallButton>
         </Horizontal>
         <HeaderText>State</HeaderText>
-        <BodyText>{JSON.stringify(user, `\n`, 2)}</BodyText>
+        <BodyText>{JSON.stringify(user, null, 2)}</BodyText>
       </View>
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     const { user } = this.props
     return (
       <Page>
@@ -331,10 +330,21 @@ export class SettingsScreen extends Component {
   }
 }
 
-export default connect(
-  SettingsScreen.mapStateToProps,
-  SettingsScreen.mapDispatchToProps,
-)(SettingsScreen)
+const connector = connect(
+  (state: AppStateType) => ({
+    user: state.user,
+  }),
+  (dispatch: UserDispatch) => ({
+    setShouldTrackAnalytics: (shouldTrackAnalytics) => dispatch(
+      setShouldTrackAnalyticsAction(shouldTrackAnalytics),
+    ),
+    signOut: () => dispatch(signOutAction()),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(SettingsScreen)
 
 /*
 

@@ -1,5 +1,8 @@
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import type { CompositeNavigationProp } from "@react-navigation/native"
+import type { StackNavigationProp } from "@react-navigation/stack"
+import { WebBrowserResult } from "expo-web-browser"
+import React from "react"
 import { StyleSheet, View } from "react-native"
 
 import { Page } from "../../../components/Containers"
@@ -8,6 +11,11 @@ import {
   Link,
 } from "../../../components/Typography"
 import WebBrowserManager from "../../../lib/WebBrowserManager"
+import type {
+  MainTabNavigatorParamList,
+} from "../../../navigation/MainTabNavigator"
+import type { RootStackParamList } from "../../../navigation/RootNavigation"
+import type { SettingsNavigatorParamList } from "../SettingsNavigator"
 import FAQ from './FAQ'
 
 const styles = StyleSheet.create({
@@ -23,25 +31,31 @@ const styles = StyleSheet.create({
   },
 })
 
-class FAQScreen extends Component {
+interface Props {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<SettingsNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
+}
+
+class FAQScreen extends React.Component<Props> {
   static navigationOptions = {
     title: `FAQs`,
   }
 
-  static propTypes = () => ({
-    navigation: PropTypes.shape().isRequired,
-  })
-
-  openGithub = () => WebBrowserManager.openLink(
+  openGithub = (): Promise<WebBrowserResult> => WebBrowserManager.openLink(
     `https://github.com/uclapi/ucl-assistant-app`,
   )
 
-  openSettings = () => {
+  openSettings = (): void => {
     const { navigation } = this.props
     navigation.navigate(`Settings`)
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Page>
         <FAQ
