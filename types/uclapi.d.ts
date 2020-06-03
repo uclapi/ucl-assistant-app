@@ -56,4 +56,5 @@ export interface TimetableEvent {
 export type NestedNavigator<T> = {
   screen: keyof T,
   params?: T[keyof T],
+  initial?: boolean,
 }

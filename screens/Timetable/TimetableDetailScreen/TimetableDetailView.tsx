@@ -75,6 +75,7 @@ class TimetableDetailView extends React.Component<Props> {
     const { navigation } = this.props
     navigation.navigate(`Main`, {
       params: {
+        initial: false,
         params: { query: roomName },
         screen: `RoomsSearch`,
       },
@@ -120,19 +121,27 @@ class TimetableDetailView extends React.Component<Props> {
     let contactTypeStr = ``
     const {
       date = `2019-01-01`,
-      location,
+      location = {
+        address: [],
+        coordinates: {
+          lat: `0`,
+          lng: `0`,
+        },
+        name: ``,
+        type: ``,
+      },
       initialRegion = {
         latitude: 51.5246586,
         latitudeDelta: 0.0012,
         longitude: -0.1339784,
         longitudeDelta: 0.0071,
       },
-      contact: contactPerson,
-      module: { name: moduleName, department_name: departmentName, email },
-      session_type_str: sessionTypeStr,
-      session_group: sessionGroup,
-      start_time: startTime,
-      end_time: endTime,
+      contact: contactPerson = ``,
+      module: { name: moduleName, department_name: departmentName, email } = {},
+      session_type_str: sessionTypeStr = ``,
+      session_group: sessionGroup = ``,
+      start_time: startTime = ``,
+      end_time: endTime = ``,
     } = this.props
     const sessionType = sessionTypeStr.toLowerCase()
     switch (true) {

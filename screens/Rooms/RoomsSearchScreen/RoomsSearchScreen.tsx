@@ -1,4 +1,5 @@
 
+import type { RouteProp } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React from "react"
 
@@ -9,22 +10,18 @@ import SearchControl from "./SearchControl"
 
 interface Props {
   navigation: StackNavigationProp<RoomsNavigatorParamList>,
+  // eslint-disable-next-line quotes
+  route: RouteProp<RoomsNavigatorParamList, 'RoomsSearch'>,
 }
 
-class RoomsSearchScreen extends React.Component<Props> {
-  static navigationOptions = {
-    title: `Rooms`,
-  }
-
-  render(): React.ReactElement {
-    const { navigation } = this.props
-    return (
-      <Page>
-        <SearchControl navigation={navigation} />
-        <RecentResults navigation={navigation} />
-      </Page>
-    )
-  }
-}
+const RoomsSearchScreen: React.FC<Props> = ({
+  navigation,
+  route,
+}) => (
+    <Page>
+      <SearchControl navigation={navigation} route={route} />
+      <RecentResults navigation={navigation} />
+    </Page>
+  )
 
 export default RoomsSearchScreen

@@ -50,11 +50,11 @@ class SearchControl extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const { navigation, route } = this.props
+    const { navigation } = this.props
     this.subscriptions = [
       navigation.addListener(`focus`, this.componentDidFocus),
     ]
-    this.componentDidFocus({ state: route })
+    this.componentDidFocus()
   }
 
   componentWillUnmount() {
@@ -65,7 +65,8 @@ class SearchControl extends React.Component<Props, State> {
     })
   }
 
-  componentDidFocus = (route) => {
+  componentDidFocus = () => {
+    const { route } = this.props
     const { query } = this.state
     const queryExists = this.queryExists(route)
     if (queryExists && query !== route.params.query) {
