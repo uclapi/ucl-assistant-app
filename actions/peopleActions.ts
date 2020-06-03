@@ -14,7 +14,7 @@ import {
   PEOPLE_SEARCH_SUCCESS,
   PeopleActionTypes,
 } from "../constants/peopleConstants"
-import type { Person } from "../reducers/peopleReducer"
+import type { Person } from "../types/uclapi"
 
 export type PeopleThunkAction = ThunkAction<
   Promise<unknown>,

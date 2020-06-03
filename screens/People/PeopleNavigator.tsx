@@ -3,7 +3,7 @@ import {
 } from '@react-navigation/stack'
 import React from 'react'
 
-import type { Person } from '../../reducers/peopleReducer'
+import type { Person } from '../../types/uclapi'
 import PeopleDetailScreen from './PeopleDetailScreen'
 import PeopleSearchScreen from './PeopleSearchScreen'
 

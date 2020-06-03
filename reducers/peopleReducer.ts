@@ -9,14 +9,8 @@ import {
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
 } from "../constants/peopleConstants"
+import type { Person } from "../types/uclapi"
 import { addToRecents } from "./utils"
-
-export interface Person {
-  name?: string,
-  status?: string,
-  department?: string,
-  email?: string,
-}
 
 export interface PeopleState {
   fetchError: string,
@@ -32,7 +26,12 @@ export const initialState: PeopleState = {
   fetchError: ``,
   isFetching: false,
   isSearching: false,
-  person: {},
+  person: {
+    department: ``,
+    email: ``,
+    name: ``,
+    status: ``,
+  },
   recents: [],
   searchError: ``,
   searchResults: [],

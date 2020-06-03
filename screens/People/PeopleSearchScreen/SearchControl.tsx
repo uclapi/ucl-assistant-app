@@ -15,7 +15,7 @@ import { TextInput } from "../../../components/Input"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
-import type { Person } from '../../../reducers/peopleReducer'
+import type { Person } from '../../../types/uclapi'
 import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
 const styles = StyleSheet.create({

@@ -12,7 +12,7 @@ import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
-import type { Person } from "../../../reducers/peopleReducer"
+import { Person } from "../../../types/uclapi"
 import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
 interface Props extends PropsFromRedux {
