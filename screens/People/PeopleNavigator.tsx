@@ -18,7 +18,7 @@ const PeopleNavigator = (): React.ReactElement => (
   <Stack.Navigator initialRouteName="PeopleSearch">
     <Stack.Screen
       name="PeopleSearch"
-      options={{ title: `` }}
+      options={{ headerShown: false, title: `` }}
       component={PeopleSearchScreen}
     />
     <Stack.Screen

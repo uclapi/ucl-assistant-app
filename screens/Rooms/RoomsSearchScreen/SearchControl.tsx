@@ -59,7 +59,7 @@ class SearchControl extends React.Component<Props, State> {
 
   componentWillUnmount() {
     this.subscriptions.forEach((sub) => {
-      if (sub) {
+      if (sub && typeof sub.remove === `function`) {
         sub.remove()
       }
     })

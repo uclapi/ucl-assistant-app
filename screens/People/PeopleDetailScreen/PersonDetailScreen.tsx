@@ -1,7 +1,7 @@
 import type { RouteProp } from "@react-navigation/native"
 import type { StackNavigationProp } from "@react-navigation/stack"
 import React from "react"
-import { ActivityIndicator } from "react-native"
+import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
 
 import {
@@ -24,6 +24,19 @@ import Colors from "../../../constants/Colors"
 import MailManager from "../../../lib/MailManager"
 import type { PeopleNavigatorParamList } from "../PeopleNavigator"
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingBottom: 40,
+    paddingTop: 40,
+  },
+  loadingContainer: {
+    alignItems: `center`,
+    flex: 1,
+    justifyContent: `center`,
+  },
+})
+
 interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
   // eslint-disable-next-line quotes
@@ -35,10 +48,6 @@ interface State {
 }
 
 class PersonDetailScreen extends React.Component<Props, State> {
-  static navigationOptions = {
-    title: `Person Detail`,
-  }
-
   constructor(props) {
     super(props)
     const { params } = props.route
@@ -63,28 +72,30 @@ class PersonDetailScreen extends React.Component<Props, State> {
       name, status, department, email, isFetching, error,
     } = this.props
     return isFetching ? (
-      <PageNoScroll>
+      <PageNoScroll style={styles.loadingContainer}>
         <ActivityIndicator size="large" />
       </PageNoScroll>
     ) : (
         <PageNoScroll>
-          <TitleText>{name}</TitleText>
-          {error.length > 0 && (
-            <ErrorText>
-              {`Error: ${error}`}
-            </ErrorText>
-          )}
-          <BodyText>
-            {`${status}, ${department}`}
-          </BodyText>
-          <BodyText>
-            {`Email: ${email}`}
-          </BodyText>
-          <Spacer />
-          <Button onPress={this.sendEmail}>
-            <PaddedIcon name="mail" size={24} color={Colors.pageBackground} />
-            <ButtonText>Send Email</ButtonText>
-          </Button>
+          <View style={styles.container}>
+            <TitleText>{name}</TitleText>
+            {error.length > 0 && (
+              <ErrorText>
+                {`Error: ${error}`}
+              </ErrorText>
+            )}
+            <BodyText>
+              {`${status}, ${department}`}
+            </BodyText>
+            <BodyText>
+              {`Email: ${email}`}
+            </BodyText>
+            <Spacer />
+            <Button onPress={this.sendEmail}>
+              <PaddedIcon name="mail" size={24} color={Colors.pageBackground} />
+              <ButtonText>Send Email</ButtonText>
+            </Button>
+          </View>
         </PageNoScroll>
     )
   }

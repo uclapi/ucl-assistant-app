@@ -1,1 +1,1 @@
-export { default } from "./FloatingButton"
+export { default, FloatingButtonProps } from "./FloatingButton"

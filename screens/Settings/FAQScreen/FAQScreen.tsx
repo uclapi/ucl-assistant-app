@@ -105,7 +105,7 @@ class FAQScreen extends React.Component<Props> {
           answer={(
             <BodyText>
               The sensors don&apos;t capture any photos or audio. In fact,
-              they don&apos;t tell use anything beyond whether a seat
+              they don&apos;t tell us anything beyond whether a seat
               is occupied or not.
             </BodyText>
           )}

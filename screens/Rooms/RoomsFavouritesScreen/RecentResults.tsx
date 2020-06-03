@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from "react"
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
 import { generate } from "shortid"
 
@@ -11,6 +11,12 @@ import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
 import type { Room } from '../../../types/uclapi'
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
+
+const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 40,
+  },
+})
 
 interface Props {
   navigation: StackNavigationProp<RoomsNavigatorParamList>,
@@ -28,7 +34,7 @@ class RecentResults extends React.Component<Props & PropsFromRedux> {
       return null
     }
     return (
-      <View>
+      <View style={styles.container}>
         <SubtitleText>Recently Searched</SubtitleText>
         {recents.map((res) => (
           <SearchResult

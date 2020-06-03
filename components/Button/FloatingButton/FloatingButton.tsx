@@ -3,37 +3,32 @@ import React from "react"
 import ActionButton from "react-native-action-button"
 
 import Colors from "../../../constants/Colors"
+import { ActiveButtonProps } from "../ActiveButton"
 
-interface Props {
+export interface FloatingButtonProps extends Omit<
+  ActiveButtonProps,
+  // eslint-disable-next-line quotes
+  'children'
+  > {
   active?: boolean,
   activeButtonColor?: string,
   activeIcon?: string,
   activeIconColor?: string,
-  buttonColor: string,
+  buttonColor?: string,
   icon?: string,
   iconColor?: string,
   onPress?: () => void,
+  offsetY?: number,
 }
 
-class FloatingButton extends React.Component<Props> {
-  public static defaultProps = {
-    active: false,
-    activeButtonColor: Colors.disabledButtonBackground,
-    activeIcon: `heart`,
-    activeIconColor: Colors.errorColor,
-    buttonColor: Colors.errorColor,
-    icon: `heart-outlined`,
-    iconColor: Colors.pageBackground,
-    onPress: (): void => { },
-  }
-
-  renderIcon = () => {
+class FloatingButton extends React.Component<FloatingButtonProps> {
+  renderIcon = (): React.ReactElement => {
     const {
-      active,
-      activeIcon,
-      icon,
-      iconColor,
-      activeIconColor,
+      active = false,
+      activeIcon = `heart`,
+      icon = `heart-outlined`,
+      iconColor = Colors.pageBackground,
+      activeIconColor = Colors.errorColor,
     } = this.props
     return (
       <Entypo
@@ -44,15 +39,18 @@ class FloatingButton extends React.Component<Props> {
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     const {
-      active,
-      onPress,
-      activeButtonColor,
-      buttonColor,
+      active = false,
+      onPress = () => null,
+      activeButtonColor = Colors.disabledButtonBackground,
+      buttonColor = Colors.errorColor,
+      offsetY = 80,
+      ...otherProps
     } = this.props
     return (
       <ActionButton
+        {...otherProps}
         buttonColor={
           active ? activeButtonColor : buttonColor
         }
@@ -61,6 +59,7 @@ class FloatingButton extends React.Component<Props> {
         fixNativeFeedbackRadius
         buttonText="Favourite"
         renderIcon={this.renderIcon}
+        offsetY={offsetY}
       />
     )
   }

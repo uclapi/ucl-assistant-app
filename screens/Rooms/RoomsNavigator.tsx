@@ -32,7 +32,7 @@ const RoomsNavigator = (): React.ReactElement => (
     />
     <Stack.Screen
       name="RoomsFavourites"
-      options={{ title: `` }}
+      options={{ headerShown: false, title: `` }}
       component={RoomsFavouritesScreen}
     />
     <Stack.Screen

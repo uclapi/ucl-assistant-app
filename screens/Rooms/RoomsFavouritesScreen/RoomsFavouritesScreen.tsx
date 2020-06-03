@@ -1,7 +1,9 @@
 import { Feather } from "@expo/vector-icons"
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import {
+  Image, StyleSheet, View, ViewStyle,
+} from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
 
 import Button from "../../../components/Button"
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   emptyRoomsButton: {
+    marginBottom: 25,
     marginTop: 25,
   },
   subtitle: {
@@ -108,7 +111,10 @@ class RoomsFavouritesScreen extends React.Component<Props> {
             Find Empty Room
           </Button>
         </Page>
-        <SearchButton navigation={navigation} />
+        <SearchButton
+          navigation={navigation}
+          style={{ flex: 1, zIndex: 2 } as ViewStyle}
+        />
       </View>
     )
   }
