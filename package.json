@@ -97,7 +97,7 @@
     "redux-persist-expo-securestore": "github:uclapi/redux-persist-expo-securestore#v3.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "sentry-expo": "^2.0.3",
+    "sentry-expo": "^2.1.0",
     "shortid": "^2.2.15",
     "expo-store-review": "~2.1.0"
   },
