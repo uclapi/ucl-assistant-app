@@ -17,7 +17,7 @@ import type {
 } from "../../../lib/MailManager"
 import MapStyle from "../../../styles/Map"
 import type { Region, TimetableEvent } from "../../../types/uclapi"
-import type { TimetableNavigatorNavigationType } from "../TimetableNavigator"
+import type { TimetableNavigationType } from "../TimetableNavigator"
 
 const styles = StyleSheet.create({
   contactPerson: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 })
 
 interface Props extends TimetableEvent {
-  navigation: TimetableNavigatorNavigationType,
+  navigation: TimetableNavigationType,
   initialRegion: Region,
 }
 

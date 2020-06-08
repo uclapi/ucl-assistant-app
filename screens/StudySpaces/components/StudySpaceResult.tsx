@@ -1,6 +1,4 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
-import { CompositeNavigationProp } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
+
 import React from "react"
 import { GestureResponderEvent } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
@@ -9,11 +7,7 @@ import { generate } from "shortid"
 import SearchResult from "../../../components/SearchResult"
 import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
-import type {
-  MainTabNavigatorParamList,
-} from "../../../navigation/MainTabNavigator"
-import type { RootStackParamList } from "../../../navigation/RootNavigation"
-import type { StudySpacesNavigatorParamList } from "../StudySpacesNavigator"
+import type { StudySpacesNavigationType } from "../StudySpacesNavigator"
 
 interface Props {
   name?: string,
@@ -72,13 +66,7 @@ const StudySpaceResult: React.FC<Props> = ({
 
 interface ConnectedStudySpaceProps extends PropsFromRedux {
   id: string,
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<StudySpacesNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: StudySpacesNavigationType,
 }
 
 const ConnectedStudySpaceResult: React.FC<ConnectedStudySpaceProps> = ({

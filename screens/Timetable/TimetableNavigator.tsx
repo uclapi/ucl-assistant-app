@@ -12,7 +12,7 @@ import type {
 import TimetableDetailScreen from "./TimetableDetailScreen"
 import TimetableScreen from "./TimetableScreen"
 
-export type TimetableNavigatorNavigationType = CompositeNavigationProp<
+export type TimetableNavigationType = CompositeNavigationProp<
   StackNavigationProp<TimetableNavigatorParamList>,
   CompositeNavigationProp<
     BottomTabNavigationProp<MainTabNavigatorParamList>,

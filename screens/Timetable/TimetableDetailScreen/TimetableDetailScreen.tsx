@@ -6,7 +6,7 @@ import { connect, ConnectedProps } from "react-redux"
 import type { AppStateType } from "../../../configureStore"
 import { timetableSelector } from "../../../selectors/timetableSelectors"
 import type {
-  TimetableNavigatorNavigationType,
+  TimetableNavigationType,
   TimetableNavigatorParamList,
 } from '../TimetableNavigator'
 import TimetableDetailView from "./TimetableDetailView"
@@ -15,7 +15,7 @@ import TimetableDetailView from "./TimetableDetailView"
 type RouteType = RouteProp<TimetableNavigatorParamList, 'TimetableDetail'>
 
 interface Props extends PropsFromRedux {
-  navigation: TimetableNavigatorNavigationType,
+  navigation: TimetableNavigationType,
   route: RouteType,
 }
 

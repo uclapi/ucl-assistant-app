@@ -1,8 +1,6 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import type {
-  CompositeNavigationProp, RouteProp,
+  RouteProp,
 } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
 import React from "react"
 import { StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
@@ -23,14 +21,13 @@ import {
 import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import { LocalisationManager, MapsManager, Shadow } from "../../../lib"
-import type {
-  MainTabNavigatorParamList,
-  RootStackParamList,
-} from "../../../navigation"
 import {
   studySpaceSelectorFactory,
 } from "../../../selectors/studyspacesSelectors"
-import type { StudySpacesNavigatorParamList } from "../StudySpacesNavigator"
+import type {
+  StudySpacesNavigationType,
+  StudySpacesNavigatorParamList,
+} from "../StudySpacesNavigator"
 import CapacityChart from "./CapacityChart"
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton"
@@ -123,13 +120,7 @@ const hasAddress = (address) => (
 )
 
 interface Props {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<StudySpacesNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: StudySpacesNavigationType,
   // eslint-disable-next-line quotes
   route: RouteProp<StudySpacesNavigatorParamList, 'StudySpacesDetail'>,
 }

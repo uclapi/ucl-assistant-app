@@ -34,7 +34,7 @@ import {
 import {
   weeklyTimetableArraySelector,
 } from "../../../selectors/timetableSelectors"
-import type { TimetableNavigatorNavigationType } from "../TimetableNavigator"
+import type { TimetableNavigationType } from "../TimetableNavigator"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 const today = LocalisationManager.getMoment()
 
 interface Props extends PropsFromRedux {
-  navigation: TimetableNavigatorNavigationType,
+  navigation: TimetableNavigationType,
 }
 
 interface State {

@@ -1,10 +1,7 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+
 import React from "react"
 import { StyleSheet, View } from "react-native"
 
-import type { StudySpacesNavigatorParamList } from ".."
 import { LightButton } from '../../../components/Button'
 import {
   BodyText, SearchResultTopText,
@@ -12,10 +9,7 @@ import {
 } from "../../../components/Typography"
 import Colors from "../../../constants/Colors"
 import Shadow from "../../../lib/Shadow"
-import type {
-  MainTabNavigatorParamList,
-  RootStackParamList,
-} from '../../../navigation'
+import type { StudySpacesNavigationType } from '../StudySpacesNavigator'
 
 const styles = StyleSheet.create({
   areaInfo: {
@@ -57,13 +51,7 @@ const fixNames = ({ name, ...otherProps }) => ({
 interface Props {
   maps: Array<unknown>,
   surveyId: string,
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<StudySpacesNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: StudySpacesNavigationType,
 }
 
 class LiveSeatingMapList extends React.Component<Props> {

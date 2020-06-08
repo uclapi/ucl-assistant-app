@@ -1,13 +1,10 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+
 import memoize from "memoize-one"
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
 import { generate } from "shortid"
 
-import type { StudySpacesNavigatorParamList } from ".."
 import {
   fetchSeatInfos,
   setSearchQuery,
@@ -20,15 +17,12 @@ import {
 } from "../../../components/Typography"
 import { AppStateType } from '../../../configureStore'
 import { WORKSPACES_SORT_TYPES } from '../../../constants/studyspacesConstants'
-import type {
-  MainTabNavigatorParamList,
-  RootStackParamList,
-} from '../../../navigation'
 import {
   matchingStudySpacesSelector,
 } from '../../../selectors/studyspacesSelectors'
 import LastUpdated from '../components/LastUpdated'
 import StudySpaceSearchResult from "../components/StudySpaceResult"
+import { StudySpacesNavigationType } from '../StudySpacesNavigator'
 import StudySpaceFilters from './components/StudySpaceFilters'
 
 const styles = StyleSheet.create({
@@ -41,13 +35,7 @@ const styles = StyleSheet.create({
 })
 
 interface Props extends PropsFromRedux {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<StudySpacesNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: StudySpacesNavigationType,
 }
 
 interface State {
@@ -55,10 +43,6 @@ interface State {
 }
 
 class StudySpacesListScreen extends React.Component<Props, State> {
-  static navigationOptions = {
-    title: `All Study Spaces`,
-  }
-
   static findErrorneousSpaces = (spaces) => spaces.filter(
     (space) => typeof space.fetchSeatInfoError === `string`
       && space.fetchSeatInfoError !== ``,

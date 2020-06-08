@@ -1,6 +1,3 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import { CompositeNavigationProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 import React from "react"
 import {
   ActivityIndicator,
@@ -11,7 +8,6 @@ import {
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
 
-import type { StudySpacesNavigatorParamList } from ".."
 import {
   fetchDetails,
   fetchSeatInfos,
@@ -22,16 +18,13 @@ import { PageNoScroll } from "../../../components/Containers"
 import { BodyText, SubtitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
 import { AssetManager } from "../../../lib"
-import type {
-  MainTabNavigatorParamList,
-  RootStackParamList,
-} from '../../../navigation'
 import {
   favouriteStudySpacesSelector,
 } from '../../../selectors/studyspacesSelectors'
 import Styles from "../../../styles/Containers"
 import LastUpdated from '../components/LastUpdated'
 import StudySpaceResult from "../components/StudySpaceResult"
+import type { StudySpacesNavigationType } from "../StudySpacesNavigator"
 
 const styles = StyleSheet.create({
   emptyImage: {
@@ -57,13 +50,7 @@ const styles = StyleSheet.create({
 })
 
 interface Props extends PropsFromRedux {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<StudySpacesNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: StudySpacesNavigationType,
 }
 
 interface State {

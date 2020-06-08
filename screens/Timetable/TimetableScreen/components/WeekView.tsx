@@ -10,7 +10,7 @@ import {
   TitleText,
 } from "../../../../components/Typography"
 import { LocalisationManager } from "../../../../lib"
-import type { TimetableNavigatorNavigationType } from "../../TimetableNavigator"
+import type { TimetableNavigationType } from "../../TimetableNavigator"
 import DateControls from './DateControls'
 import FreeWeek from "./FreeWeek"
 import LastModified from "./LastModified"
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 interface Props {
   date: Moment,
   isLoading: boolean,
-  navigation: TimetableNavigatorNavigationType,
+  navigation: TimetableNavigationType,
   onDateChanged: (date: Moment) => Promise<void>,
   onIndexChanged: (index: number) => void,
   onRefresh: () => Promise<unknown>,
