@@ -1,17 +1,18 @@
-/* eslint react-native/no-inline-styles: 0 */
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import React from "react"
 import { StyleSheet, View } from "react-native"
 import {
   Circle, Defs, G, Line, LinearGradient,
   Rect, Stop, Text,
 } from "react-native-svg"
-import { AreaChart, XAxis } from "react-native-svg-charts"
+import {
+  AreaChart,
+  GridProps, XAxis,
+} from "react-native-svg-charts"
 import { generate } from "shortid"
 
-import Colors from "../../../constants/Colors"
-import { LocalisationManager } from "../../../lib"
-import MapStyles from "../../../styles/Map"
+import Colors from "../../../../constants/Colors"
+import { LocalisationManager } from "../../../../lib"
+import MapStyles from "../../../../styles/Map"
 import ChartLoading from "./ChartLoading"
 
 const styles = StyleSheet.create({
@@ -19,21 +20,53 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.cardBackground,
     height: 200,
   },
+  xaxis: {
+    marginHorizontal: -10,
+    marginTop: 10,
+  },
 })
 
-/* apparently ESLint does not like curried components!! */
-/* eslint-disable react/prop-types */
+interface GradientProps {
+  data?: Array<number>,
+}
 
-const Gradient = ({ data }) => data.map(() => (
-  <Defs key={generate()}>
-    <LinearGradient id="gradient" x1="0%" y="0%" x2="0%" y2="100%">
-      <Stop offset="0%" stopColor={Colors.accentColor} stopOpacity={0.8} />
-      <Stop offset="100%" stopColor={Colors.accentColor} stopOpacity={0.2} />
-    </LinearGradient>
-  </Defs>
-))
+const Gradient = ({ data = [] }: GradientProps) => (
+  <>
+    {data.map(
+      () => (
+        <Defs key={generate()}>
+          <LinearGradient
+            id="gradient"
+            x1="0%"
+            y1="0%"
+            x2="0%"
+            y2="100%"
+          >
+            <Stop
+              offset="0%"
+              stopColor={Colors.accentColor}
+              stopOpacity={0.8}
+            />
+            <Stop
+              offset="100%"
+              stopColor={Colors.accentColor}
+              stopOpacity={0.2}
+            />
+          </LinearGradient>
+        </Defs>
+      ),
+    )}
+  </>
+)
 
-const CurrentTimeBar = ({
+interface CurrentTimeBarProps extends GridProps<number> {
+  width?: number,
+  height?: number,
+  time: number,
+  occupied: number,
+}
+
+const CurrentTimeBar: React.FC<CurrentTimeBarProps> = ({
   x, y, width, height, time, occupied,
 }) => (
     <G key="tooltip" x={x(time)}>
@@ -52,8 +85,15 @@ const CurrentTimeBar = ({
     </G>
 )
 
-const CapacityLine = ({
-  y, capacity, selectedIndex, data,
+interface CapacityLineProps {
+  y?: (t: number) => number,
+  capacity: number,
+  selectedIndex: number,
+  data?: Array<number>,
+}
+
+const CapacityLine: React.FC<CapacityLineProps> = ({
+  y, capacity, selectedIndex, data = [],
 }) => (
     <G key="capacity" x={0} y={y(capacity) < 0 ? 0 : y(capacity)}>
       <Line
@@ -76,7 +116,9 @@ const CapacityLine = ({
             fontSize={15}
             key={selectedIndex}
           >
-            {LocalisationManager.parseToMoment(selectedIndex, `H`).format(`h:00a`)}
+            {LocalisationManager
+              .parseToMoment(`${selectedIndex}`, `H`)
+              .format(`h:00a`)}
             {` - ${Math.round(data[selectedIndex])} seats occupied`}
           </Text>
         </>
@@ -84,8 +126,12 @@ const CapacityLine = ({
     </G>
 )
 
-const HighlightBar = ({
-  x, y, selectedIndex, data,
+interface HighlightBarProps extends GridProps<number> {
+  data?: number[],
+  selectedIndex: number,
+}
+const HighlightBar: React.FC<HighlightBarProps> = ({
+  x, y, selectedIndex, data = [],
 }) => (
     <G key="tooltip" x={x(selectedIndex)}>
       <Line
@@ -106,58 +152,65 @@ const HighlightBar = ({
     </G>
 )
 
-const CustomGrid = ({
-  x, data, width, setIndex,
+
+interface CustomGridProps {
+  setIndex: (n: number) => void,
+  data?: Array<number>,
+  width?: number,
+}
+const CustomGrid: React.FC<
+  CustomGridProps
+  & GridProps<number>
+> = ({
+  x,
+  data = [],
+  width,
+  setIndex,
 }) => (
-    <G>
-      {// Vertical grid
-        data.map((val, index) => (
-          <Line
-            key={generate()}
-            y1="0%"
-            y2="100%"
-            x1={x(index)}
-            x2={x(index)}
-            stroke="rgba(0,0,0,0)"
-            strokeWidth={Math.round(width / 24)}
-            onPress={() => {
-              setIndex(index)
-            }}
-          />
-        ))
-      }
-    </G>
+      <G>
+        {// Vertical grid
+          data.map((val, index) => (
+            <Line
+              key={generate()}
+              y1="0%"
+              y2="100%"
+              x1={x(index)}
+              x2={x(index)}
+              stroke="rgba(0,0,0,0)"
+              strokeWidth={Math.round(width / 24)}
+              onPress={() => {
+                setIndex(index)
+              }}
+            />
+          ))
+        }
+      </G>
 )
 
-/* eslint-enable react/prop-types */
+interface Props {
+  capacity?: number,
+  data?: Array<number>,
+  isLoading?: boolean,
+  occupied?: number,
+}
 
-class CapacityChart extends Component {
-  static propTypes = {
-    capacity: PropTypes.number,
-    data: PropTypes.arrayOf(PropTypes.number),
-    isLoading: PropTypes.bool,
-    occupied: PropTypes.number,
-  }
+interface State {
+  selectedIndex: number,
+}
 
-  static defaultProps = {
-    capacity: 500,
-    data: [],
-    isLoading: false,
-    occupied: 0,
-  }
-
-  constructor() {
-    super()
+class CapacityChart extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
     this.state = {
       selectedIndex: null,
     }
   }
 
-  formatXLabel = (value) => {
+  formatXLabel = (value: number): string => {
     const time = value - 1
     const selectTimes = [2, 8, 14, 20]
     if (selectTimes.includes(time)) {
-      return LocalisationManager.parseToMoment(time, `H`).format(`h:00a`)
+      return LocalisationManager.parseToMoment(`${time}`, `H`).format(`h:00a`)
     }
     // returning an empty or string or null makes the chart
     // makes the chart library think all labels have zero height
@@ -166,12 +219,12 @@ class CapacityChart extends Component {
     return `⠀`
   }
 
-  render() {
+  render(): React.ReactElement {
     const {
-      capacity,
-      data,
-      isLoading,
-      occupied,
+      capacity = 500,
+      data = [],
+      isLoading = false,
+      occupied = 0,
     } = this.props
     const { selectedIndex } = this.state
 
@@ -194,7 +247,6 @@ class CapacityChart extends Component {
           animate
           animationDuration={500}
           data={data}
-          showGrid={false}
           gridMin={0}
           gridMax={capacity}
           svg={{
@@ -205,21 +257,25 @@ class CapacityChart extends Component {
           style={styles.chart}
         >
           <Gradient />
-          <CapacityLine capacity={capacity} selectedIndex={selectedIndex} />
+          <CapacityLine
+            capacity={capacity}
+            selectedIndex={selectedIndex}
+          />
           <CurrentTimeBar
-            data={data}
             time={hour}
             occupied={occupied}
           />
           {selectedIndex ? (
-            <HighlightBar selectedIndex={selectedIndex} />
+            <HighlightBar
+              selectedIndex={selectedIndex}
+            />
           ) : null}
           <CustomGrid
             setIndex={(index) => this.setState({ selectedIndex: index })}
           />
         </AreaChart>
         <XAxis
-          style={{ marginHorizontal: -10, marginTop: 10 }}
+          style={styles.xaxis}
           contentInset={{ right: 15 }}
           data={Object.keys(data).map((v) => Number.parseInt(v, 10))}
           formatLabel={this.formatXLabel}

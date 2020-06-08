@@ -16,11 +16,13 @@ import {
   WORKSPACES_SORT_TYPES_TYPE,
   WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
+import type { StudySpace } from "../types/uclapi"
 
 const sortStudySpaces = (s1, s2) => s1.id - s2.id
 
 export interface StudySpacesState {
-  favourites: any,
+  // eslint-disable-next-line quotes
+  favourites: Array<StudySpace['id']>,
   fetchingSpacesDetailsError: string,
   isFetchingSpaces: boolean,
   isFetchingSpacesDetails: boolean,
@@ -28,7 +30,7 @@ export interface StudySpacesState {
   lastStatusUpdate: any,
   searchQuery: string,
   sortType: WORKSPACES_SORT_TYPES_TYPE,
-  studyspaces: any,
+  studyspaces: Array<StudySpace>,
 }
 
 export const initialState: StudySpacesState = {

@@ -1,24 +1,34 @@
-// @flow
-import PropTypes from "prop-types"
-import React, { Component } from "react"
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import type {
+  CompositeNavigationProp, RouteProp,
+} from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
+import React from "react"
 import { StyleSheet, View } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
 import {
-  fetchAverages as fetchAveragesAction,
-} from "../../actions/studyspacesActions"
-import Button from "../../components/Button"
-import { Horizontal, Page } from "../../components/Containers"
-import LiveIndicator from "../../components/LiveIndicator"
+  fetchAverages as fetchAveragesAction, StudySpacesDispatch,
+} from "../../../actions/studyspacesActions"
+import Button from "../../../components/Button"
+import { Horizontal, Page } from "../../../components/Containers"
+import LiveIndicator from "../../../components/LiveIndicator"
 import {
   BodyText,
   InfoText,
   Link,
   SubtitleText,
   TitleText,
-} from "../../components/Typography"
-import Colors from "../../constants/Colors"
-import { LocalisationManager, MapsManager, Shadow } from "../../lib"
+} from "../../../components/Typography"
+import type { AppStateType } from "../../../configureStore"
+import Colors from "../../../constants/Colors"
+import { LocalisationManager, MapsManager, Shadow } from "../../../lib"
+import type {
+  MainTabNavigatorParamList,
+  RootStackParamList,
+} from "../../../navigation"
+import type { StudySpace } from "../../../types/uclapi"
+import type { StudySpacesNavigatorParamList } from "../StudySpacesNavigator"
 import CapacityChart from "./CapacityChart"
 // import OpeningHours from "./OpeningHours";
 import FavouriteButton from "./FavouriteButton"
@@ -110,33 +120,31 @@ const hasAddress = (address) => (
   && !address.every((part) => part.length === 0)
 )
 
-class StudySpaceDetailScreen extends Component {
+interface Props extends PropsFromRedux {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<StudySpacesNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
+  // eslint-disable-next-line quotes
+  route: RouteProp<StudySpacesNavigatorParamList, 'StudySpacesDetail'>,
+}
+
+interface State {
+  data: Array<number>,
+  fetchingData: boolean,
+  id: string,
+  name: string,
+  occupied: number,
+  space: StudySpace,
+  total: number,
+}
+
+class StudySpaceDetailScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: `Study Space Detail`,
-  }
-
-  static mapStateToProps = (state) => ({
-    studyspaces: state.studyspaces.studyspaces,
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = (dispatch) => ({
-    fetchAverages: (token, id) => dispatch(fetchAveragesAction(token, id)),
-  })
-
-  static propTypes = {
-    fetchAverages: PropTypes.func.isRequired,
-    /* eslint-disable react/no-unused-prop-types */
-    navigation: PropTypes.shape().isRequired,
-    route: PropTypes.shape().isRequired,
-    /* eslint-enable react/no-unused-prop-types */
-    studyspaces: PropTypes.arrayOf(PropTypes.shape()),
-    token: PropTypes.string,
-  }
-
-  static defaultProps = {
-    studyspaces: [],
-    token: ``,
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -177,8 +185,8 @@ class StudySpaceDetailScreen extends Component {
 
   navigateToLiveSeatMap = () => {
     const { navigation } = this.props
-    const { space } = this.state
-    navigation.navigate(`LiveSeatingMap`, { space })
+    const { space: { surveyId, mapId, name } } = this.state
+    navigation.navigate(`LiveSeatingMap`, { mapId, name, surveyId })
   }
 
   navigateToLocation = () => {
@@ -240,13 +248,13 @@ class StudySpaceDetailScreen extends Component {
           <Horizontal>
             <View style={styles.occupancySection}>
               <TitleText style={styles.capacityTextStyle}>
-                {total - occupied}
+                {`${total - occupied}`}
               </TitleText>
               <BodyText>Seats Available</BodyText>
             </View>
             <View style={styles.occupancySection}>
               <TitleText style={styles.capacityTextStyle}>
-                {occupied}
+                {`${occupied}`}
               </TitleText>
               <BodyText>Seats Occupied</BodyText>
             </View>
@@ -258,17 +266,16 @@ class StudySpaceDetailScreen extends Component {
               </View>
             ) : (
               <>
-                <View style={styles.popularTimes}>
-                  <SubtitleText>Popular Times</SubtitleText>
-                  <CapacityChart
-                    id={id}
-                    data={data}
-                    occupied={occupied}
-                    capacity={total}
-                    isLoading={isFetchingAverages}
-                  />
-                </View>
-                {timezoneInfo}
+                  <View style={styles.popularTimes}>
+                    <SubtitleText>Popular Times</SubtitleText>
+                    <CapacityChart
+                      data={data}
+                      occupied={occupied}
+                      capacity={total}
+                      isLoading={isFetchingAverages}
+                    />
+                  </View>
+                  {timezoneInfo}
               </>
             )
           }
@@ -282,7 +289,6 @@ class StudySpaceDetailScreen extends Component {
             </BodyText>
           </Horizontal>
           <LiveSeatingMapList
-            style={styles.liveSeatingMapList}
             maps={maps}
             surveyId={id}
             navigation={navigation}
@@ -318,7 +324,16 @@ class StudySpaceDetailScreen extends Component {
   }
 }
 
-export default connect(
-  StudySpaceDetailScreen.mapStateToProps,
-  StudySpaceDetailScreen.mapDispatchToProps,
-)(StudySpaceDetailScreen)
+const connector = connect(
+  (state: AppStateType) => ({
+    studyspaces: state.studyspaces.studyspaces,
+    token: state.user.token,
+  }),
+  (dispatch: StudySpacesDispatch) => ({
+    fetchAverages: (token, id) => dispatch(fetchAveragesAction(token, id)),
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(StudySpaceDetailScreen)

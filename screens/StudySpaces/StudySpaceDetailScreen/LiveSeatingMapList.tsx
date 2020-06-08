@@ -1,13 +1,21 @@
-// @flow
-import React, { Component } from "react"
-import { View, StyleSheet } from "react-native"
-import PropTypes from "prop-types"
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { CompositeNavigationProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import React from "react"
+import { StyleSheet, View } from "react-native"
+
+import type { StudySpacesNavigatorParamList } from ".."
+import { LightButton } from '../../../components/Button'
 import {
-  SubtitleText, BodyText, SearchResultTopText,
-} from "../../components/Typography"
-import Colors from "../../constants/Colors"
-import Shadow from "../../lib/Shadow"
-import { LightButton } from '../../components/Button'
+  BodyText, SearchResultTopText,
+  SubtitleText,
+} from "../../../components/Typography"
+import Colors from "../../../constants/Colors"
+import Shadow from "../../../lib/Shadow"
+import type {
+  MainTabNavigatorParamList,
+  RootStackParamList,
+} from '../../../navigation'
 
 const styles = StyleSheet.create({
   areaInfo: {
@@ -46,25 +54,27 @@ const fixNames = ({ name, ...otherProps }) => ({
   name: name.replace(new RegExp(`(${studySpaceNames.join(`|`)})`), ``),
 })
 
-class LiveSeatingMapList extends Component {
-  static propTypes = {
-    navigation: PropTypes.shape().isRequired,
-    maps: PropTypes.arrayOf(PropTypes.shape()),
-    surveyId: PropTypes.number.isRequired,
-  }
+interface Props {
+  maps: Array<unknown>,
+  surveyId: string,
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<StudySpacesNavigatorParamList>,
+    CompositeNavigationProp<
+      BottomTabNavigationProp<MainTabNavigatorParamList>,
+      StackNavigationProp<RootStackParamList>
+    >
+  >,
+}
 
-  static defaultProps = {
-    maps: [],
-  }
-
+class LiveSeatingMapList extends React.Component<Props> {
   openLiveMap = ({ name, surveyId, mapId }) => () => {
     const { navigation } = this.props
-    navigation.navigate(`LiveSeatingMap`, { name, surveyId, mapId })
+    navigation.navigate(`LiveSeatingMap`, { mapId, name, surveyId })
   }
 
   renderMapInfo = ({
     id, name, total, occupied,
-  }) => {
+  }): React.ReactElement => {
     const { surveyId } = this.props
     return (
       <View key={id} style={styles.areaInfo}>
@@ -75,7 +85,7 @@ class LiveSeatingMapList extends Component {
           {`${(total - occupied)} seats free (total: ${total})`}
         </BodyText>
         <LightButton
-          onPress={this.openLiveMap({ name, mapId: id, surveyId })}
+          onPress={this.openLiveMap({ mapId: id, name, surveyId })}
           style={styles.seatingMapButton}
         >
           View Live Seating Map
@@ -84,7 +94,7 @@ class LiveSeatingMapList extends Component {
     )
   }
 
-  render() {
+  render(): React.ReactElement {
     const { maps } = this.props
     const hasMaps = maps && Array.isArray(maps)
     if (!hasMaps) {
@@ -94,7 +104,7 @@ class LiveSeatingMapList extends Component {
     const mapsList = maps.map(fixNames).map(this.renderMapInfo)
 
     return (
-      <View style={styles.liveSeatingMap}>
+      <View>
         <SubtitleText style={styles.cardHeader}>Areas</SubtitleText>
         <View style={styles.cardList}>{mapsList}</View>
       </View>

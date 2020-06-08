@@ -15,7 +15,7 @@ import { Horizontal } from "../Containers"
 interface Props {
   containerStyle?: ViewStyle,
   style?: TextStyle,
-  children: React.ReactElement | string,
+  children: React.ReactNode,
   icon?: string,
 }
 

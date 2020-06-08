@@ -1,6 +1,5 @@
-import PropTypes from "prop-types"
+import { Moment } from "moment"
 import React from 'react'
-import { momentObj } from "react-moment-proptypes"
 import { StyleSheet } from 'react-native'
 
 import { BodyText, ErrorText } from "../../../components/Typography"
@@ -12,25 +11,21 @@ const styles = StyleSheet.create({
   },
 })
 
-class LastUpdated extends React.Component {
-  static propTypes = {
-    lastModified: PropTypes.oneOfType([momentObj, PropTypes.string]),
-  }
+interface Props {
+  lastModified: Moment | string,
+}
 
-  static defaultProps = {
-    lastModified: null,
-  }
+class LastUpdated extends React.Component<Props> {
+  renderLoading = (): React.ReactElement => <BodyText>Loading...</BodyText>
 
-  renderLoading = () => <BodyText>Loading...</BodyText>
-
-  renderError = () => (
+  renderError = (): React.ReactElement => (
     <ErrorText containerStyle={styles.error}>
       Our studyspace data is stale. Sorry about that.
       We&apos;re working on getting this fixed as quickly as possible.
     </ErrorText>
   )
 
-  render() {
+  render(): React.ReactElement {
     const { lastModified } = this.props
     if (lastModified === null || typeof lastModified !== `object`) {
       return this.renderLoading()

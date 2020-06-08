@@ -2,10 +2,12 @@ import PropTypes from "prop-types"
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { LightButton } from '../../../components/Button'
-import { Horizontal } from '../../../components/Containers'
-import { SearchInput } from '../../../components/Input'
-import { WORKSPACES_SORT_TYPES } from '../../../constants/studyspacesConstants'
+import { LightButton } from '../../../../components/Button'
+import { Horizontal } from '../../../../components/Containers'
+import { SearchInput } from '../../../../components/Input'
+import {
+  WORKSPACES_SORT_TYPES, WORKSPACES_SORT_TYPES_TYPE,
+} from '../../../../constants/studyspacesConstants'
 
 const styles = StyleSheet.create({
   container: {},
@@ -19,7 +21,14 @@ const styles = StyleSheet.create({
   },
 })
 
-class StudySpaceFilters extends React.Component {
+interface Props {
+  query: string,
+  onChangeQuery: (s: string) => void,
+  updateSortType: (s: WORKSPACES_SORT_TYPES_TYPE) => void,
+  sortType: WORKSPACES_SORT_TYPES_TYPE,
+}
+
+class StudySpaceFilters extends React.Component<Props> {
   static propTypes = {
     onChangeQuery: PropTypes.func.isRequired,
     query: PropTypes.string,
@@ -31,22 +40,22 @@ class StudySpaceFilters extends React.Component {
     query: ``,
   }
 
-  clearQuery = () => {
+  clearQuery = (): void => {
     const { onChangeQuery } = this.props
     onChangeQuery(``)
   }
 
-  sortByName = () => {
+  sortByName = (): void => {
     const { updateSortType } = this.props
-    return updateSortType(WORKSPACES_SORT_TYPES.NAME)
+    updateSortType(WORKSPACES_SORT_TYPES.NAME)
   }
 
-  sortByVacancies = () => {
+  sortByVacancies = (): void => {
     const { updateSortType } = this.props
-    return updateSortType(WORKSPACES_SORT_TYPES.VACANCIES)
+    updateSortType(WORKSPACES_SORT_TYPES.VACANCIES)
   }
 
-  render() {
+  render(): React.ReactElement {
     const { query, onChangeQuery, sortType } = this.props
     return (
       <View style={styles.container}>

@@ -21,11 +21,12 @@ import {
 import {
   ApiManager,
 } from "../lib"
+import { StudySpace } from "../types/uclapi"
 
-type StudyspacesThunkAction = ThunkAction<
+export type StudySpacesThunkAction = ThunkAction<
   Promise<unknown>, unknown, unknown, StudySpacesActionTypes
 >
-type StudyspacesDispatch = ThunkDispatch<
+export type StudySpacesDispatch = ThunkDispatch<
   unknown, unknown, StudySpacesActionTypes
 >
 
@@ -51,8 +52,8 @@ export const fetchSeatInfosFailure = (
 
 export const fetchSeatInfos = (
   token: string,
-): StudyspacesThunkAction => async (
-  dispatch: StudyspacesDispatch,
+): StudySpacesThunkAction => async (
+  dispatch: StudySpacesDispatch,
   ): Promise<StudySpacesActionTypes> => {
     await dispatch(setIsFetchingSeatInfos())
     try {
@@ -94,8 +95,8 @@ export const fetchAveragesFailure = (
 export const fetchAverages = (
   token: string,
   id: number,
-): StudyspacesThunkAction => async (
-  dispatch: StudyspacesDispatch,
+): StudySpacesThunkAction => async (
+  dispatch: StudySpacesDispatch,
   ): Promise<StudySpacesActionTypes> => {
     await dispatch(setIsFetchingAverages(id))
     try {
@@ -141,7 +142,7 @@ export const setIsFetchingDetails = (): StudySpacesActionTypes => ({
 })
 
 export const fetchDetailsSuccess = (
-  studySpaces: Record<string, unknown>,
+  studySpaces: Record<string, StudySpace>,
 ): StudySpacesActionTypes => ({
   studySpaces,
   type: WORKSPACES_FETCH_DETAILS_SUCCESS,
@@ -152,8 +153,8 @@ export const fetchDetailsFailure = (error: Error): StudySpacesActionTypes => ({
   type: WORKSPACES_FETCH_DETAILS_FAILURE,
 })
 
-export const fetchDetails = (token: string): StudyspacesThunkAction => async (
-  dispatch: StudyspacesDispatch,
+export const fetchDetails = (token: string): StudySpacesThunkAction => async (
+  dispatch: StudySpacesDispatch,
 ): Promise<StudySpacesActionTypes> => {
   try {
     dispatch(setIsFetchingDetails())

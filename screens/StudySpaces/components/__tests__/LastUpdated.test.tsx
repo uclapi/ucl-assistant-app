@@ -7,9 +7,9 @@ import MockDate from 'mockdate'
 import React from 'react'
 import { cleanup, render } from "react-native-testing-library"
 
-import { LocalisationManager } from '../../../lib'
+import { LocalisationManager } from '../../../../lib'
 import LastUpdated from
-  "../components/LastUpdated"
+  "../LastUpdated"
 
 describe(`LastUpdated`, () => {
   MockDate.set(`2019-11-18T08:47:21.000Z`)
@@ -28,7 +28,7 @@ describe(`LastUpdated`, () => {
 
   it(`renders the LastUpdated component loading`, () => {
     const mockProps = {
-      lastModified: `${LocalisationManager.parseToDate()}`,
+      lastModified: `${LocalisationManager.getMoment()}`,
     }
     const wrapper = render(<LastUpdated {...mockProps} />)
     expect(wrapper.toJSON()).toMatchSnapshot()

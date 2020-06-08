@@ -3,9 +3,10 @@ import React, { Component } from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect } from "react-redux"
 
-import Svg from "../../components/Svg"
-import ApiManager from "../../lib/ApiManager"
-import type { RootStackParamList } from '../../navigation/RootNavigation'
+import Svg from "../../../components/Svg"
+import ApiManager from "../../../lib/ApiManager"
+import type { StudySpacesNavigatorParamList } from '../StudySpacesNavigator'
+
 
 const styles = StyleSheet.create({
   loadingContainer: {
@@ -17,15 +18,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 })
-
-type LiveSeatingMapScreenRouteProp = RouteProp<
-  RootStackParamList,
-  // eslint-disable-next-line quotes
-  'LiveSeatingMap'
->
-
 interface Props {
-  route: LiveSeatingMapScreenRouteProp,
+  route: RouteProp<
+    StudySpacesNavigatorParamList,
+    // eslint-disable-next-line quotes
+    'LiveSeatingMap'
+  >,
   token: string,
 }
 

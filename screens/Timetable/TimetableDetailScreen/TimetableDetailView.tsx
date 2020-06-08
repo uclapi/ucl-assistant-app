@@ -1,7 +1,6 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import { CompositeNavigationProp } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { MailComposerResult } from "expo-mail-composer"
 import React from "react"
 import { StyleSheet, View } from "react-native"
 import MapView, { Marker } from "react-native-maps"
@@ -16,6 +15,9 @@ import {
   TitleText,
 } from "../../../components/Typography"
 import { LocalisationManager, MailManager, MapsManager } from "../../../lib"
+import type {
+  MailManagerComposeAsyncReturnType,
+} from "../../../lib/MailManager"
 import type {
   MainTabNavigatorParamList,
 } from "../../../navigation/MainTabNavigator"
@@ -67,7 +69,7 @@ class TimetableDetailView extends React.Component<Props> {
 
   sendEmail = (
     email: string,
-  ) => (): Promise<MailComposerResult> => MailManager.composeAsync({
+  ) => (): MailManagerComposeAsyncReturnType => MailManager.composeAsync({
     recipients: [email],
   })
 

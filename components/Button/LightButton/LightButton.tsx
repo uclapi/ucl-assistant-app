@@ -38,9 +38,9 @@ const styles = StyleSheet.create<StyleSheetType>({
 })
 
 interface Props {
-  style: any,
+  style?: any,
   children: any,
-  active: boolean,
+  active?: boolean,
   onPress: () => void,
 }
 
@@ -48,7 +48,7 @@ const LightButton: React.FC<Props> = ({
   onPress,
   style,
   children,
-  active,
+  active = false,
 }) => (
     <TouchableOpacity
       style={style}

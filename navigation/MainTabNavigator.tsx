@@ -15,7 +15,10 @@ import SettingsNavigator from "../screens/Settings"
 import type {
   SettingsNavigatorParamList,
 } from "../screens/Settings/SettingsNavigator"
-import StudySpacesScreen from "../screens/StudySpacesScreen"
+import StudySpacesNavigator from "../screens/StudySpaces"
+import type {
+  StudySpacesNavigatorParamList,
+} from "../screens/StudySpaces/StudySpacesNavigator"
 import TimetableNavigator from "../screens/Timetable"
 import type {
   TimetableNavigatorParamList,
@@ -24,7 +27,7 @@ import type { NestedNavigator } from "../types/uclapi"
 
 export type MainTabNavigatorParamList = {
   Timetable: NestedNavigator<TimetableNavigatorParamList>,
-  StudySpaces: undefined,
+  StudySpaces: NestedNavigator<StudySpacesNavigatorParamList>,
   People: NestedNavigator<PeopleNavigatorParamList>,
   Rooms: NestedNavigator<RoomsNavigatorParamList>,
   Settings: NestedNavigator<SettingsNavigatorParamList>,
@@ -104,7 +107,7 @@ const MainTabNavigator = (): ReactElement => (
     />
     <Tab.Screen
       name="StudySpaces"
-      component={StudySpacesScreen}
+      component={StudySpacesNavigator}
     />
     <Tab.Screen
       name="People"

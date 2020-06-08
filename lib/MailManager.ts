@@ -33,6 +33,8 @@ const composeAsync = async (
   }
 }
 
+export type MailManagerComposeAsyncReturnType = ReturnType<typeof composeAsync>
+
 export default {
   composeAsync,
 }
