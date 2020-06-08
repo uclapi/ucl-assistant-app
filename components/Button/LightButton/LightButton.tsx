@@ -38,8 +38,8 @@ const styles = StyleSheet.create<StyleSheetType>({
 })
 
 interface Props {
-  style?: any,
-  children: any,
+  style?: ViewStyle,
+  children: React.ReactNode,
   active?: boolean,
   onPress: () => void,
 }
@@ -69,7 +69,7 @@ const LightButton: React.FC<Props> = ({
         }
       </View>
     </TouchableOpacity>
-)
+  )
 
 LightButton.defaultProps = {
   active: false,

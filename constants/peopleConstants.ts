@@ -1,3 +1,5 @@
+import type { Person } from "../types/uclapi"
+
 export const PEOPLE_IS_SEARCHING = `PEOPLE_IS_SEARCHING`
 export const PEOPLE_SEARCH_SUCCESS = `PEOPLE_SEARCH_SUCCESS`
 export const PEOPLE_SEARCH_FAILURE = `PEOPLE_SEARCH_FAILURE`
@@ -20,7 +22,7 @@ interface SearchFailureAction {
 
 interface SearchSuccessAction {
   type: typeof PEOPLE_SEARCH_SUCCESS,
-  results: any,
+  results: Person[],
 }
 
 interface SearchClearAction {
@@ -38,7 +40,7 @@ interface FetchFailureAction {
 
 interface FetchSuccessAction {
   type: typeof PEOPLE_FETCH_SUCCESS,
-  person: any,
+  person: Person,
 }
 
 interface ClearRecentResultsAction {

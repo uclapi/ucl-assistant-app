@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import React, { ReactElement } from 'react'
 import { connect } from "react-redux"
 
+import { AppStateType } from '../configureStore'
 import NotificationsScreen from "../screens/NotificationsScreen"
 import SplashScreen from "../screens/SplashScreen"
 import { NestedNavigator } from '../types/uclapi'
@@ -79,9 +80,7 @@ export default connect(
       upi,
       scopeNumber,
     },
-  }: {
-    user: any,
-  }) => ({
+  }: AppStateType) => ({
     scopeNumber,
     token,
     upi,

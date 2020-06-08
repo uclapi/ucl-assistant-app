@@ -136,10 +136,6 @@ interface Props {
 
 interface State {
   fetchingData: boolean,
-  id: string,
-  name: string,
-  occupied: number,
-  total: number,
 }
 
 class StudySpaceDetailScreen extends React.Component<
@@ -148,22 +144,14 @@ class StudySpaceDetailScreen extends React.Component<
   > {
   constructor(props) {
     super(props)
-    const { route } = this.props
-    const {
-      id, name, occupied, total,
-    } = route.params
     this.state = {
       fetchingData: false,
-      id,
-      name,
-      occupied,
-      total,
     }
   }
 
   componentDidMount() {
-    const { fetchingData, id } = this.state
-    const { token, fetchAverages } = this.props
+    const { fetchingData } = this.state
+    const { token, fetchAverages, route: { params: { id } } } = this.props
     if (!fetchingData && token.length > 0) {
       fetchAverages(token, id)
       setTimeout(() => this.setState({ fetchingData: true }), 100)
@@ -199,13 +187,15 @@ class StudySpaceDetailScreen extends React.Component<
           address,
         },
       },
+      route: {
+        params: {
+          id,
+          name,
+          total,
+          occupied,
+        },
+      },
     } = this.props
-    const {
-      id,
-      name,
-      total,
-      occupied,
-    } = this.state
     const hour = parseInt(
       LocalisationManager.getMoment()
         .format(`HH`),
@@ -253,7 +243,7 @@ class StudySpaceDetailScreen extends React.Component<
                 <InfoText>No historical occupancy data available</InfoText>
               </View>
             ) : (
-                <>
+              <>
                   <View style={styles.popularTimes}>
                     <SubtitleText>Popular Times</SubtitleText>
                     <CapacityChart
@@ -264,8 +254,8 @@ class StudySpaceDetailScreen extends React.Component<
                     />
                   </View>
                   {timezoneInfo}
-                </>
-              )
+              </>
+            )
           }
           <Horizontal style={styles.liveIndicatorContainer}>
             <LiveIndicator style={styles.liveIndicator} />

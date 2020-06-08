@@ -60,11 +60,11 @@ export class RecentResults extends React.Component<Props> {
 }
 
 const connector = connect(
-  (state: AppStateType): any => ({
+  (state: AppStateType) => ({
     recents: state.people.recents,
   }),
   (dispatch: PeopleDispatch) => ({
-    clearRecentResults: (): any => dispatch(clearRecentsResultsAction()),
+    clearRecentResults: () => dispatch(clearRecentsResultsAction()),
   }),
 )
 

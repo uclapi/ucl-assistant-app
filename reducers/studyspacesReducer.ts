@@ -1,4 +1,4 @@
-import moment from "moment"
+import moment, { Moment } from "moment"
 
 import {
   WORKSPACES_FETCH_DETAILS_FAILURE,
@@ -26,8 +26,8 @@ export interface StudySpacesState {
   fetchingSpacesDetailsError: string,
   isFetchingSpaces: boolean,
   isFetchingSpacesDetails: boolean,
-  lastModified: any,
-  lastStatusUpdate: any,
+  lastModified: Moment,
+  lastStatusUpdate: Moment,
   searchQuery: string,
   sortType: WORKSPACES_SORT_TYPES_TYPE,
   studyspaces: Array<StudySpace>,

@@ -1,10 +1,24 @@
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { CompositeNavigationProp } from '@react-navigation/native'
 import {
-  createStackNavigator,
+  createStackNavigator, StackNavigationProp,
 } from '@react-navigation/stack'
 import React from 'react'
 
+import type {
+  MainTabNavigatorParamList,
+  RootStackParamList,
+} from '../../navigation'
 import TimetableDetailScreen from "./TimetableDetailScreen"
 import TimetableScreen from "./TimetableScreen"
+
+export type TimetableNavigatorNavigationType = CompositeNavigationProp<
+  StackNavigationProp<TimetableNavigatorParamList>,
+  CompositeNavigationProp<
+    BottomTabNavigationProp<MainTabNavigatorParamList>,
+    StackNavigationProp<RootStackParamList>
+  >
+>
 
 export type TimetableNavigatorParamList = {
   Timetable: undefined,

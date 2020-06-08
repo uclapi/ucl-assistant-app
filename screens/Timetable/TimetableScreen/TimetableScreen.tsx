@@ -1,8 +1,5 @@
 import { Feather } from "@expo/vector-icons"
 import ViewPager from '@react-native-community/viewpager'
-import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
-import type { CompositeNavigationProp } from "@react-navigation/native"
-import type { StackNavigationProp } from "@react-navigation/stack"
 import { Moment } from 'moment'
 import React from "react"
 import {
@@ -34,14 +31,10 @@ import {
   LocalisationManager,
   PushNotificationsManager,
 } from '../../../lib'
-import type {
-  MainTabNavigatorParamList,
-} from '../../../navigation/MainTabNavigator'
-import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import {
   weeklyTimetableArraySelector,
 } from "../../../selectors/timetableSelectors"
-import type { TimetableNavigatorParamList } from "../TimetableNavigator"
+import type { TimetableNavigatorNavigationType } from "../TimetableNavigator"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
 
@@ -56,13 +49,7 @@ const styles = StyleSheet.create({
 const today = LocalisationManager.getMoment()
 
 interface Props extends PropsFromRedux {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<TimetableNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: TimetableNavigatorNavigationType,
 }
 
 interface State {

@@ -1,9 +1,10 @@
 import { RouteProp } from '@react-navigation/native'
 import React, { Component } from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 
 import Svg from "../../../components/Svg"
+import type { AppStateType } from '../../../configureStore'
 import ApiManager from "../../../lib/ApiManager"
 import type { StudySpacesNavigatorParamList } from '../StudySpacesNavigator'
 
@@ -18,13 +19,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 })
-interface Props {
+interface Props extends PropsFromRedux {
   route: RouteProp<
     StudySpacesNavigatorParamList,
     // eslint-disable-next-line quotes
     'LiveSeatingMap'
   >,
-  token: string,
 }
 
 interface State {
@@ -32,12 +32,6 @@ interface State {
 }
 
 class LiveSeatingMapScreen extends Component<Props, State> {
-  static mapStateToProps = (state) => ({
-    token: state.user.token,
-  })
-
-  static mapDispatchToProps = () => ({})
-
   constructor(props) {
     super(props)
     this.state = {
@@ -76,7 +70,12 @@ class LiveSeatingMapScreen extends Component<Props, State> {
   }
 }
 
-export default connect(
-  LiveSeatingMapScreen.mapStateToProps,
-  LiveSeatingMapScreen.mapDispatchToProps,
-)(LiveSeatingMapScreen)
+const connector = connect(
+  (state: AppStateType) => ({
+    token: state.user.token,
+  }),
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(LiveSeatingMapScreen)

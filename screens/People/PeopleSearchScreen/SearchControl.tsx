@@ -148,7 +148,7 @@ export class SearchControl extends React.Component<Props, State> {
 }
 
 const connector = connect(
-  (state: AppStateType): any => ({
+  (state: AppStateType) => ({
     error: state.people.searchError,
     isSearching: state.people.isSearching,
     searchResults: state.people.searchResults,

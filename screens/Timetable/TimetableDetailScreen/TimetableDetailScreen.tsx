@@ -1,29 +1,21 @@
-import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
-import { CompositeNavigationProp, RouteProp } from "@react-navigation/native"
-import type { StackNavigationProp } from "@react-navigation/stack"
+
+import { RouteProp } from "@react-navigation/native"
 import React from "react"
 import { connect, ConnectedProps } from "react-redux"
 
 import type { AppStateType } from "../../../configureStore"
-import type {
-  MainTabNavigatorParamList,
-} from "../../../navigation/MainTabNavigator"
-import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import { timetableSelector } from "../../../selectors/timetableSelectors"
-import type { TimetableNavigatorParamList } from '../TimetableNavigator'
+import type {
+  TimetableNavigatorNavigationType,
+  TimetableNavigatorParamList,
+} from '../TimetableNavigator'
 import TimetableDetailView from "./TimetableDetailView"
 
 // eslint-disable-next-line quotes
 type RouteType = RouteProp<TimetableNavigatorParamList, 'TimetableDetail'>
 
 interface Props extends PropsFromRedux {
-  navigation: CompositeNavigationProp<
-    StackNavigationProp<TimetableNavigatorParamList>,
-    CompositeNavigationProp<
-      BottomTabNavigationProp<MainTabNavigatorParamList>,
-      StackNavigationProp<RootStackParamList>
-    >
-  >,
+  navigation: TimetableNavigatorNavigationType,
   route: RouteType,
 }
 

@@ -25,7 +25,7 @@ const addDetail = (details: any): void => {
   }
 }
 
-const captureError = (error, details?: any): void => {
+const captureError = (error: Error, details?: any): void => {
   if (!__DEV__) {
     if (details) {
       Sentry.withScope((scope) => {
