@@ -55,9 +55,7 @@ class ChartLoading extends React.Component<unknown, State> {
 
   loadAnimation = (): void => {
     this.setState({
-      animation: {
-        uri: `../../../../assets/animations/bar-chart.json`,
-      },
+      animation: require(`../../../../assets/animations/bar-chart.json`),
     }, this.playAnimation)
   }
 

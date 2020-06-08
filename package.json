@@ -82,7 +82,7 @@
     "react": "16.9.0",
     "react-moment-proptypes": "^1.7.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
-    "react-native-action-button": "^2.8.5",
+    "react-native-action-button": "github:uclapi/react-native-action-button",
     "react-native-check-box": "^2.1.7",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-maps": "0.26.1",

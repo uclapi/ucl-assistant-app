@@ -32,10 +32,6 @@ interface State {
 }
 
 class LiveSeatingMapScreen extends Component<Props, State> {
-  static navigationOptions = ({ route }) => ({
-    title: route.params?.name ?? `Live Seating Map`,
-  })
-
   static mapStateToProps = (state) => ({
     token: state.user.token,
   })

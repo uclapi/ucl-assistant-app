@@ -28,7 +28,9 @@ const StudySpacesNavigator = (): React.ReactElement => (
       component={StudySpacesScreen}
     />
     <Stack.Screen
-      options={{ title: `` }}
+      options={({ route }) => ({
+        title: route?.params?.name || ``,
+      })}
       name="StudySpacesDetail"
       component={StudySpacesDetailScreen}
     />
@@ -38,6 +40,9 @@ const StudySpacesNavigator = (): React.ReactElement => (
       component={StudySpacesFavouritesScreen}
     />
     <Stack.Screen
+      options={({ route }) => ({
+        title: route?.params?.name || `Live Seating Map`,
+      })}
       name="LiveSeatingMap"
       component={LiveSeatingMapScreen}
     />
