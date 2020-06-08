@@ -74,6 +74,7 @@ export interface StudySpace {
   total?: number,
   capacity?: number,
   isFetchingSeatInfo?: boolean,
+  dailyAverages?: Array<number>,
 }
 
 export type NestedNavigator<T> = {

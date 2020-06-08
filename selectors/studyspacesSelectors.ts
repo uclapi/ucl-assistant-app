@@ -3,6 +3,7 @@ import { createSelector } from 'reselect'
 import { AppStateType } from '../configureStore'
 import { WORKSPACES_SORT_TYPES } from '../constants/studyspacesConstants'
 import ErrorManager from '../lib/ErrorManager'
+import type { StudySpace } from '../types/uclapi'
 
 const studySpacesSelector = (
   state: AppStateType,
@@ -17,6 +18,14 @@ const studySpacesSortTypeSelector = (
 const studySpacesFavouriteIdsSelector = (
   state: AppStateType,
 ) => state.studyspaces.favourites
+
+export const studySpaceSelectorFactory = (
+  // eslint-disable-next-line quotes
+  studySpaceId: StudySpace['id'],
+) => createSelector(
+  studySpacesSelector,
+  (studyspaces) => studyspaces.find((s) => s.id === studySpaceId),
+)
 
 export const matchingStudySpacesSelector = createSelector(
   studySpacesSelector,

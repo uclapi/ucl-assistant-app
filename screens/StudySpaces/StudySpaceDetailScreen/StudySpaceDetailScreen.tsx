@@ -27,7 +27,9 @@ import type {
   MainTabNavigatorParamList,
   RootStackParamList,
 } from "../../../navigation"
-import type { StudySpace } from "../../../types/uclapi"
+import {
+  studySpaceSelectorFactory,
+} from "../../../selectors/studyspacesSelectors"
 import type { StudySpacesNavigatorParamList } from "../StudySpacesNavigator"
 import CapacityChart from "./CapacityChart"
 // import OpeningHours from "./OpeningHours";
@@ -120,7 +122,7 @@ const hasAddress = (address) => (
   && !address.every((part) => part.length === 0)
 )
 
-interface Props extends PropsFromRedux {
+interface Props {
   navigation: CompositeNavigationProp<
     StackNavigationProp<StudySpacesNavigatorParamList>,
     CompositeNavigationProp<
@@ -133,28 +135,17 @@ interface Props extends PropsFromRedux {
 }
 
 interface State {
-  data: Array<number>,
   fetchingData: boolean,
   id: string,
   name: string,
   occupied: number,
-  space: StudySpace,
   total: number,
 }
 
-class StudySpaceDetailScreen extends React.Component<Props, State> {
-  static navigationOptions = {
-    title: `Study Space Detail`,
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.studyspaces && props.studyspaces.length > 0) {
-      const space = props.studyspaces.filter((s) => s.id === state.id)[0]
-      return { data: space.dailyAverages, space }
-    }
-    return null
-  }
-
+class StudySpaceDetailScreen extends React.Component<
+  Props & PropsFromRedux,
+  State
+  > {
   constructor(props) {
     super(props)
     const { route } = this.props
@@ -162,14 +153,10 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
       id, name, occupied, total,
     } = route.params
     this.state = {
-      data: Array.from(Array(24)).map(() => 0),
       fetchingData: false,
       id,
       name,
       occupied,
-      space: {
-        isFetchingAverages: false,
-      },
       total,
     }
   }
@@ -184,13 +171,12 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
   }
 
   navigateToLiveSeatMap = () => {
-    const { navigation } = this.props
-    const { space: { surveyId, mapId, name } } = this.state
+    const { navigation, space: { surveyId, mapId, name } } = this.props
     navigation.navigate(`LiveSeatingMap`, { mapId, name, surveyId })
   }
 
   navigateToLocation = () => {
-    const { space: { location } } = this.state
+    const { space: { location } } = this.props
     const { coordinates, address } = location
     if (hasCoordinates(coordinates)) {
       const { lat, lng } = coordinates
@@ -201,13 +187,9 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
   }
 
   render() {
-    const { navigation } = this.props
     const {
-      id,
-      name,
+      navigation,
       data,
-      total,
-      occupied,
       space: {
         isFetchingAverages,
         maps,
@@ -217,6 +199,12 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
           address,
         },
       },
+    } = this.props
+    const {
+      id,
+      name,
+      total,
+      occupied,
     } = this.state
     const hour = parseInt(
       LocalisationManager.getMoment()
@@ -265,7 +253,7 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
                 <InfoText>No historical occupancy data available</InfoText>
               </View>
             ) : (
-              <>
+                <>
                   <View style={styles.popularTimes}>
                     <SubtitleText>Popular Times</SubtitleText>
                     <CapacityChart
@@ -276,8 +264,8 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
                     />
                   </View>
                   {timezoneInfo}
-              </>
-            )
+                </>
+              )
           }
           <Horizontal style={styles.liveIndicatorContainer}>
             <LiveIndicator style={styles.liveIndicator} />
@@ -325,10 +313,15 @@ class StudySpaceDetailScreen extends React.Component<Props, State> {
 }
 
 const connector = connect(
-  (state: AppStateType) => ({
-    studyspaces: state.studyspaces.studyspaces,
-    token: state.user.token,
-  }),
+  (state: AppStateType, ownProps: Props) => {
+    const { user: { token } } = state
+    const space = studySpaceSelectorFactory(ownProps.route?.params?.id)(state)
+    return {
+      data: space?.dailyAverages,
+      space,
+      token,
+    }
+  },
   (dispatch: StudySpacesDispatch) => ({
     fetchAverages: (token, id) => dispatch(fetchAveragesAction(token, id)),
   }),
