@@ -4,7 +4,7 @@ import * as Font from "expo-font"
 import PropTypes from "prop-types"
 import React from "react"
 import { Platform, StatusBar, View } from "react-native"
-import { enableScreens } from 'react-native-screens'
+// import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/lib/integration/react"
 
@@ -19,7 +19,10 @@ import Styles from "./styles/Containers"
 const { persistor, store } = configureStore
 
 ErrorManager.initialise()
-enableScreens()
+// crashes LiveSeatingMapScreen, probably because of the large
+// SVG base64 string
+// unfortunately, this reduces navigation performance
+// enableScreens()
 
 interface Props {
   skipLoadingScreen: boolean,
@@ -45,9 +48,9 @@ class App extends React.Component<Props, State> {
     skipLoadingScreen: false,
   }
 
-  static getActiveRouteName(navigationState): (string | void) {
+  static getActiveRouteName(navigationState): string {
     if (!navigationState) {
-      return null
+      return ``
     }
     const route = navigationState.routes[navigationState.index]
     // dive into nested navigators
@@ -117,7 +120,7 @@ class App extends React.Component<Props, State> {
     this.routeNameRef = currentScreen
   }
 
-  render() {
+  render(): React.ReactElement {
     const { isLoadingComplete } = this.state
     const { skipLoadingScreen } = this.props
     if (!isLoadingComplete && !skipLoadingScreen) {
