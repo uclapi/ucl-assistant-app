@@ -4,6 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React from "react"
 import {
   ActivityIndicator,
+  FlatList,
   Image,
   StyleSheet,
   View,
@@ -17,7 +18,7 @@ import {
   StudySpacesDispatch,
 } from "../../../actions/studyspacesActions"
 import Button from "../../../components/Button"
-import { Page } from "../../../components/Containers"
+import { PageNoScroll } from "../../../components/Containers"
 import { BodyText, SubtitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
 import { AssetManager } from "../../../lib"
@@ -29,22 +30,29 @@ import {
   favouriteStudySpacesSelector,
 } from '../../../selectors/studyspacesSelectors'
 import Styles from "../../../styles/Containers"
-import FavouriteStudySpaces from "./components/FavouriteStudySpaces"
+import LastUpdated from '../components/LastUpdated'
+import StudySpaceResult from "../components/StudySpaceResult"
 
 const styles = StyleSheet.create({
   emptyImage: {
     height: 200,
     marginTop: 5,
   },
-  favourites: {
-    paddingBottom: 20,
+  flatList: {
+    paddingTop: 10,
   },
-  padder: {
-    height: 125,
+  footer: {
+    marginTop: 20,
+  },
+  header: {
+    marginBottom: 20,
   },
   suggestion: {
     marginBottom: 20,
     marginTop: 20,
+  },
+  title: {
+    marginBottom: 10,
   },
 })
 
@@ -91,32 +99,12 @@ class StudySpaceFavouritesScreen extends React.Component<Props, State> {
     navigation.navigate(`StudySpacesList`)
   }
 
-  renderFavouriteStudySpaces = () => {
-    const { navigation, favouriteSpaces, lastModified } = this.props
-    return (
-      <FavouriteStudySpaces
-        lastModified={lastModified}
-        favouriteSpaces={favouriteSpaces}
-        navigation={navigation}
-        style={styles.favourites}
-      />
-    )
-  }
+  keyExtractor = (item): string => `${item.id}`
 
-  renderSuggestion = () => (
-    <View style={styles.suggestion}>
-      <BodyText>
-        Mark a study space as one of your favourites and&nbsp;
-        it will appear here for easy reference
-      </BodyText>
-      <Image
-        source={AssetManager.undraw.studying}
-        resizeMethod="scale"
-        style={[Styles.image, styles.emptyImage]}
-        resizeMode="contain"
-      />
-    </View>
-  )
+  renderItem = ({ item }): React.ReactElement => {
+    const { navigation } = this.props
+    return <StudySpaceResult navigation={navigation} id={item.id} />
+  }
 
   render() {
     const { loadedSeatInfo } = this.state
@@ -125,24 +113,43 @@ class StudySpaceFavouritesScreen extends React.Component<Props, State> {
       lastModified,
     } = this.props
     return (
-      <Page
-        refreshEnabled
-        onRefresh={this.fetchSeatInfo}
-        refreshing={!loadedSeatInfo}
-      >
-        <SubtitleText>Your Favourites</SubtitleText>
-        {
-          (favouriteSpaces.length > 0)
-            ? this.renderFavouriteStudySpaces()
-            : this.renderSuggestion()
-        }
-        {
-          (lastModified === null || typeof lastModified !== `object`)
-            ? <ActivityIndicator size="large" />
-            : <Button onPress={this.viewStudySpacesList}>View All</Button>
-        }
-        <View style={styles.padder} />
-      </Page>
+      <PageNoScroll>
+        <FlatList
+          contentContainerStyle={styles.flatList}
+          onRefresh={this.fetchSeatInfo}
+          refreshing={!loadedSeatInfo}
+          data={favouriteSpaces}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          ListHeaderComponent={(
+            <>
+              <SubtitleText style={styles.title}>Your Favourites</SubtitleText>
+              <LastUpdated lastModified={lastModified} />
+            </>
+          )}
+          ListHeaderComponentStyle={styles.header}
+          ListFooterComponent={
+            (lastModified === null || typeof lastModified !== `object`)
+              ? <ActivityIndicator size="large" />
+              : <Button onPress={this.viewStudySpacesList}>View All</Button>
+          }
+          ListFooterComponentStyle={styles.footer}
+          ListEmptyComponent={(
+            <View style={styles.suggestion}>
+              <BodyText>
+                Mark a study space as one of your favourites and&nbsp;
+                it will appear here for easy reference
+              </BodyText>
+              <Image
+                source={AssetManager.undraw.studying}
+                resizeMethod="scale"
+                style={[Styles.image, styles.emptyImage]}
+                resizeMode="contain"
+              />
+            </View>
+          )}
+        />
+      </PageNoScroll>
     )
   }
 }
