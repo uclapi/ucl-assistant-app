@@ -57,7 +57,7 @@
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "expo": "^37.0.0",
-    "expo-analytics-amplitude": "~8.1.0",
+    "expo-analytics-amplitude": "~8.2.1",
     "expo-asset": "~8.1.7",
     "expo-auth-session": "~1.2.1",
     "expo-blur": "~8.1.2",
