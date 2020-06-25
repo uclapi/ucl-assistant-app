@@ -53,7 +53,7 @@
     "@react-navigation/bottom-tabs": "^5.5.2",
     "@react-navigation/material-top-tabs": "^5.2.10",
     "@react-navigation/native": "^5.5.1",
-    "@react-navigation/stack": "^5.4.2",
+    "@react-navigation/stack": "^5.6.2",
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "expo": "^37.0.0",
