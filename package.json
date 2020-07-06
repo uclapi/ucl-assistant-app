@@ -70,7 +70,7 @@
     "expo-mail-composer": "~8.1.0",
     "expo-network": "~2.1.0",
     "expo-permissions": "~8.1.0",
-    "expo-secure-store": "~8.1.0",
+    "expo-secure-store": "~9.0.1",
     "expo-store-review": "~2.1.2",
     "expo-web-browser": "~8.2.1",
     "lodash": "^4.17.15",
