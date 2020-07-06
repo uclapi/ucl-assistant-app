@@ -69,7 +69,7 @@
     "expo-localization": "~8.1.0",
     "expo-mail-composer": "~8.1.0",
     "expo-network": "~2.1.0",
-    "expo-permissions": "~8.1.0",
+    "expo-permissions": "~9.0.1",
     "expo-secure-store": "~8.1.0",
     "expo-store-review": "~2.1.2",
     "expo-web-browser": "~8.2.1",
