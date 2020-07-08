@@ -1,6 +1,7 @@
 import AnalyticsManager from './AnalyticsManager'
 import ApiManager from './ApiManager'
 import AssetManager from './AssetManager'
+import ClipboardManager from './ClipboardManager'
 import debounce from './debounce'
 import DeviceManager from './DeviceManager'
 import ErrorManager from './ErrorManager'
@@ -19,6 +20,7 @@ export {
   AnalyticsManager,
   ApiManager,
   AssetManager,
+  ClipboardManager,
   DeviceManager,
   ErrorManager,
   LocalisationManager,

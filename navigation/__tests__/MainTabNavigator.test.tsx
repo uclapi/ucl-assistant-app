@@ -10,9 +10,6 @@ import debounce from "../../lib/debounce"
 import { initialState } from '../../reducers'
 import MainTabNavigator from '../MainTabNavigator'
 
-// https://github.com/facebook/react-native/issues/11094#issuecomment-263240420
-jest.mock(`react-native/Libraries/Animated/src/NativeAnimatedHelper`)
-
 const middlewares = [
   debounce.middleware,
   thunk,

@@ -10,7 +10,6 @@ import * as StoreReview from 'expo-store-review'
 import React from "react"
 import {
   Alert,
-  Clipboard,
   Linking,
   Platform,
   StyleSheet,
@@ -35,10 +34,8 @@ import {
   Link,
 } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
-import { AnalyticsManager, MailManager } from "../../../lib"
-import type {
-  MainTabNavigatorParamList,
-} from "../../../navigation/MainTabNavigator"
+import { AnalyticsManager, ClipboardManager, MailManager } from "../../../lib"
+import type { MainTabNavigatorParamList } from "../../../navigation/MainTabNavigator"
 import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import * as packageJson from '../../../package.json'
 import common from "../../../styles/common"
@@ -176,7 +173,7 @@ export class SettingsScreen extends React.Component<Props, State> {
 
   copyTokenToClipboard = async (): Promise<void> => {
     const { user: { token } } = this.props
-    await Clipboard.setString(token)
+    await ClipboardManager.setString(token)
     Alert.alert(`Copied`, `Token copied to clipboard.`)
   }
 

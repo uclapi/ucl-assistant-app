@@ -18,12 +18,15 @@ exports[`renders the root without loading screen 1`] = `
       }
     }
   >
-    <RNCSafeAreaView
+    <RNCSafeAreaProvider
       onInsetsChange={[Function]}
       style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          Object {
+            "flex": 1,
+          },
+          undefined,
+        ]
       }
     >
       <View
@@ -46,6 +49,14 @@ exports[`renders the root without loading screen 1`] = `
             }
           }
         >
+          <View
+            collapsable={false}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          />
           <View
             accessibilityElementsHidden={false}
             closing={false}
@@ -103,6 +114,7 @@ exports[`renders the root without loading screen 1`] = `
             >
               <View
                 collapsable={false}
+                forwardedRef={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 style={
@@ -255,7 +267,6 @@ exports[`renders the root without loading screen 1`] = `
                           <View
                             accessible={true}
                             focusable={true}
-                            isTVSelectable={true}
                             onClick={[Function]}
                             onResponderGrant={[Function]}
                             onResponderMove={[Function]}
@@ -405,7 +416,6 @@ exports[`renders the root without loading screen 1`] = `
                             <View
                               accessible={true}
                               focusable={true}
-                              isTVSelectable={true}
                               onClick={[Function]}
                               onResponderGrant={[Function]}
                               onResponderMove={[Function]}
@@ -453,7 +463,7 @@ exports[`renders the root without loading screen 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </RNCSafeAreaProvider>
   </View>
 </View>
 `;

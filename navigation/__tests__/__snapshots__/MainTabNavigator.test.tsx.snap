@@ -1,12 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainTabNavigator renders without error 1`] = `
-<RNCSafeAreaView
+<RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -94,6 +97,14 @@ exports[`MainTabNavigator renders without error 1`] = `
                   }
                 >
                   <View
+                    collapsable={false}
+                    style={
+                      Object {
+                        "opacity": 1,
+                      }
+                    }
+                  />
+                  <View
                     accessibilityElementsHidden={false}
                     closing={false}
                     gestureVelocityImpact={0.3}
@@ -145,11 +156,13 @@ exports[`MainTabNavigator renders without error 1`] = `
                       style={
                         Object {
                           "flex": 1,
+                          "marginTop": 0,
                         }
                       }
                     >
                       <View
                         collapsable={false}
+                        forwardedRef={[Function]}
                         onGestureHandlerEvent={[Function]}
                         onGestureHandlerStateChange={[Function]}
                         style={
@@ -307,22 +320,19 @@ exports[`MainTabNavigator renders without error 1`] = `
               <View
                 pointerEvents="box-none"
                 style={
-                  Object {
-                    "left": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                  }
+                  Array [
+                    Object {
+                      "zIndex": 1,
+                    },
+                    Object {
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                  ]
                 }
-              >
-                <View
-                  accessibilityElementsHidden={false}
-                  importantForAccessibility="auto"
-                  onLayout={[Function]}
-                  pointerEvents="box-none"
-                  style={null}
-                />
-              </View>
+              />
             </View>
           </View>
         </View>
@@ -363,11 +373,6 @@ exports[`MainTabNavigator renders without error 1`] = `
         <View
           accessibilityLabel="Timetable, tab, 1 of 5"
           accessibilityRole="button"
-          accessibilityStates={
-            Array [
-              "selected",
-            ]
-          }
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -399,9 +404,12 @@ exports[`MainTabNavigator renders without error 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                },
+                undefined,
+              ]
             }
           >
             <View
@@ -473,7 +481,6 @@ exports[`MainTabNavigator renders without error 1`] = `
         <View
           accessibilityLabel="StudySpaces, tab, 2 of 5"
           accessibilityRole="button"
-          accessibilityStates={Array []}
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -505,9 +512,12 @@ exports[`MainTabNavigator renders without error 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                },
+                undefined,
+              ]
             }
           >
             <View
@@ -579,7 +589,6 @@ exports[`MainTabNavigator renders without error 1`] = `
         <View
           accessibilityLabel="People, tab, 3 of 5"
           accessibilityRole="button"
-          accessibilityStates={Array []}
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -611,9 +620,12 @@ exports[`MainTabNavigator renders without error 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                },
+                undefined,
+              ]
             }
           >
             <View
@@ -685,7 +697,6 @@ exports[`MainTabNavigator renders without error 1`] = `
         <View
           accessibilityLabel="Rooms, tab, 4 of 5"
           accessibilityRole="button"
-          accessibilityStates={Array []}
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -717,9 +728,12 @@ exports[`MainTabNavigator renders without error 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                },
+                undefined,
+              ]
             }
           >
             <View
@@ -791,7 +805,6 @@ exports[`MainTabNavigator renders without error 1`] = `
         <View
           accessibilityLabel="Settings, tab, 5 of 5"
           accessibilityRole="button"
-          accessibilityStates={Array []}
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -823,9 +836,12 @@ exports[`MainTabNavigator renders without error 1`] = `
         >
           <View
             style={
-              Object {
-                "flex": 1,
-              }
+              Array [
+                Object {
+                  "flex": 1,
+                },
+                undefined,
+              ]
             }
           >
             <View
@@ -897,5 +913,5 @@ exports[`MainTabNavigator renders without error 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</RNCSafeAreaProvider>
 `;

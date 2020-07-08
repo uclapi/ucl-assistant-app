@@ -1,4 +1,4 @@
-import { Clipboard } from 'react-native'
+import Clipboard from "@react-native-community/clipboard"
 
 const {
   getString,
