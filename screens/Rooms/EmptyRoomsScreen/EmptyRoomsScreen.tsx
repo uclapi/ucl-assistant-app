@@ -1,8 +1,8 @@
+import { Picker } from '@react-native-community/picker'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import {
   ActivityIndicator,
-  Picker,
   StyleSheet,
   View,
 } from 'react-native'

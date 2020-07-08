@@ -85,7 +85,7 @@ Array [
               Filter by:
             </Text>
             <View>
-              <RCTPicker
+              <RNCPicker
                 items={
                   Array [
                     Object {
@@ -106,8 +106,6 @@ Array [
                   ]
                 }
                 onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 selectedIndex={0}
                 style={
                   Array [
@@ -141,7 +139,6 @@ Array [
             <View
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -260,7 +257,6 @@ Array [
             <View
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -379,7 +375,6 @@ Array [
             <View
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -670,7 +665,7 @@ Array [
               Filter by:
             </Text>
             <View>
-              <RCTPicker
+              <RNCPicker
                 items={
                   Array [
                     Object {
@@ -681,8 +676,6 @@ Array [
                   ]
                 }
                 onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 selectedIndex={0}
                 style={
                   Array [
@@ -827,7 +820,7 @@ Array [
               Filter by:
             </Text>
             <View>
-              <RCTPicker
+              <RNCPicker
                 items={
                   Array [
                     Object {
@@ -848,8 +841,6 @@ Array [
                   ]
                 }
                 onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 selectedIndex={2}
                 style={
                   Array [
@@ -883,7 +874,6 @@ Array [
             <View
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1002,7 +992,6 @@ Array [
             <View
               accessible={true}
               focusable={true}
-              isTVSelectable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}

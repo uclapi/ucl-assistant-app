@@ -8,35 +8,61 @@ Array [
 
 exports[`Button renders the disabled state 1`] = `
 <View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#ffbcbc",
-        "borderColor": "red",
-        "borderWidth": 1,
-        "height": 100,
+        "borderRadius": 8,
+        "elevation": 2,
+        "flexDirection": "row",
         "justifyContent": "center",
-        "margin": 10,
-        "width": 300,
+        "marginBottom": 5,
+        "marginTop": 5,
+        "minHeight": 55,
+        "minWidth": 150,
+        "padding": 8,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "shadowColor": "#1B998B",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.75,
+        "shadowRadius": 3,
       },
       Object {
-        "borderRadius": 8,
-        "flex": 1,
-        "justifyContent": "center",
+        "backgroundColor": "rgba(231, 231, 233, 1)",
       },
+      undefined,
     ]
   }
 >
   <Text
     style={
-      Object {
-        "color": "#333333",
-        "margin": 20,
-      }
+      Array [
+        Object {
+          "color": "#fefefe",
+          "fontFamily": "apercu",
+          "fontSize": 20,
+          "marginBottom": 1,
+          "marginTop": 1,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
     }
   >
-    TouchableNativeFeedback is not supported on this platform!
+    This is a disabled button
   </Text>
 </View>
 `;
@@ -45,7 +71,6 @@ exports[`Button renders the loading state 1`] = `
 <View
   accessible={true}
   focusable={false}
-  isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -119,7 +144,6 @@ exports[`Button renders with raw text as child 1`] = `
 <View
   accessible={true}
   focusable={false}
-  isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -204,7 +228,6 @@ exports[`Button renders with text element as child 1`] = `
 <View
   accessible={true}
   focusable={false}
-  isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
