@@ -1,12 +1,11 @@
 import axios from "axios"
-import { Notifications } from "expo"
 import Constants from "expo-constants"
+import * as Notifications from "expo-notifications"
 import * as Permissions from "expo-permissions"
 
 import { ASSISTANT_API_URL } from "../constants/API"
 import AnalyticsManager from "./AnalyticsManager"
 import ErrorManager from "./ErrorManager"
-
 
 const registerForPushNotifications = async (token: string): Promise<string> => {
   if (!Constants.isDevice) {
@@ -39,7 +38,7 @@ const registerForPushNotifications = async (token: string): Promise<string> => {
   }
 
   // Get the token that uniquely identifies this device
-  const pushToken = await Notifications.getExpoPushTokenAsync()
+  const { data: pushToken } = await Notifications.getExpoPushTokenAsync()
 
   try {
     const resp = await axios.post(

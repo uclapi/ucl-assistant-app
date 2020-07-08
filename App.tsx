@@ -1,6 +1,7 @@
-import { AppLoading, Notifications } from "expo"
+import { AppLoading } from "expo"
 import { Asset } from "expo-asset"
 import * as Font from "expo-font"
+import * as Notifications from 'expo-notifications'
 import PropTypes from "prop-types"
 import React from "react"
 import { Platform, StatusBar, View } from "react-native"
@@ -14,7 +15,6 @@ import { NotificationChannels } from "./constants/notificationsConstants"
 import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
 import Styles from "./styles/Containers"
-
 
 const { persistor, store } = configureStore
 
@@ -75,10 +75,10 @@ class App extends React.Component<Props, State> {
     if (Platform.OS === `android`) {
       Object.keys(NotificationChannels).forEach((key) => {
         const channel = NotificationChannels[key]
-        Notifications.createChannelAndroidAsync(channel.id, channel.options)
+        Notifications.setNotificationChannelAsync(channel.id, channel.options)
       })
     }
-    this.notificationSubscription = Notifications.addListener(
+    this.notificationSubscription = Notifications.addNotificationReceivedListener(
       this.handleNotification,
     )
     AnalyticsManager.initialise()
@@ -89,6 +89,10 @@ class App extends React.Component<Props, State> {
     }
   }
 
+  componentWillUnmount(): void {
+    Notifications.removeAllNotificationListeners()
+  }
+
   loadResourcesAsync = async (): Promise<any> => Promise.all([
     Asset.loadAsync(Object.values(AssetManager.undraw)),
     Font.loadAsync({
@@ -96,7 +100,7 @@ class App extends React.Component<Props, State> {
     }),
   ])
 
-  handleLoadingError = (error): void => {
+  handleLoadingError = (error: Error): void => {
     ErrorManager.captureError(error)
   }
 
