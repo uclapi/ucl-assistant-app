@@ -48,6 +48,7 @@ describe(`EmptyRoomsScreen`, () => {
   ApiManager.rooms.getEmptyRooms = mockGetEmptyRooms
 
   beforeEach(() => {
+    jest.useRealTimers()
     jest.clearAllMocks()
     wrapper = render(<EmptyRoomsScreen {...mockProps} />)
   })
@@ -63,7 +64,7 @@ describe(`EmptyRoomsScreen`, () => {
   it(`calls getEmptyRooms`, async () => {
     const { update } = wrapper
     update(<EmptyRoomsScreen {...mockProps} />)
-    await new Promise((resolve) => setTimeout(resolve, 0))
+
     expect(mockGetEmptyRooms).toHaveBeenCalledTimes(1)
     expect(wrapper.toJSON()).toMatchSnapshot()
   })
@@ -74,7 +75,6 @@ describe(`EmptyRoomsScreen`, () => {
     const { update, getByTestId } = emptyScreen
 
     update(<EmptyRoomsScreen {...mockProps} />)
-    await new Promise((resolve) => setTimeout(resolve, 0))
 
     await waitForElement(() => getByTestId(`empty-rooms-message`))
     expect(emptyScreen.toJSON()).toMatchSnapshot()
@@ -89,8 +89,11 @@ describe(`EmptyRoomsScreen`, () => {
 
     fireEvent(getByTestId(`building-picker`), `onValueChange`, `main`)
     update(<EmptyRoomsScreen {...mockProps} />)
-    await new Promise((resolve) => setTimeout(resolve, 0))
 
     expect(wrapper.toJSON()).toMatchSnapshot()
+  })
+
+  afterAll(() => {
+
   })
 })

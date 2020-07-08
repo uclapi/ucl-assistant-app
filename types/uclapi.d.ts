@@ -53,7 +53,6 @@ export interface TimetableEvent {
   start_time?: string,
 }
 
-
 export interface Person {
   name?: string,
   status?: string,
@@ -81,4 +80,10 @@ export type NestedNavigator<T> = {
   screen: keyof T,
   params?: T[keyof T],
   initial?: boolean,
+}
+
+export interface IconProps {
+  size?: number,
+  color?: string,
+  name: string,
 }

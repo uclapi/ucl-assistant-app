@@ -26,6 +26,7 @@ describe(`NotificationsScreen`, () => {
   )
 
   beforeEach(() => {
+    jest.useRealTimers()
     jest.clearAllMocks()
     wrapper = render(<NotificationsScreen {...mockProps} />)
   })

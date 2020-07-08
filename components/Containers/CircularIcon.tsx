@@ -1,9 +1,9 @@
 import { Feather } from "@expo/vector-icons"
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import type { IconProps } from "react-native-vector-icons/Icon"
 
 import Colors from "../../constants/Colors"
+import type { IconProps } from "../../types/uclapi"
 
 const styles = StyleSheet.create({
   circularIcon: {

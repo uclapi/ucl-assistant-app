@@ -5,12 +5,36 @@ import { render } from "react-native-testing-library"
 
 import App from "../App"
 
-it(`renders the loading screen`, async () => {
-  const tree = render(<App />).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+jest.mock(`react-redux`, () => ({
+  Provider: ({ children }) => children,
+  connect: () => (component) => component,
+}))
 
-it(`renders the root without loading screen`, async () => {
-  const tree = render(<App skipLoadingScreen />).toJSON()
-  expect(tree).toMatchSnapshot()
+jest.mock(`redux-persist/lib/integration/react`, () => ({
+  PersistGate: ({ children }) => children,
+}))
+
+jest.mock(`../configureStore`, () => ({
+  persistor: jest.fn(),
+  store: jest.fn(),
+}))
+
+describe(`App`, () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  it(`renders the loading screen`, async () => {
+    const tree = render(<App />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it(`renders the root without loading screen`, async () => {
+    const tree = render(<App skipLoadingScreen />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

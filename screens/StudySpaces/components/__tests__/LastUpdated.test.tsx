@@ -8,11 +8,14 @@ import React from 'react'
 import { cleanup, render } from "react-native-testing-library"
 
 import { LocalisationManager } from '../../../../lib'
-import LastUpdated from
-  "../LastUpdated"
+import LastUpdated from "../LastUpdated"
 
 describe(`LastUpdated`, () => {
   MockDate.set(`2019-11-18T08:47:21.000Z`)
+
+  beforeEach(() => {
+    jest.useRealTimers()
+  })
 
   afterEach(() => {
     cleanup()

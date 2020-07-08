@@ -8,6 +8,7 @@ import { ButtonText } from '../../Typography'
 
 describe(`Button`, () => {
   beforeEach(() => {
+    jest.useRealTimers()
     jest.clearAllMocks()
   })
   afterEach(() => {

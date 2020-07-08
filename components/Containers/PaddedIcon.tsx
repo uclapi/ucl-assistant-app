@@ -1,7 +1,8 @@
 import { Feather } from "@expo/vector-icons"
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import type { IconProps } from "react-native-vector-icons/Icon"
+
+import type { IconProps } from "../../types/uclapi"
 
 const styles = StyleSheet.create({
   paddedIcon: {

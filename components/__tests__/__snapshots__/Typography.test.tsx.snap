@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a BodyText component 1`] = `
+exports[`Typography renders a BodyText component 1`] = `
 <Text
   style={
     Array [
@@ -19,7 +19,7 @@ exports[`renders a BodyText component 1`] = `
 </Text>
 `;
 
-exports[`renders a SubtitleText component 1`] = `
+exports[`Typography renders a SubtitleText component 1`] = `
 <Text
   style={
     Array [
@@ -38,7 +38,7 @@ exports[`renders a SubtitleText component 1`] = `
 </Text>
 `;
 
-exports[`renders a TitleText component 1`] = `
+exports[`Typography renders a TitleText component 1`] = `
 <Text
   style={
     Array [

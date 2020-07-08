@@ -7,13 +7,17 @@ import { RecentResults } from "../RecentResults"
 import { SearchControl } from "../SearchControl"
 
 describe(`RecentResults`, () => {
+  beforeEach(() => {
+    jest.useRealTimers()
+  })
+
   afterEach(() => {
     cleanup()
   })
 
   it(`renders an empty RecentResults component`, async () => {
     const props = {
-      clearRecents: jest.fn(),
+      clearRecentResults: jest.fn(),
       navigation: {
         navigate: jest.fn(),
       } as any,
@@ -25,7 +29,7 @@ describe(`RecentResults`, () => {
 
   it(`renders a filled RecentResults component`, async () => {
     const props = {
-      clearRecents: jest.fn(),
+      clearRecentResults: jest.fn(),
       navigation: {
         navigate: jest.fn(),
       } as any,
@@ -47,20 +51,20 @@ describe(`RecentResults`, () => {
     const tree = render(<RecentResults {...props} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
-})
 
-it(`renders a SearchControl component`, async () => {
-  const props = {
-    clear: jest.fn(),
-    error: ``,
-    isSearching: false,
-    navigation: {
-      navigate: jest.fn(),
-    } as any,
-    search: jest.fn(),
-    searchResults: [],
-    token: ``,
-  }
-  const component = render(<SearchControl {...props} />)
-  expect(component).toMatchSnapshot()
+  it(`renders a SearchControl component`, async () => {
+    const props = {
+      clearRecentResults: jest.fn(),
+      error: ``,
+      isSearching: false,
+      navigation: {
+        navigate: jest.fn(),
+      } as any,
+      search: jest.fn(),
+      searchResults: [],
+      token: ``,
+    }
+    const component = render(<SearchControl {...props} />)
+    expect(component).toMatchSnapshot()
+  })
 })

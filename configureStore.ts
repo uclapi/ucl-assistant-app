@@ -25,7 +25,6 @@ const config = {
   debug: __DEV__,
   key: `root`,
   storage: AsyncStorage,
-  timeout: null, // https://github.com/rt2zz/redux-persist/issues/786
 }
 
 const userPersistConfig = {
@@ -33,7 +32,6 @@ const userPersistConfig = {
   debug: __DEV__,
   key: `user`,
   storage: secureStorage,
-  timeout: null,
 }
 
 const appReducer = combineReducers({
@@ -54,8 +52,6 @@ const store = createStore(
   initialState,
   applyMiddleware(...middleware),
 )
-const persistor = persistStore(store, null, () => {
-  store.getState()
-})
+const persistor = persistStore(store)
 
 export default { persistor, store }

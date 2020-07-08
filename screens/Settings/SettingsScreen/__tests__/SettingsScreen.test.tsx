@@ -4,7 +4,7 @@
 import "react-native"
 
 import React from 'react'
-import { cleanup, fireEvent, render } from "react-native-testing-library"
+import { fireEvent, render } from "react-native-testing-library"
 
 import { MailManager, WebBrowserManager } from '../../../../lib'
 import * as packageJson from '../../../../package.json'
@@ -19,12 +19,12 @@ const {
 describe(`SettingsScreen`, () => {
   let wrapper
   const mockSignOut = jest.fn()
-  const mockNavigate = jest.fn()
+  const mockNavigate = jest.fn() as any
   const mockSetShouldTrackAnalytics = jest.fn()
   const mockProps = {
     navigation: {
       navigate: mockNavigate,
-    },
+    } as any,
     setShouldTrackAnalytics: mockSetShouldTrackAnalytics,
     signOut: mockSignOut,
     user: {
@@ -34,21 +34,21 @@ describe(`SettingsScreen`, () => {
       },
       token: `abc123`,
       upi: `upiupi11`,
-    },
+    } as any,
   }
 
   const mockOpenLink = jest.fn(() => Promise.resolve())
-  WebBrowserManager.openLink = mockOpenLink
+  WebBrowserManager.openLink = mockOpenLink as any
 
   const mockComposeAsync = jest.fn(() => Promise.resolve())
   MailManager.composeAsync = mockComposeAsync
 
-  beforeEach(() => {
-    wrapper = render(<SettingsScreen {...mockProps} />)
+  beforeAll(() => {
+    jest.useRealTimers()
   })
 
-  afterEach(() => {
-    cleanup()
+  beforeEach(() => {
+    wrapper = render(<SettingsScreen {...mockProps} />)
   })
 
   it(`renders the SettingsScreen`, () => {

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the loading screen 1`] = `null`;
+exports[`App renders the loading screen 1`] = `null`;
 
-exports[`renders the root without loading screen 1`] = `
+exports[`App renders the root without loading screen 1`] = `
 <View
   style={
     Object {
@@ -266,7 +266,7 @@ exports[`renders the root without loading screen 1`] = `
                           />
                           <View
                             accessible={true}
-                            focusable={true}
+                            focusable={false}
                             onClick={[Function]}
                             onResponderGrant={[Function]}
                             onResponderMove={[Function]}

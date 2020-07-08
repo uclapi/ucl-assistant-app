@@ -8,13 +8,13 @@ import { Platform, StatusBar, View } from "react-native"
 // import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/lib/integration/react"
-
 import configureStore from "./configureStore"
 import Colors from './constants/Colors'
 import { NotificationChannels } from "./constants/notificationsConstants"
 import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
 import Styles from "./styles/Containers"
+
 
 const { persistor, store } = configureStore
 
@@ -137,7 +137,9 @@ class App extends React.Component<Props, State> {
       )
     }
     const {
-      store: { store: stateStore, persistor: statePersistor },
+      store: {
+        store: stateStore, persistor: statePersistor,
+      },
     } = this.state
     return (
       <Provider store={stateStore}>

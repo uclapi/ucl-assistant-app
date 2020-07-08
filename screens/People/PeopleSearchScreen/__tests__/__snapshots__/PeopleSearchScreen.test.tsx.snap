@@ -1,5 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RecentResults renders a SearchControl component 1`] = `
+<View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      clearButtonMode="always"
+      onChangeText={[Function]}
+      placeholder="Search for a name or email..."
+      placeholderTextColor="#6E707F"
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderColor": "#6E707F",
+            "borderRadius": 10,
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "height": 50,
+            "marginBottom": 10,
+            "marginLeft": 2,
+            "marginRight": 2,
+            "marginTop": 10,
+            "minWidth": 200,
+            "paddingBottom": 5,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "paddingTop": 5,
+          },
+          Object {
+            "flex": 1,
+            "marginRight": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+      value=""
+    />
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#6E707F",
+          "fontFamily": "apercu",
+          "fontSize": 16,
+          "marginBottom": 5,
+          "marginTop": 5,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    Start typing to get search results 
+  </Text>
+</View>
+`;
+
 exports[`RecentResults renders a filled RecentResults component 1`] = `
 <View>
   <Text
@@ -317,7 +388,7 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
   </View>
   <View
     accessible={true}
-    focusable={false}
+    focusable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -396,76 +467,5 @@ exports[`RecentResults renders a filled RecentResults component 1`] = `
       </Text>
     </ViewManagerAdapter_ExpoLinearGradient>
   </View>
-</View>
-`;
-
-exports[`renders a SearchControl component 1`] = `
-<View>
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "center",
-        },
-        undefined,
-      ]
-    }
-  >
-    <TextInput
-      allowFontScaling={true}
-      clearButtonMode="always"
-      onChangeText={[Function]}
-      placeholder="Search for a name or email..."
-      placeholderTextColor="#6E707F"
-      rejectResponderTermination={true}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#eaeaea",
-            "borderColor": "#6E707F",
-            "borderRadius": 10,
-            "color": "#4D5061",
-            "fontFamily": "apercu",
-            "fontSize": 16,
-            "height": 50,
-            "marginBottom": 10,
-            "marginLeft": 2,
-            "marginRight": 2,
-            "marginTop": 10,
-            "minWidth": 200,
-            "paddingBottom": 5,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "paddingTop": 5,
-          },
-          Object {
-            "flex": 1,
-            "marginRight": 10,
-          },
-        ]
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </View>
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#6E707F",
-          "fontFamily": "apercu",
-          "fontSize": 16,
-          "marginBottom": 5,
-          "marginTop": 5,
-          "textAlign": "center",
-        },
-        undefined,
-      ]
-    }
-  >
-    Start typing to get search results 
-  </Text>
 </View>
 `;

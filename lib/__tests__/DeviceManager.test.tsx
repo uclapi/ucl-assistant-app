@@ -4,6 +4,7 @@ jest.mock(`expo-device`, () => ({
 
 describe(`DeviceManager`, () => {
   beforeEach(() => {
+    jest.useRealTimers()
     jest.clearAllMocks()
     jest.resetModules()
   })

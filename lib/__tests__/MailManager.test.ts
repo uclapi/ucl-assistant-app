@@ -28,6 +28,10 @@ describe(`MailManager`, () => {
     subject: `A Very Human Email`,
   }
 
+  beforeAll(() => {
+    jest.useRealTimers()
+  })
+
   it(`composes mail without issue`, async () => {
     await MailManager.composeAsync(options)
     expect(composeAsync).toHaveBeenCalledTimes(1)
