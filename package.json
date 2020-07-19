@@ -55,7 +55,7 @@
     "@react-native-community/viewpager": "3.3.0",
     "@react-navigation/bottom-tabs": "^5.6.1",
     "@react-navigation/material-top-tabs": "^5.2.12",
-    "@react-navigation/native": "^5.6.1",
+    "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.6.2",
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
