@@ -2,9 +2,8 @@
  * @jest-environment jsdom
  */
 
+import { cleanup, render } from "@testing-library/react-native"
 import React from 'react'
-import { cleanup, render } from "react-native-testing-library"
-
 import { TimetableDetailScreen } from '../TimetableDetailScreen'
 
 jest.mock(`../TimetableDetailView`, () => (props) => JSON.stringify(props))
@@ -59,6 +58,6 @@ describe(`TimetableDetailScreen`, () => {
 
   it(`renders the TimetableDetailScreen`, async () => {
     wrapper = render(<TimetableDetailScreen {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 })

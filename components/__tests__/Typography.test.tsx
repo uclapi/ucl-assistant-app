@@ -1,8 +1,5 @@
-import "react-native"
-
+import { render } from '@testing-library/react-native'
 import React from "react"
-import renderer from "react-test-renderer"
-
 import {
   BodyText,
   SubtitleText,
@@ -15,23 +12,23 @@ describe(`Typography`, () => {
   })
 
   it(`renders a TitleText component`, async () => {
-    const tree = renderer.create(
+    const tree = render(
       <TitleText>Hello World! This is a TitleText component.</TitleText>,
-    ).toJSON()
+    )
     expect(tree).toMatchSnapshot()
   })
 
   it(`renders a SubtitleText component`, async () => {
-    const tree = renderer.create(
+    const tree = render(
       <SubtitleText>Hello World! This is a SubtitleText component.</SubtitleText>,
-    ).toJSON()
+    )
     expect(tree).toMatchSnapshot()
   })
 
   it(`renders a BodyText component`, async () => {
-    const tree = renderer.create(
+    const tree = render(
       <BodyText>Hello World! This is a BodyText component.</BodyText>,
-    ).toJSON()
+    )
     expect(tree).toMatchSnapshot()
   })
 })

@@ -1,11 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
+import { fireEvent, render } from "@testing-library/react-native"
 import React from 'react'
-import { fireEvent, render } from "react-native-testing-library"
-
+import "react-native"
 import { MailManager, WebBrowserManager } from '../../../../lib'
 import * as packageJson from '../../../../package.json'
 import { SettingsScreen } from "../SettingsScreen"
@@ -52,7 +50,7 @@ describe(`SettingsScreen`, () => {
   })
 
   it(`renders the SettingsScreen`, () => {
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`logs out when the signOut button is pressed`, () => {

@@ -1,13 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
-import React from 'react'
 import {
   cleanup, fireEvent, render, waitForElement,
-} from 'react-native-testing-library'
-
+} from '@testing-library/react-native'
+import React from 'react'
+import "react-native"
 import ApiManager from "../../../../lib/ApiManager"
 import { EmptyRoomsScreen } from '../EmptyRoomsScreen'
 
@@ -58,7 +56,7 @@ describe(`EmptyRoomsScreen`, () => {
   })
 
   it(`renders the loading screen`, async () => {
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`calls getEmptyRooms`, async () => {
@@ -66,18 +64,16 @@ describe(`EmptyRoomsScreen`, () => {
     update(<EmptyRoomsScreen {...mockProps} />)
 
     expect(mockGetEmptyRooms).toHaveBeenCalledTimes(1)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`shows message when no empty rooms found`, async () => {
     ApiManager.rooms.getEmptyRooms = jest.fn(() => Promise.resolve([]))
     const emptyScreen = render(<EmptyRoomsScreen {...mockProps} />)
-    const { update, getByTestId } = emptyScreen
-
-    update(<EmptyRoomsScreen {...mockProps} />)
+    const { getByTestId } = emptyScreen
 
     await waitForElement(() => getByTestId(`empty-rooms-message`))
-    expect(emptyScreen.toJSON()).toMatchSnapshot()
+    expect(emptyScreen).toMatchSnapshot()
 
     ApiManager.rooms.getEmptyRooms = mockGetEmptyRooms
   })
@@ -87,10 +83,10 @@ describe(`EmptyRoomsScreen`, () => {
     update(<EmptyRoomsScreen {...mockProps} />)
     await new Promise((resolve) => setTimeout(resolve, 0))
 
-    fireEvent(getByTestId(`building-picker`), `onValueChange`, `main`)
+    fireEvent.valueChange(getByTestId(`building-picker`), `main`)
     update(<EmptyRoomsScreen {...mockProps} />)
 
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   afterAll(() => {

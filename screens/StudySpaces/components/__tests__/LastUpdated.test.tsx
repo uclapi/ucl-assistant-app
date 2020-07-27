@@ -1,12 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
+import { cleanup, render } from "@testing-library/react-native"
 import MockDate from 'mockdate'
 import React from 'react'
-import { cleanup, render } from "react-native-testing-library"
-
+import "react-native"
 import { LocalisationManager } from '../../../../lib'
 import LastUpdated from "../LastUpdated"
 
@@ -26,7 +24,7 @@ describe(`LastUpdated`, () => {
       lastModified: LocalisationManager.getMoment().subtract(4, `minutes`),
     }
     const wrapper = render(<LastUpdated {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`renders the LastUpdated component loading`, () => {
@@ -34,7 +32,7 @@ describe(`LastUpdated`, () => {
       lastModified: `${LocalisationManager.getMoment()}`,
     }
     const wrapper = render(<LastUpdated {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`shows error when studyspace info is stale`, async () => {
@@ -44,6 +42,6 @@ describe(`LastUpdated`, () => {
         .subtract(6, `minutes`),
     }
     const wrapper = render(<LastUpdated {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 })

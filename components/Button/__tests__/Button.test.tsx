@@ -1,8 +1,6 @@
-import "react-native"
-
+import { cleanup, fireEvent, render } from "@testing-library/react-native"
 import React from 'react'
-import { cleanup, fireEvent, render } from "react-native-testing-library"
-
+import "react-native"
 import Button from ".."
 import { ButtonText } from '../../Typography'
 
@@ -20,7 +18,7 @@ describe(`Button`, () => {
         Press Me
       </Button>,
     )
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`renders with text element as child`, () => {
@@ -29,7 +27,7 @@ describe(`Button`, () => {
         <ButtonText>Press Me</ButtonText>
       </Button>,
     )
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`renders the loading state`, () => {
@@ -38,7 +36,7 @@ describe(`Button`, () => {
         This is a loading button
       </Button>,
     )
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`handles onPress events`, () => {
@@ -73,7 +71,7 @@ describe(`Button`, () => {
         This is a disabled button
       </Button>,
     )
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
 
     // const { getByTestId } = wrapper
     // const disabledButton = getByTestId(testID)

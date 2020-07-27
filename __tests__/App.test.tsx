@@ -1,6 +1,6 @@
+import { render } from "@testing-library/react-native"
 import React from "react"
 import "react-native"
-import { render } from "react-native-testing-library"
 import App from "../App"
 
 jest.mock(`react-redux`, () => ({
@@ -27,7 +27,7 @@ describe(`App`, () => {
   })
 
   it(`renders the loading screen`, async () => {
-    const tree = render(<App />).toJSON()
+    const tree = render(<App />)
     expect(tree).toMatchSnapshot()
   })
 })

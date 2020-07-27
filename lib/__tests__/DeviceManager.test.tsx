@@ -5,7 +5,6 @@ jest.mock(`expo-device`, () => ({
 describe(`DeviceManager`, () => {
   beforeEach(() => {
     jest.useRealTimers()
-    jest.clearAllMocks()
     jest.resetModules()
   })
 
@@ -27,6 +26,7 @@ describe(`DeviceManager`, () => {
 
     const isConnected = await DeviceManager.isConnectedToInternet()
     expect(isConnected).toBe(false)
+    jest.unmock(`expo-network`)
   })
 
   it(`checks if connected to internet`, async () => {
@@ -42,5 +42,6 @@ describe(`DeviceManager`, () => {
 
     const isConnected = await DeviceManager.isConnectedToInternet()
     expect(isConnected).toBe(true)
+    jest.unmock(`expo-network`)
   })
 })

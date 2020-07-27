@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native'
+import { cleanup, fireEvent, render } from "@testing-library/react-native"
 import React from 'react'
-import { cleanup, fireEvent, render } from "react-native-testing-library"
 import { Provider } from "react-redux"
 import { Store } from 'redux'
 import configureStore from 'redux-mock-store'
 import thunk from "redux-thunk"
-
 import Colors from "../../constants/Colors"
 import debounce from "../../lib/debounce"
 import { initialState } from '../../reducers'
@@ -21,9 +20,9 @@ describe(`MainTabNavigator`, () => {
   jest.useRealTimers()
 
   let Navigator
-  const store: Store = mockStore(initialState)
 
   beforeEach(() => {
+    const store: Store = mockStore(initialState)
     Navigator = render(
       <Provider store={store}>
         <NavigationContainer>
@@ -38,7 +37,7 @@ describe(`MainTabNavigator`, () => {
   })
 
   it(`renders without error`, () => {
-    expect(Navigator.toJSON()).toMatchSnapshot()
+    expect(Navigator).toMatchSnapshot()
   })
 
   it(`TimetableScreen is highlighted`, () => {

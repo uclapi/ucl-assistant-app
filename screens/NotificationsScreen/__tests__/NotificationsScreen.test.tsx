@@ -1,11 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
+import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
-import { cleanup, fireEvent, render } from 'react-native-testing-library'
-
+import "react-native"
 import { NotificationsScreen } from ".."
 import { PushNotificationsManager } from '../../../lib'
 
@@ -36,7 +34,7 @@ describe(`NotificationsScreen`, () => {
   })
 
   it(`renders the NotificationsScreen`, () => {
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`registers when enable notifications is pressed`, async () => {

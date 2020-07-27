@@ -18,8 +18,6 @@ update_configs:
       - match:
           dependency_name: "react-dom"
       - match:
-          dependency_name: "react-test-renderer"
-      - match:
           dependency_name: "react-native*"
       - match:
           dependency_name: "lottie-react-native"

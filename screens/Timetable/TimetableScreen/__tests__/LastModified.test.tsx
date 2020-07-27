@@ -1,15 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-import "react-native"
-
+import { cleanup, render } from "@testing-library/react-native"
 import MockDate from 'mockdate'
 import React from 'react'
-import { cleanup, render } from "react-native-testing-library"
-
+import "react-native"
 import { LocalisationManager } from '../../../../lib'
-import LastModified from
-  "../components/LastModified"
+import LastModified from "../components/LastModified"
 
 describe(`LastUpdated`, () => {
   MockDate.set(`2019-11-18T08:47:21.000Z`)
@@ -23,7 +20,7 @@ describe(`LastUpdated`, () => {
       lastModified: LocalisationManager.getMoment().subtract(11, `hours`),
     }
     const wrapper = render(<LastModified {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`does not render if date is missing`, () => {
@@ -31,7 +28,7 @@ describe(`LastUpdated`, () => {
       lastModified: undefined,
     }
     const wrapper = render(<LastModified {...mockProps} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`shows error when studyspace info is stale`, async () => {
@@ -41,7 +38,7 @@ describe(`LastUpdated`, () => {
         .subtract(25, `hours`),
     }
     const wrapper = render(<LastModified {...mockProps} isLoading={false} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it(`does not show error when data is more recent than date`, async () => {
@@ -53,6 +50,6 @@ describe(`LastUpdated`, () => {
         .add(24, `hours`),
     }
     const wrapper = render(<LastModified {...mockProps} isLoading={false} />)
-    expect(wrapper.toJSON()).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 })
