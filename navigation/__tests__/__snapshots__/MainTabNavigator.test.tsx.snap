@@ -343,7 +343,7 @@ exports[`MainTabNavigator renders without error 1`] = `
       style={
         Object {
           "backgroundColor": "#ced0d9",
-          "borderTopColor": "rgb(224, 224, 224)",
+          "borderTopColor": "rgb(216, 216, 216)",
           "borderTopWidth": 0.5,
           "bottom": 0,
           "elevation": 8,
@@ -466,8 +466,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   "color": "#fefefe",
                 },
                 Object {
-                  "fontSize": 11,
-                  "marginBottom": 1.5,
+                  "fontSize": 10,
                 },
                 Object {
                   "fontFamily": "apercu",
@@ -574,8 +573,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   "color": "#4D5061",
                 },
                 Object {
-                  "fontSize": 11,
-                  "marginBottom": 1.5,
+                  "fontSize": 10,
                 },
                 Object {
                   "fontFamily": "apercu",
@@ -682,8 +680,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   "color": "#4D5061",
                 },
                 Object {
-                  "fontSize": 11,
-                  "marginBottom": 1.5,
+                  "fontSize": 10,
                 },
                 Object {
                   "fontFamily": "apercu",
@@ -790,8 +787,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   "color": "#4D5061",
                 },
                 Object {
-                  "fontSize": 11,
-                  "marginBottom": 1.5,
+                  "fontSize": 10,
                 },
                 Object {
                   "fontFamily": "apercu",
@@ -898,8 +894,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   "color": "#4D5061",
                 },
                 Object {
-                  "fontSize": 11,
-                  "marginBottom": 1.5,
+                  "fontSize": 10,
                 },
                 Object {
                   "fontFamily": "apercu",

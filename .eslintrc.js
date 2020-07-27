@@ -42,6 +42,12 @@ module.exports = {
         "no-console": `warn`,
       },
     },
+    {
+      files: [`*.json`],
+      settings: {
+        "disable/plugins": [`no-secrets`],
+      },
+    },
   ],
   parser: `@typescript-eslint/parser`,
   parserOptions: {
@@ -58,11 +64,13 @@ module.exports = {
     `security`,
     `no-secrets`,
     `json-format`,
-    `simple-import-sort`,
     `sonarjs`,
     `sort-keys-fix`,
     `@typescript-eslint`,
+    `react-hooks`,
+    `disable`,
   ],
+  processor: `disable/disable`,
   root: true,
   rules: {
     "@typescript-eslint/member-delimiter-style": [
@@ -78,28 +86,28 @@ module.exports = {
         },
       },
     ],
-    "@typescript-eslint/no-empty-function": `off`,
-    "@typescript-eslint/no-explicit-any": `off`,
-
-    "@typescript-eslint/no-unused-vars": `error`,
-
     "@typescript-eslint/naming-convention": [
       `warn`,
       {
-        selector: `variable`,
+        filter: {
+          match: false,
+          regex: `__DEV__`,
+        },
         format: [
           `camelCase`,
           `UPPER_CASE`,
           `PascalCase`,
         ],
         leadingUnderscore: `forbid`,
+        selector: `variable`,
         trailingUnderscore: `forbid`,
-        filter: {
-          regex: `__DEV__`,
-          match: false,
-        },
       },
     ],
+    "@typescript-eslint/no-empty-function": `off`,
+
+    "@typescript-eslint/no-explicit-any": `off`,
+
+    "@typescript-eslint/no-unused-vars": `error`,
     // during transition period
     "@typescript-eslint/semi": [
       `error`,
@@ -199,13 +207,15 @@ module.exports = {
     ],
 
     "security/detect-non-literal-require": `off`,
-    // until https://github.com/nodesecurity/eslint-plugin-security/issues/27 is fixed
+    /* until
+      https://github.com/nodesecurity/eslint-plugin-security/issues/27
+       is fixed
+    */
     "security/detect-object-injection": `off`,
     semi: [
       `error`,
       `never`,
     ],
-    "simple-import-sort/sort": `error`,
     "sort-keys-fix/sort-keys-fix": `warn`,
   },
   settings: {
