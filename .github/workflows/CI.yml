@@ -39,10 +39,10 @@ jobs:
     - name: deploy
       if: github.ref != 'refs/heads/master'
       run: |
-          expo publish --release-channel=dev.${{ github.sha }}
+          expo publish --release-channel=dev.commit-${{ github.sha }}
     - uses: unsplash/comment-on-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
       with:
-        msg: Published to [dev.PR-${{ github.sha }}](https://expo.io/@${{ secrets.EXPO_CLI_USERNAME }}/ucl-assistant-app?release-channel=dev.PR-${{ github.sha }}).
+        msg: Published to [dev.commit-${{ github.sha }}](https://expo.io/@${{ secrets.EXPO_CLI_USERNAME }}/ucl-assistant-app?release-channel=dev.commit-${{ github.sha }}).
 
