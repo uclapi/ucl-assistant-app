@@ -1,6 +1,7 @@
 import { Feather } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import React, { ReactElement } from "react"
+import { YellowBox } from "react-native"
 import Colors from "../constants/Colors"
 import PeopleNavigator from "../screens/People"
 import type { PeopleNavigatorParamList } from "../screens/People/PeopleNavigator"
@@ -13,6 +14,9 @@ import type { StudySpacesNavigatorParamList } from "../screens/StudySpaces/Study
 import TimetableNavigator from "../screens/Timetable"
 import type { TimetableNavigatorParamList } from "../screens/Timetable/TimetableNavigator"
 import type { NestedNavigator } from "../types/uclapi"
+
+// until Expo updates their Lottie version
+YellowBox.ignoreWarnings([`ReactNative.NativeModules.LottieAnimationView`])
 
 export type MainTabNavigatorParamList = {
   Timetable: NestedNavigator<TimetableNavigatorParamList>,
