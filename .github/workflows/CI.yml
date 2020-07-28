@@ -42,4 +42,24 @@ jobs:
           github_branch="${{ github.ref }}"
           github_branch=${github_branch//refs\/heads\//}
           expo publish --release-channel=dev.${github_branch//\//-}
+  android-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: echo '${{ secrets.APP_JSON }}' > app.json
+      - run: npm ci
+      - run: npx appium-doctor --android
+
+
 
