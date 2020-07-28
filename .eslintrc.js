@@ -12,6 +12,7 @@ module.exports = {
     `plugin:@typescript-eslint/eslint-recommended`,
     `plugin:@typescript-eslint/recommended`,
     `plugin:import/typescript`,
+    `plugin:react-hooks/recommended`,
   ],
   globals: {
     __DEV__: true,
@@ -211,7 +212,7 @@ module.exports = {
       `error`,
       `static public field`,
     ],
-
+    "security/detect-non-literal-regexp": `off`,
     "security/detect-non-literal-require": `off`,
     /* until
       https://github.com/nodesecurity/eslint-plugin-security/issues/27

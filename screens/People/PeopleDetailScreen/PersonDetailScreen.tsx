@@ -1,12 +1,9 @@
-import type { RouteProp } from "@react-navigation/native"
-import type { StackNavigationProp } from "@react-navigation/stack"
-import React from "react"
-import { ActivityIndicator, StyleSheet, View } from "react-native"
-import { connect, ConnectedProps } from "react-redux"
-
+import React, { useCallback, useEffect } from "react"
 import {
-  fetchPerson as fetchPersonAction, PeopleDispatch,
-} from "../../../actions/peopleActions"
+  ActivityIndicator, StyleSheet, View, ViewStyle,
+} from "react-native"
+import { connect, ConnectedProps } from "react-redux"
+import { fetchPerson as fetchPersonAction, PeopleDispatch } from "../../../actions/peopleActions"
 import Button from "../../../components/Button"
 import {
   PaddedIcon,
@@ -22,9 +19,13 @@ import {
 import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import MailManager from "../../../lib/MailManager"
-import type { PeopleNavigatorParamList } from "../PeopleNavigator"
 
-const styles = StyleSheet.create({
+interface Style {
+  container: ViewStyle,
+  loadingContainer: ViewStyle,
+}
+
+const styles = StyleSheet.create<Style>({
   container: {
     flex: 1,
     paddingBottom: 40,
@@ -37,68 +38,42 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props extends PropsFromRedux {
-  navigation: StackNavigationProp<PeopleNavigatorParamList>,
-  // eslint-disable-next-line quotes
-  route: RouteProp<PeopleNavigatorParamList, 'PeopleDetail'>,
-}
+export const PersonDetailScreen: React.FC<PropsFromRedux> = ({
+  name, status, department, email, isFetching, error, token, fetchPerson,
+}) => {
+  const sendEmail = useCallback(() => MailManager.composeAsync({ recipients: [email] }), [email])
 
-interface State {
-  email: string,
-}
-
-class PersonDetailScreen extends React.Component<Props, State> {
-  constructor(props) {
-    super(props)
-    const { params } = props.route
-    this.state = { ...params }
-  }
-
-  componentDidMount() {
-    const { fetchPerson, token } = this.props
-    const { email } = this.props
+  useEffect(() => {
     fetchPerson(token, email)
-  }
+  })
 
-  sendEmail = () => {
-    const { email } = this.props
-    MailManager.composeAsync({
-      recipients: [email],
-    })
-  }
-
-  render() {
-    const {
-      name, status, department, email, isFetching, error,
-    } = this.props
-    return isFetching ? (
-      <PageNoScroll style={styles.loadingContainer}>
-        <ActivityIndicator size="large" />
-      </PageNoScroll>
-    ) : (
-        <PageNoScroll>
-          <View style={styles.container}>
-            <TitleText>{name}</TitleText>
-            {error.length > 0 && (
-              <ErrorText>
-                {`Error: ${error}`}
-              </ErrorText>
-            )}
-            <BodyText>
-              {`${status}, ${department}`}
-            </BodyText>
-            <BodyText>
-              {`Email: ${email}`}
-            </BodyText>
-            <Spacer />
-            <Button onPress={this.sendEmail}>
-              <PaddedIcon name="mail" size={24} color={Colors.pageBackground} />
-              <ButtonText>Send Email</ButtonText>
-            </Button>
-          </View>
-        </PageNoScroll>
-    )
-  }
+  return isFetching ? (
+    <PageNoScroll style={styles.loadingContainer}>
+      <ActivityIndicator size="large" />
+    </PageNoScroll>
+  ) : (
+    <PageNoScroll>
+      <View style={styles.container}>
+        <TitleText>{name}</TitleText>
+        {error.length > 0 && (
+          <ErrorText>
+            {`Error: ${error}`}
+          </ErrorText>
+        )}
+        <BodyText>
+          {`${status}, ${department}`}
+        </BodyText>
+        <BodyText>
+          {`Email: ${email}`}
+        </BodyText>
+        <Spacer />
+        <Button onPress={sendEmail}>
+          <PaddedIcon name="mail" size={24} color={Colors.pageBackground} />
+          <ButtonText>Send Email</ButtonText>
+        </Button>
+      </View>
+    </PageNoScroll>
+  )
 }
 
 const connector = connect(
