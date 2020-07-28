@@ -42,7 +42,7 @@ jobs:
           expo publish --release-channel=dev.PR-${{ github.event.number }}
     - uses: unsplash/comment-on-pr@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
       with:
         msg: Published to [dev.PR-${{ github.event.number }}](https://expo.io/@${{ secrets.EXPO_CLI_USERNAME }}/use-expo?release-channel=dev.PR-${{ github.event.number }}).
 
