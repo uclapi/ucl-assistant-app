@@ -1,9 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-import { fireEvent, render } from "@testing-library/react-native"
+import { fireEvent } from "@testing-library/react-native"
 import React from 'react'
-import "react-native"
+import { render } from "../../../../jest/test-utils"
 import { MailManager, WebBrowserManager } from '../../../../lib'
 import * as packageJson from '../../../../package.json'
 import { SettingsScreen } from "../SettingsScreen"
@@ -15,7 +12,6 @@ const {
 } = packageJson
 
 describe(`SettingsScreen`, () => {
-  let wrapper
   const mockSignOut = jest.fn()
   const mockNavigate = jest.fn() as any
   const mockSetShouldTrackAnalytics = jest.fn()
@@ -42,30 +38,30 @@ describe(`SettingsScreen`, () => {
   MailManager.composeAsync = mockComposeAsync
 
   beforeAll(() => {
-    jest.useRealTimers()
-  })
-
-  beforeEach(() => {
-    wrapper = render(<SettingsScreen {...mockProps} />)
+    jest.useFakeTimers()
   })
 
   it(`renders the SettingsScreen`, () => {
+    const wrapper = render(<SettingsScreen {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 
   it(`logs out when the signOut button is pressed`, () => {
-    const { getByTestId } = wrapper
-    fireEvent.press(getByTestId(`sign-out-button`))
+    const wrapper = render(<SettingsScreen {...mockProps} />)
+    const { getByText } = wrapper
+    fireEvent.press(getByText(/Sign Out/i))
     expect(mockSignOut).toHaveBeenCalledTimes(1)
   })
 
   it(`opens Github repository when Github button is pressed`, () => {
+    const wrapper = render(<SettingsScreen {...mockProps} />)
     const { getByTestId } = wrapper
     const githubButton = getByTestId(`github-button`)
     expect(githubButton.props.href === githubURL)
   })
 
   it(`opens FAQ page when the FAQ button is pressed`, () => {
+    const wrapper = render(<SettingsScreen {...mockProps} />)
     const { getByTestId } = wrapper
     const faqButton = getByTestId(`faq-button`)
     fireEvent.press(faqButton)
@@ -75,6 +71,7 @@ describe(`SettingsScreen`, () => {
   })
 
   it(`opens mail client when the feedback button is pressed`, () => {
+    const wrapper = render(<SettingsScreen {...mockProps} />)
     const { getByTestId } = wrapper
     const feedbackButton = getByTestId(`feedback-button`)
     fireEvent.press(feedbackButton)
@@ -84,6 +81,7 @@ describe(`SettingsScreen`, () => {
   })
 
   it(`dispatches action when analytics checkbox is toggled`, () => {
+    const wrapper = render(<SettingsScreen {...mockProps} />)
     const { getByTestId } = wrapper
     const analyticsCheckbox = getByTestId(`analytics-checkbox`)
     fireEvent(analyticsCheckbox, `click`)

@@ -17,7 +17,6 @@ import {
 } from "react-native"
 import CheckBox from 'react-native-check-box'
 import { connect, ConnectedProps } from "react-redux"
-
 import {
   setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
   signOut as signOutAction,
@@ -238,7 +237,6 @@ export class SettingsScreen extends React.Component<Props, State> {
           <Link
             onPress={this.signOut}
             style={styles.signOut}
-            testID="sign-out-button"
           >
             Sign Out
           </Link>
