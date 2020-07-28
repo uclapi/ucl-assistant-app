@@ -6,3 +6,4 @@ package.json
 
 !tsconfig.json
 !.eslintrc.js
+wdio.conf.js

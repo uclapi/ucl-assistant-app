@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
 import { signIn as signInAction, UserDispatch } from "../actions/userActions"
 import Button from "../components/Button"
 import { Horizontal, Spacer } from "../components/Containers"
@@ -127,7 +126,10 @@ class SplashScreen extends Component<PropsFromRedux> {
                   resizeMode="contain"
                   style={[Styles.image, SplashStyle.uclapiImage]}
                 />
-                <ButtonText style={SplashStyle.buttonText}>
+                <ButtonText
+                  style={SplashStyle.buttonText}
+                  accessibilityLabel="login-button"
+                >
                   Sign In With UCL
                 </ButtonText>
               </Horizontal>

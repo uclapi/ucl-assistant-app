@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "types": [
+      "node",
+      "jest",
+      "@wdio/sync",
+      "@wdio/jasmine-framework",
+      "@wdio/appium-service"
+    ],
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": [

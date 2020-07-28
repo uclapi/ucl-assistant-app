@@ -59,7 +59,18 @@ jobs:
             ${{ runner.os }}-node-
       - run: echo '${{ secrets.APP_JSON }}' > app.json
       - run: npm ci
-      - run: npx appium-doctor --android
+      - name: setup JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 12
+          java-package: jdk
+          architecture: x64
+      - name: install appium dependencies (which must be installed globally)
+        run:
+          - npm i -g opencv4nodejs mjpeg-consumer
+          - apt install ffmpeg
+      - name: check if Appium is happy
+        run: npx appium-doctor --android
 
 
 

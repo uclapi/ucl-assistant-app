@@ -17,3 +17,7 @@ yarn.lock
 coverage
 android.json
 ios.json
+
+*.apk
+*.aab
+*.ipa
