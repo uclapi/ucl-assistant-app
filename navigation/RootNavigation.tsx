@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack"
 import React, { ReactElement } from 'react'
 import { connect } from "react-redux"
-
 import { AppStateType } from '../configureStore'
 import NotificationsScreen from "../screens/NotificationsScreen"
 import SplashScreen from "../screens/SplashScreen"
@@ -41,6 +40,9 @@ export const RootNavigatorComponent = ({
         <Stack.Screen
           name="Notifications"
           component={NotificationsScreen}
+          options={{
+            headerShown: false,
+          }}
         />
       </>
     )

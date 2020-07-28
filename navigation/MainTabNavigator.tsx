@@ -1,28 +1,17 @@
 import { Feather } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import React, { ReactElement } from "react"
-
 import Colors from "../constants/Colors"
 import PeopleNavigator from "../screens/People"
-import type {
-  PeopleNavigatorParamList,
-} from "../screens/People/PeopleNavigator"
+import type { PeopleNavigatorParamList } from "../screens/People/PeopleNavigator"
 import RoomsNavigator from "../screens/Rooms"
-import type {
-  RoomsNavigatorParamList,
-} from "../screens/Rooms/RoomsNavigator"
+import type { RoomsNavigatorParamList } from "../screens/Rooms/RoomsNavigator"
 import SettingsNavigator from "../screens/Settings"
-import type {
-  SettingsNavigatorParamList,
-} from "../screens/Settings/SettingsNavigator"
+import type { SettingsNavigatorParamList } from "../screens/Settings/SettingsNavigator"
 import StudySpacesNavigator from "../screens/StudySpaces"
-import type {
-  StudySpacesNavigatorParamList,
-} from "../screens/StudySpaces/StudySpacesNavigator"
+import type { StudySpacesNavigatorParamList } from "../screens/StudySpaces/StudySpacesNavigator"
 import TimetableNavigator from "../screens/Timetable"
-import type {
-  TimetableNavigatorParamList,
-} from "../screens/Timetable/TimetableNavigator"
+import type { TimetableNavigatorParamList } from "../screens/Timetable/TimetableNavigator"
 import type { NestedNavigator } from "../types/uclapi"
 
 export type MainTabNavigatorParamList = {

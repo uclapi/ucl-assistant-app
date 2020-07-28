@@ -48,6 +48,15 @@ module.exports = {
         "disable/plugins": [`no-secrets`],
       },
     },
+    {
+      files: [`**/*.js`],
+      settings: {
+        "disable/plugins": [`@typescript-eslint`],
+        rules: {
+          "@typescript-eslint/no-vars-requires": `off`,
+        },
+      },
+    },
   ],
   parser: `@typescript-eslint/parser`,
   parserOptions: {
@@ -104,11 +113,8 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-empty-function": `off`,
-
     "@typescript-eslint/no-explicit-any": `off`,
-
     "@typescript-eslint/no-unused-vars": `error`,
-    // during transition period
     "@typescript-eslint/semi": [
       `error`,
       `never`,

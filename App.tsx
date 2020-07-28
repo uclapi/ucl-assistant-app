@@ -15,7 +15,6 @@ import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
 import Styles from "./styles/Containers"
 
-
 const { persistor, store } = configureStore
 
 ErrorManager.initialise()

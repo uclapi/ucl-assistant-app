@@ -40,19 +40,17 @@ describe(`Button`, () => {
   })
 
   it(`handles onPress events`, () => {
-    const testID = `active-button`
     const onPress = jest.fn()
     const wrapper = render(
       <Button
-        testID={testID}
         onPress={onPress}
       >
         Active Button
       </Button>,
     )
 
-    const { getByTestId } = wrapper
-    const activeButton = getByTestId(testID)
+    const { getByText } = wrapper
+    const activeButton = getByText(/Active Button/i)
     fireEvent.press(activeButton)
 
     expect(onPress).toHaveBeenCalledTimes(1)
@@ -60,12 +58,10 @@ describe(`Button`, () => {
   })
 
   it(`renders the disabled state`, () => {
-    const testID = `disabled-button`
     const onPress = jest.fn()
     const wrapper = render(
       <Button
         disabled
-        testID={testID}
         onPress={onPress}
       >
         This is a disabled button
@@ -73,11 +69,11 @@ describe(`Button`, () => {
     )
     expect(wrapper).toMatchSnapshot()
 
-    // const { getByTestId } = wrapper
-    // const disabledButton = getByTestId(testID)
-    // fireEvent.press(disabledButton)
+    const { getByText } = wrapper
+    const disabledButton = getByText(/disabled button/i)
+    fireEvent.press(disabledButton)
 
-    // expect(onPress).toMatchSnapshot()
-    // expect(onPress).toHaveBeenCalledTimes(0)
+    expect(onPress).toMatchSnapshot()
+    expect(onPress).toHaveBeenCalledTimes(0)
   })
 })

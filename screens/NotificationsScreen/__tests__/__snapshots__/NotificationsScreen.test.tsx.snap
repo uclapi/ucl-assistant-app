@@ -19,18 +19,10 @@ Array [
 `;
 
 exports[`NotificationsScreen renders the NotificationsScreen 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#fefefe",
-        "flex": 0,
-      }
-    }
-  />,
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
     style={
       Object {
         "flex": 1,
@@ -38,245 +30,391 @@ Array [
     }
   >
     <View
-      onLayout={[Function]}
+      collapsable={true}
+      pointerEvents="box-none"
       style={
-        Array [
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 1,
-            "flexDirection": "column",
-          },
-          Object {
-            "paddingBottom": 0,
-          },
-        ]
+        Object {
+          "flex": 1,
+        }
       }
     >
-      <RCTScrollView
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingBottom": 60,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-              "paddingTop": 20,
-            },
-            undefined,
-          ]
-        }
-        keyboardDismissMode="on-drag"
-        refreshControl={null}
+      <SafeAreaView
         style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            undefined,
-          ]
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 0,
+          }
+        }
+      />
+      <SafeAreaView
+        style={
+          Object {
+            "flex": 1,
+          }
         }
       >
-        <View>
-          <View
-            style={
+        <View
+          style={
+            Array [
               Object {
-                "paddingBottom": 30,
-                "paddingTop": 30,
-              }
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "flexDirection": "column",
+              },
+              Object {
+                "paddingBottom": 0,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingBottom": 60,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 20,
+                },
+                undefined,
+              ]
+            }
+            keyboardDismissMode="on-drag"
+            refreshControl={null}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fefefe",
+                  "flex": 1,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                },
+                undefined,
+              ]
             }
           >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu-bold",
-                    "fontSize": 35,
-                    "marginBottom": 10,
-                    "marginTop": 1,
-                  },
-                  Object {},
-                ]
-              }
-            >
-              Be Notified
-            </Text>
-            <Image
-              resizeMethod="scale"
-              resizeMode="contain"
-              source={1}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "backgroundColor": "rgba(0,0,0,0)",
-                    "flex": 1,
-                    "height": undefined,
-                    "marginTop": 50,
-                    "width": undefined,
-                  },
-                  Object {
-                    "height": 150,
-                    "marginTop": 15,
-                  },
-                ]
-              }
-            />
-            <View
-              style={
-                Object {
-                  "marginBottom": 20,
-                  "marginTop": 20,
-                }
-              }
-            >
-              <Text
+            <View>
+              <View
                 style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Find out when there's a new feature on UCL Assistant,  when your timetable changes, or if there's an upcoming  event that might interest you.
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "marginBottom": 30,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                You can disable notifications later at any time.
-              </Text>
-            </View>
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "backgroundColor": "transparent",
-                  "opacity": 1,
-                }
-              }
-            >
-              <ViewManagerAdapter_ExpoLinearGradient
-                proxiedProperties={
                   Object {
-                    "colors": Array [
-                      4279998859,
-                      4283151357,
-                    ],
-                    "endPoint": Array [
-                      1,
-                      0,
-                    ],
-                    "locations": undefined,
-                    "startPoint": Array [
-                      0,
-                      1,
-                    ],
+                    "paddingBottom": 30,
+                    "paddingTop": 30,
                   }
-                }
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderRadius": 8,
-                      "elevation": 2,
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginBottom": 5,
-                      "marginTop": 5,
-                      "minHeight": 55,
-                      "minWidth": 150,
-                      "padding": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "shadowColor": "#1B998B",
-                      "shadowOffset": Object {
-                        "height": 2,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 0.75,
-                      "shadowRadius": 3,
-                    },
-                    undefined,
-                  ]
                 }
               >
                 <Text
                   style={
                     Array [
                       Object {
-                        "color": "#fefefe",
-                        "fontFamily": "apercu",
-                        "fontSize": 20,
-                        "marginBottom": 1,
+                        "color": "#4D5061",
+                        "fontFamily": "apercu-bold",
+                        "fontSize": 35,
+                        "marginBottom": 10,
                         "marginTop": 1,
-                        "textAlign": "center",
                       },
-                      undefined,
+                      Object {},
                     ]
                   }
                 >
-                  Enable Notifications
+                  Be Notified
                 </Text>
-              </ViewManagerAdapter_ExpoLinearGradient>
+                <Image
+                  resizeMethod="scale"
+                  resizeMode="contain"
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "rgba(0,0,0,0)",
+                        "flex": 1,
+                        "height": undefined,
+                        "marginTop": 50,
+                        "width": undefined,
+                      },
+                      Object {
+                        "height": 150,
+                        "marginTop": 15,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "marginBottom": 20,
+                      "marginTop": 20,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "marginBottom": 1,
+                          "marginTop": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Find out when there's a new feature on UCL Assistant,  when your timetable changes, or if there's an upcoming  event that might interest you.
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "marginBottom": 30,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "marginBottom": 1,
+                          "marginTop": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    You can disable notifications later at any time.
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  style={
+                    Object {
+                      "backgroundColor": "transparent",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoLinearGradient
+                    proxiedProperties={
+                      Object {
+                        "colors": Array [
+                          4279998859,
+                          4283151357,
+                        ],
+                        "endPoint": Array [
+                          1,
+                          0,
+                        ],
+                        "locations": undefined,
+                        "startPoint": Array [
+                          0,
+                          1,
+                        ],
+                      }
+                    }
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "borderRadius": 8,
+                          "elevation": 2,
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                          "marginBottom": 5,
+                          "marginTop": 5,
+                          "minHeight": 55,
+                          "minWidth": 150,
+                          "padding": 8,
+                          "paddingLeft": 16,
+                          "paddingRight": 16,
+                          "shadowColor": "#1B998B",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.75,
+                          "shadowRadius": 3,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#fefefe",
+                            "fontFamily": "apercu",
+                            "fontSize": 20,
+                            "marginBottom": 1,
+                            "marginTop": 1,
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Enable Notifications
+                    </Text>
+                  </ViewManagerAdapter_ExpoLinearGradient>
+                </TouchableOpacity>
+                <View
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 20,
+                      "marginTop": 20,
+                    }
+                  }
+                >
+                  <TouchableOpacity
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "marginBottom": 1,
+                            "marginTop": 1,
+                          },
+                          Object {
+                            "color": "#2980b9",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      Skip
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
+          </RCTScrollView>
+        </View>
+      </SafeAreaView>
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "#fefefe",
+          "flex": 0,
+        }
+      }
+    />
+    <SafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "flexDirection": "column",
+            },
+            Object {
+              "paddingBottom": 0,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingBottom": 60,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 20,
+              },
+              undefined,
+            ]
+          }
+          keyboardDismissMode="on-drag"
+          refreshControl={null}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View>
             <View
               style={
                 Object {
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginBottom": 20,
-                  "marginTop": 20,
+                  "paddingBottom": 30,
+                  "paddingTop": 30,
                 }
               }
             >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu-bold",
+                      "fontSize": 35,
+                      "marginBottom": 10,
+                      "marginTop": 1,
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                Be Notified
+              </Text>
+              <Image
+                resizeMethod="scale"
+                resizeMode="contain"
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "rgba(0,0,0,0)",
+                      "flex": 1,
+                      "height": undefined,
+                      "marginTop": 50,
+                      "width": undefined,
+                    },
+                    Object {
+                      "height": 150,
+                      "marginTop": 15,
+                    },
+                  ]
+                }
+              />
               <View
-                accessible={true}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "opacity": 1,
+                    "marginBottom": 20,
+                    "marginTop": 20,
                   }
                 }
               >
@@ -290,21 +428,198 @@ Array [
                         "marginBottom": 1,
                         "marginTop": 1,
                       },
-                      Object {
-                        "color": "#2980b9",
-                      },
-                      Object {},
+                      undefined,
                     ]
                   }
                 >
-                  Skip
+                  Find out when there's a new feature on UCL Assistant,  when your timetable changes, or if there's an upcoming  event that might interest you.
                 </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginBottom": 30,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  You can disable notifications later at any time.
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                  }
+                }
+              >
+                <ViewManagerAdapter_ExpoLinearGradient
+                  proxiedProperties={
+                    Object {
+                      "colors": Array [
+                        4279998859,
+                        4283151357,
+                      ],
+                      "endPoint": Array [
+                        1,
+                        0,
+                      ],
+                      "locations": undefined,
+                      "startPoint": Array [
+                        0,
+                        1,
+                      ],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 8,
+                        "elevation": 2,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "marginBottom": 5,
+                        "marginTop": 5,
+                        "minHeight": 55,
+                        "minWidth": 150,
+                        "padding": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "shadowColor": "#1B998B",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.75,
+                        "shadowRadius": 3,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#fefefe",
+                          "fontFamily": "apercu",
+                          "fontSize": 20,
+                          "marginBottom": 1,
+                          "marginTop": 1,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Enable Notifications
+                  </Text>
+                </ViewManagerAdapter_ExpoLinearGradient>
+              </TouchableOpacity>
+              <View
+                style={
+                  Object {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "marginBottom": 20,
+                    "marginTop": 20,
+                  }
+                }
+              >
+                <TouchableOpacity
+                  style={Object {}}
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "marginBottom": 1,
+                          "marginTop": 1,
+                        },
+                        Object {
+                          "color": "#2980b9",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    Skip
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
-        </View>
-      </RCTScrollView>
-    </View>
-  </RCTSafeAreaView>,
-]
+        </RCTScrollView>
+      </View>
+    </SafeAreaView>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

@@ -1,7 +1,7 @@
-import testlingLibraryPreset from '@testing-library/react-native/jest-preset'
-import expoJestPreset from 'jest-expo/jest-preset'
+const testlingLibraryPreset = require(`@testing-library/react-native/jest-preset`)
+const expoJestPreset = require(`jest-expo/jest-preset`)
 
-export default {
+module.exports = {
   ...expoJestPreset,
   ...testlingLibraryPreset,
   collectCoverage: true,
@@ -21,8 +21,8 @@ export default {
     `<rootDir>/node_modules/`,
   ],
   transformIgnorePatterns: [
-    ...expoJestPreset.transformIgnorePatterns,
-    ...testlingLibraryPreset.transformIgnorePatterns,
+    // ...expoJestPreset.transformIgnorePatterns,
+    // ...testlingLibraryPreset.transformIgnorePatterns,
     // eslint-disable-next-line max-len
     `node_modules/(?!(jest-)?react-native(-screens)?|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|@?react-navigation((/.*)|(-.*))?|jest-expo/.*|@unimodules/.*|unimodules(-permissions-interface)?|sentry-expo|react-native-action-button|redux-persist.*|@sentry/.*|expo-secure-store/)`,
   ],

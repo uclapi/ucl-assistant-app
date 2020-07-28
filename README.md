@@ -81,3 +81,13 @@ Similarly, to create a new app binary (when native code is modified, e.g. for an
 ### Travis
 
 When updating `APP_JSON` in Travis, [use this format](https://github.com/travis-ci/travis-ci/issues/7715#issuecomment-362536708): `"$(echo -e '` `{JSON_CONTENT}` `')"` or simply wrap it with single quotes
+
+### Testing
+
+We use Jest for testing.
+
+`jest/test-utils.tsx` contains custom utility functions:
+
+* a custom `render` function that mocks our Redux store and navigation container
+* a `waitForEventLoop` function that returns a Promise which returns only after the current async queue is completed
+  * redux-persist is tricky to mock. Amongst other things, it requires `jest.useFakeTimers()`, which doesn't play well with `setTimeout` or `setInterval`. `waitForEventLoop` therefore temporarily sets `jest.useRealTimers()` before switching back to fake timers

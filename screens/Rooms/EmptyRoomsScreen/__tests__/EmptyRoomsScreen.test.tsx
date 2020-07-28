@@ -1,16 +1,10 @@
-/**
- * @jest-environment jsdom
- */
-import {
-  cleanup, fireEvent, render, waitForElement,
-} from '@testing-library/react-native'
+import { cleanup, fireEvent } from '@testing-library/react-native'
 import React from 'react'
-import "react-native"
+import { render, waitForEventLoop } from '../../../../jest/test-utils'
 import ApiManager from "../../../../lib/ApiManager"
 import { EmptyRoomsScreen } from '../EmptyRoomsScreen'
 
 describe(`EmptyRoomsScreen`, () => {
-  let wrapper
   const mockNavigate = jest.fn()
   const mockProps = {
     navigation: {
@@ -46,9 +40,7 @@ describe(`EmptyRoomsScreen`, () => {
   ApiManager.rooms.getEmptyRooms = mockGetEmptyRooms
 
   beforeEach(() => {
-    jest.useRealTimers()
     jest.clearAllMocks()
-    wrapper = render(<EmptyRoomsScreen {...mockProps} />)
   })
 
   afterEach(() => {
@@ -56,12 +48,13 @@ describe(`EmptyRoomsScreen`, () => {
   })
 
   it(`renders the loading screen`, async () => {
+    const wrapper = render(<EmptyRoomsScreen {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 
   it(`calls getEmptyRooms`, async () => {
-    const { update } = wrapper
-    update(<EmptyRoomsScreen {...mockProps} />)
+    const wrapper = render(<EmptyRoomsScreen {...mockProps} />)
+    await waitForEventLoop()
 
     expect(mockGetEmptyRooms).toHaveBeenCalledTimes(1)
     expect(wrapper).toMatchSnapshot()
@@ -70,26 +63,24 @@ describe(`EmptyRoomsScreen`, () => {
   it(`shows message when no empty rooms found`, async () => {
     ApiManager.rooms.getEmptyRooms = jest.fn(() => Promise.resolve([]))
     const emptyScreen = render(<EmptyRoomsScreen {...mockProps} />)
-    const { getByTestId } = emptyScreen
+    const { getByText } = emptyScreen
 
-    await waitForElement(() => getByTestId(`empty-rooms-message`))
+    await waitForEventLoop()
+
+    expect(getByText(/empty rooms/i)).toBeTruthy()
     expect(emptyScreen).toMatchSnapshot()
 
     ApiManager.rooms.getEmptyRooms = mockGetEmptyRooms
   })
 
   it(`supports filtering by building`, async () => {
-    const { update, getByTestId } = wrapper
-    update(<EmptyRoomsScreen {...mockProps} />)
-    await new Promise((resolve) => setTimeout(resolve, 0))
+    const wrapper = render(<EmptyRoomsScreen {...mockProps} />)
+    const { getByTestId } = wrapper
+    await waitForEventLoop()
 
     fireEvent.valueChange(getByTestId(`building-picker`), `main`)
-    update(<EmptyRoomsScreen {...mockProps} />)
+    await waitForEventLoop()
 
     expect(wrapper).toMatchSnapshot()
-  })
-
-  afterAll(() => {
-
   })
 })

@@ -1,3 +1,4 @@
+import CheckBox from '@react-native-community/checkbox'
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
   CommonActions,
@@ -15,7 +16,6 @@ import {
   StyleSheet,
   View,
 } from "react-native"
-import CheckBox from 'react-native-check-box'
 import { connect, ConnectedProps } from "react-redux"
 import {
   setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
@@ -114,7 +114,7 @@ export class SettingsScreen extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(_, prevState: State): void {
+  componentDidUpdate(_: Props, prevState: State): void {
     const { user, navigation } = this.props
     if (prevState.isSigningOut && user.token === ``) {
       const action = CommonActions.reset({
@@ -147,15 +147,9 @@ export class SettingsScreen extends React.Component<Props, State> {
     }
   }
 
-  toggleAnalytics = (): void => {
-    const {
-      user: {
-        settings: { shouldTrackAnalytics: value },
-      },
-      setShouldTrackAnalytics,
-    } = this.props
-
-    setShouldTrackAnalytics(!value)
+  toggleAnalytics = (newVal: boolean): void => {
+    const { setShouldTrackAnalytics } = this.props
+    setShouldTrackAnalytics(newVal)
   }
 
   signOut = (): void => {
@@ -254,8 +248,8 @@ export class SettingsScreen extends React.Component<Props, State> {
             <CheckBox
               testID="analytics-checkbox"
               style={styles.settingsCheckBox}
-              isChecked={user.settings.shouldTrackAnalytics}
-              onClick={this.toggleAnalytics}
+              value={user.settings.shouldTrackAnalytics}
+              onValueChange={this.toggleAnalytics}
             />
           </View>
         </View>
@@ -265,7 +259,6 @@ export class SettingsScreen extends React.Component<Props, State> {
           <Link
             onPress={this.navigateToFAQs}
             style={styles.faqButton}
-            testID="faq-button"
           >
             Frequently Asked Questions
           </Link>
@@ -286,14 +279,12 @@ export class SettingsScreen extends React.Component<Props, State> {
           </Horizontal>
           <Link
             href={githubURL}
-            testID="github-button"
           >
             Source Code
           </Link>
           <Link
             containerStyle={styles.feedbackButton}
             onPress={this.giveFeedback}
-            testID="feedback-button"
           >
             Send Us Feedback
           </Link>

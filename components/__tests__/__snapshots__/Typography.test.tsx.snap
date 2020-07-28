@@ -1,58 +1,355 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Typography renders a BodyText component 1`] = `
-<Text
-  style={
-    Array [
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
+    style={
       Object {
-        "color": "#4D5061",
-        "fontFamily": "apercu",
-        "fontSize": 16,
-        "marginBottom": 1,
-        "marginTop": 1,
-      },
-      undefined,
-    ]
-  }
->
-  Hello World! This is a BodyText component.
-</Text>
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={true}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#4D5061",
+              "fontFamily": "apercu",
+              "fontSize": 16,
+              "marginBottom": 1,
+              "marginTop": 1,
+            },
+            undefined,
+          ]
+        }
+      >
+        Hello World! This is a BodyText component.
+      </Text>
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu",
+            "fontSize": 16,
+            "marginBottom": 1,
+            "marginTop": 1,
+          },
+          undefined,
+        ]
+      }
+    >
+      Hello World! This is a BodyText component.
+    </Text>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`Typography renders a SubtitleText component 1`] = `
-<Text
-  style={
-    Array [
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
+    style={
       Object {
-        "color": "#4D5061",
-        "fontFamily": "apercu-bold",
-        "fontSize": 28,
-        "marginBottom": 2,
-        "marginTop": 8,
-      },
-      undefined,
-    ]
-  }
->
-  Hello World! This is a SubtitleText component.
-</Text>
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={true}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#4D5061",
+              "fontFamily": "apercu-bold",
+              "fontSize": 28,
+              "marginBottom": 2,
+              "marginTop": 8,
+            },
+            undefined,
+          ]
+        }
+      >
+        Hello World! This is a SubtitleText component.
+      </Text>
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu-bold",
+            "fontSize": 28,
+            "marginBottom": 2,
+            "marginTop": 8,
+          },
+          undefined,
+        ]
+      }
+    >
+      Hello World! This is a SubtitleText component.
+    </Text>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`Typography renders a TitleText component 1`] = `
-<Text
-  style={
-    Array [
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
+    style={
       Object {
-        "color": "#4D5061",
-        "fontFamily": "apercu-bold",
-        "fontSize": 35,
-        "marginBottom": 10,
-        "marginTop": 1,
-      },
-      Object {},
-    ]
-  }
->
-  Hello World! This is a TitleText component.
-</Text>
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={true}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#4D5061",
+              "fontFamily": "apercu-bold",
+              "fontSize": 35,
+              "marginBottom": 10,
+              "marginTop": 1,
+            },
+            Object {},
+          ]
+        }
+      >
+        Hello World! This is a TitleText component.
+      </Text>
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#4D5061",
+            "fontFamily": "apercu-bold",
+            "fontSize": 35,
+            "marginBottom": 10,
+            "marginTop": 1,
+          },
+          Object {},
+        ]
+      }
+    >
+      Hello World! This is a TitleText component.
+    </Text>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

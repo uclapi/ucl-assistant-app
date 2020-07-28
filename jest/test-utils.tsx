@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native'
 import { render as rtlRender, RenderResult } from '@testing-library/react-native'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -21,9 +22,24 @@ const render = (
     ...renderOptions
   } = {},
 ): RenderResult => {
-  const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>
+  const Wrapper = ({ children }) => (
+    <Provider store={store}>
+      <NavigationContainer>
+        {children}
+      </NavigationContainer>
+    </Provider>
+  )
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
 }
+
+export const waitForEventLoop = async (): Promise<void> => new Promise((resolve) => {
+  const done = () => {
+    jest.useFakeTimers()
+    resolve()
+  }
+  jest.useRealTimers()
+  setTimeout(done, 0)
+})
 
 // re-export everything
 export * from '@testing-library/react-native'

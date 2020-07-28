@@ -1,12 +1,12 @@
 import { CommonActions } from "@react-navigation/native"
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { connect } from "react-redux"
-
 import {
   declinePushNotifications as declinePushNotificationsAction,
   setExpoPushToken as setExpoPushTokenAction,
+  UserDispatch,
 } from "../../actions/userActions"
 import Button from "../../components/Button"
 import { Page } from "../../components/Containers"
@@ -24,7 +24,6 @@ import {
 } from "../../lib"
 import type { RootStackParamList } from "../../navigation/RootNavigation"
 import Styles from "../../styles/Containers"
-
 
 const styles = StyleSheet.create({
   container: {
@@ -63,22 +62,27 @@ interface Props {
   setExpoPushToken: (t: string) => void,
 }
 
-export class NotificationsScreen extends React.Component<Props> {
-  static navigationOptions = {
-    headerShown: false,
-  }
+export const NotificationsScreen: React.FC<Props> = ({
+  token,
+  setExpoPushToken,
+  navigation,
+  declinePushNotifications,
+}) => {
+  const goHome = useCallback((): void => {
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: `Main` }],
+    })
+    navigation.dispatch(resetAction)
+  }, [navigation])
 
-  static mapStateToProps = (state: AppStateType) => ({
-    token: state.user.token,
-  })
+  const onSkip = useCallback((): void => {
+    declinePushNotifications()
+    AnalyticsManager.logEvent(AnalyticsManager.events.NOTIFICATIONS_SKIP)
+    goHome()
+  }, [declinePushNotifications, goHome])
 
-  static mapDispatchToProps = (dispatch) => ({
-    declinePushNotifications: () => dispatch(declinePushNotificationsAction()),
-    setExpoPushToken: (pushToken: string) => dispatch(setExpoPushTokenAction(pushToken)),
-  })
-
-  onEnableNotifications = async (): Promise<void> => {
-    const { token, setExpoPushToken } = this.props
+  const onEnableNotifications = useCallback(async (): Promise<void> => {
     AnalyticsManager.logEvent(AnalyticsManager.events.NOTIFICATIONS_ENABLE)
     try {
       const pushToken = (
@@ -88,69 +92,54 @@ export class NotificationsScreen extends React.Component<Props> {
     } catch (error) {
       ErrorManager.captureError(error)
     }
-    return this.goHome()
-  }
+    return goHome()
+  }, [token, setExpoPushToken, goHome])
 
-  onSkip = (): void => {
-    const { declinePushNotifications } = this.props
-    declinePushNotifications()
-    AnalyticsManager.logEvent(AnalyticsManager.events.NOTIFICATIONS_SKIP)
-    this.goHome()
-  }
-
-  goHome = (): void => {
-    const { navigation } = this.props
-    const resetAction = CommonActions.reset({
-      index: 0,
-      routes: [{ name: `Main` }],
-    })
-    navigation.dispatch(resetAction)
-  }
-
-  render(): React.ReactElement {
-    return (
-      <Page>
-        <View style={styles.container}>
-          <TitleText>Be Notified</TitleText>
-          <Image
-            source={AssetManager.undraw.notify}
-            resizeMethod="scale"
-            style={[Styles.image, styles.notifyImage]}
-            resizeMode="contain"
-          />
-          <View style={styles.description}>
-            <BodyText>
-              Find out when there&apos;s a new feature on UCL Assistant,&nbsp;
-              when your timetable changes, or if there&apos;s an upcoming&nbsp;
-              event that might interest you.
-            </BodyText>
-          </View>
-          <View style={styles.subdescription}>
-            <BodyText>
-              You can disable notifications later at any time.
-            </BodyText>
-          </View>
-          <Button
-            onPress={this.onEnableNotifications}
-            testID="enable-notifications-button"
-          >
-            Enable Notifications
-          </Button>
-          <View style={styles.skip}>
-            <Link onPress={this.onSkip} testID="skip-notifications-button">
-              Skip
-            </Link>
-          </View>
+  return (
+    <Page>
+      <View style={styles.container}>
+        <TitleText>Be Notified</TitleText>
+        <Image
+          source={AssetManager.undraw.notify}
+          resizeMethod="scale"
+          style={[Styles.image, styles.notifyImage]}
+          resizeMode="contain"
+        />
+        <View style={styles.description}>
+          <BodyText>
+            Find out when there&apos;s a new feature on UCL Assistant,&nbsp;
+            when your timetable changes, or if there&apos;s an upcoming&nbsp;
+            event that might interest you.
+          </BodyText>
         </View>
-      </Page>
-    )
-  }
+        <View style={styles.subdescription}>
+          <BodyText>
+            You can disable notifications later at any time.
+          </BodyText>
+        </View>
+        <Button
+          onPress={onEnableNotifications}
+        >
+          Enable Notifications
+        </Button>
+        <View style={styles.skip}>
+          <Link onPress={onSkip}>
+            Skip
+          </Link>
+        </View>
+      </View>
+    </Page>
+  )
 }
 
-
 const connector = connect(
-  NotificationsScreen.mapStateToProps,
-  NotificationsScreen.mapDispatchToProps,
+  (state: AppStateType) => ({
+    token: state.user.token,
+  }),
+  (dispatch: UserDispatch) => ({
+    declinePushNotifications: () => dispatch(declinePushNotificationsAction()),
+    setExpoPushToken: (pushToken: string) => dispatch(setExpoPushTokenAction(pushToken)),
+  }),
 )
 
 export default connector(NotificationsScreen)

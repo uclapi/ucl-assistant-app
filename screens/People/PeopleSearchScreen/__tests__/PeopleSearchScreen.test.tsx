@@ -22,7 +22,7 @@ describe(`RecentResults`, () => {
       recents: [],
     }
     const tree = render(<RecentResults {...props} />)
-    expect(tree).toBe(null)
+    expect(tree).toMatchSnapshot()
   })
 
   it(`renders a filled RecentResults component`, async () => {

@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
-
 import { Page } from "../../../components/Containers"
 import SearchResult from "../../../components/SearchResult"
 import { BodyText, CentredText } from "../../../components/Typography"
@@ -118,9 +117,9 @@ export class EmptyRoomsScreen extends React.Component<
 
     if (matchingRooms.length === 0) {
       return (
-        <View testID="empty-rooms-message">
+        <View>
           <CentredText>
-            No empty rooms found :(
+            No empty rooms found 🙁
           </CentredText>
         </View>
 

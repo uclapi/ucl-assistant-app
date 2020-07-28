@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient"
 import _ from "lodash"
-import React from "react"
+import React, { useCallback } from "react"
 import {
   GestureResponderEvent,
   Platform,
@@ -9,7 +9,6 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native"
-
 import Colors from "../../constants/Colors"
 import Styles from "../../styles/Button"
 
@@ -21,42 +20,37 @@ interface WrapperProps {
   style?: ViewStyle,
 }
 
-class Wrapper extends React.Component<WrapperProps> {
-  debouncedOnPress = _.debounce((event) => {
-    const { onPress } = this.props
+const Wrapper: React.FC<WrapperProps> = ({ children, onPress, disabled }) => {
+  const debouncedOnPress = useCallback(_.debounce((event: GestureResponderEvent) => {
     onPress(event)
-  }, 200)
-
-  render() {
-    const { children, onPress, disabled } = this.props
-    if (Platform.OS === `android`) {
-      return (
-        <TouchableNativeFeedback
-          background={
-            TouchableNativeFeedback.Ripple(Colors.accentColorLight, true)
-          }
-          onPress={this.debouncedOnPress}
-          useForeground
-          style={Styles.buttonWrapper}
-          disabled={disabled}
-        >
-          {children}
-        </TouchableNativeFeedback>
-      )
-    }
-    if (Platform.OS === `ios`) {
-      return (
-        <TouchableOpacity
-          style={{ backgroundColor: `transparent` }}
-          onPress={onPress}
-          disabled={disabled}
-        >
-          {children}
-        </TouchableOpacity>
-      )
-    }
-    return null
+  }, 200), [onPress])
+  if (Platform.OS === `android`) {
+    return (
+      <TouchableNativeFeedback
+        background={
+          TouchableNativeFeedback.Ripple(Colors.accentColorLight, true)
+        }
+        onPress={debouncedOnPress}
+        useForeground
+        style={Styles.buttonWrapper}
+        disabled={disabled}
+      >
+        {children}
+      </TouchableNativeFeedback>
+    )
   }
+  if (Platform.OS === `ios`) {
+    return (
+      <TouchableOpacity
+        style={{ backgroundColor: `transparent` }}
+        onPress={onPress}
+        disabled={disabled}
+      >
+        {children}
+      </TouchableOpacity>
+    )
+  }
+  return null
 }
 
 export interface ActiveButtonProps extends ViewProps {

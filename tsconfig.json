@@ -13,8 +13,14 @@
     "strict": false, // not strict for now
     "sourceMap": true,
     "esModuleInterop": true,
+    "checkJs": false,
   },
   "include": [
     "./types/customTypes.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.js",
+    "**/*.jsx"
   ]
 }

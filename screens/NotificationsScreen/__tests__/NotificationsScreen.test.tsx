@@ -1,10 +1,7 @@
-/**
- * @jest-environment jsdom
- */
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
-import "react-native"
 import { NotificationsScreen } from ".."
+import { waitForEventLoop } from '../../../jest/test-utils'
 import { PushNotificationsManager } from '../../../lib'
 
 describe(`NotificationsScreen`, () => {
@@ -23,8 +20,11 @@ describe(`NotificationsScreen`, () => {
     mockRegisterForPushNotifications
   )
 
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
   beforeEach(() => {
-    jest.useRealTimers()
     jest.clearAllMocks()
     wrapper = render(<NotificationsScreen {...mockProps} />)
   })
@@ -38,9 +38,9 @@ describe(`NotificationsScreen`, () => {
   })
 
   it(`registers when enable notifications is pressed`, async () => {
-    const { getByTestId } = wrapper
-    fireEvent.press(getByTestId(`enable-notifications-button`))
-    await new Promise((resolve) => setTimeout(resolve, 0))
+    const { getByText } = wrapper
+    fireEvent.press(getByText(/Enable Notifications/i))
+    await waitForEventLoop()
 
     expect(mockRegisterForPushNotifications).toHaveBeenCalledTimes(1)
     expect(mockRegisterForPushNotifications).toHaveBeenCalledWith(
@@ -52,9 +52,9 @@ describe(`NotificationsScreen`, () => {
   })
 
   it(`does not register when the skip button is pressed`, async () => {
-    const { getByTestId } = wrapper
-    fireEvent.press(getByTestId(`skip-notifications-button`))
-    await new Promise((resolve) => setTimeout(resolve, 0))
+    const { getByText } = wrapper
+    fireEvent.press(getByText(/Skip/i))
+    await waitForEventLoop()
 
     expect(
       mockRegisterForPushNotifications,

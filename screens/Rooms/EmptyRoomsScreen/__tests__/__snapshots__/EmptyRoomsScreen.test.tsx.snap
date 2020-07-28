@@ -1,18 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmptyRoomsScreen calls getEmptyRooms 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#fefefe",
-        "flex": 0,
-      }
-    }
-  />,
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
     style={
       Object {
         "flex": 1,
@@ -20,318 +12,1293 @@ Array [
     }
   >
     <View
-      onLayout={[Function]}
+      collapsable={true}
+      pointerEvents="box-none"
       style={
-        Array [
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 1,
-            "flexDirection": "column",
-          },
-          Object {
-            "paddingBottom": 0,
-          },
-        ]
+        Object {
+          "flex": 1,
+        }
       }
     >
-      <RCTScrollView
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingBottom": 60,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-              "paddingTop": 20,
-            },
-            undefined,
-          ]
-        }
-        keyboardDismissMode="on-drag"
-        refreshControl={null}
+      <SafeAreaView
         style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            undefined,
-          ]
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 0,
+          }
+        }
+      />
+      <SafeAreaView
+        style={
+          Object {
+            "flex": 1,
+          }
         }
       >
-        <View>
-          <View
-            style={
+        <View
+          style={
+            Array [
               Object {
-                "paddingBottom": 20,
-              }
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "flexDirection": "column",
+              },
+              Object {
+                "paddingBottom": 0,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingBottom": 60,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 20,
+                },
+                undefined,
+              ]
+            }
+            keyboardDismissMode="on-drag"
+            refreshControl={null}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fefefe",
+                  "flex": 1,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                },
+                undefined,
+              ]
             }
           >
-            <ActivityIndicator
-              animating={true}
-              color="#999999"
-              hidesWhenStopped={true}
-              size="large"
-            />
-          </View>
+            <View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 20,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  Filter by:
+                </Text>
+                <View>
+                  <RNCPicker
+                    items={
+                      Array [
+                        Object {
+                          "label": "All Buildings",
+                          "textColor": undefined,
+                          "value": null,
+                        },
+                        Object {
+                          "label": "Bentham House",
+                          "textColor": undefined,
+                          "value": "b",
+                        },
+                        Object {
+                          "label": "Main Building",
+                          "textColor": undefined,
+                          "value": "main",
+                        },
+                      ]
+                    }
+                    selectedIndex={0}
+                    style={
+                      Array [
+                        Object {
+                          "height": 216,
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="building-picker"
+                  />
+                </View>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      Object {
+                        "marginBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Rooms vacant for the next hour:
+                </Text>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Bentham
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Classroom
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Galactica
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Lecture Theatre
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Denning
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Classroom
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </RCTScrollView>
         </View>
-      </RCTScrollView>
+      </SafeAreaView>
     </View>
-  </RCTSafeAreaView>,
-]
-`;
-
-exports[`EmptyRoomsScreen renders the loading screen 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#fefefe",
-        "flex": 0,
-      }
-    }
-  />,
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
     <View
-      onLayout={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 1,
-            "flexDirection": "column",
-          },
-          Object {
-            "paddingBottom": 0,
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "position": "absolute",
+          "width": "100%",
+        }
       }
     >
-      <RCTScrollView
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingBottom": 60,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-              "paddingTop": 20,
-            },
-            undefined,
-          ]
-        }
-        keyboardDismissMode="on-drag"
-        refreshControl={null}
+      <View
+        pointerEvents="box-none"
         style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            undefined,
-          ]
+          Object {
+            "bottom": "100%",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "paddingBottom": 4,
+            "paddingEnd": 4,
+            "position": "absolute",
+            "width": "100%",
+          }
         }
       >
-        <View>
-          <View
-            style={
-              Object {
-                "paddingBottom": 20,
-              }
+        <TouchableWithoutFeedback
+          hitSlop={
+            Object {
+              "bottom": 4,
+              "left": 4,
+              "right": 4,
+              "top": 4,
             }
-          >
-            <ActivityIndicator
-              animating={true}
-              color="#999999"
-              hidesWhenStopped={true}
-              size="large"
-            />
-          </View>
-        </View>
-      </RCTScrollView>
-    </View>
-  </RCTSafeAreaView>,
-]
-`;
-
-exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#fefefe",
-        "flex": 0,
-      }
-    }
-  />,
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <View
-      onLayout={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 1,
-            "flexDirection": "column",
-          },
-          Object {
-            "paddingBottom": 0,
-          },
-        ]
-      }
-    >
-      <RCTScrollView
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingBottom": 60,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-              "paddingTop": 20,
-            },
-            undefined,
-          ]
-        }
-        keyboardDismissMode="on-drag"
-        refreshControl={null}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            undefined,
-          ]
-        }
-      >
-        <View>
+          }
+        >
           <View
             style={
-              Object {
-                "paddingBottom": 20,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "borderRadius": 14,
+                  "height": 28,
+                  "justifyContent": "center",
+                  "paddingHorizontal": 12,
+                },
+              ]
             }
           >
             <Text
+              numberOfLines={1}
               style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "color": "rgba(255, 255, 255, 1)",
+                  "fontSize": 12,
+                  "includeFontPadding": false,
+                  "lineHeight": 16,
+                }
               }
             >
-              Filter by:
+              Dismiss All
             </Text>
-            <View>
-              <RNCPicker
-                items={
-                  Array [
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "category": "An update to ﻿%s inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act﻿%s",
+              "warnings": Array [
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
                     Object {
-                      "label": "All Buildings",
-                      "textColor": undefined,
-                      "value": null,
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
                     },
-                  ]
-                }
-                onChange={[Function]}
-                selectedIndex={0}
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+              ],
+            },
+          ]
+        }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEnabled={false}
+        scrollEventThrottle={50}
+        scrollsToTop={false}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": 48.5,
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <View
+            style={null}
+          >
+            <TouchableWithoutFeedback>
+              <View
                 style={
                   Array [
                     Object {
-                      "height": 216,
+                      "backgroundColor": "rgba(250, 186, 48, 0.95)",
                     },
-                    undefined,
+                    Object {
+                      "height": 48,
+                      "justifyContent": "center",
+                      "marginTop": 0.5,
+                      "paddingHorizontal": 12,
+                    },
                   ]
                 }
-                testID="building-picker"
-              />
-            </View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                  },
-                  Object {
-                    "marginBottom": 10,
-                  },
-                ]
-              }
-            >
-              Rooms vacant for the next hour:
-            </Text>
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <Text
+                    numberOfLines={2}
+                    style={
+                      Object {
+                        "color": "rgba(255, 255, 255, 1)",
+                        "flex": 1,
+                        "fontSize": 14,
+                        "includeFontPadding": false,
+                        "lineHeight": 18,
+                      }
+                    }
+                  >
+                    <Text>
+                      An update to 
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      ForwardRef(NavigationContainer)
+                    </Text>
+                    <Text>
+                       inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() =&gt; {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+      </RCTScrollView>
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "rgba(250, 186, 48, 0.95)",
+            "marginTop": 0.5,
+          }
+        }
+      />
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "#fefefe",
+          "flex": 0,
+        }
+      }
+    />
+    <SafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "flexDirection": "column",
+            },
+            Object {
+              "paddingBottom": 0,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingBottom": 60,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 20,
+              },
+              undefined,
+            ]
+          }
+          keyboardDismissMode="on-drag"
+          refreshControl={null}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View>
             <View
-              testID="empty-rooms-message"
+              style={
+                Object {
+                  "paddingBottom": 20,
+                }
+              }
             >
               <Text
                 style={
                   Array [
                     Object {
-                      "color": "#6E707F",
+                      "color": "#4D5061",
                       "fontFamily": "apercu",
                       "fontSize": 16,
-                      "marginBottom": 5,
-                      "marginTop": 5,
-                      "textAlign": "center",
+                      "marginBottom": 1,
+                      "marginTop": 1,
                     },
                     undefined,
                   ]
                 }
               >
-                No empty rooms found :(
+                Filter by:
               </Text>
+              <View>
+                <RNCPicker
+                  items={
+                    Array [
+                      Object {
+                        "label": "All Buildings",
+                        "textColor": undefined,
+                        "value": null,
+                      },
+                      Object {
+                        "label": "Bentham House",
+                        "textColor": undefined,
+                        "value": "b",
+                      },
+                      Object {
+                        "label": "Main Building",
+                        "textColor": undefined,
+                        "value": "main",
+                      },
+                    ]
+                  }
+                  selectedIndex={0}
+                  style={
+                    Array [
+                      Object {
+                        "height": 216,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="building-picker"
+                />
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
+                    },
+                    Object {
+                      "marginBottom": 10,
+                    },
+                  ]
+                }
+              >
+                Rooms vacant for the next hour:
+              </Text>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Bentham
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Classroom
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Galactica
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Lecture Theatre
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Denning
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Classroom
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
-        </View>
-      </RCTScrollView>
-    </View>
-  </RCTSafeAreaView>,
-]
+        </RCTScrollView>
+      </View>
+    </SafeAreaView>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
-exports[`EmptyRoomsScreen supports filtering by building 1`] = `
-Array [
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "backgroundColor": "#fefefe",
-        "flex": 0,
-      }
-    }
-  />,
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+exports[`EmptyRoomsScreen renders the loading screen 1`] = `
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
     style={
       Object {
         "flex": 1,
@@ -339,362 +1306,2660 @@ Array [
     }
   >
     <View
-      onLayout={[Function]}
+      collapsable={true}
+      pointerEvents="box-none"
       style={
-        Array [
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 1,
-            "flexDirection": "column",
-          },
-          Object {
-            "paddingBottom": 0,
-          },
-        ]
+        Object {
+          "flex": 1,
+        }
       }
     >
-      <RCTScrollView
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingBottom": 60,
-              "paddingLeft": 20,
-              "paddingRight": 20,
-              "paddingTop": 20,
-            },
-            undefined,
-          ]
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 0,
+          }
         }
-        keyboardDismissMode="on-drag"
-        refreshControl={null}
+      />
+      <SafeAreaView
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "flexDirection": "column",
+              },
+              Object {
+                "paddingBottom": 0,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingBottom": 60,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 20,
+                },
+                undefined,
+              ]
+            }
+            keyboardDismissMode="on-drag"
+            refreshControl={null}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fefefe",
+                  "flex": 1,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 20,
+                  }
+                }
+              >
+                <ActivityIndicator
+                  animating={true}
+                  color="#999999"
+                  hidesWhenStopped={true}
+                  size="large"
+                />
+              </View>
+            </View>
+          </RCTScrollView>
+        </View>
+      </SafeAreaView>
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "#fefefe",
+          "flex": 0,
+        }
+      }
+    />
+    <SafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
         style={
           Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "paddingLeft": 0,
-              "paddingRight": 0,
+              "flexDirection": "column",
             },
-            undefined,
+            Object {
+              "paddingBottom": 0,
+            },
           ]
         }
       >
-        <View>
+        <RCTScrollView
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingBottom": 60,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 20,
+              },
+              undefined,
+            ]
+          }
+          keyboardDismissMode="on-drag"
+          refreshControl={null}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 20,
+                }
+              }
+            >
+              <ActivityIndicator
+                animating={true}
+                color="#999999"
+                hidesWhenStopped={true}
+                size="large"
+              />
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+    </SafeAreaView>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={true}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 0,
+          }
+        }
+      />
+      <SafeAreaView
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "flexDirection": "column",
+              },
+              Object {
+                "paddingBottom": 0,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingBottom": 60,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 20,
+                },
+                undefined,
+              ]
+            }
+            keyboardDismissMode="on-drag"
+            refreshControl={null}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fefefe",
+                  "flex": 1,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 20,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  Filter by:
+                </Text>
+                <View>
+                  <RNCPicker
+                    items={
+                      Array [
+                        Object {
+                          "label": "All Buildings",
+                          "textColor": undefined,
+                          "value": null,
+                        },
+                      ]
+                    }
+                    selectedIndex={0}
+                    style={
+                      Array [
+                        Object {
+                          "height": 216,
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="building-picker"
+                  />
+                </View>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      Object {
+                        "marginBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Rooms vacant for the next hour:
+                </Text>
+                <View>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "marginBottom": 5,
+                          "marginTop": 5,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    No empty rooms found 🙁
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </RCTScrollView>
+        </View>
+      </SafeAreaView>
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        pointerEvents="box-none"
+        style={
+          Object {
+            "bottom": "100%",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "paddingBottom": 4,
+            "paddingEnd": 4,
+            "position": "absolute",
+            "width": "100%",
+          }
+        }
+      >
+        <TouchableWithoutFeedback
+          hitSlop={
+            Object {
+              "bottom": 4,
+              "left": 4,
+              "right": 4,
+              "top": 4,
+            }
+          }
+        >
           <View
             style={
-              Object {
-                "paddingBottom": 20,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "borderRadius": 14,
+                  "height": 28,
+                  "justifyContent": "center",
+                  "paddingHorizontal": 12,
+                },
+              ]
             }
           >
             <Text
+              numberOfLines={1}
               style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "color": "rgba(255, 255, 255, 1)",
+                  "fontSize": 12,
+                  "includeFontPadding": false,
+                  "lineHeight": 16,
+                }
               }
             >
-              Filter by:
+              Dismiss All
             </Text>
-            <View>
-              <RNCPicker
-                items={
-                  Array [
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "category": "An update to ﻿%s inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act﻿%s",
+              "warnings": Array [
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
                     Object {
-                      "label": "All Buildings",
-                      "textColor": undefined,
-                      "value": null,
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
                     },
                     Object {
-                      "label": "Bentham House",
-                      "textColor": undefined,
-                      "value": "b",
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
                     },
                     Object {
-                      "label": "Main Building",
-                      "textColor": undefined,
-                      "value": "main",
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
                     },
-                  ]
-                }
-                onChange={[Function]}
-                selectedIndex={2}
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+              ],
+            },
+          ]
+        }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEnabled={false}
+        scrollEventThrottle={50}
+        scrollsToTop={false}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": 48.5,
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <View
+            style={null}
+          >
+            <TouchableWithoutFeedback>
+              <View
                 style={
                   Array [
                     Object {
-                      "height": 216,
+                      "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                    },
+                    Object {
+                      "height": 48,
+                      "justifyContent": "center",
+                      "marginTop": 0.5,
+                      "paddingHorizontal": 12,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "rgba(255, 255, 255, 0.5)",
+                        "fontSize": 14,
+                        "includeFontPadding": false,
+                        "lineHeight": 18,
+                      }
+                    }
+                  >
+                    (2) 
+                  </Text>
+                  <Text
+                    numberOfLines={2}
+                    style={
+                      Object {
+                        "color": "rgba(255, 255, 255, 1)",
+                        "flex": 1,
+                        "fontSize": 14,
+                        "includeFontPadding": false,
+                        "lineHeight": 18,
+                      }
+                    }
+                  >
+                    <Text>
+                      An update to 
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      ForwardRef(NavigationContainer)
+                    </Text>
+                    <Text>
+                       inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() =&gt; {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
+      </RCTScrollView>
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "rgba(250, 186, 48, 0.95)",
+            "marginTop": 0.5,
+          }
+        }
+      />
+    </View>
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "#fefefe",
+          "flex": 0,
+        }
+      }
+    />
+    <SafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "flexDirection": "column",
+            },
+            Object {
+              "paddingBottom": 0,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingBottom": 60,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 20,
+              },
+              undefined,
+            ]
+          }
+          keyboardDismissMode="on-drag"
+          refreshControl={null}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 20,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
                     },
                     undefined,
                   ]
                 }
-                testID="building-picker"
-              />
-            </View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                  },
-                  Object {
-                    "marginBottom": 10,
-                  },
-                ]
-              }
-            >
-              Rooms vacant for the next hour:
-            </Text>
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                    },
-                    Object {
-                      "alignSelf": "stretch",
-                      "backgroundColor": "#fff",
-                      "borderRadius": 10,
-                      "marginBottom": 10,
-                      "marginLeft": 2,
-                      "marginRight": 2,
-                      "marginTop": 5,
-                      "padding": 10,
-                      "shadowColor": "#000",
-                      "shadowOffset": Object {
-                        "height": 2,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 0.1845,
-                      "shadowRadius": 1.62,
-                    },
-                  ]
-                }
               >
-                <View
-                  style={
-                    Object {
-                      "backgroundColor": "#eaeaea",
-                      "borderRadius": 80,
-                      "marginRight": 10,
-                      "padding": 10,
-                    }
+                Filter by:
+              </Text>
+              <View>
+                <RNCPicker
+                  items={
+                    Array [
+                      Object {
+                        "label": "All Buildings",
+                        "textColor": undefined,
+                        "value": null,
+                      },
+                    ]
                   }
-                >
-                  <Text
-                    allowFontScaling={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": undefined,
-                          "fontSize": 24,
-                        },
-                        undefined,
-                        Object {
-                          "fontFamily": "feather",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
-                        },
-                        Object {},
-                      ]
-                    }
-                  >
-                    
-                  </Text>
-                </View>
-                <View
+                  selectedIndex={0}
                   style={
-                    Object {
-                      "flex": 1,
-                    }
+                    Array [
+                      Object {
+                        "height": 216,
+                      },
+                      undefined,
+                    ]
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#4D5061",
-                          "fontFamily": "apercu-bold",
-                          "fontSize": 16,
-                          "marginBottom": 0,
-                          "marginTop": 1,
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    Galactica
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#6E707F",
-                          "fontFamily": "apercu",
-                          "fontSize": 16,
-                          "fontStyle": "italic",
-                          "marginBottom": 1,
-                          "marginTop": 0,
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    Lecture Theatre
-                  </Text>
-                </View>
+                  testID="building-picker"
+                />
               </View>
-            </View>
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <View
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
                     },
                     Object {
-                      "alignSelf": "stretch",
-                      "backgroundColor": "#fff",
-                      "borderRadius": 10,
                       "marginBottom": 10,
-                      "marginLeft": 2,
-                      "marginRight": 2,
-                      "marginTop": 5,
-                      "padding": 10,
-                      "shadowColor": "#000",
-                      "shadowOffset": Object {
-                        "height": 2,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 0.1845,
-                      "shadowRadius": 1.62,
                     },
                   ]
                 }
               >
-                <View
+                Rooms vacant for the next hour:
+              </Text>
+              <View>
+                <Text
                   style={
-                    Object {
-                      "backgroundColor": "#eaeaea",
-                      "borderRadius": 80,
-                      "marginRight": 10,
-                      "padding": 10,
-                    }
+                    Array [
+                      Object {
+                        "color": "#6E707F",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 5,
+                        "marginTop": 5,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
                   }
                 >
-                  <Text
-                    allowFontScaling={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": undefined,
-                          "fontSize": 24,
-                        },
-                        undefined,
-                        Object {
-                          "fontFamily": "feather",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
-                        },
-                        Object {},
-                      ]
-                    }
-                  >
-                    
-                  </Text>
-                </View>
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#4D5061",
-                          "fontFamily": "apercu-bold",
-                          "fontSize": 16,
-                          "marginBottom": 0,
-                          "marginTop": 1,
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    Denning
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#6E707F",
-                          "fontFamily": "apercu",
-                          "fontSize": 16,
-                          "fontStyle": "italic",
-                          "marginBottom": 1,
-                          "marginTop": 0,
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    Classroom
-                  </Text>
-                </View>
+                  No empty rooms found 🙁
+                </Text>
               </View>
             </View>
           </View>
+        </RCTScrollView>
+      </View>
+    </SafeAreaView>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`EmptyRoomsScreen supports filtering by building 1`] = `
+Object {
+  "asJSON": [Function],
+  "baseElement": <View
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={true}
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 0,
+          }
+        }
+      />
+      <SafeAreaView
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "flexDirection": "column",
+              },
+              Object {
+                "paddingBottom": 0,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              Array [
+                Object {
+                  "paddingBottom": 60,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 20,
+                },
+                undefined,
+              ]
+            }
+            keyboardDismissMode="on-drag"
+            refreshControl={null}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fefefe",
+                  "flex": 1,
+                  "paddingLeft": 0,
+                  "paddingRight": 0,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 20,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  Filter by:
+                </Text>
+                <View>
+                  <RNCPicker
+                    items={
+                      Array [
+                        Object {
+                          "label": "All Buildings",
+                          "textColor": undefined,
+                          "value": null,
+                        },
+                        Object {
+                          "label": "Bentham House",
+                          "textColor": undefined,
+                          "value": "b",
+                        },
+                        Object {
+                          "label": "Main Building",
+                          "textColor": undefined,
+                          "value": "main",
+                        },
+                      ]
+                    }
+                    selectedIndex={0}
+                    style={
+                      Array [
+                        Object {
+                          "height": 216,
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="building-picker"
+                  />
+                </View>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#4D5061",
+                        "fontFamily": "apercu",
+                        "fontSize": 16,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                      },
+                      Object {
+                        "marginBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Rooms vacant for the next hour:
+                </Text>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Bentham
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Classroom
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Galactica
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Lecture Theatre
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "center",
+                        },
+                        Object {
+                          "alignSelf": "stretch",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "marginBottom": 10,
+                          "marginLeft": 2,
+                          "marginRight": 2,
+                          "marginTop": 5,
+                          "padding": 10,
+                          "shadowColor": "#000",
+                          "shadowOffset": Object {
+                            "height": 2,
+                            "width": 0,
+                          },
+                          "shadowOpacity": 0.1845,
+                          "shadowRadius": 1.62,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                          "borderRadius": 80,
+                          "marginRight": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": undefined,
+                              "fontSize": 24,
+                            },
+                            undefined,
+                            Object {
+                              "fontFamily": "feather",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                            Object {},
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#4D5061",
+                              "fontFamily": "apercu-bold",
+                              "fontSize": 16,
+                              "marginBottom": 0,
+                              "marginTop": 1,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Denning
+                      </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "color": "#6E707F",
+                              "fontFamily": "apercu",
+                              "fontSize": 16,
+                              "fontStyle": "italic",
+                              "marginBottom": 1,
+                              "marginTop": 0,
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        Classroom
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </RCTScrollView>
+        </View>
+      </SafeAreaView>
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        pointerEvents="box-none"
+        style={
+          Object {
+            "bottom": "100%",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "paddingBottom": 4,
+            "paddingEnd": 4,
+            "position": "absolute",
+            "width": "100%",
+          }
+        }
+      >
+        <TouchableWithoutFeedback
+          hitSlop={
+            Object {
+              "bottom": 4,
+              "left": 4,
+              "right": 4,
+              "top": 4,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "borderRadius": 14,
+                  "height": 28,
+                  "justifyContent": "center",
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                Object {
+                  "color": "rgba(255, 255, 255, 1)",
+                  "fontSize": 12,
+                  "includeFontPadding": false,
+                  "lineHeight": 16,
+                }
+              }
+            >
+              Dismiss All
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "category": "An update to ﻿%s inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act﻿%s",
+              "warnings": Array [
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+                YellowBoxWarning {
+                  "message": Object {
+                    "content": "An update to ForwardRef(NavigationContainer) inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)",
+                    "substitutions": Array [
+                      Object {
+                        "length": 31,
+                        "offset": 13,
+                      },
+                      Object {
+                        "length": 310,
+                        "offset": 390,
+                      },
+                    ],
+                  },
+                  "stack": Array [
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                      "lineNumber": 58,
+                      "methodName": "Function.parse",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 56,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 180,
+                      "methodName": "registerError",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 21,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 84,
+                      "methodName": "errorImpl",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 13,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                      "lineNumber": 63,
+                      "methodName": "BufferedConsole.console.error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 29,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 120,
+                      "methodName": "printWarning",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 4,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 92,
+                      "methodName": "error",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 6,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 13729,
+                      "methodName": "warnIfNotCurrentlyActingUpdatesInDEV",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 8,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                      "lineNumber": 6405,
+                      "methodName": "setState",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 10,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/@react-navigation/native/lib/commonjs/useThenable.tsx",
+                      "lineNumber": 30,
+                      "methodName": "resolve$",
+                    },
+                    Object {
+                      "arguments": Array [],
+                      "column": 39,
+                      "file": "/home/huey/Desktop/ucl-assistant-app/node_modules/regenerator-runtime/runtime.js",
+                      "lineNumber": 45,
+                      "methodName": "tryCatch",
+                    },
+                  ],
+                  "symbolicated": Object {
+                    "error": null,
+                    "stack": null,
+                    "status": "NONE",
+                  },
+                },
+              ],
+            },
+          ]
+        }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEnabled={false}
+        scrollEventThrottle={50}
+        scrollsToTop={false}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": 48.5,
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <View
+            style={null}
+          >
+            <TouchableWithoutFeedback>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                    },
+                    Object {
+                      "height": 48,
+                      "justifyContent": "center",
+                      "marginTop": 0.5,
+                      "paddingHorizontal": 12,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "rgba(255, 255, 255, 0.5)",
+                        "fontSize": 14,
+                        "includeFontPadding": false,
+                        "lineHeight": 18,
+                      }
+                    }
+                  >
+                    (4) 
+                  </Text>
+                  <Text
+                    numberOfLines={2}
+                    style={
+                      Object {
+                        "color": "rgba(255, 255, 255, 1)",
+                        "flex": 1,
+                        "fontSize": 14,
+                        "includeFontPadding": false,
+                        "lineHeight": 18,
+                      }
+                    }
+                  >
+                    <Text>
+                      An update to 
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      ForwardRef(NavigationContainer)
+                    </Text>
+                    <Text>
+                       inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() =&gt; {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://fb.me/react-wrap-tests-with-act
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "rgba(255, 255, 255, 0.6)",
+                        }
+                      }
+                    >
+                      
+    in ForwardRef(NavigationContainer) (created by Wrapper)
+    in Provider (created by Wrapper)
+    in Wrapper (at src/index.js:23)
+    in View (created by View)
+    in View (created by AppContainer)
+    in View (created by View)
+    in View (created by AppContainer)
+    in AppContainer (at src/index.js:22)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
       </RCTScrollView>
+      <SafeAreaView
+        style={
+          Object {
+            "backgroundColor": "rgba(250, 186, 48, 0.95)",
+            "marginTop": 0.5,
+          }
+        }
+      />
     </View>
-  </RCTSafeAreaView>,
-]
+  </View>,
+  "container": <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "#fefefe",
+          "flex": 0,
+        }
+      }
+    />
+    <SafeAreaView
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "flexDirection": "column",
+            },
+            Object {
+              "paddingBottom": 0,
+            },
+          ]
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingBottom": 60,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 20,
+              },
+              undefined,
+            ]
+          }
+          keyboardDismissMode="on-drag"
+          refreshControl={null}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fefefe",
+                "flex": 1,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "paddingBottom": 20,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                Filter by:
+              </Text>
+              <View>
+                <RNCPicker
+                  items={
+                    Array [
+                      Object {
+                        "label": "All Buildings",
+                        "textColor": undefined,
+                        "value": null,
+                      },
+                      Object {
+                        "label": "Bentham House",
+                        "textColor": undefined,
+                        "value": "b",
+                      },
+                      Object {
+                        "label": "Main Building",
+                        "textColor": undefined,
+                        "value": "main",
+                      },
+                    ]
+                  }
+                  selectedIndex={0}
+                  style={
+                    Array [
+                      Object {
+                        "height": 216,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="building-picker"
+                />
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
+                    },
+                    Object {
+                      "marginBottom": 10,
+                    },
+                  ]
+                }
+              >
+                Rooms vacant for the next hour:
+              </Text>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Bentham
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Classroom
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Galactica
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Lecture Theatre
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.9}
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "alignSelf": "stretch",
+                        "backgroundColor": "#fff",
+                        "borderRadius": 10,
+                        "marginBottom": 10,
+                        "marginLeft": 2,
+                        "marginRight": 2,
+                        "marginTop": 5,
+                        "padding": 10,
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 2,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.1845,
+                        "shadowRadius": 1.62,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "#eaeaea",
+                        "borderRadius": 80,
+                        "marginRight": 10,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": undefined,
+                            "fontSize": 24,
+                          },
+                          undefined,
+                          Object {
+                            "fontFamily": "feather",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#4D5061",
+                            "fontFamily": "apercu-bold",
+                            "fontSize": 16,
+                            "marginBottom": 0,
+                            "marginTop": 1,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Denning
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#6E707F",
+                            "fontFamily": "apercu",
+                            "fontSize": 16,
+                            "fontStyle": "italic",
+                            "marginBottom": 1,
+                            "marginTop": 0,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      Classroom
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+    </SafeAreaView>
+  </View>,
+  "debug": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByHintText": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByDisplayValue": [Function],
+  "findByHintText": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByHintText": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByDisplayValue": [Function],
+  "getByHintText": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByHintText": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByHintText": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
