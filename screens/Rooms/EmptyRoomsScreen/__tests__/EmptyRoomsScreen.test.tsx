@@ -1,6 +1,6 @@
-import { cleanup, fireEvent } from '@testing-library/react-native'
+import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
-import { render, waitForEventLoop } from '../../../../jest/test-utils'
+import { waitForEventLoop } from '../../../../jest/test-utils'
 import ApiManager from "../../../../lib/ApiManager"
 import { EmptyRoomsScreen } from '../EmptyRoomsScreen'
 
@@ -38,6 +38,10 @@ describe(`EmptyRoomsScreen`, () => {
     () => Promise.resolve(sampleRooms),
   ) as jest.Mock
   ApiManager.rooms.getEmptyRooms = mockGetEmptyRooms
+
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
 
   beforeEach(() => {
     jest.clearAllMocks()
