@@ -1,5 +1,9 @@
 name: build & test
-on: push
+on:
+  push:
+    paths-ignore:
+      - ".github/**"
+      - "README.md"
 
 jobs:
   build:
