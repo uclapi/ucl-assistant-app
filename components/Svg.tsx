@@ -1,20 +1,25 @@
-import React, { FunctionComponent, ReactElement } from "react"
+import React from "react"
 import { ViewStyle } from "react-native"
-import { WebView } from "react-native-webview"
+import { WebView, WebViewProps } from "react-native-webview"
 
 type PointerEvents = `box-none` | `none` | `box-only` | `auto`
 
-interface Props {
-  bounces: boolean,
-  pointerEvents: PointerEvents,
-  scrollEnabled: boolean,
-  style: ViewStyle,
+interface Props extends WebViewProps {
+  bounces?: boolean,
+  pointerEvents?: PointerEvents,
+  scrollEnabled?: boolean,
+  style?: ViewStyle,
   uri: string,
 }
 
-const Svg: FunctionComponent<Props> = ({
-  uri, style, scrollEnabled, bounces, pointerEvents,
-}): ReactElement => {
+const Svg: React.FC<Props> = ({
+  uri,
+  style = {},
+  scrollEnabled = false,
+  bounces = false,
+  pointerEvents = `none`,
+  ...props
+}) => {
   // arbitrarily large width & height that caters to the largest floorplans
   const openingHtml = `<html>
     <head>
@@ -51,18 +56,9 @@ const Svg: FunctionComponent<Props> = ({
       bounces={bounces}
       dataDetectorTypes="none"
       pointerEvents={pointerEvents}
+      {...props}
     />
   )
 }
-
-const defaultProps = {
-  bounces: false,
-  pointerEvents: `none` as PointerEvents,
-  scrollEnabled: false,
-  style: {},
-  uri: ``,
-}
-
-Svg.defaultProps = defaultProps
 
 export default Svg

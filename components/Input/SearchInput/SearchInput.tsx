@@ -1,9 +1,7 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-
+import { StyleSheet, TextInput, TextInputProps } from 'react-native'
 import { SmallButton } from "../../Button"
 import { Horizontal } from "../../Containers"
-import TextInput from "../TextInput"
 
 const styles = StyleSheet.create({
   textInput: {
@@ -12,7 +10,7 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
+interface Props extends TextInputProps {
   query: string,
   clear: () => void,
   onChangeQuery: (s: string) => void,
@@ -24,6 +22,7 @@ const SearchInput: React.FunctionComponent<Props> = ({
   clear = () => { },
   onChangeQuery = () => { },
   placeholder = `Search`,
+  ...otherProps
 }) => (
     <Horizontal>
       <TextInput
@@ -32,11 +31,12 @@ const SearchInput: React.FunctionComponent<Props> = ({
         value={query}
         clearButtonMode="always"
         style={styles.textInput}
+        {...otherProps}
       />
       {query.length > 0 ? (
-        <SmallButton onPress={clear}>Clear</SmallButton>
+      <SmallButton onPress={clear}>Clear</SmallButton>
       ) : null}
     </Horizontal>
-  )
+)
 
 export default SearchInput

@@ -1,17 +1,16 @@
 import React from "react"
 import {
-  Text, TextStyle,
+  StyleProp, Text, TextProps, TextStyle,
 } from "react-native"
-
 import Style from "../../styles/Typography"
 
-interface Props {
+interface Props extends TextProps {
   children: React.ReactElement | string,
-  style?: TextStyle,
+  style?: StyleProp<TextStyle>,
 }
 
-const HeaderText: React.FunctionComponent<Props> = ({ children, style }) => (
-  <Text style={[Style.headerText, style]}>{children}</Text>
+const HeaderText: React.FunctionComponent<Props> = ({ children, style, ...props }) => (
+  <Text style={[Style.headerText, style]} {...props}>{children}</Text>
 )
 
 export default HeaderText

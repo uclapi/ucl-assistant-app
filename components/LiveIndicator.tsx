@@ -1,30 +1,32 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { ViewPropTypes } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import { BodyText } from "./Typography"
+import React from "react"
+import {
+  StyleProp, StyleSheet, ViewProps, ViewStyle,
+} from "react-native"
 import Colors from "../constants/Colors"
 import Style from "../styles/Containers"
+import { BodyText } from "./Typography"
 
-const LiveIndicator = ({ children, style }): React.ReactElement => (
+const styles = StyleSheet.create({
+  text: {
+    color: Colors.pageBackground,
+  },
+})
+
+interface Props extends ViewProps {
+  children?: React.ReactNode,
+  style?: StyleProp<ViewStyle>,
+}
+
+const LiveIndicator: React.FC<Props> = ({ children = `LIVE`, style = {} }) => (
   <LinearGradient
     colors={[Colors.errorColor, Colors.indicatorOrange]}
     start={[0, 1]}
     end={[1, 0]}
     style={[Style.liveIndicator, style]}
   >
-    <BodyText style={{ color: Colors.pageBackground }}>{children}</BodyText>
+    <BodyText style={styles.text}>{children}</BodyText>
   </LinearGradient>
 )
-
-LiveIndicator.propTypes = {
-  children: PropTypes.string,
-  style: ViewPropTypes.style,
-}
-
-LiveIndicator.defaultProps = {
-  children: "LIVE",
-  style: {},
-}
 
 export default LiveIndicator

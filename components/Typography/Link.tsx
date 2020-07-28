@@ -1,13 +1,12 @@
-import React from "react"
+import React, { useCallback } from "react"
 import {
-  StyleSheet,
+  StyleProp, StyleSheet,
   Text,
   TextStyle,
   TouchableOpacity,
   ViewProps,
   ViewStyle,
 } from "react-native"
-
 import Colors from "../../constants/Colors"
 import WebBrowserManager from "../../lib/WebBrowserManager"
 import Style from "../../styles/Typography"
@@ -18,51 +17,39 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
-  children: React.ReactElement | string,
-  containerStyle?: ViewStyle,
+interface Props extends ViewProps {
+  children: React.ReactNode | string,
+  containerStyle?: StyleProp<ViewStyle>,
   href?: string,
   onPress?: () => void,
-  style?: TextStyle,
+  style?: StyleProp<TextStyle>,
 }
 
-class Link extends React.Component<Props & ViewProps> {
-  static defaultProps = {
-    children: ``,
-    containerStyle: {},
-    href: ``,
-    onPress: null,
-    style: {},
-  }
-
-  openLink = (): void => {
-    const { href } = this.props
+const Link: React.FC<Props> = ({
+  href,
+  children,
+  containerStyle = {},
+  onPress,
+  style = {},
+  ...props
+}) => {
+  const openLink = useCallback((): void => {
     if (href) {
       WebBrowserManager.openLink(href)
     }
-  }
+  }, [href])
 
-  render(): React.ReactElement {
-    const {
-      children,
-      containerStyle,
-      onPress,
-      style,
-    } = this.props
-    return (
-      <TouchableOpacity
-        onPress={onPress || this.openLink}
-        style={containerStyle}
-      >
-        <Text
-          style={[Style.bodyText, styles.linkText, style]}
-        >
-          {children}
-        </Text>
-      </TouchableOpacity>
+  return (
+    <TouchableOpacity
+      onPress={onPress || openLink}
+      style={containerStyle}
+    >
+      <Text style={[Style.bodyText, styles.linkText, style]} {...props}>
+        {children}
+      </Text>
+    </TouchableOpacity>
 
-    )
-  }
+  )
 }
 
 export default Link

@@ -1,11 +1,18 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-
+import {
+  StyleSheet, TextProps, TextStyle, View,
+  ViewStyle,
+} from 'react-native'
 import Colors from '../../constants/Colors'
 import Shadow from '../../lib/Shadow'
 import { ErrorText } from '../Typography'
 
-const styles = StyleSheet.create({
+interface Styles {
+  errorMessage: ViewStyle,
+  errorText: TextStyle,
+}
+
+const styles = StyleSheet.create<Styles>({
   errorMessage: {
     alignContent: `center`,
     backgroundColor: Colors.white,
@@ -20,9 +27,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const ErrorMessage = ({ error }) => (
+interface Props extends TextProps {
+  error: string,
+}
+
+const ErrorMessage: React.FC<Props> = ({ error, ...otherProps }) => (
   <View style={styles.errorMessage}>
-    <ErrorText style={styles.errorText}>{error}</ErrorText>
+    <ErrorText style={styles.errorText} {...otherProps}>{error}</ErrorText>
   </View>
 )
 

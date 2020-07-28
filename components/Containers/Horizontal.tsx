@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, ViewStyle } from 'react-native'
+import {
+  StyleSheet, View, ViewProps, ViewStyle,
+} from 'react-native'
 
 const styles = StyleSheet.create({
   horizontal: {
@@ -9,13 +11,13 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
+interface Props extends ViewProps {
   style?: ViewStyle,
   children: React.ReactNode,
 }
 
-const Horizontal: React.FC<Props> = ({ children, style }) => (
-  <View style={[styles.horizontal, style]}>{children}</View>
+const Horizontal: React.FC<Props> = ({ children, style, ...otherProps }) => (
+  <View style={[styles.horizontal, style]} {...otherProps}>{children}</View>
 )
 
 export default Horizontal

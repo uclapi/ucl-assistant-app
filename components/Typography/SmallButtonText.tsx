@@ -1,17 +1,18 @@
 import React from 'react'
-import { Text, TextStyle } from 'react-native'
-
+import {
+  StyleProp, Text, TextProps, TextStyle,
+} from 'react-native'
 import Style from "../../styles/Typography"
 
-interface Props {
-  style?: TextStyle,
-  children: React.ReactElement | string,
+interface Props extends TextProps {
+  style?: StyleProp<TextStyle>,
+  children: React.ReactNode | string,
 }
 
-const SmallButtonText: React.FunctionComponent<Props> = ({
-  children, style,
+const SmallButtonText: React.FC<Props> = ({
+  children, style, ...props
 }) => (
-    <Text style={[Style.smallButtonText, style]}>{children}</Text>
+    <Text style={[Style.smallButtonText, style]} {...props}>{children}</Text>
 )
 
 export default SmallButtonText

@@ -1,6 +1,5 @@
 import React from "react"
-import { StyleSheet, View } from "react-native"
-
+import { StyleSheet, View, ViewProps } from "react-native"
 
 const styles = StyleSheet.create({
   main: {
@@ -11,12 +10,12 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
+interface Props extends ViewProps {
   children: React.ReactNode,
 }
 
-const CenterView: React.FC<Props> = ({ children }) => (
-  <View style={styles.main}>{children}</View>
+const CenterView: React.FC<Props> = ({ children, ...otherProps }) => (
+  <View style={styles.main} {...otherProps}>{children}</View>
 )
 
 export default CenterView

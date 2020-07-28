@@ -1,15 +1,16 @@
 import React from 'react'
-import { Text, TextStyle } from 'react-native'
-
+import {
+  StyleProp, Text, TextProps, TextStyle,
+} from 'react-native'
 import Style from "../../styles/Typography"
 
-interface Props {
-  style?: TextStyle,
+interface Props extends TextProps {
+  style?: StyleProp<TextStyle>,
   children: React.ReactElement | string,
 }
 
-const SubtitleText: React.FunctionComponent<Props> = ({ children, style }) => (
-  <Text style={[Style.subtitleText, style]}>{children}</Text>
+const SubtitleText: React.FC<Props> = ({ children, style, ...props }) => (
+  <Text style={[Style.subtitleText, style]} {...props}>{children}</Text>
 )
 
 export default SubtitleText
