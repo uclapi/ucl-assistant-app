@@ -51,7 +51,11 @@ export const RecentResults: React.FC<RecentResultsProps> = ({
     <View>
       <SubtitleText>Recently Searched</SubtitleText>
       {recents.map((recent) => (
-        <RecentResult key={recent.email} recent={recent} navigation={navigation} />
+        <RecentResult
+          key={`${recent.email}-${recent.name}`}
+          recent={recent}
+          navigation={navigation}
+        />
       ))}
       {recents.length > 0 ? (
         <Button onPress={clearRecentResults}>Clear</Button>

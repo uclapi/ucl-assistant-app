@@ -104,7 +104,7 @@ export const SearchControl: React.FC<Props> = ({
 
       {searchResults.map((result) => (
         <SearchResult
-          key={result.email}
+          key={`${result.email}-${result.name}`}
           topText={result.name}
           bottomText={result.department}
           type="person"
