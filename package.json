@@ -71,7 +71,7 @@
     "expo-intent-launcher": "~8.2.1",
     "expo-linear-gradient": "~8.2.1",
     "expo-localization": "~8.2.1",
-    "expo-mail-composer": "~8.2.1",
+    "expo-mail-composer": "~8.3.0",
     "expo-network": "~2.2.1",
     "expo-notifications": "~0.3.3",
     "expo-permissions": "~9.0.1",
