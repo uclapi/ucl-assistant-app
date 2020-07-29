@@ -1,9 +1,7 @@
 import { StackNavigationProp } from "@react-navigation/stack"
-import React from "react"
+import React, { useCallback } from "react"
 import { View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import { generate } from "shortid"
-
 import {
   clearRecentResults as clearRecentsResultsAction,
   PeopleDispatch,
@@ -12,51 +10,54 @@ import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
-import { Person } from "../../../types/uclapi"
+import type { Person } from "../../../types/uclapi"
 import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
-interface Props extends PropsFromRedux {
+interface RecentResultProp {
+  recent: Person,
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
-export class RecentResults extends React.Component<Props> {
-  viewPerson = (person: Person) => (): void => {
-    const { navigation } = this.props
-    navigation.navigate(`PeopleDetail`, person)
-  }
+const RecentResult: React.FC<RecentResultProp> = ({ recent, navigation }) => {
+  const viewPerson = useCallback(
+    (person: Person) => (): void => navigation.navigate(`PeopleDetail`, person),
+    [navigation],
+  )
 
-  renderRecent = (recent = null): React.ReactNode => {
-    if (recent === null) {
-      return null
-    }
-    return (
-      <SearchResult
-        key={generate()}
-        topText={recent.name}
-        bottomText={recent.department}
-        type="person"
-        onPress={this.viewPerson(recent)}
-      />
-    )
-  }
+  return recent ? (
+    <SearchResult
+      key={recent.email}
+      topText={recent.name}
+      bottomText={recent.department}
+      type="person"
+      onPress={viewPerson(recent)}
+    />
+  ) : null
+}
 
-  render(): React.ReactElement {
-    const { recents = [], clearRecentResults } = this.props
-    if (recents.length === 0) {
-      return null
-    }
-    return (
-      <View>
-        <SubtitleText>Recently Searched</SubtitleText>
-        {recents.map(this.renderRecent)}
-        {recents.length > 0 ? (
-          <Button onPress={clearRecentResults}>Clear</Button>
-        ) : (
-            <CentredText>Recent results will appear here.</CentredText>
-        )}
-      </View>
-    )
+interface RecentResultsProps extends PropsFromRedux {
+  navigation: StackNavigationProp<PeopleNavigatorParamList>,
+}
+
+const RecentResults: React.FC<RecentResultsProps> = ({
+  recents = [],
+  clearRecentResults,
+  navigation,
+}) => {
+  if (recents.length === 0) {
+    return null
   }
+  return (
+    <View>
+      <SubtitleText>Recently Searched</SubtitleText>
+      {recents.map((recent) => <RecentResult recent={recent} navigation={navigation} />)}
+      {recents.length > 0 ? (
+        <Button onPress={clearRecentResults}>Clear</Button>
+      ) : (
+        <CentredText>Recent results will appear here.</CentredText>
+      )}
+    </View>
+  )
 }
 
 const connector = connect(

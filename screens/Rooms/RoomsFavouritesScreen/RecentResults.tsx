@@ -1,9 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from "react"
+import React, { useCallback } from "react"
 import { StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import { generate } from "shortid"
-
 import { clearRecents } from "../../../actions/roomsActions"
 import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
@@ -18,41 +16,42 @@ const styles = StyleSheet.create({
   },
 })
 
-interface Props {
+interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<RoomsNavigatorParamList>,
 }
 
-class RecentResults extends React.Component<Props & PropsFromRedux> {
-  navigateToRoomDetail = (room: Room) => () => {
-    const { navigation } = this.props
-    navigation.navigate(`RoomsDetail`, { room })
-  }
+const RecentResults: React.FC<Props> = ({
+  recents = [],
+  clearRecentRooms,
+  navigation,
+}) => {
+  const navigateToRoomDetail = useCallback(
+    (room: Room) => () => navigation.navigate(`RoomsDetail`, { room }),
+    [navigation],
+  )
 
-  render() {
-    const { recents, clearRecentRooms } = this.props
-    if (recents.length === 0) {
-      return null
-    }
-    return (
-      <View style={styles.container}>
-        <SubtitleText>Recently Searched</SubtitleText>
-        {recents.map((res) => (
-          <SearchResult
-            key={generate()}
-            topText={res.roomname}
-            bottomText={res.classification_name}
-            type="location"
-            onPress={this.navigateToRoomDetail(res)}
-          />
-        ))}
-        {recents.length > 0 ? (
-          <Button onPress={clearRecentRooms}>Clear</Button>
-        ) : (
-            <CentredText>Recent results will appear here.</CentredText>
-        )}
-      </View>
-    )
+  if (recents.length === 0) {
+    return null
   }
+  return (
+    <View style={styles.container}>
+      <SubtitleText>Recently Searched</SubtitleText>
+      {recents.map((res) => (
+        <SearchResult
+          key={`${res.siteid}---${res.roomid}`}
+          topText={res.roomname}
+          bottomText={res.classification_name}
+          type="location"
+          onPress={navigateToRoomDetail(res)}
+        />
+      ))}
+      {recents.length > 0 ? (
+        <Button onPress={clearRecentRooms}>Clear</Button>
+      ) : (
+        <CentredText>Recent results will appear here.</CentredText>
+      )}
+    </View>
+  )
 }
 
 const connector = connect(

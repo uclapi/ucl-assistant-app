@@ -1,17 +1,21 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import {
   Image,
-  StyleSheet,
+
+  ImageStyle, StyleProp, StyleSheet,
   View,
   ViewStyle,
 } from 'react-native'
-
 import { CentredText } from "../../../../components/Typography"
 import { AssetManager, Random } from "../../../../lib"
 import Styles from "../../../../styles/Containers"
 
+interface Style {
+  container: ViewStyle,
+  timetableImage: ImageStyle,
+}
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Style>({
   container: {
     flex: 1,
     justifyContent: `center`,
@@ -35,7 +39,7 @@ const relaxIllustration = Random.array([
 ])
 
 type Props = {
-  style?: ViewStyle,
+  style?: StyleProp<ViewStyle>,
 }
 
 const FreeWeek: FunctionComponent<Props> = ({ style }): ReactElement => (

@@ -1,9 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack'
-import React from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import { generate } from "shortid"
-
 import {
   PeopleDispatch,
   search as searchAction,
@@ -26,125 +24,95 @@ const styles = StyleSheet.create({
 })
 
 const MIN_QUERY_LENGTH = 4
+const SEARCH_DELAY = 500
+
+const SearchStatus = ({ query, searchResults = [] }) => {
+  if (query.length === 0) {
+    return <CentredText>Start typing to get search results </CentredText>
+  }
+  if (query.length < MIN_QUERY_LENGTH && searchResults.length === 0) {
+    return <CentredText>Please enter a few more characters </CentredText>
+  }
+  if (query.length > 0 && searchResults.length === 0) {
+    return <CentredText>No results found.</CentredText>
+  }
+  return null
+}
 
 interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
-interface State {
-  query: string,
-}
+const SearchControl: React.FC<Props> = ({
+  search,
+  token,
+  clearRecentResults,
+  error = ``,
+  isSearching = false,
+  searchResults = [],
+  navigation,
+}) => {
+  const searchTimer = useRef<ReturnType<typeof setTimeout>>()
+  const [query, setQuery] = useState(``)
 
-export class SearchControl extends React.Component<Props, State> {
-  static SEARCH_DELAY = 500
-
-  private searchTimer = null
-
-  constructor(props: Props) {
-    super(props)
-
-    this.state = {
-      query: ``,
-    }
-  }
-
-  onQueryChange = (query: string): void => {
-    clearTimeout(this.searchTimer)
-    this.searchTimer = setTimeout(
-      () => this.search(query),
-      SearchControl.SEARCH_DELAY,
+  const onSearch = useCallback((q: string) => search(token, q), [search, token])
+  const onQueryChange = useCallback((q: string): void => {
+    clearTimeout(searchTimer.current)
+    searchTimer.current = setTimeout(
+      () => onSearch(q),
+      SEARCH_DELAY,
     )
-    this.setState({ query })
-  }
-
-  search = (query: string): void => {
-    const { search, token } = this.props
-    search(token, query)
-  }
-
-  clear = (): void => {
-    const { clearRecentResults } = this.props
+    setQuery(q)
+  }, [onSearch, searchTimer])
+  const clear = useCallback((): void => {
     clearRecentResults()
-    this.setState({ query: `` })
-  }
+    setQuery(``)
+  }, [clearRecentResults])
+  const viewPerson = useCallback(
+    (person: Person) => () => navigation.navigate(`PeopleDetail`, person),
+    [navigation],
+  )
 
-  renderStatusText = (): React.ReactNode => {
-    const { query } = this.state
-    const { searchResults = [] } = this.props
-    if (query.length === 0) {
-      return <CentredText>Start typing to get search results </CentredText>
-    }
-    if (query.length < MIN_QUERY_LENGTH && searchResults.length === 0) {
-      return <CentredText>Please enter a few more characters </CentredText>
-    }
-    if (query.length > 0 && searchResults.length === 0) {
-      return <CentredText>No results found.</CentredText>
-    }
-    return null
-  }
-
-  viewPerson = (person: Person) => (): void => {
-    const { navigation } = this.props
-    navigation.navigate(`PeopleDetail`, person)
-  }
-
-  renderResult = (res = null): React.ReactNode => {
-    if (res === null) {
-      return null
-    }
-    return (
-      <SearchResult
-        key={generate()}
-        topText={res.name}
-        bottomText={res.department}
-        type="person"
-        onPress={this.viewPerson(res)}
-      />
-    )
-  }
-
-  render(): React.ReactElement {
-    const { query } = this.state
-    const {
-      error = ``,
-      isSearching = false,
-      searchResults = [],
-    } = this.props
-    return (
-      <View>
-        <Horizontal>
-          <TextInput
-            placeholder="Search for a name or email..."
-            onChangeText={this.onQueryChange}
-            value={query}
-            clearButtonMode="always"
-            style={styles.textInput}
-          />
-          {
-            query.length > 0 ? (
-              <SmallButton onPress={this.clear}> Clear </SmallButton>
-            ) : null
-          }
-        </Horizontal>
+  return (
+    <View>
+      <Horizontal>
+        <TextInput
+          placeholder="Search for a name or email..."
+          onChangeText={onQueryChange}
+          value={query}
+          clearButtonMode="always"
+          style={styles.textInput}
+        />
         {
-          error.length > 0 && query.length > 2 && (
-            <CentredText>
-              {`Error! ${error} `}
-              {` `}
-            </CentredText>
-          )
+          query.length > 0 ? (
+            <SmallButton onPress={clear}> Clear </SmallButton>
+          ) : null
         }
+      </Horizontal>
+      {
+        error.length > 0 && query.length > 2 && (
+          <CentredText>
+            {`Error! ${error} `}
+            {` `}
+          </CentredText>
+        )
+      }
 
-        {
-          isSearching && <ActivityIndicator />
-        }
+      { isSearching && <ActivityIndicator /> }
 
-        {this.renderStatusText()}
+      <SearchStatus query={query} searchResults={searchResults} />
 
-        {searchResults.map(this.renderResult)}
-      </View>
-    )
-  }
+      {searchResults.map((result) => (
+        <SearchResult
+          key={result.email}
+          topText={result.name}
+          bottomText={result.department}
+          type="person"
+          onPress={viewPerson(result)}
+        />
+      ))}
+    </View>
+  )
 }
 
 const connector = connect(

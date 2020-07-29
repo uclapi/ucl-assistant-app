@@ -1,41 +1,33 @@
-import React from "react"
+import React, { useCallback, useMemo } from "react"
 import { connect, ConnectedProps } from "react-redux"
-
-import {
-  toggleFavourite as toggleFavouriteAction,
-} from "../../../actions/roomsActions"
+import { toggleFavourite as toggleFavouriteAction } from "../../../actions/roomsActions"
 import { FloatingButton } from "../../../components/Button"
 import { AppStateType } from "../../../configureStore"
 import { getRoomUniqueId } from '../../../reducers/roomsReducer'
 import type { Room } from "../../../types/uclapi"
 
-interface Props {
+interface Props extends PropsFromRedux {
   room: Room,
 }
 
-class FavouriteButton extends React.Component<Props & PropsFromRedux> {
-  toggleFavourite = () => {
-    const { toggleFavourite, room } = this.props
-    toggleFavourite(room)
-  }
+const FavouriteButton: React.FC<Props> = ({
+  favourites,
+  toggleFavourite,
+  room,
+}) => {
+  const onToggleFavourite = useCallback(() => toggleFavourite(room), [toggleFavourite, room])
+  const isFavourite = useMemo(() => favourites.some(
+    (fav) => getRoomUniqueId(fav) === getRoomUniqueId(room),
+  ), [room, favourites])
 
-  isFavourite = () => {
-    const { room, favourites } = this.props
-    return favourites.some(
-      (fav) => getRoomUniqueId(fav) === getRoomUniqueId(room),
-    )
-  }
-
-  render() {
-    return (
-      <FloatingButton
-        active={this.isFavourite()}
-        onPress={this.toggleFavourite}
-        icon="heart-outlined"
-        activeIcon="heart"
-      />
-    )
-  }
+  return (
+    <FloatingButton
+      active={isFavourite}
+      onPress={onToggleFavourite}
+      icon="heart-outlined"
+      activeIcon="heart"
+    />
+  )
 }
 
 const connector = connect(

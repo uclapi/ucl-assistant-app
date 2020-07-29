@@ -1,7 +1,6 @@
 import moment from 'moment'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { StyleSheet, View } from 'react-native'
-
 import { CentredText, ErrorText, Link } from "../../../../components/Typography"
 import { LocalisationManager } from "../../../../lib"
 
@@ -16,62 +15,52 @@ const styles = StyleSheet.create({
 })
 
 interface Props {
-  date: string,
-  isLoading: boolean,
-  lastModified: string | moment.Moment,
-  openFAQ: () => void,
+  date?: string,
+  isLoading?: boolean,
+  lastModified: moment.Moment,
+  openFAQ?: () => void,
 }
 
-class LastModified extends React.Component<Props> {
-  static defaultProps = {
-    date: LocalisationManager.getMoment(),
-    isLoading: true,
-    lastModified: null,
-    openFAQ: () => null,
-  }
+const LastModified:React.FC<Props> = ({
+  lastModified,
+  openFAQ = (): void => {},
+  isLoading = true,
+  date = LocalisationManager.getMoment().toISOString(),
+}) => {
+  const isStale = useMemo(() => (
+    !isLoading
+    && lastModified
+    && lastModified.isBefore(
+      LocalisationManager.getMoment().subtract(24, `hour`),
+    )
+    // not stale if the data is more recent than the date
+    && !lastModified.isAfter(
+      LocalisationManager.parseToMoment(date).endOf(`isoWeek`),
+    )
+  ), [isLoading, lastModified, date])
 
-  renderError = () => (
-    <ErrorText containerStyle={styles.error}>
-      Our timetable data is stale. Sorry about that.
-      We&apos;re working on getting this fixed as quickly as possible.
-    </ErrorText>
+  const lastUpdatedText = useMemo(() => (
+    lastModified
+    && lastModified.isBefore()
+      ? lastModified.fromNow().toLowerCase()
+      : `just now`
+  ), [lastModified])
+
+  return (
+    <View style={styles.lastModified}>
+      {isStale ? (
+        <ErrorText containerStyle={styles.error}>
+          Our timetable data is stale. Sorry about that.
+          We&apos;re working on getting this fixed as quickly as possible.
+        </ErrorText>
+      ) : null}
+      <Link onPress={openFAQ}>
+        <CentredText>
+          {`Last updated ${lastUpdatedText}`}
+        </CentredText>
+      </Link>
+    </View>
   )
-
-  render() {
-    const {
-      lastModified, openFAQ, isLoading, date,
-    } = this.props
-
-    if (lastModified === null || typeof lastModified !== `object`) {
-      return null
-    }
-
-    const isStale = (
-      !isLoading
-      && lastModified.isBefore(
-        LocalisationManager.getMoment().subtract(24, `hour`),
-      )
-      // not stale if the data is more recent than the date
-      && !lastModified.isAfter(
-        LocalisationManager.parseToMoment(date).endOf(`isoWeek`),
-      )
-    )
-
-    return (
-      <View style={styles.lastModified}>
-        {isStale ? this.renderError() : null}
-        <Link onPress={openFAQ}>
-          <CentredText>
-            {`Last updated ${
-              lastModified.isBefore()
-                ? lastModified.fromNow().toLowerCase()
-                : `just now`
-            }`}
-          </CentredText>
-        </Link>
-      </View>
-    )
-  }
 }
 
 export default LastModified
