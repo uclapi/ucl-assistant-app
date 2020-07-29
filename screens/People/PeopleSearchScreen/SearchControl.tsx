@@ -43,7 +43,7 @@ interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
-const SearchControl: React.FC<Props> = ({
+export const SearchControl: React.FC<Props> = ({
   search,
   token,
   clearRecentResults,

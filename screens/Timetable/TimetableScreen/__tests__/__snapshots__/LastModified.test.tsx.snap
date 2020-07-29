@@ -19,7 +19,56 @@ Object {
           "flex": 1,
         }
       }
-    />
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <TouchableOpacity
+          style={Object {}}
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#4D5061",
+                  "fontFamily": "apercu",
+                  "fontSize": 16,
+                  "marginBottom": 1,
+                  "marginTop": 1,
+                },
+                Object {
+                  "color": "#2980b9",
+                },
+                Object {},
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#6E707F",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 5,
+                    "marginTop": 5,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Last updated just now
+            </Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   </View>,
   "container": <View
     collapsable={true}
@@ -29,7 +78,56 @@ Object {
         "flex": 1,
       }
     }
-  />,
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableOpacity
+        style={Object {}}
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "marginBottom": 1,
+                "marginTop": 1,
+              },
+              Object {
+                "color": "#2980b9",
+              },
+              Object {},
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#6E707F",
+                  "fontFamily": "apercu",
+                  "fontSize": 16,
+                  "marginBottom": 5,
+                  "marginTop": 5,
+                  "textAlign": "center",
+                },
+                undefined,
+              ]
+            }
+          >
+            Last updated just now
+          </Text>
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>,
   "debug": [Function],
   "findAllByDisplayValue": [Function],
   "findAllByHintText": [Function],

@@ -39,7 +39,7 @@ interface RecentResultsProps extends PropsFromRedux {
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
-const RecentResults: React.FC<RecentResultsProps> = ({
+export const RecentResults: React.FC<RecentResultsProps> = ({
   recents = [],
   clearRecentResults,
   navigation,
@@ -50,7 +50,9 @@ const RecentResults: React.FC<RecentResultsProps> = ({
   return (
     <View>
       <SubtitleText>Recently Searched</SubtitleText>
-      {recents.map((recent) => <RecentResult recent={recent} navigation={navigation} />)}
+      {recents.map((recent) => (
+        <RecentResult key={recent.email} recent={recent} navigation={navigation} />
+      ))}
       {recents.length > 0 ? (
         <Button onPress={clearRecentResults}>Clear</Button>
       ) : (

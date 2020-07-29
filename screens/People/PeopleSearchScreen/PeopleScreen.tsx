@@ -2,7 +2,6 @@ import type { StackNavigationProp } from "@react-navigation/stack"
 import React, { Component } from "react"
 import { Image, StyleSheet } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
-
 import { Page } from "../../../components/Containers"
 import { TitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
