@@ -1,0 +1,65 @@
+import axios from 'axios'
+import { TIMETABLE_URL } from '../../constants/API'
+import ErrorManager from '../ErrorManager'
+import LocalisationManager from '../LocalisationManager'
+
+const timetableApi = axios.create({
+  baseURL: TIMETABLE_URL,
+})
+
+class TimetableController {
+  static setLastModified = (timetable, lastModified) => Object.keys(timetable).reduce((acc, day) => ({
+    ...acc,
+    [day]: {
+      ...timetable[day],
+      lastModified: LocalisationManager.parseToMoment(lastModified),
+    },
+  }), {})
+
+  static getPersonalTimetable = async (
+    token = null,
+    date = LocalisationManager.getMoment(),
+  ) => {
+    const datePart = date
+      ? `?date=${date.clone().startOf(`isoWeek`).format(`YYYY-MM-DD`)}`
+      : ``
+    const headers = {
+      authorization: `Bearer ${token}`,
+    }
+    ErrorManager.addDetail({ headers })
+    const results = await timetableApi.get(datePart, { headers })
+    if (!results.data.content.ok || results.data.error !== ``) {
+      throw new Error(
+        results.data.error
+        || `There was a problem fetching your personal timetable`,
+      )
+    }
+    const { data: { content: { timetable } } } = results
+    return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
+  }
+
+  static getPersonalWeekTimetable = async (
+    token = null,
+    date = LocalisationManager.getMoment().startOf(`isoWeek`),
+  ) => {
+    const queryParam = `?date=${date.format(`YYYY-MM-DD`)}`
+    const headers = {
+      authorization: `Bearer ${token}`,
+    }
+    ErrorManager.addDetail({ headers })
+    const results = await timetableApi.get(`/week/${queryParam}`, {
+      headers,
+    })
+    if (results.data.error !== ``) {
+      throw new Error(
+        results.data.error
+        || `An error occurred when fetching your personal weekly timetable`,
+      )
+    }
+    const { data: { content: { timetable } } } = results
+    console.log(timetable)
+    return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
+  }
+}
+
+export default TimetableController

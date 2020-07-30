@@ -1,8 +1,5 @@
-import {
-  createStackNavigator,
-} from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-
 import type { Person } from '../../types/uclapi'
 import PeopleDetailScreen from './PeopleDetailScreen'
 import PeopleSearchScreen from './PeopleSearchScreen'

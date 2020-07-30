@@ -1,7 +1,6 @@
 import { Moment } from "moment"
 import React, { ReactElement } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-
 import Button from "../../../../components/Button"
 import TimetableCard from "../../../../components/Card/TimetableCard"
 import {
@@ -98,7 +97,7 @@ class WeekView extends React.Component<Props> {
       date,
       onDateChanged,
       onIndexChanged,
-      timetable: weekTimetable,
+      timetable: weekTimetable = [],
     } = this.props
 
     const firstDate = LocalisationManager.parseToMoment(
@@ -188,7 +187,7 @@ class WeekView extends React.Component<Props> {
     )
   }
 
-  renderDay = ({ item: { dateISO, timetable } }): ReactElement => {
+  renderDay = ({ item: { dateISO, timetable = [] } }): ReactElement => {
     const dayDate = LocalisationManager
       .parseToMoment(dateISO)
 
@@ -215,13 +214,13 @@ class WeekView extends React.Component<Props> {
 
   render(): ReactElement {
     const {
-      timetable: weekTimetable,
+      timetable: weekTimetable = [],
       onRefresh,
       isLoading,
     } = this.props
 
     const emptyWeek = weekTimetable.every(
-      ({ timetable }) => timetable.length === 0,
+      ({ timetable = [] }) => timetable.length === 0,
     )
     if (emptyWeek) {
       return (

@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect } from "react"
+import { RouteProp } from '@react-navigation/native'
+import React, { useCallback } from "react"
 import {
   ActivityIndicator, StyleSheet, View, ViewStyle,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
+import { PeopleNavigatorParamList } from ".."
 import { fetchPerson as fetchPersonAction, PeopleDispatch } from "../../../actions/peopleActions"
 import Button from "../../../components/Button"
 import {
@@ -18,6 +20,7 @@ import {
 } from "../../../components/Typography"
 import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
+import { usePerson } from "../../../hooks"
 import MailManager from "../../../lib/MailManager"
 
 interface Style {
@@ -38,28 +41,48 @@ const styles = StyleSheet.create<Style>({
   },
 })
 
-export const PersonDetailScreen: React.FC<PropsFromRedux> = ({
-  name, status, department, email, isFetching, error, token, fetchPerson,
+interface Props extends PropsFromRedux {
+  // eslint-disable-next-line quotes
+  route: RouteProp<PeopleNavigatorParamList, 'PeopleDetail'>,
+}
+
+export const PersonDetailScreen: React.FC<Props> = ({
+  token,
+  route: {
+    params: {
+      email,
+    },
+  },
 }) => {
+  const {
+    status: fetchStatus,
+    data: {
+      name,
+      status,
+      department,
+    } = {},
+    error,
+  } = usePerson(token, email)
+
   const sendEmail = useCallback(() => MailManager.composeAsync({ recipients: [email] }), [email])
 
-  useEffect(() => {
-    fetchPerson(token, email)
-  })
-
-  return isFetching ? (
+  return (fetchStatus === `loading`) ? (
     <PageNoScroll style={styles.loadingContainer}>
       <ActivityIndicator size="large" />
+    </PageNoScroll>
+  ) : (fetchStatus === `error`) ? (
+    <PageNoScroll style={styles.container}>
+      {error && (
+        <ErrorText>
+          {`Error: ${error.name} ${error.message}`}
+        </ErrorText>
+      )}
     </PageNoScroll>
   ) : (
     <PageNoScroll>
       <View style={styles.container}>
         <TitleText>{name}</TitleText>
-        {error.length > 0 && (
-          <ErrorText>
-            {`Error: ${error}`}
-          </ErrorText>
-        )}
+
         <BodyText>
           {`${status}, ${department}`}
         </BodyText>

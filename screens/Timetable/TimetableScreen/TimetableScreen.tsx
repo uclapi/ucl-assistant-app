@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
 import {
   fetchTimetable as fetchTimetableAction,
   TimetableDispatch,
@@ -22,18 +21,15 @@ import { PageNoScroll } from "../../../components/Containers"
 import { ErrorMessage } from '../../../components/Message'
 import { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
-import {
-  TIMETABLE_CACHE_TIME_HOURS,
-} from "../../../constants/timetableConstants"
+import { TIMETABLE_CACHE_TIME_HOURS } from "../../../constants/timetableConstants"
 import {
   DeviceManager,
   ErrorManager,
   LocalisationManager,
   PushNotificationsManager,
 } from '../../../lib'
-import {
-  weeklyTimetableArraySelector,
-} from "../../../selectors/timetableSelectors"
+import { User } from "../../../reducers/userReducer/userReducer"
+import { weeklyTimetableArraySelector } from "../../../selectors/timetableSelectors"
 import type { TimetableNavigationType } from "../TimetableNavigator"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"
@@ -143,7 +139,7 @@ class TimetableScreen extends React.Component<Props, State> {
   }
 
   loginCheck = () => {
-    const { user, signOut } = this.props
+    const { user = {} as User, signOut } = this.props
     if (Object.keys(user).length > 0 && user.scopeNumber < 0) {
       signOut()
       return false
@@ -158,7 +154,7 @@ class TimetableScreen extends React.Component<Props, State> {
   }
 
   onSwipe = ({ nativeEvent: { position: index } }) => {
-    const { fetchTimetable, user: { token }, timetable } = this.props
+    const { fetchTimetable, user: { token }, timetable = [] } = this.props
 
     if (timetable[index] === null) {
       // assumes closest valid index can always be found earlier, not later
@@ -265,7 +261,7 @@ class TimetableScreen extends React.Component<Props, State> {
 
   render() {
     const {
-      timetable,
+      timetable = [],
       error,
     } = this.props
     const {

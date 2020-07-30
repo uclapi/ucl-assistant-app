@@ -1,10 +1,9 @@
 import { Action } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-
 import { AppStateType } from "../configureStore"
 import { PEOPLE_URL } from "../constants/API"
 import {
-  PEOPLE_CLEAR_RECENTS,
+  PeopleActionTypes, PEOPLE_CLEAR_RECENTS,
   PEOPLE_FETCH_FAILURE,
   PEOPLE_FETCH_SUCCESS,
   PEOPLE_IS_FETCHING,
@@ -12,7 +11,6 @@ import {
   PEOPLE_SEARCH_CLEAR,
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
-  PeopleActionTypes,
 } from "../constants/peopleConstants"
 import type { Person } from "../types/uclapi"
 

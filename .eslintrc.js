@@ -146,6 +146,7 @@ module.exports = {
       },
     ],
     "import/no-unresolved": `error`,
+    "import/prefer-default-export": `warn`,
     indent: [
       `warn`,
       2,
@@ -178,6 +179,7 @@ module.exports = {
     ],
     "no-console": `off`,
     "no-empty-function": `off`,
+    "no-nested-ternary": `off`,
     "no-secrets/no-secrets": `error`,
     "no-underscore-dangle": [
       `error`,
@@ -206,8 +208,8 @@ module.exports = {
       2,
     ],
     "react/jsx-props-no-spreading": `off`,
-    "react/prop-types": `off`,
 
+    "react/prop-types": `off`,
     "react/static-property-placement": [
       `error`,
       `static public field`,

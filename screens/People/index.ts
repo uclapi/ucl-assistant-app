@@ -1,1 +1,1 @@
-export { default } from './PeopleNavigator'
+export { default, PeopleNavigatorParamList } from './PeopleNavigator'
