@@ -1,4 +1,4 @@
-import type { Person } from "../types/uclapi"
+import type { Person } from "../../types/uclapi"
 
 export const PEOPLE_IS_SEARCHING = `PEOPLE_IS_SEARCHING`
 export const PEOPLE_SEARCH_SUCCESS = `PEOPLE_SEARCH_SUCCESS`

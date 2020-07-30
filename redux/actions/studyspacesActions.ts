@@ -1,7 +1,8 @@
 import { Moment } from "moment"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-
-import { WORKSPACES_URL } from "../constants/API"
+import { WORKSPACES_URL } from "../../constants/API"
+import { ApiManager } from "../../lib"
+import { StudySpace } from "../../types/uclapi"
 import {
   StudySpacesActionTypes,
   WORKSPACES_FETCH_DETAILS_FAILURE,
@@ -18,10 +19,6 @@ import {
   WORKSPACES_SORT_TYPES_TYPE,
   WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
-import {
-  ApiManager,
-} from "../lib"
-import { StudySpace } from "../types/uclapi"
 
 export type StudySpacesThunkAction = ThunkAction<
   Promise<unknown>, unknown, unknown, StudySpacesActionTypes
@@ -54,20 +51,20 @@ export const fetchSeatInfos = (
   token: string,
 ): StudySpacesThunkAction => async (
   dispatch: StudySpacesDispatch,
-  ): Promise<StudySpacesActionTypes> => {
-    await dispatch(setIsFetchingSeatInfos())
-    try {
-      const {
-        data,
-        lastModified,
-      } = await ApiManager.workspaces.getSummary(token)
-      return dispatch(fetchSeatInfosSuccess(data, lastModified))
-    } catch (error) {
-      return dispatch(
-        fetchSeatInfosFailure(error.message),
-      )
-    }
+): Promise<StudySpacesActionTypes> => {
+  await dispatch(setIsFetchingSeatInfos())
+  try {
+    const {
+      data,
+      lastModified,
+    } = await ApiManager.workspaces.getSummary(token)
+    return dispatch(fetchSeatInfosSuccess(data, lastModified))
+  } catch (error) {
+    return dispatch(
+      fetchSeatInfosFailure(error.message),
+    )
   }
+}
 
 export const setIsFetchingAverages = (id: number): StudySpacesActionTypes => ({
   id,
@@ -97,28 +94,28 @@ export const fetchAverages = (
   id: number,
 ): StudySpacesThunkAction => async (
   dispatch: StudySpacesDispatch,
-  ): Promise<StudySpacesActionTypes> => {
-    await dispatch(setIsFetchingAverages(id))
-    try {
-      const res = await fetch(`${WORKSPACES_URL}/historic?id=${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
-      const json = await res.json()
-      if (!res.ok) {
-        throw new Error(json.error || `There was a problem`)
-      }
-      return dispatch(fetchAveragesSuccess(id, json.content))
-    } catch (error) {
-      return dispatch(
-        fetchAveragesFailure(
-          id,
-          error.message,
-        ),
-      )
+): Promise<StudySpacesActionTypes> => {
+  await dispatch(setIsFetchingAverages(id))
+  try {
+    const res = await fetch(`${WORKSPACES_URL}/historic?id=${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    const json = await res.json()
+    if (!res.ok) {
+      throw new Error(json.error || `There was a problem`)
     }
+    return dispatch(fetchAveragesSuccess(id, json.content))
+  } catch (error) {
+    return dispatch(
+      fetchAveragesFailure(
+        id,
+        error.message,
+      ),
+    )
   }
+}
 
 export const toggleFavourite = (id: number): StudySpacesActionTypes => ({
   id,

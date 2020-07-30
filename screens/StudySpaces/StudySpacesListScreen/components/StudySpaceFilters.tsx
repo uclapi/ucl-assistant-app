@@ -1,13 +1,13 @@
 import PropTypes from "prop-types"
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-
 import { LightButton } from '../../../../components/Button'
 import { Horizontal } from '../../../../components/Containers'
 import { SearchInput } from '../../../../components/Input'
 import {
-  WORKSPACES_SORT_TYPES, WORKSPACES_SORT_TYPES_TYPE,
-} from '../../../../constants/studyspacesConstants'
+  WORKSPACES_SORT_TYPES,
+  WORKSPACES_SORT_TYPES_TYPE,
+} from '../../../../redux/constants/studyspacesConstants'
 
 const styles = StyleSheet.create({
   container: {},

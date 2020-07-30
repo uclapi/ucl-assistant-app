@@ -1,3 +1,4 @@
+import type { Person } from "../../types/uclapi"
 import {
   PEOPLE_CLEAR_RECENTS,
   PEOPLE_FETCH_FAILURE,
@@ -9,7 +10,6 @@ import {
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
 } from "../constants/peopleConstants"
-import type { Person } from "../types/uclapi"
 import { addToRecents } from "./utils"
 
 export interface PeopleState {

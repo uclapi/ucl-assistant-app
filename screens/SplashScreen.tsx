@@ -9,8 +9,6 @@ import {
   View,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
-import { signIn as signInAction, UserDispatch } from "../actions/userActions"
 import Button from "../components/Button"
 import { Horizontal, Spacer } from "../components/Containers"
 import {
@@ -22,6 +20,7 @@ import {
 import { AppStateType } from "../configureStore"
 import Colors from "../constants/Colors"
 import { AnalyticsManager, AssetManager, ErrorManager } from "../lib"
+import { signIn as signInAction, UserDispatch } from "../redux/actions/userActions"
 import Styles from "../styles/Containers"
 import SplashStyle from "../styles/Splash"
 

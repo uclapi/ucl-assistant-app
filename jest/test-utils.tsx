@@ -6,7 +6,7 @@ import { Store } from 'redux'
 import configureStore from 'redux-mock-store'
 import thunk from "redux-thunk"
 import debounce from "../lib/debounce"
-import { initialState as defaultInitialState } from '../reducers'
+import { initialState as defaultInitialState } from '../redux/reducers'
 
 const middlewares = [
   debounce.middleware,

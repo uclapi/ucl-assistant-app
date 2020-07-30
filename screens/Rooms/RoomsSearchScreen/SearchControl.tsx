@@ -3,13 +3,12 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
-import { addRecent } from "../../../actions/roomsActions"
 import { SearchInput } from "../../../components/Input"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
 import ApiManager from "../../../lib/ApiManager"
+import { addRecent } from "../../../redux/actions/roomsActions"
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
 const styles = StyleSheet.create({

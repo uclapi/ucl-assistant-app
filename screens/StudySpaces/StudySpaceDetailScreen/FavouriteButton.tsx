@@ -2,12 +2,9 @@
 import React from "react"
 import { Platform, ToastAndroid } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
-import {
-  toggleFavourite as toggleFavouriteAction,
-} from "../../../actions/studyspacesActions"
 import { FloatingButton } from "../../../components/Button"
 import { AppStateType } from "../../../configureStore"
+import { toggleFavourite as toggleFavouriteAction } from "../../../redux/actions/studyspacesActions"
 
 interface Props extends PropsFromRedux {
   id: string,

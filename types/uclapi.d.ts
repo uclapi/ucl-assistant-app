@@ -87,3 +87,17 @@ export interface IconProps {
   color?: string,
   name: string,
 }
+
+export type JWT = string
+
+export interface User {
+  apiToken: string,
+  cn: string,
+  department: string,
+  email: string,
+  fullName: string,
+  givenName: string,
+  scopeNumber: number,
+  token: string,
+  upi: string,
+}

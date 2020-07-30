@@ -1,4 +1,4 @@
-import type { User } from "../reducers/userReducer/userReducer"
+import type { User } from "../../types/uclapi"
 
 export const IS_SIGNING_IN = `IS_SIGNING_IN`
 export const SIGN_IN_SUCCESS = `SIGN_IN_SUCCESS`

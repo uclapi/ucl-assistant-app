@@ -1,18 +1,15 @@
 import { Action } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { AppStateType } from "../configureStore"
-import { PEOPLE_URL } from "../constants/API"
+import { AppStateType } from "../../configureStore"
+import { PEOPLE_URL } from "../../constants/API"
+import type { Person } from "../../types/uclapi"
 import {
   PeopleActionTypes, PEOPLE_CLEAR_RECENTS,
-  PEOPLE_FETCH_FAILURE,
-  PEOPLE_FETCH_SUCCESS,
-  PEOPLE_IS_FETCHING,
   PEOPLE_IS_SEARCHING,
   PEOPLE_SEARCH_CLEAR,
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
 } from "../constants/peopleConstants"
-import type { Person } from "../types/uclapi"
 
 export type PeopleThunkAction = ThunkAction<
   Promise<unknown>,
@@ -66,48 +63,6 @@ export const search = (
   } catch (error) {
     dispatch(
       searchFailure(error.message),
-    )
-    return null
-  }
-}
-
-export const setIsFetching = (): PeopleActionTypes => ({
-  type: PEOPLE_IS_FETCHING,
-})
-
-export const fetchFailure = (error: string): PeopleActionTypes => ({
-  error,
-  type: PEOPLE_FETCH_FAILURE,
-})
-
-export const fetchSuccess = (person: Person): PeopleActionTypes => ({
-  person,
-  type: PEOPLE_FETCH_SUCCESS,
-})
-
-export const fetchPerson = (
-  token: string = null,
-  email: string = null,
-): PeopleThunkAction => async (dispatch: PeopleDispatch): Promise<void> => {
-  dispatch(setIsFetching())
-  try {
-    const res = await fetch(
-      `${PEOPLE_URL}?query=${encodeURIComponent(email)}`,
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      },
-    )
-    const json = await res.json()
-    if (!res.ok) {
-      throw new Error(json.error || `There was a problem!`)
-    }
-    dispatch(fetchSuccess(json.content.people[0]))
-    return null
-  } catch (error) {
-    dispatch(
-      fetchFailure(error.message),
     )
     return null
   }

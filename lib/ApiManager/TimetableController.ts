@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { TIMETABLE_URL } from '../../constants/API'
+import { JWT } from '../../types/uclapi'
 import ErrorManager from '../ErrorManager'
 import LocalisationManager from '../LocalisationManager'
 
@@ -8,16 +9,19 @@ const timetableApi = axios.create({
 })
 
 class TimetableController {
-  static setLastModified = (timetable, lastModified) => Object.keys(timetable).reduce((acc, day) => ({
-    ...acc,
-    [day]: {
-      ...timetable[day],
-      lastModified: LocalisationManager.parseToMoment(lastModified),
-    },
-  }), {})
+  static setLastModified = (timetable, lastModified) => Object.keys(timetable).reduce(
+    (acc, day) => ({
+      ...acc,
+      [day]: {
+        ...timetable[day],
+        lastModified: LocalisationManager.parseToMoment(lastModified),
+      },
+    }),
+    {},
+  )
 
   static getPersonalTimetable = async (
-    token = null,
+    token: JWT,
     date = LocalisationManager.getMoment(),
   ) => {
     const datePart = date
@@ -39,7 +43,7 @@ class TimetableController {
   }
 
   static getPersonalWeekTimetable = async (
-    token = null,
+    token: JWT,
     date = LocalisationManager.getMoment().startOf(`isoWeek`),
   ) => {
     const queryParam = `?date=${date.format(`YYYY-MM-DD`)}`
@@ -57,7 +61,6 @@ class TimetableController {
       )
     }
     const { data: { content: { timetable } } } = results
-    console.log(timetable)
     return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
   }
 }

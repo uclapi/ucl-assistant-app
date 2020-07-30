@@ -1,5 +1,5 @@
 import moment, { Moment } from "moment"
-
+import type { StudySpace } from "../../types/uclapi"
 import {
   WORKSPACES_FETCH_DETAILS_FAILURE,
   WORKSPACES_FETCH_DETAILS_SUCCESS,
@@ -16,7 +16,6 @@ import {
   WORKSPACES_SORT_TYPES_TYPE,
   WORKSPACES_TOGGLE_FAVOURITE,
 } from "../constants/studyspacesConstants"
-import type { StudySpace } from "../types/uclapi"
 
 const sortStudySpaces = (s1, s2) => s1.id - s2.id
 

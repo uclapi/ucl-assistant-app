@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { encode as btoa } from "base-64"
 import { WORKSPACES_URL } from '../../constants/API'
+import { JWT } from '../../types/uclapi'
 import ErrorManager from '../ErrorManager'
 import LocalisationManager from '../LocalisationManager'
 
@@ -9,7 +10,7 @@ const workspacesApi = axios.create({
 })
 
 class WorkspacesController {
-  static getLiveImage = async (token = null, { surveyId, mapId }) => {
+  static getLiveImage = async (token: JWT, { surveyId, mapId }) => {
     try {
       const result = await workspacesApi.get(`/getliveimage/map.svg`, {
         headers: {
@@ -37,7 +38,7 @@ class WorkspacesController {
     }
   }
 
-  static getSummary = async (token = null) => {
+  static getSummary = async (token: JWT) => {
     try {
       const { data, headers } = await workspacesApi.get(`/summary`, {
         headers: {
@@ -59,7 +60,7 @@ class WorkspacesController {
     }
   }
 
-  static getWorkspaces = async (token = null) => {
+  static getWorkspaces = async (token: JWT) => {
     try {
       const { data, headers } = await workspacesApi.get(`/`, {
         headers: {

@@ -1,10 +1,8 @@
-
 import { RouteProp } from "@react-navigation/native"
 import React from "react"
 import { connect, ConnectedProps } from "react-redux"
-
 import type { AppStateType } from "../../../configureStore"
-import { timetableSelector } from "../../../selectors/timetableSelectors"
+import { timetableSelector } from "../../../redux/selectors/timetableSelectors"
 import type {
   TimetableNavigationType,
   TimetableNavigatorParamList,

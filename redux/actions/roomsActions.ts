@@ -1,10 +1,9 @@
+import type { Room } from "../../types/uclapi"
 import {
-  ROOMS_ADD_RECENT,
+  RoomsActionTypes, ROOMS_ADD_RECENT,
   ROOMS_CLEAR_RECENTS,
   ROOMS_TOGGLE_FAVOURITE,
-  RoomsActionTypes,
 } from "../constants/roomsConstants"
-import type { Room } from "../types/uclapi"
 
 export const addRecent = (room: Room): RoomsActionTypes => ({
   room,

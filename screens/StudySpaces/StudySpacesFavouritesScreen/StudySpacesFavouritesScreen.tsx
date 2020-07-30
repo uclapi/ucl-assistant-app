@@ -7,20 +7,17 @@ import {
   View,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
-import {
-  fetchDetails,
-  fetchSeatInfos,
-  StudySpacesDispatch,
-} from "../../../actions/studyspacesActions"
 import Button from "../../../components/Button"
 import { PageNoScroll } from "../../../components/Containers"
 import { BodyText, SubtitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
 import { AssetManager } from "../../../lib"
 import {
-  favouriteStudySpacesSelector,
-} from '../../../selectors/studyspacesSelectors'
+  fetchDetails,
+  fetchSeatInfos,
+  StudySpacesDispatch,
+} from "../../../redux/actions/studyspacesActions"
+import { favouriteStudySpacesSelector } from '../../../redux/selectors/studyspacesSelectors'
 import Styles from "../../../styles/Containers"
 import LastUpdated from '../components/LastUpdated'
 import StudySpaceResult from "../components/StudySpaceResult"

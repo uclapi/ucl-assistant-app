@@ -5,7 +5,6 @@ import {
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
 import { PeopleNavigatorParamList } from ".."
-import { fetchPerson as fetchPersonAction, PeopleDispatch } from "../../../actions/peopleActions"
 import Button from "../../../components/Button"
 import {
   PaddedIcon,
@@ -101,17 +100,9 @@ export const PersonDetailScreen: React.FC<Props> = ({
 
 const connector = connect(
   (state: AppStateType) => ({
-    department: state.people.person.department,
-    email: state.people.person.email,
-    error: state.people.fetchError,
-    isFetching: state.people.isFetching,
-    name: state.people.person.name,
-    status: state.people.person.status,
     token: state.user.token,
   }),
-  (dispatch: PeopleDispatch) => ({
-    fetchPerson: (token, email) => dispatch(fetchPersonAction(token, email)),
-  }),
+  () => ({}),
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>

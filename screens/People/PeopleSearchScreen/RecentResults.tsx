@@ -2,14 +2,14 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useCallback } from "react"
 import { View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import {
-  clearRecentResults as clearRecentsResultsAction,
-  PeopleDispatch,
-} from "../../../actions/peopleActions"
 import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
+import {
+  clearRecentResults as clearRecentsResultsAction,
+  PeopleDispatch,
+} from "../../../redux/actions/peopleActions"
 import type { Person } from "../../../types/uclapi"
 import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
@@ -20,7 +20,7 @@ interface RecentResultProp {
 
 const RecentResult: React.FC<RecentResultProp> = ({ recent, navigation }) => {
   const viewPerson = useCallback(
-    (person: Person) => (): void => navigation.navigate(`PeopleDetail`, person),
+    ({ email }: Person) => (): void => navigation.navigate(`PeopleDetail`, { email }),
     [navigation],
   )
 

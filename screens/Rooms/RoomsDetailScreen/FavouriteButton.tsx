@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from "react"
 import { connect, ConnectedProps } from "react-redux"
-import { toggleFavourite as toggleFavouriteAction } from "../../../actions/roomsActions"
 import { FloatingButton } from "../../../components/Button"
 import { AppStateType } from "../../../configureStore"
-import { getRoomUniqueId } from '../../../reducers/roomsReducer'
+import { toggleFavourite as toggleFavouriteAction } from "../../../redux/actions/roomsActions"
+import { getRoomUniqueId } from '../../../redux/reducers/roomsReducer'
 import type { Room } from "../../../types/uclapi"
 
 interface Props extends PropsFromRedux {

@@ -3,6 +3,7 @@ _universe/**
 **/*/node_modules
 package-lock.json
 package.json
+assets
 
 !tsconfig.json
 !.eslintrc.js

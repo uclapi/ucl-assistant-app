@@ -1,16 +1,14 @@
 import { Moment } from "moment"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
-
-import type { AppStateType } from "../configureStore"
+import type { AppStateType } from "../../configureStore"
+import { ApiManager, DeviceManager, ErrorManager } from "../../lib"
 import {
   CLEAR_TIMETABLE,
-  TIMETABLE_FETCH_FAILURE,
+
+  TimetableActionTypes, TIMETABLE_FETCH_FAILURE,
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
-  TimetableActionTypes,
 } from "../constants/timetableConstants"
-import { ApiManager, DeviceManager, ErrorManager } from "../lib"
-
 
 export type TimetableThunkAction = ThunkAction<
   Promise<unknown>,

@@ -5,7 +5,6 @@ import {
   Image, StyleSheet, View, ViewStyle,
 } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
-
 import Button from "../../../components/Button"
 import { Page } from "../../../components/Containers"
 import SearchResult from "../../../components/SearchResult"
@@ -13,7 +12,7 @@ import { BodyText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import { AssetManager } from '../../../lib'
-import { getRoomUniqueId } from '../../../reducers/roomsReducer'
+import { getRoomUniqueId } from '../../../redux/reducers/roomsReducer'
 import Styles from "../../../styles/Containers"
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 import SearchButton from '../RoomsSearchScreen/SearchButton'

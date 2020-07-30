@@ -2,12 +2,13 @@ import axios from "axios"
 import {
   EQUIPMENT_URL, FREE_ROOMS_URL, ROOMBOOKINGS_URL, ROOMS_URL, SITES_URL,
 } from "../../constants/API"
+import type { JWT, Room } from '../../types/uclapi'
 import ErrorManager from "../ErrorManager"
 import LocalisationManager from "../LocalisationManager"
 
 class roomsController {
   static getBookings = async (
-    token = null,
+    token: JWT,
     {
       roomid,
       siteid,
@@ -39,7 +40,7 @@ class roomsController {
   }
 
   static getEmptyRooms = async (
-    token = null,
+    token: JWT,
     {
       startDateTime = (new Date()).toISOString(),
       endDateTime = (
@@ -70,7 +71,7 @@ class roomsController {
     }
   }
 
-  static getEquipment = async (token = null, { roomid, siteid }) => {
+  static getEquipment = async (token: JWT, { roomid, siteid }) => {
     if (!roomid || !siteid) {
       throw new Error(`Must specify roomid and siteid`)
     }
@@ -94,7 +95,7 @@ class roomsController {
     }
   }
 
-  static getSites = async (token = null) => {
+  static getSites = async (token: JWT) => {
     try {
       const results = await axios.get(SITES_URL, {
         headers: {
@@ -111,9 +112,9 @@ class roomsController {
     }
   }
 
-  static search = async (token = null, query = ``) => {
+  static search = async (token = null, query = ``): Promise<Room[]> => {
     if (query && query.length < 3) {
-      return {}
+      return []
     }
     try {
       const results = await axios.get(ROOMS_URL, {

@@ -5,19 +5,19 @@ import {
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
 
-interface timetableState {
+interface TimetableState {
   error: string,
   isFetching: boolean,
   weeklyTimetable: unknown,
 }
 
-export const initialState: timetableState = {
+export const initialState: TimetableState = {
   error: ``,
   isFetching: false,
   weeklyTimetable: {},
 }
 
-export default (state: timetableState = initialState, action = null) => {
+export default (state: TimetableState = initialState, action = null): TimetableState => {
   const {
     type, timetableFrag, error,
   } = action

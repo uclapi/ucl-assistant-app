@@ -17,11 +17,6 @@ import {
   View,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import {
-  setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
-  signOut as signOutAction,
-  UserDispatch,
-} from "../../../actions/userActions"
 import { SmallButton } from "../../../components/Button"
 import { Horizontal, Page } from "../../../components/Containers"
 import TextInput from "../../../components/Input/TextInput"
@@ -37,6 +32,11 @@ import { AnalyticsManager, ClipboardManager, MailManager } from "../../../lib"
 import type { MainTabNavigatorParamList } from "../../../navigation/MainTabNavigator"
 import type { RootStackParamList } from "../../../navigation/RootNavigation"
 import * as packageJson from '../../../package.json'
+import {
+  setShouldTrackAnalytics as setShouldTrackAnalyticsAction,
+  signOut as signOutAction,
+  UserDispatch,
+} from "../../../redux/actions/userActions"
 import common from "../../../styles/common"
 import type { SettingsNavigatorParamList } from "../SettingsNavigator"
 

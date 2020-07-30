@@ -3,11 +3,6 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { connect } from "react-redux"
-import {
-  declinePushNotifications as declinePushNotificationsAction,
-  setExpoPushToken as setExpoPushTokenAction,
-  UserDispatch,
-} from "../../actions/userActions"
 import Button from "../../components/Button"
 import { Page } from "../../components/Containers"
 import {
@@ -23,6 +18,11 @@ import {
   PushNotificationsManager,
 } from "../../lib"
 import type { RootStackParamList } from "../../navigation/RootNavigation"
+import {
+  declinePushNotifications as declinePushNotificationsAction,
+  setExpoPushToken as setExpoPushTokenAction,
+  UserDispatch,
+} from "../../redux/actions/userActions"
 import Styles from "../../styles/Containers"
 
 const styles = StyleSheet.create({

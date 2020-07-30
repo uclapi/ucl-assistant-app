@@ -1,25 +1,19 @@
-
 import memoize from "memoize-one"
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
 import { generate } from "shortid"
-
+import { Page } from "../../../components/Containers"
+import { ErrorText } from "../../../components/Typography"
+import { AppStateType } from '../../../configureStore'
 import {
   fetchSeatInfos,
   setSearchQuery,
   setSortType,
   StudySpacesDispatch,
-} from "../../../actions/studyspacesActions"
-import { Page } from "../../../components/Containers"
-import {
-  ErrorText,
-} from "../../../components/Typography"
-import { AppStateType } from '../../../configureStore'
-import { WORKSPACES_SORT_TYPES } from '../../../constants/studyspacesConstants'
-import {
-  matchingStudySpacesSelector,
-} from '../../../selectors/studyspacesSelectors'
+} from "../../../redux/actions/studyspacesActions"
+import { WORKSPACES_SORT_TYPES } from '../../../redux/constants/studyspacesConstants'
+import { matchingStudySpacesSelector } from '../../../redux/selectors/studyspacesSelectors'
 import LastUpdated from '../components/LastUpdated'
 import StudySpaceSearchResult from "../components/StudySpaceResult"
 import { StudySpacesNavigationType } from '../StudySpacesNavigator'

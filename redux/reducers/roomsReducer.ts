@@ -1,10 +1,10 @@
+import type { Room } from "../../types/uclapi"
 import {
   ROOMS_ADD_RECENT,
   ROOMS_CLEAR_RECENTS,
   ROOMS_MAX_RECENTS,
   ROOMS_TOGGLE_FAVOURITE,
 } from "../constants/roomsConstants"
-import type { Room } from "../types/uclapi"
 import { addToRecents } from "./utils"
 
 export interface RoomsState {

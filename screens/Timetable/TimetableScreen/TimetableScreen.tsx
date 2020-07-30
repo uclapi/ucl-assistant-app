@@ -8,28 +8,28 @@ import {
   StyleSheet,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import {
-  fetchTimetable as fetchTimetableAction,
-  TimetableDispatch,
-} from "../../../actions/timetableActions"
-import {
-  setExpoPushToken as setExpoPushTokenAction,
-  signOut as signOutAction,
-  UserDispatch,
-} from "../../../actions/userActions"
 import { PageNoScroll } from "../../../components/Containers"
 import { ErrorMessage } from '../../../components/Message'
 import { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
-import { TIMETABLE_CACHE_TIME_HOURS } from "../../../constants/timetableConstants"
 import {
   DeviceManager,
   ErrorManager,
   LocalisationManager,
   PushNotificationsManager,
 } from '../../../lib'
-import { User } from "../../../reducers/userReducer/userReducer"
-import { weeklyTimetableArraySelector } from "../../../selectors/timetableSelectors"
+import {
+  fetchTimetable as fetchTimetableAction,
+  TimetableDispatch,
+} from "../../../redux/actions/timetableActions"
+import {
+  setExpoPushToken as setExpoPushTokenAction,
+  signOut as signOutAction,
+  UserDispatch,
+} from "../../../redux/actions/userActions"
+import { TIMETABLE_CACHE_TIME_HOURS } from "../../../redux/constants/timetableConstants"
+import { weeklyTimetableArraySelector } from "../../../redux/selectors/timetableSelectors"
+import type { User } from "../../../types/uclapi"
 import type { TimetableNavigationType } from "../TimetableNavigator"
 import LoadingTimetable from "./components/LoadingTimetable"
 import WeekView from "./components/WeekView"

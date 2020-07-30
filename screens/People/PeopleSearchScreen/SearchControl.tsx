@@ -2,17 +2,17 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback, useRef, useState } from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import {
-  PeopleDispatch,
-  search as searchAction,
-  searchClear as searchClearAction,
-} from "../../../actions/peopleActions"
 import { SmallButton } from "../../../components/Button"
 import { Horizontal } from "../../../components/Containers"
 import { TextInput } from "../../../components/Input"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
+import {
+  PeopleDispatch,
+  search as searchAction,
+  searchClear as searchClearAction,
+} from "../../../redux/actions/peopleActions"
 import type { Person } from '../../../types/uclapi'
 import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
@@ -69,7 +69,7 @@ export const SearchControl: React.FC<Props> = ({
     setQuery(``)
   }, [clearRecentResults])
   const viewPerson = useCallback(
-    (person: Person) => () => navigation.navigate(`PeopleDetail`, person),
+    ({ email }: Person) => () => navigation.navigate(`PeopleDetail`, { email }),
     [navigation],
   )
 

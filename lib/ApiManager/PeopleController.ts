@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { PEOPLE_URL } from '../../constants/API'
+import type { JWT, Person } from '../../types/uclapi'
 import ErrorManager from '../ErrorManager'
 
 const peopleApi = axios.create({
@@ -7,7 +8,7 @@ const peopleApi = axios.create({
 })
 
 class PeopleController {
-  static search = async (token, query) => {
+  static search = async (token: JWT, query: string): Promise<Person[]> => {
     if (query && query.length <= 3) {
       return null
     }
@@ -27,7 +28,7 @@ class PeopleController {
     }
   }
 
-  static fetchPerson = async (token, email) => {
+  static fetchPerson = async (token: JWT, email: string): Promise<Person> => {
     try {
       const results = await PeopleController.search(token, email)
       if (results.length > 0) {

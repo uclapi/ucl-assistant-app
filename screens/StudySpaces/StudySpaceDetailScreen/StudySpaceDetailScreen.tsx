@@ -1,13 +1,7 @@
-import type {
-  RouteProp,
-} from "@react-navigation/native"
+import type { RouteProp } from "@react-navigation/native"
 import React from "react"
 import { StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-
-import {
-  fetchAverages as fetchAveragesAction, StudySpacesDispatch,
-} from "../../../actions/studyspacesActions"
 import Button from "../../../components/Button"
 import { Horizontal, Page } from "../../../components/Containers"
 import LiveIndicator from "../../../components/LiveIndicator"
@@ -22,8 +16,10 @@ import type { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import { LocalisationManager, MapsManager, Shadow } from "../../../lib"
 import {
-  studySpaceSelectorFactory,
-} from "../../../selectors/studyspacesSelectors"
+  fetchAverages as fetchAveragesAction,
+  StudySpacesDispatch,
+} from "../../../redux/actions/studyspacesActions"
+import { studySpaceSelectorFactory } from "../../../redux/selectors/studyspacesSelectors"
 import type {
   StudySpacesNavigationType,
   StudySpacesNavigatorParamList,

@@ -3,10 +3,9 @@ import { applyMiddleware, combineReducers, createStore } from "redux"
 import { persistReducer, persistStore } from "redux-persist"
 import createSecureStore from "redux-persist-expo-securestore"
 import thunk from "redux-thunk"
-
-import { SIGN_OUT_USER } from "./constants/userConstants"
 import debounce from "./lib/debounce"
-import reducer, { initialState } from "./reducers"
+import { SIGN_OUT_USER } from "./redux/constants/userConstants"
+import reducer, { initialState } from "./redux/reducers"
 
 const { user, ...otherReducers } = reducer
 

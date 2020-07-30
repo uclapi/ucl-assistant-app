@@ -1,3 +1,4 @@
+import type { User } from '../../../types/uclapi'
 import {
   DECLINE_PUSH_NOTIFICATIONS,
   IS_SIGNING_IN,
@@ -15,18 +16,6 @@ import signIn, {
 
 interface Settings {
   shouldTrackAnalytics: boolean,
-}
-
-export interface User {
-  apiToken: string,
-  cn: string,
-  department: string,
-  email: string,
-  fullName: string,
-  givenName: string,
-  scopeNumber: number,
-  token: string,
-  upi: string,
 }
 
 export interface UserState extends User {

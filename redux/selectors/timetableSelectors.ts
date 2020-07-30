@@ -1,10 +1,12 @@
 import _ from "lodash"
 import { createSelector } from 'reselect'
+import { AppStateType } from '../../configureStore'
+import { LocalisationManager } from "../../lib"
 
-import { AppStateType } from '../configureStore'
-import { LocalisationManager } from "../lib"
-
-export const timetableSelector = (state: AppStateType) => state.timetable.weeklyTimetable
+export const timetableSelector = (
+  state: AppStateType,
+// eslint-disable-next-line quotes
+): AppStateType["timetable"]["weeklyTimetable"] => state.timetable.weeklyTimetable
 
 const padTimetable = (timetable) => {
   const differences = timetable.map(([{ dateISO }], i) => {

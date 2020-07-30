@@ -1,9 +1,8 @@
 import { createSelector } from 'reselect'
-
-import { AppStateType } from '../configureStore'
+import { AppStateType } from '../../configureStore'
+import ErrorManager from '../../lib/ErrorManager'
+import type { StudySpace } from '../../types/uclapi'
 import { WORKSPACES_SORT_TYPES } from '../constants/studyspacesConstants'
-import ErrorManager from '../lib/ErrorManager'
-import type { StudySpace } from '../types/uclapi'
 
 const studySpacesSelector = (
   state: AppStateType,

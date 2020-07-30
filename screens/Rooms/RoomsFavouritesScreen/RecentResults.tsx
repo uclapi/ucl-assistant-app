@@ -2,11 +2,11 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useCallback } from "react"
 import { StyleSheet, View } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
-import { clearRecents } from "../../../actions/roomsActions"
 import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
 import type { AppStateType } from '../../../configureStore'
+import { clearRecents } from "../../../redux/actions/roomsActions"
 import type { Room } from '../../../types/uclapi'
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 
