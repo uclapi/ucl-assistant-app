@@ -2,10 +2,12 @@ import { cleanup, fireEvent } from "@testing-library/react-native"
 import React from 'react'
 import Colors from "../../constants/Colors"
 import { render } from "../../jest/test-utils"
+import { Warnings } from '../../lib'
 import MainTabNavigator from '../MainTabNavigator'
 
 describe(`MainTabNavigator`, () => {
   beforeAll(() => {
+    Warnings.ignore()
     jest.useFakeTimers()
   })
 

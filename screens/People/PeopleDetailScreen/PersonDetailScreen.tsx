@@ -45,17 +45,14 @@ interface Props extends PropsFromRedux {
   route: RouteProp<PeopleNavigatorParamList, 'PeopleDetail'>,
 }
 
-export const PersonDetailScreen: React.FC<Props> = (props) => {
-  console.log(props)
-
-  const {
-    token,
-    route: {
-      params: {
-        email,
-      },
+export const PersonDetailScreen: React.FC<Props> = ({
+  token,
+  route: {
+    params: {
+      email,
     },
-  } = props
+  },
+}) => {
   const {
     status: fetchStatus,
     data: {
@@ -65,6 +62,7 @@ export const PersonDetailScreen: React.FC<Props> = (props) => {
     } = {},
     error,
   } = usePerson(token, email)
+  console.log(fetchStatus, email)
 
   const sendEmail = useCallback(() => MailManager.composeAsync({ recipients: [email] }), [email])
 

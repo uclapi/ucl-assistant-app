@@ -174,7 +174,29 @@ Object {
                     ]
                   }
                 >
-                  <Text />
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#fefefe",
+                          "fontSize": 24,
+                        },
+                        Object {
+                          "marginLeft": 5,
+                          "marginRight": 5,
+                        },
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
                   <Text
                     style={
                       Array [
@@ -363,7 +385,29 @@ Object {
                   ]
                 }
               >
-                <Text />
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontSize": 24,
+                      },
+                      Object {
+                        "marginLeft": 5,
+                        "marginRight": 5,
+                      },
+                      Object {
+                        "fontFamily": "feather",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {},
+                    ]
+                  }
+                >
+                  
+                </Text>
                 <Text
                   style={
                     Array [

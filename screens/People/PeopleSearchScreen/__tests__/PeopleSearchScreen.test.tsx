@@ -1,12 +1,12 @@
-import { cleanup, render } from '@testing-library/react-native'
+import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import React from "react"
 import "react-native"
-import { RecentResults } from "../RecentResults"
-import { SearchControl } from "../SearchControl"
+import RecentResults from "../RecentResults"
 
 describe(`RecentResults`, () => {
   beforeEach(() => {
     jest.useRealTimers()
+    jest.clearAllMocks()
   })
 
   afterEach(() => {
@@ -16,10 +16,8 @@ describe(`RecentResults`, () => {
   it(`renders an empty RecentResults component`, async () => {
     const props = {
       clearRecentResults: jest.fn(),
-      navigation: {
-        navigate: jest.fn(),
-      } as any,
       recents: [],
+      viewPerson: jest.fn(),
     }
     const tree = render(<RecentResults {...props} />)
     expect(tree).toMatchSnapshot()
@@ -28,41 +26,32 @@ describe(`RecentResults`, () => {
   it(`renders a filled RecentResults component`, async () => {
     const props = {
       clearRecentResults: jest.fn(),
-      navigation: {
-        navigate: jest.fn(),
-      } as any,
       recents: [
         {
           department: `Department of Agriculture`,
+          email: `potato@agri.uk`,
           name: `Mr Potato`,
         },
         {
           department: `Faculty of Medical Sciences`,
+          email: `chris@house.md`,
           name: `Chris P Bacon`,
         },
         {
           department: `Philosophy Department`,
+          email: `jerry.b@panopticon.ac.uk`,
           name: `Jeremy Bentham`,
         },
       ],
+      viewPerson: jest.fn(),
     }
-    const tree = render(<RecentResults {...props} />)
-    expect(tree).toMatchSnapshot()
-  })
+    const wrapper = render(<RecentResults {...props} />)
+    expect(wrapper).toMatchSnapshot()
 
-  it(`renders a SearchControl component`, async () => {
-    const props = {
-      clearRecentResults: jest.fn(),
-      error: ``,
-      isSearching: false,
-      navigation: {
-        navigate: jest.fn(),
-      } as any,
-      search: jest.fn(),
-      searchResults: [],
-      token: ``,
-    }
-    const component = render(<SearchControl {...props} />)
-    expect(component).toMatchSnapshot()
+    const { getByText } = wrapper
+    const result = getByText(props.recents[0].name)
+    fireEvent.press(result)
+
+    expect(props.viewPerson).toHaveBeenCalledWith(props.recents[0].email)
   })
 })

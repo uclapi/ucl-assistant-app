@@ -10,6 +10,7 @@ import MailManager from './MailManager'
 import MapsManager from './MapsManager'
 import PushNotificationsManager from './PushNotificationsManager'
 import Shadow from './Shadow'
+import Warnings from './Warnings'
 import WebBrowserManager from './WebBrowserManager'
 
 const Random = {
@@ -31,4 +32,5 @@ export {
   Shadow,
   WebBrowserManager,
   debounce,
+  Warnings,
 }
