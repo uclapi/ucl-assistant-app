@@ -10,7 +10,7 @@ const peopleApi = axios.create({
 class PeopleController {
   static search = async (token: JWT, query: string): Promise<Person[]> => {
     if (query && query.length <= 3) {
-      return null
+      return []
     }
     try {
       const { data } = await peopleApi.get(

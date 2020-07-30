@@ -1,7 +1,10 @@
 import React from 'react'
-import { StyleSheet, TextInput, TextInputProps } from 'react-native'
+import {
+  StyleProp, StyleSheet, TextInputProps, ViewStyle,
+} from 'react-native'
 import { SmallButton } from "../../Button"
 import { Horizontal } from "../../Containers"
+import TextInput from '../TextInput'
 
 const styles = StyleSheet.create({
   textInput: {
@@ -15,6 +18,7 @@ interface Props extends TextInputProps {
   clear: () => void,
   onChangeQuery: (s: string) => void,
   placeholder?: string,
+  style?: StyleProp<ViewStyle>,
 }
 
 const SearchInput: React.FunctionComponent<Props> = ({
@@ -22,16 +26,17 @@ const SearchInput: React.FunctionComponent<Props> = ({
   clear = () => { },
   onChangeQuery = () => { },
   placeholder = `Search`,
+  style = {},
   ...otherProps
 }) => (
     <Horizontal>
       <TextInput
+        {...otherProps}
         placeholder={placeholder}
         onChangeText={onChangeQuery}
         value={query}
         clearButtonMode="always"
-        style={styles.textInput}
-        {...otherProps}
+        style={[styles.textInput, style]}
       />
       {query.length > 0 ? (
       <SmallButton onPress={clear}>Clear</SmallButton>

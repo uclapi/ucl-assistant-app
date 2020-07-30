@@ -45,14 +45,17 @@ interface Props extends PropsFromRedux {
   route: RouteProp<PeopleNavigatorParamList, 'PeopleDetail'>,
 }
 
-export const PersonDetailScreen: React.FC<Props> = ({
-  token,
-  route: {
-    params: {
-      email,
+export const PersonDetailScreen: React.FC<Props> = (props) => {
+  console.log(props)
+
+  const {
+    token,
+    route: {
+      params: {
+        email,
+      },
     },
-  },
-}) => {
+  } = props
   const {
     status: fetchStatus,
     data: {

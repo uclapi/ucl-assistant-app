@@ -1,14 +1,15 @@
 import React from "react"
-import { TextInput, TextInputProps, ViewStyle } from "react-native"
-
+import {
+  StyleProp, TextInput, TextInputProps, ViewStyle,
+} from "react-native"
 import Colors from "../../../constants/Colors"
 import styles from "../../../styles/Input"
 
 export interface Props extends TextInputProps {
-  style?: ViewStyle,
+  style?: StyleProp<ViewStyle>,
 }
 
-const TextInputComponent: React.FC<Props> = ({ style, ...otherProps }) => (
+const TextInputComponent: React.FC<Props> = ({ style = {}, ...otherProps }) => (
   <TextInput
     {...otherProps}
     underlineColorAndroid="transparent"

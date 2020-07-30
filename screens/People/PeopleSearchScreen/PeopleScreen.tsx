@@ -1,70 +1,105 @@
 import type { StackNavigationProp } from "@react-navigation/stack"
-import React, { Component } from "react"
-import { Image, StyleSheet } from 'react-native'
+import React, { useCallback, useState } from "react"
+import { ActivityIndicator } from 'react-native'
 import { connect, ConnectedProps } from "react-redux"
 import { Page } from "../../../components/Containers"
-import { TitleText } from "../../../components/Typography"
+import { SearchInput } from "../../../components/Input"
+import SearchResult from "../../../components/SearchResult"
+import { CentredText, TitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
-import { AssetManager } from "../../../lib"
-import Styles from "../../../styles/Containers"
+import { useDebounce, usePeople } from "../../../hooks"
+import {
+  PeopleDispatch,
+  searchClear as searchClearAction,
+} from "../../../redux/actions/peopleActions"
 import type { PeopleNavigatorParamList } from "../PeopleNavigator"
 import RecentResults from "./RecentResults"
-import SearchControl from "./SearchControl"
-
-const styles = StyleSheet.create({
-  emptyImage: {
-    height: 200,
-    marginTop: 25,
-  },
-})
+import SearchStatus from "./SearchStatus"
 
 interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<PeopleNavigatorParamList>,
 }
 
-export class PeopleScreen extends Component<Props> {
-  static navigationOptions = {
-    headerShown: false,
-  }
+const DEBOUNCE_DELAY = 100
 
-  render(): React.ReactElement {
-    const {
-      navigation,
-      recents = [],
-      isSearching,
-      searchResults,
-    } = this.props
-    return (
-      <Page>
-        <TitleText>People</TitleText>
-        <SearchControl navigation={navigation} />
-        <RecentResults navigation={navigation} />
-        {
-          (
-            recents.length === 0
-            && searchResults.length === 0
-            && !isSearching
-          ) ? (
-              <Image
-                source={AssetManager.undraw.peopleSearch}
-                resizeMethod="scale"
-                style={[Styles.image, styles.emptyImage]}
-                resizeMode="contain"
-              />
-            ) : null
-        }
-      </Page>
-    )
-  }
+export const PeopleScreen: React.FC<Props> = ({
+  token,
+  navigation,
+  recents = [],
+  clearRecentResults,
+}) => {
+  const [query, setQuery] = useState(``)
+  const debouncedQuery = useDebounce(query, DEBOUNCE_DELAY)
+  const {
+    status: fetchStatus,
+    data: searchResults = [],
+    error,
+  } = usePeople(token, debouncedQuery as string)
+
+  const viewPerson = useCallback(
+    (email) => () => navigation.navigate(`PeopleDetail`, { email }),
+    [navigation],
+  )
+  const clear = useCallback(() => {
+    setQuery(``)
+    clearRecentResults()
+  }, [clearRecentResults])
+  const onQueryChange = useCallback((q) => setQuery(q), [])
+
+  return (
+    <Page>
+      <TitleText>People</TitleText>
+      <SearchInput
+        placeholder="Search for a name or email..."
+        onChangeQuery={onQueryChange}
+        query={query}
+        clear={clear}
+      />
+      {
+        fetchStatus === `error` ? (
+          <CentredText>
+            {`Error! ${error} `}
+            {` `}
+          </CentredText>
+        ) : fetchStatus === `loading` ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <>
+            {
+              recents.length === 0 ? (
+                <SearchStatus query={query} searchResults={searchResults} />
+              ) : null
+            }
+            <RecentResults
+              viewPerson={viewPerson}
+              recents={recents}
+              clearRecentResults={clearRecentResults}
+            />
+          </>
+        )
+      }
+
+      {searchResults.map(({ name, email, department }) => (
+        <SearchResult
+          key={`${email}-${name}`}
+          topText={name}
+          bottomText={department}
+          type="person"
+          onPress={viewPerson(email)}
+        />
+      ))}
+    </Page>
+  )
 }
 
 const connector = connect(
   (state: AppStateType) => ({
-    isSearching: state.people.isSearching,
     recents: state.people.recents,
-    searchResults: state.people.searchResults,
+    token: state.user.token,
   }),
-  () => ({}),
+  (dispatch: PeopleDispatch) => ({
+    clearRecentResults: () => dispatch(searchClearAction()),
+  }),
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>

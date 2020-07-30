@@ -1,25 +1,20 @@
 import type { Person } from "../../types/uclapi"
 import {
   PEOPLE_CLEAR_RECENTS,
-  PEOPLE_FETCH_FAILURE,
-  PEOPLE_FETCH_SUCCESS,
-  PEOPLE_IS_FETCHING,
   PEOPLE_IS_SEARCHING,
-  PEOPLE_MAX_RECENTS,
   PEOPLE_SEARCH_CLEAR,
   PEOPLE_SEARCH_FAILURE,
   PEOPLE_SEARCH_SUCCESS,
 } from "../constants/peopleConstants"
-import { addToRecents } from "./utils"
 
 export interface PeopleState {
   fetchError: string,
   isFetching: boolean,
   isSearching: boolean,
   person: Person,
-  recents: Array<Person>,
+  recents: Person[],
   searchError: string,
-  searchResults: Array<Person>,
+  searchResults: Person[],
 }
 
 export const initialState: PeopleState = {
@@ -39,7 +34,7 @@ export const initialState: PeopleState = {
 
 export default (state = initialState, action = null): PeopleState => {
   const {
-    type, results, error, person,
+    type, results, error,
   } = action
 
   switch (type) {
@@ -66,25 +61,6 @@ export default (state = initialState, action = null): PeopleState => {
 
     case PEOPLE_SEARCH_CLEAR: {
       return { ...state, searchResults: [] }
-    }
-
-    case PEOPLE_IS_FETCHING: {
-      return { ...state, fetchError: ``, isFetching: true }
-    }
-
-    case PEOPLE_FETCH_FAILURE: {
-      return { ...state, fetchError: error, isFetching: false }
-    }
-
-    case PEOPLE_FETCH_SUCCESS: {
-      const newRecents = addToRecents(
-        state.recents,
-        person,
-        PEOPLE_MAX_RECENTS,
-      )
-      return {
-        ...state, isFetching: false, person, recents: newRecents,
-      }
     }
 
     case PEOPLE_CLEAR_RECENTS: {

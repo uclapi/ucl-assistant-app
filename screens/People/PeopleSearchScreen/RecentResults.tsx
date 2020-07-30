@@ -1,48 +1,35 @@
-import { StackNavigationProp } from "@react-navigation/stack"
-import React, { useCallback } from "react"
+import React from "react"
 import { View } from "react-native"
-import { connect, ConnectedProps } from "react-redux"
 import Button from "../../../components/Button"
 import SearchResult from "../../../components/SearchResult"
 import { CentredText, SubtitleText } from "../../../components/Typography"
-import type { AppStateType } from '../../../configureStore'
-import {
-  clearRecentResults as clearRecentsResultsAction,
-  PeopleDispatch,
-} from "../../../redux/actions/peopleActions"
 import type { Person } from "../../../types/uclapi"
-import type { PeopleNavigatorParamList } from '../PeopleNavigator'
 
 interface RecentResultProp {
   recent: Person,
-  navigation: StackNavigationProp<PeopleNavigatorParamList>,
+  viewPerson: () => void,
 }
 
-const RecentResult: React.FC<RecentResultProp> = ({ recent, navigation }) => {
-  const viewPerson = useCallback(
-    ({ email }: Person) => (): void => navigation.navigate(`PeopleDetail`, { email }),
-    [navigation],
-  )
+const RecentResult: React.FC<RecentResultProp> = ({ recent, viewPerson }) => (recent ? (
+  <SearchResult
+    key={recent.email}
+    topText={recent.name}
+    bottomText={recent.department}
+    type="person"
+    onPress={viewPerson}
+  />
+) : null)
 
-  return recent ? (
-    <SearchResult
-      key={recent.email}
-      topText={recent.name}
-      bottomText={recent.department}
-      type="person"
-      onPress={viewPerson(recent)}
-    />
-  ) : null
+interface RecentResultsProps {
+  viewPerson: (e: string) => () => void,
+  recents: Person[],
+  clearRecentResults: () => void,
 }
 
-interface RecentResultsProps extends PropsFromRedux {
-  navigation: StackNavigationProp<PeopleNavigatorParamList>,
-}
-
-export const RecentResults: React.FC<RecentResultsProps> = ({
+const RecentResults: React.FC<RecentResultsProps> = ({
   recents = [],
   clearRecentResults,
-  navigation,
+  viewPerson,
 }) => {
   if (recents.length === 0) {
     return null
@@ -54,7 +41,7 @@ export const RecentResults: React.FC<RecentResultsProps> = ({
         <RecentResult
           key={`${recent.email}-${recent.name}`}
           recent={recent}
-          navigation={navigation}
+          viewPerson={viewPerson(recent.email)}
         />
       ))}
       {recents.length > 0 ? (
@@ -66,15 +53,4 @@ export const RecentResults: React.FC<RecentResultsProps> = ({
   )
 }
 
-const connector = connect(
-  (state: AppStateType) => ({
-    recents: state.people.recents,
-  }),
-  (dispatch: PeopleDispatch) => ({
-    clearRecentResults: () => dispatch(clearRecentsResultsAction()),
-  }),
-)
-
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-export default connector(RecentResults)
+export default RecentResults

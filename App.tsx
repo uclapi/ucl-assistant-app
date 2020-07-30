@@ -4,15 +4,17 @@ import * as Font from "expo-font"
 import * as Notifications from 'expo-notifications'
 import PropTypes from "prop-types"
 import React from "react"
-import { Platform, StatusBar, View } from "react-native"
+import {
+  Platform, StatusBar, View, YellowBox,
+} from "react-native"
 // import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/lib/integration/react"
 import configureStore from "./configureStore"
 import Colors from './constants/Colors'
-import { NotificationChannels } from "./constants/notificationsConstants"
 import { AnalyticsManager, AssetManager, ErrorManager } from "./lib"
 import RootNavigation from "./navigation/RootNavigation"
+import { NotificationChannels } from "./redux/constants/notificationsConstants"
 import Styles from "./styles/Containers"
 
 const { persistor, store } = configureStore
@@ -23,6 +25,13 @@ ErrorManager.initialise()
 // unfortunately, this reduces navigation performance
 // enableScreens()
 
+YellowBox.ignoreWarnings([
+  // https://github.com/facebook/react-native/issues/12981
+  `Setting a timer`,
+
+  // until Expo updates their Lottie version
+  `ReactNative.NativeModules.LottieAnimationView`,
+])
 interface Props {
   skipLoadingScreen: boolean,
 }
