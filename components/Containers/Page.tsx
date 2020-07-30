@@ -9,7 +9,6 @@ import {
   StyleSheet,
   ViewStyle,
 } from "react-native"
-
 import Colors from "../../constants/Colors"
 
 const styles = StyleSheet.create({
@@ -62,7 +61,7 @@ const Page: React.FC<Props> = ({
   refreshing = false,
   topColour = Colors.pageBackground,
 }) => (
-    <>
+  <>
       <SafeAreaView style={
         StyleSheet.flatten([
           styles.safeAreaViewTop,
@@ -80,7 +79,7 @@ const Page: React.FC<Props> = ({
             styles.pageContainer,
             keyboardAvoidingViewStyle,
           ])}
-          behavior="padding"
+          behavior={Platform.OS === `android` ? `height` : `padding`}
           keyboardVerticalOffset={
             Platform.OS === `android` ? StatusBar.currentHeight : 0
           }
@@ -106,7 +105,7 @@ const Page: React.FC<Props> = ({
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
-    </>
-  )
+  </>
+)
 
 export default Page
