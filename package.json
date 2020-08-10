@@ -60,7 +60,7 @@
     "@react-navigation/stack": "^5.8.0",
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
-    "expo": "^38.0.0",
+    "expo": "^38.0.9",
     "expo-analytics-amplitude": "~8.2.1",
     "expo-asset": "~8.1.7",
     "expo-auth-session": "~1.4.0",
