@@ -152,7 +152,7 @@
     "expo-cli": "^3.22.3",
     "husky": "^4.2.5",
     "inquirer": "^7.3.3",
-    "jest": "^26.1.0",
+    "jest": "^26.3.0",
     "jest-expo": "^38.0.2",
     "lint-staged": "^10.2.11",
     "mockdate": "^3.0.2",
