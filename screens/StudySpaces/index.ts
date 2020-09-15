@@ -1,4 +1,2 @@
-export {
-  default,
-  StudySpacesNavigatorParamList,
-} from './StudySpacesNavigator'
+export { default } from './StudySpacesNavigator'
+export type { StudySpacesNavigatorParamList } from './StudySpacesNavigator'

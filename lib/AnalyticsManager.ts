@@ -1,7 +1,7 @@
 import * as Amplitude from 'expo-analytics-amplitude'
 import Constants from 'expo-constants'
-
 import configureStore from "../configureStore"
+import DeviceManager from './DeviceManager'
 
 const { store } = configureStore
 
@@ -11,15 +11,18 @@ const AMPLITUDE_API_KEY = Constants.manifest.extra
   ? Constants.manifest.extra.amplitude.apiKey
   : null
 
-const initialise = (): Promise<void> => Amplitude.initialize(AMPLITUDE_API_KEY)
-
 const shouldTrackAnalytics = (): boolean => (
   AMPLITUDE_API_KEY
-  && !__DEV__
-  && store.getState().user.settings.shouldTrackAnalytics
+    && !__DEV__
+    && !DeviceManager.isWeb
+    && store.getState().user.settings.shouldTrackAnalytics
 )
 
-const setUserId = (userId): void => {
+const initialise = (): Promise<void> => (shouldTrackAnalytics()
+  ? Amplitude.initialize(AMPLITUDE_API_KEY)
+  : null)
+
+const setUserId = (userId: string): void => {
   if (!shouldTrackAnalytics()) { return }
 
   // make sure this is unique

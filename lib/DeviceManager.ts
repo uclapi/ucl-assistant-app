@@ -2,24 +2,20 @@ import * as Device from 'expo-device'
 import * as Network from 'expo-network'
 import { Platform } from 'react-native'
 
-const isRealDevice = (): boolean => Device.isDevice
+const isWeb = Platform.OS === `web`
+const isAndroid = Platform.OS === `android`
+const isiOS = Platform.OS === `ios`
+
+const isRealDevice = Device.isDevice
 
 const isConnectedToInternet = async (): Promise<boolean> => {
-  switch (Platform.OS) {
-    case `android`: {
-      const isAirplaneMode = await Network.isAirplaneModeEnabledAsync()
-      if (isAirplaneMode) {
-        return false
-      }
-      break
-    }
-
-    case `ios`: {
-      break
-    }
-
-    default:
+  if (isAndroid) {
+    const isAirplaneMode = await Network.isAirplaneModeEnabledAsync()
+    if (isAirplaneMode) {
       return false
+    }
+  } else {
+    return false
   }
 
   const { isInternetReachable } = await Network.getNetworkStateAsync()
@@ -27,6 +23,9 @@ const isConnectedToInternet = async (): Promise<boolean> => {
 }
 
 export default {
+  isAndroid,
   isConnectedToInternet,
   isRealDevice,
+  isWeb,
+  isiOS,
 }

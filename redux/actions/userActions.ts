@@ -4,11 +4,11 @@ import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import configureStore, { AppStateType } from "../../configureStore"
 import { ASSISTANT_API_URL } from "../../constants/API"
 import { AnalyticsManager, ErrorManager } from "../../lib"
-import * as constants from "../constants/userConstants"
 import type {
   SignInSuccessAction,
   UserActionTypes,
 } from "../constants/userConstants"
+import * as constants from "../constants/userConstants"
 import { clearTimetable, TimetableDispatch } from "./timetableActions"
 
 const { persistor } = configureStore
@@ -63,6 +63,7 @@ export const signIn = (): UserThunkAction => async (
     authUrl: `${ASSISTANT_API_URL}/connect/uclapi?return=${encodeURIComponent(
       returnUrl,
     )}`,
+    returnUrl,
   })
   if (result.type === `success`) {
     const action = signInSuccess(result)

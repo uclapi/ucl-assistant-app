@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist"
 import createSecureStore from "redux-persist-expo-securestore"
 import thunk from "redux-thunk"
 import debounce from "./lib/debounce"
+import DeviceManager from './lib/DeviceManager'
 import { SIGN_OUT_USER } from "./redux/constants/userConstants"
 import reducer, { initialState } from "./redux/reducers"
 
@@ -30,7 +31,7 @@ const userPersistConfig = {
   blacklist: [`signIn`],
   debug: __DEV__,
   key: `user`,
-  storage: secureStorage,
+  storage: DeviceManager.isWeb ? AsyncStorage : secureStorage,
 }
 
 const appReducer = combineReducers({

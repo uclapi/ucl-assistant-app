@@ -358,7 +358,7 @@ Object {
                 "left": 0,
                 "paddingBottom": 0,
                 "paddingHorizontal": 0,
-                "position": "absolute",
+                "position": null,
                 "right": 0,
                 "transform": Array [
                   Object {
@@ -1268,7 +1268,7 @@ Object {
               "left": 0,
               "paddingBottom": 0,
               "paddingHorizontal": 0,
-              "position": "absolute",
+              "position": null,
               "right": 0,
               "transform": Array [
                 Object {

@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons"
-import ViewPager from '@react-native-community/viewpager'
+import ViewPagerType from "@react-native-community/viewpager"
 import { Moment } from 'moment'
 import React from "react"
 import {
@@ -10,6 +10,7 @@ import {
 import { connect, ConnectedProps } from "react-redux"
 import { PageNoScroll } from "../../../components/Containers"
 import { ErrorMessage } from '../../../components/Message'
+import ViewPager from '../../../components/ViewPager'
 import { AppStateType } from "../../../configureStore"
 import Colors from "../../../constants/Colors"
 import {
@@ -66,7 +67,7 @@ class TimetableScreen extends React.Component<Props, State> {
     ),
   }
 
-  private viewpager = React.createRef<ViewPager>()
+  private viewpager = React.createRef<ViewPagerType>()
 
   constructor(props: Props) {
     super(props)
@@ -121,7 +122,7 @@ class TimetableScreen extends React.Component<Props, State> {
       const didGrant = (
         await PushNotificationsManager.hasPushNotificationPermissions()
       )
-      if (!didGrant && DeviceManager.isRealDevice()) {
+      if (!didGrant && DeviceManager.isRealDevice) {
         const { navigation } = this.props
         navigation.navigate(`Notifications`)
       }

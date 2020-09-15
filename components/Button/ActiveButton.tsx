@@ -3,13 +3,13 @@ import _ from "lodash"
 import React, { useCallback } from "react"
 import {
   GestureResponderEvent,
-  Platform,
   TouchableNativeFeedback,
   TouchableOpacity,
   ViewProps,
-  ViewStyle,
+  ViewStyle
 } from "react-native"
 import Colors from "../../constants/Colors"
+import { DeviceManager } from "../../lib"
 import Styles from "../../styles/Button"
 
 interface WrapperProps {
@@ -24,7 +24,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children, onPress, disabled }) => {
   const debouncedOnPress = useCallback(_.debounce((event: GestureResponderEvent) => {
     onPress(event)
   }, 200), [onPress])
-  if (Platform.OS === `android`) {
+  if (DeviceManager.isAndroid) {
     return (
       <TouchableNativeFeedback
         background={
@@ -39,7 +39,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children, onPress, disabled }) => {
       </TouchableNativeFeedback>
     )
   }
-  if (Platform.OS === `ios`) {
+  if (DeviceManager.isiOS || DeviceManager.isWeb) {
     return (
       <TouchableOpacity
         style={{ backgroundColor: `transparent` }}

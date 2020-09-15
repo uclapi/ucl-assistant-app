@@ -75,7 +75,6 @@ const tabBarOptions = {
     bottom: 0,
     height: 60,
     left: 0,
-    position: `absolute`,
     right: 0,
   },
   tabStyle: {
