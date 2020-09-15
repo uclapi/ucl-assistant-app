@@ -1,1 +1,2 @@
-export { default, PeopleNavigatorParamList } from './PeopleNavigator'
+export { default } from './PeopleNavigator'
+export type { PeopleNavigatorParamList } from './PeopleNavigator'

@@ -287,6 +287,7 @@ class TimetableScreen extends React.Component<Props, State> {
           ) : null
         }
         <ViewPager
+          ref={this.viewpager}
           key={timetable.length} // re-render only if array length changes
           orientation="horizontal"
           style={styles.swiper}
