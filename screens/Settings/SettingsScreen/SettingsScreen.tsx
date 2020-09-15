@@ -1,4 +1,3 @@
-import CheckBox from '@react-native-community/checkbox'
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
   CommonActions,
@@ -19,6 +18,7 @@ import {
 import { connect, ConnectedProps } from "react-redux"
 import { SmallButton } from "../../../components/Button"
 import { Horizontal, Page } from "../../../components/Containers"
+import { CheckBox } from "../../../components/Input"
 import TextInput from "../../../components/Input/TextInput"
 // import NotificationSwitch from "./NotificationSwitch"
 import LiveIndicator from "../../../components/LiveIndicator"

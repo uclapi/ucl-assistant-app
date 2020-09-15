@@ -1,6 +1,5 @@
 import React from "react"
 import { ActivityIndicator, Platform } from "react-native"
-
 import Colors from "../../constants/Colors"
 import { ButtonText } from "../Typography"
 import ActiveButton, { ActiveButtonProps } from "./ActiveButton"

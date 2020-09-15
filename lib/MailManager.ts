@@ -1,14 +1,13 @@
 import * as MailComposer from "expo-mail-composer"
 import { MailComposerOptions, MailComposerResult } from "expo-mail-composer"
 import { Alert, Platform } from "react-native"
-
 import ClipboardManager from './ClipboardManager'
 import DeviceManager from './DeviceManager'
 
 const composeAsync = async (
   options: MailComposerOptions,
 ): Promise<MailComposerResult | void> => {
-  if (!DeviceManager.isRealDevice()) {
+  if (!DeviceManager.isRealDevice) {
     console.warn(`Mail services cannot be used in a simulator`)
     return Promise.resolve()
   }

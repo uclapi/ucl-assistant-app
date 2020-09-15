@@ -10,7 +10,7 @@ describe(`DeviceManager`, () => {
 
   it(`returns if real device`, async () => {
     const DeviceManager = (await import(`../DeviceManager`)).default
-    expect(DeviceManager.isRealDevice()).toBe(true)
+    expect(DeviceManager.isRealDevice).toBe(true)
   })
 
   it(`fails early if airplane mode is enabled`, async () => {
