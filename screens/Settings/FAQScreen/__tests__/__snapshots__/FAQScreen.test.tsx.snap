@@ -20,10 +20,18 @@ Array [
 `;
 
 exports[`FAQScreen renders fine 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -31,1560 +39,822 @@ Object {
     }
   >
     <View
-      collapsable={true}
-      pointerEvents="box-none"
+      onLayout={[Function]}
       style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <SafeAreaView
-        style={
+        Array [
           Object {
             "backgroundColor": "#fefefe",
-            "flex": 0,
-          }
-        }
-      />
-      <SafeAreaView
-        style={
-          Object {
             "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "flexDirection": "column",
-              },
-              Object {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingBottom": 60,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 20,
-                },
-                undefined,
-              ]
-            }
-            keyboardDismissMode="on-drag"
-            refreshControl={null}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#fefefe",
-                  "flex": 1,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                },
-                undefined,
-              ]
-            }
-          >
-            <View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      How does this app work?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      What does the 'last modified' date on my timetable mean?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      How do you know how busy the study spaces are?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Does this violate students' privacy?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      What about people who get up and leave their belongings on the desk?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      What do the charts show?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      How are the averages calculated?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      What does the red bar mean on the charts?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity
-                  style={
-                    Object {
-                      "backgroundColor": "transparent",
-                    }
-                  }
-                >
-                  <ViewManagerAdapter_ExpoLinearGradient
-                    proxiedProperties={
-                      Object {
-                        "colors": Array [
-                          4279998859,
-                          4283151357,
-                        ],
-                        "endPoint": Array [
-                          1,
-                          0,
-                        ],
-                        "locations": undefined,
-                        "startPoint": Array [
-                          0,
-                          1,
-                        ],
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 8,
-                          "elevation": 2,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "minHeight": 55,
-                          "minWidth": 150,
-                          "padding": 8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "shadowColor": "#1B998B",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.75,
-                          "shadowRadius": 3,
-                        },
-                        Object {
-                          "zIndex": 2,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#fefefe",
-                            "fontFamily": "apercu",
-                            "fontSize": 20,
-                            "marginBottom": 1,
-                            "marginTop": 1,
-                            "textAlign": "center",
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      More questions?
-                    </Text>
-                  </ViewManagerAdapter_ExpoLinearGradient>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={
-                  Object {
-                    "height": 20,
-                  }
-                }
-              />
-            </View>
-          </RCTScrollView>
-        </View>
-      </SafeAreaView>
-    </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 0,
-        }
-      }
-    />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
       }
     >
-      <View
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingBottom": 60,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 20,
+            },
+            undefined,
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
         style={
           Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "flexDirection": "column",
+              "paddingLeft": 0,
+              "paddingRight": 0,
             },
-            Object {
-              "paddingBottom": 0,
-            },
+            undefined,
           ]
         }
       >
-        <RCTScrollView
-          contentContainerStyle={
-            Array [
-              Object {
-                "paddingBottom": 60,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 20,
-              },
-              undefined,
-            ]
-          }
-          keyboardDismissMode="on-drag"
-          refreshControl={null}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
-          }
-        >
+        <View>
           <View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    How does this app work?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    What does the 'last modified' date on my timetable mean?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    How do you know how busy the study spaces are?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    Does this violate students' privacy?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    What about people who get up and leave their belongings on the desk?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    What do the charts show?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    How are the averages calculated?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    What does the red bar mean on the charts?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={
-                  Object {
-                    "backgroundColor": "transparent",
-                  }
-                }
-              >
-                <ViewManagerAdapter_ExpoLinearGradient
-                  proxiedProperties={
-                    Object {
-                      "colors": Array [
-                        4279998859,
-                        4283151357,
-                      ],
-                      "endPoint": Array [
-                        1,
-                        0,
-                      ],
-                      "locations": undefined,
-                      "startPoint": Array [
-                        0,
-                        1,
-                      ],
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 8,
-                        "elevation": 2,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "minHeight": 55,
-                        "minWidth": 150,
-                        "padding": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "shadowColor": "#1B998B",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.75,
-                        "shadowRadius": 3,
-                      },
-                      Object {
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#fefefe",
-                          "fontFamily": "apercu",
-                          "fontSize": 20,
-                          "marginBottom": 1,
-                          "marginTop": 1,
-                          "textAlign": "center",
-                        },
-                        undefined,
-                      ]
-                    }
-                  >
-                    More questions?
-                  </Text>
-                </ViewManagerAdapter_ExpoLinearGradient>
-              </TouchableOpacity>
-            </View>
             <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "height": 20,
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
                 }
               }
-            />
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  How does this app work?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
           </View>
-        </RCTScrollView>
-      </View>
-    </SafeAreaView>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  What does the 'last modified' date on my timetable mean?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  How do you know how busy the study spaces are?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  Does this violate students' privacy?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  What about people who get up and leave their belongings on the desk?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  What do the charts show?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  How are the averages calculated?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  What does the red bar mean on the charts?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "opacity": 1,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4279998859,
+                      4283151357,
+                    ],
+                    "endPoint": Array [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": Array [
+                      0,
+                      1,
+                    ],
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 8,
+                      "elevation": 2,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "minHeight": 55,
+                      "minWidth": 150,
+                      "padding": 8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "shadowColor": "#1B998B",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.75,
+                      "shadowRadius": 3,
+                    },
+                    Object {
+                      "zIndex": 2,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#fefefe",
+                        "fontFamily": "apercu",
+                        "fontSize": 20,
+                        "marginBottom": 1,
+                        "marginTop": 1,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  More questions?
+                </Text>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 20,
+              }
+            }
+          />
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
 `;

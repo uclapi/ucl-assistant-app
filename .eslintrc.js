@@ -116,6 +116,7 @@ module.exports = {
     "@typescript-eslint/no-empty-function": `off`,
     "@typescript-eslint/no-explicit-any": `off`,
     "@typescript-eslint/no-unused-vars": `error`,
+    "@typescript-eslint/no-use-before-define": `error`,
     "@typescript-eslint/semi": [
       `error`,
       `never`,
@@ -175,6 +176,10 @@ module.exports = {
       `warn`,
       {
         code: 100,
+        ignoreComments: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreUrls: true,
       },
     ],
     "no-console": `off`,
@@ -190,6 +195,7 @@ module.exports = {
       },
     ],
     "no-unused-vars": `off`,
+    "no-use-before-define": `off`,
     "no-var": `error`,
     "object-property-newline": `error`,
     "prefer-const": `error`,
@@ -203,18 +209,20 @@ module.exports = {
     ],
     "react/jsx-filename-extension": `off`,
     "react/jsx-indent": `off`,
+
     "react/jsx-indent-props": [
       `error`,
       2,
     ],
     "react/jsx-props-no-spreading": `off`,
-
     "react/prop-types": `off`,
     "react/static-property-placement": [
       `error`,
       `static public field`,
     ],
+
     "security/detect-non-literal-regexp": `off`,
+
     "security/detect-non-literal-require": `off`,
     /* until
       https://github.com/nodesecurity/eslint-plugin-security/issues/27

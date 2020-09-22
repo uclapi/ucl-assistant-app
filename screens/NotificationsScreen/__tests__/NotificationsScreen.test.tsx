@@ -21,7 +21,7 @@ describe(`NotificationsScreen`, () => {
   )
 
   beforeAll(() => {
-    jest.useFakeTimers()
+    jest.useRealTimers()
   })
 
   beforeEach(() => {

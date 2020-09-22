@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.pageBackground,
     flex: 1,
     flexDirection: `column`,
-    paddingBottom: 60,
   },
 })
 

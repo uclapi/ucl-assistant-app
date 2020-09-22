@@ -82,7 +82,7 @@ describe(`EmptyRoomsScreen`, () => {
     const { getByTestId } = wrapper
     await waitForEventLoop()
 
-    fireEvent.valueChange(getByTestId(`building-picker`), `main`)
+    fireEvent(getByTestId(`building-picker`), `valueChange`, `main`)
     await waitForEventLoop()
 
     expect(wrapper).toMatchSnapshot()

@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native'
-import { render as rtlRender, RenderResult } from '@testing-library/react-native'
+import { render as rtlRender, RenderAPI, act } from '@testing-library/react-native'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Store } from 'redux'
@@ -14,14 +14,14 @@ const middlewares = [
 ]
 const mockStore = configureStore(middlewares)
 
-const render = (
+const render = async (
   ui: React.ReactElement,
   {
     initialState = defaultInitialState,
     store = mockStore(initialState) as Store,
     ...renderOptions
   } = {},
-): RenderResult => {
+): Promise<RenderAPI> => {
   const Wrapper = ({ children }) => (
     <Provider store={store}>
       <NavigationContainer>
@@ -29,7 +29,9 @@ const render = (
       </NavigationContainer>
     </Provider>
   )
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  const result = rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  await act(async () => {})
+  return result
 }
 
 export const waitForEventLoop = async (): Promise<void> => new Promise((resolve) => {

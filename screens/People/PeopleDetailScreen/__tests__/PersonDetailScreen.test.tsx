@@ -2,7 +2,9 @@ import { RouteProp } from '@react-navigation/native'
 import React from 'react'
 import PersonDetailScreen from '..'
 import { PeopleNavigatorParamList } from "../.."
-import { fireEvent, render, wait } from '../../../../jest/test-utils'
+import {
+  fireEvent, render, waitForEventLoop,
+} from '../../../../jest/test-utils'
 import { ApiManager, MailManager } from "../../../../lib"
 import type { Person } from '../../../../types/uclapi'
 
@@ -39,11 +41,10 @@ describe(`PersonDetailScreen`, () => {
   })
 
   it(`renders fine`, async () => {
-    const wrapper = setup()
+    const wrapper = await setup()
     const { getByText } = wrapper
     expect(ApiManager.people.fetchPerson).toBeCalledTimes(1)
-    await wait()
-
+    await waitForEventLoop()
     expect(getByText(new RegExp(mockPerson.department, `i`))).toBeTruthy()
     expect(getByText(new RegExp(mockPerson.name, `i`))).toBeTruthy()
     expect(getByText(new RegExp(mockPerson.status, `i`))).toBeTruthy()
@@ -52,11 +53,10 @@ describe(`PersonDetailScreen`, () => {
   })
 
   it(`sends email`, async () => {
-    const { getByText } = setup()
+    const { getByText } = await setup()
     const button = getByText(/send email/i)
     fireEvent.press(button)
-    await wait()
-
+    await waitForEventLoop()
     expect(MailManager.composeAsync).toBeCalledTimes(1)
     expect(MailManager.composeAsync).toBeCalledWith({ recipients: [mockPerson.email] })
   })

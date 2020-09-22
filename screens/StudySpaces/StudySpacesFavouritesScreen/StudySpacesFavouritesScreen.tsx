@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import {
   ActivityIndicator,
   FlatList,
@@ -56,92 +56,78 @@ interface Props extends PropsFromRedux {
   navigation: StudySpacesNavigationType,
 }
 
-interface State {
-  loadedSeatInfo: boolean,
-}
+const StudySpaceFavouritesScreen: React.FC<Props> = ({
+  token,
+  fetchStudyspaceDetails,
+  fetchInfo,
+  navigation,
+  lastModified,
+  favouriteSpaces,
+}) => {
+  const [loadedSeatInfo, setLoadedSeatInfo] = useState(false)
 
-class StudySpaceFavouritesScreen extends React.Component<Props, State> {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loadedSeatInfo: false,
-    }
-  }
+  const fetchSeatInfo = useCallback(() => {
+    setLoadedSeatInfo(true)
+    setTimeout(() => fetchInfo(token), 500)
+  }, [token, fetchInfo])
 
-  componentDidMount() {
-    const { loadedSeatInfo } = this.state
-    const { token, fetchStudyspaceDetails } = this.props
+  const viewStudySpacesList = useCallback(
+    () => navigation.navigate(`StudySpacesList`),
+    [navigation],
+  )
+
+  const keyExtractor = useCallback((item): string => `${item.id}`, [])
+
+  const renderItem = useCallback(({ item }): React.ReactElement => (
+    <StudySpaceResult navigation={navigation} id={item.id} />
+  ), [navigation])
+
+  useEffect(() => {
     if (!loadedSeatInfo && token) {
-      this.fetchSeatInfo()
+      fetchSeatInfo()
     }
     fetchStudyspaceDetails(token)
-  }
+  }, [fetchSeatInfo, fetchStudyspaceDetails, token, loadedSeatInfo])
 
-  fetchSeatInfo = () => {
-    this.setState({ loadedSeatInfo: true }, () => {
-      const { fetchInfo, token } = this.props
-      setTimeout(() => fetchInfo(token), 500)
-    })
-  }
-
-  viewStudySpacesList = () => {
-    const { navigation } = this.props
-    navigation.navigate(`StudySpacesList`)
-  }
-
-  keyExtractor = (item): string => `${item.id}`
-
-  renderItem = ({ item }): React.ReactElement => {
-    const { navigation } = this.props
-    return <StudySpaceResult navigation={navigation} id={item.id} />
-  }
-
-  render() {
-    const { loadedSeatInfo } = this.state
-    const {
-      favouriteSpaces,
-      lastModified,
-    } = this.props
-    return (
-      <PageNoScroll style={styles.page}>
-        <FlatList
-          contentContainerStyle={styles.flatList}
-          onRefresh={this.fetchSeatInfo}
-          refreshing={!loadedSeatInfo}
-          data={favouriteSpaces}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-          ListHeaderComponent={(
-            <>
-              <SubtitleText style={styles.title}>Your Favourites</SubtitleText>
-              <LastUpdated lastModified={lastModified} />
-            </>
-          )}
-          ListHeaderComponentStyle={styles.header}
-          ListFooterComponent={
-            (lastModified === null || typeof lastModified !== `object`)
-              ? <ActivityIndicator size="large" />
-              : <Button onPress={this.viewStudySpacesList}>View All</Button>
-          }
-          ListFooterComponentStyle={styles.footer}
-          ListEmptyComponent={(
-            <View style={styles.suggestion}>
-              <BodyText>
-                Mark a study space as one of your favourites and&nbsp;
-                it will appear here for easy reference
-              </BodyText>
-              <Image
-                source={AssetManager.undraw.studying}
-                resizeMethod="scale"
-                style={[Styles.image, styles.emptyImage]}
-                resizeMode="contain"
-              />
-            </View>
-          )}
-        />
-      </PageNoScroll>
-    )
-  }
+  return (
+    <PageNoScroll style={styles.page}>
+      <FlatList
+        contentContainerStyle={styles.flatList}
+        onRefresh={fetchSeatInfo}
+        refreshing={!loadedSeatInfo}
+        data={favouriteSpaces}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ListHeaderComponent={(
+          <>
+            <SubtitleText style={styles.title}>Your Favourites</SubtitleText>
+            <LastUpdated lastModified={lastModified} />
+          </>
+        )}
+        ListHeaderComponentStyle={styles.header}
+        ListFooterComponent={
+          (lastModified === null || typeof lastModified !== `object`)
+            ? <ActivityIndicator size="large" />
+            : <Button onPress={viewStudySpacesList}>View All</Button>
+        }
+        ListFooterComponentStyle={styles.footer}
+        ListEmptyComponent={(
+          <View style={styles.suggestion}>
+            <BodyText>
+              Mark a study space as one of your favourites and&nbsp;
+              it will appear here for easy reference
+            </BodyText>
+            <Image
+              source={AssetManager.undraw.studying}
+              resizeMethod="scale"
+              style={[Styles.image, styles.emptyImage]}
+              resizeMode="contain"
+            />
+          </View>
+        )}
+      />
+    </PageNoScroll>
+  )
 }
 
 const connector = connect(

@@ -1,10 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmptyRoomsScreen calls getEmptyRooms 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -12,1355 +20,220 @@ Object {
     }
   >
     <View
-      collapsable={true}
-      pointerEvents="box-none"
+      onLayout={[Function]}
       style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <SafeAreaView
-        style={
+        Array [
           Object {
             "backgroundColor": "#fefefe",
-            "flex": 0,
-          }
-        }
-      />
-      <SafeAreaView
-        style={
-          Object {
             "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "flexDirection": "column",
-              },
-              Object {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingBottom": 60,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 20,
-                },
-                undefined,
-              ]
-            }
-            keyboardDismissMode="on-drag"
-            refreshControl={null}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#fefefe",
-                  "flex": 1,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                },
-                undefined,
-              ]
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 20,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      undefined,
-                    ]
-                  }
-                >
-                  Filter by:
-                </Text>
-                <View>
-                  <RNCPicker
-                    items={
-                      Array [
-                        Object {
-                          "label": "All Buildings",
-                          "textColor": undefined,
-                          "value": null,
-                        },
-                        Object {
-                          "label": "Bentham House",
-                          "textColor": undefined,
-                          "value": "b",
-                        },
-                        Object {
-                          "label": "Main Building",
-                          "textColor": undefined,
-                          "value": "main",
-                        },
-                      ]
-                    }
-                    selectedIndex={0}
-                    style={
-                      Array [
-                        Object {
-                          "height": 216,
-                        },
-                        undefined,
-                      ]
-                    }
-                    testID="building-picker"
-                  />
-                </View>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      Object {
-                        "marginBottom": 10,
-                      },
-                    ]
-                  }
-                >
-                  Rooms vacant for the next hour:
-                </Text>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Bentham
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Classroom
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Galactica
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Lecture Theatre
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Denning
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Classroom
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </RCTScrollView>
-        </View>
-      </SafeAreaView>
-    </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 0,
-        }
-      }
-    />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
       }
     >
-      <View
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingBottom": 60,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 20,
+            },
+            undefined,
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
         style={
           Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "flexDirection": "column",
+              "paddingLeft": 0,
+              "paddingRight": 0,
             },
-            Object {
-              "paddingBottom": 0,
-            },
+            undefined,
           ]
         }
       >
-        <RCTScrollView
-          contentContainerStyle={
-            Array [
+        <View>
+          <View
+            style={
               Object {
-                "paddingBottom": 60,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 20,
-              },
-              undefined,
-            ]
-          }
-          keyboardDismissMode="on-drag"
-          refreshControl={null}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View>
-            <View
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
               style={
-                Object {
-                  "paddingBottom": 20,
-                }
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  undefined,
+                ]
               }
             >
-              <Text
+              Filter by:
+            </Text>
+            <View>
+              <RNCPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                    Object {
+                      "label": "Bentham House",
+                      "textColor": undefined,
+                      "value": "b",
+                    },
+                    Object {
+                      "label": "Main Building",
+                      "textColor": undefined,
+                      "value": "main",
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                selectedIndex={0}
                 style={
                   Array [
                     Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
+                      "height": 216,
                     },
                     undefined,
                   ]
                 }
-              >
-                Filter by:
-              </Text>
-              <View>
-                <RNCPicker
-                  items={
-                    Array [
-                      Object {
-                        "label": "All Buildings",
-                        "textColor": undefined,
-                        "value": null,
-                      },
-                      Object {
-                        "label": "Bentham House",
-                        "textColor": undefined,
-                        "value": "b",
-                      },
-                      Object {
-                        "label": "Main Building",
-                        "textColor": undefined,
-                        "value": "main",
-                      },
-                    ]
-                  }
-                  selectedIndex={0}
-                  style={
-                    Array [
-                      Object {
-                        "height": 216,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="building-picker"
-                />
-              </View>
-              <Text
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
                     },
                     Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
                       "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
                     },
                   ]
                 }
               >
-                Rooms vacant for the next hour:
-              </Text>
-              <TouchableOpacity
-                activeOpacity={0.9}
-              >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
                   }
                 >
-                  <View
+                  <Text
+                    allowFontScaling={false}
                     style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Bentham
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Classroom
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.9}
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Galactica
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Lecture Theatre
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.9}
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Denning
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Classroom
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </RCTScrollView>
-      </View>
-    </SafeAreaView>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`EmptyRoomsScreen renders the loading screen 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <View
-      collapsable={true}
-      pointerEvents="box-none"
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <SafeAreaView
-        style={
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 0,
-          }
-        }
-      />
-      <SafeAreaView
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "flexDirection": "column",
-              },
-              Object {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingBottom": 60,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 20,
-                },
-                undefined,
-              ]
-            }
-            keyboardDismissMode="on-drag"
-            refreshControl={null}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#fefefe",
-                  "flex": 1,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                },
-                undefined,
-              ]
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 20,
-                  }
-                }
-              >
-                <ActivityIndicator
-                  animating={true}
-                  color="#999999"
-                  hidesWhenStopped={true}
-                  size="large"
-                />
-              </View>
-            </View>
-          </RCTScrollView>
-        </View>
-      </SafeAreaView>
-    </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 0,
-        }
-      }
-    />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            Object {
-              "paddingBottom": 0,
-            },
-          ]
-        }
-      >
-        <RCTScrollView
-          contentContainerStyle={
-            Array [
-              Object {
-                "paddingBottom": 60,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 20,
-              },
-              undefined,
-            ]
-          }
-          keyboardDismissMode="on-drag"
-          refreshControl={null}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View>
-            <View
-              style={
-                Object {
-                  "paddingBottom": 20,
-                }
-              }
-            >
-              <ActivityIndicator
-                animating={true}
-                color="#999999"
-                hidesWhenStopped={true}
-                size="large"
-              />
-            </View>
-          </View>
-        </RCTScrollView>
-      </View>
-    </SafeAreaView>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <View
-      collapsable={true}
-      pointerEvents="box-none"
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <SafeAreaView
-        style={
-          Object {
-            "backgroundColor": "#fefefe",
-            "flex": 0,
-          }
-        }
-      />
-      <SafeAreaView
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "flexDirection": "column",
-              },
-              Object {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingBottom": 60,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 20,
-                },
-                undefined,
-              ]
-            }
-            keyboardDismissMode="on-drag"
-            refreshControl={null}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#fefefe",
-                  "flex": 1,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                },
-                undefined,
-              ]
-            }
-          >
-            <View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 20,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      undefined,
-                    ]
-                  }
-                >
-                  Filter by:
-                </Text>
-                <View>
-                  <RNCPicker
-                    items={
                       Array [
                         Object {
-                          "label": "All Buildings",
-                          "textColor": undefined,
-                          "value": null,
+                          "color": undefined,
+                          "fontSize": 24,
                         },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
                       ]
                     }
-                    selectedIndex={0}
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
                     style={
                       Array [
                         Object {
-                          "height": 216,
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
                         },
                         undefined,
                       ]
                     }
-                    testID="building-picker"
-                  />
-                </View>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      Object {
-                        "marginBottom": 10,
-                      },
-                    ]
-                  }
-                >
-                  Rooms vacant for the next hour:
-                </Text>
-                <View>
+                  >
+                    Bentham
+                  </Text>
                   <Text
                     style={
                       Array [
@@ -1368,237 +241,276 @@ Object {
                           "color": "#6E707F",
                           "fontFamily": "apercu",
                           "fontSize": 16,
-                          "marginBottom": 5,
-                          "marginTop": 5,
-                          "textAlign": "center",
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
                         },
                         undefined,
                       ]
                     }
                   >
-                    No empty rooms found 🙁
+                    Classroom
                   </Text>
                 </View>
               </View>
             </View>
-          </RCTScrollView>
-        </View>
-      </SafeAreaView>
-    </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 0,
-        }
-      }
-    />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#fefefe",
-              "flex": 1,
-              "flexDirection": "column",
-            },
-            Object {
-              "paddingBottom": 0,
-            },
-          ]
-        }
-      >
-        <RCTScrollView
-          contentContainerStyle={
-            Array [
-              Object {
-                "paddingBottom": 60,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 20,
-              },
-              undefined,
-            ]
-          }
-          keyboardDismissMode="on-drag"
-          refreshControl={null}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View>
             <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "paddingBottom": 20,
+                  "opacity": 1,
                 }
               }
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Filter by:
-              </Text>
-              <View>
-                <RNCPicker
-                  items={
-                    Array [
-                      Object {
-                        "label": "All Buildings",
-                        "textColor": undefined,
-                        "value": null,
-                      },
-                    ]
-                  }
-                  selectedIndex={0}
-                  style={
-                    Array [
-                      Object {
-                        "height": 216,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="building-picker"
-                />
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
                     },
                     Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
                       "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
                     },
                   ]
                 }
               >
-                Rooms vacant for the next hour:
-              </Text>
-              <View>
-                <Text
+                <View
                   style={
-                    Array [
-                      Object {
-                        "color": "#6E707F",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 5,
-                        "marginTop": 5,
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ]
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
                   }
                 >
-                  No empty rooms found 🙁
-                </Text>
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Galactica
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Lecture Theatre
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Denning
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Classroom
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
-        </RCTScrollView>
-      </View>
-    </SafeAreaView>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
 `;
 
-exports[`EmptyRoomsScreen supports filtering by building 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
+exports[`EmptyRoomsScreen renders the loading screen 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -1606,976 +518,597 @@ Object {
     }
   >
     <View
-      collapsable={true}
-      pointerEvents="box-none"
+      onLayout={[Function]}
       style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <SafeAreaView
-        style={
+        Array [
           Object {
             "backgroundColor": "#fefefe",
-            "flex": 0,
-          }
-        }
-      />
-      <SafeAreaView
-        style={
-          Object {
             "flex": 1,
-          }
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingBottom": 60,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 20,
+            },
+            undefined,
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            undefined,
+          ]
         }
       >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "flexDirection": "column",
-              },
-              Object {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        >
-          <RCTScrollView
-            contentContainerStyle={
-              Array [
-                Object {
-                  "paddingBottom": 60,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 20,
-                },
-                undefined,
-              ]
-            }
-            keyboardDismissMode="on-drag"
-            refreshControl={null}
+        <View>
+          <View
             style={
-              Array [
-                Object {
-                  "backgroundColor": "#fefefe",
-                  "flex": 1,
-                  "paddingLeft": 0,
-                  "paddingRight": 0,
-                },
-                undefined,
-              ]
+              Object {
+                "paddingBottom": 20,
+              }
             }
           >
-            <View>
-              <View
-                style={
-                  Object {
-                    "paddingBottom": 20,
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      undefined,
-                    ]
-                  }
-                >
-                  Filter by:
-                </Text>
-                <View>
-                  <RNCPicker
-                    items={
-                      Array [
-                        Object {
-                          "label": "All Buildings",
-                          "textColor": undefined,
-                          "value": null,
-                        },
-                        Object {
-                          "label": "Bentham House",
-                          "textColor": undefined,
-                          "value": "b",
-                        },
-                        Object {
-                          "label": "Main Building",
-                          "textColor": undefined,
-                          "value": "main",
-                        },
-                      ]
-                    }
-                    selectedIndex={0}
-                    style={
-                      Array [
-                        Object {
-                          "height": 216,
-                        },
-                        undefined,
-                      ]
-                    }
-                    testID="building-picker"
-                  />
-                </View>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#4D5061",
-                        "fontFamily": "apercu",
-                        "fontSize": 16,
-                        "marginBottom": 1,
-                        "marginTop": 1,
-                      },
-                      Object {
-                        "marginBottom": 10,
-                      },
-                    ]
-                  }
-                >
-                  Rooms vacant for the next hour:
-                </Text>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Bentham
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Classroom
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Galactica
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Lecture Theatre
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.9}
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                        },
-                        Object {
-                          "alignSelf": "stretch",
-                          "backgroundColor": "#fff",
-                          "borderRadius": 10,
-                          "marginBottom": 10,
-                          "marginLeft": 2,
-                          "marginRight": 2,
-                          "marginTop": 5,
-                          "padding": 10,
-                          "shadowColor": "#000",
-                          "shadowOffset": Object {
-                            "height": 2,
-                            "width": 0,
-                          },
-                          "shadowOpacity": 0.1845,
-                          "shadowRadius": 1.62,
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "backgroundColor": "#eaeaea",
-                          "borderRadius": 80,
-                          "marginRight": 10,
-                          "padding": 10,
-                        }
-                      }
-                    >
-                      <Text
-                        allowFontScaling={false}
-                        style={
-                          Array [
-                            Object {
-                              "color": undefined,
-                              "fontSize": 24,
-                            },
-                            undefined,
-                            Object {
-                              "fontFamily": "feather",
-                              "fontStyle": "normal",
-                              "fontWeight": "normal",
-                            },
-                            Object {},
-                          ]
-                        }
-                      >
-                        
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#4D5061",
-                              "fontFamily": "apercu-bold",
-                              "fontSize": 16,
-                              "marginBottom": 0,
-                              "marginTop": 1,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Denning
-                      </Text>
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#6E707F",
-                              "fontFamily": "apercu",
-                              "fontSize": 16,
-                              "fontStyle": "italic",
-                              "marginBottom": 1,
-                              "marginTop": 0,
-                            },
-                            undefined,
-                          ]
-                        }
-                      >
-                        Classroom
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </RCTScrollView>
+            <ActivityIndicator
+              animating={true}
+              color="#999999"
+              hidesWhenStopped={true}
+              size="large"
+            />
+          </View>
         </View>
-      </SafeAreaView>
+      </RCTScrollView>
     </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
+  </RCTSafeAreaView>,
+]
+`;
+
+exports[`EmptyRoomsScreen shows message when no empty rooms found 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
       }
     }
   >
-    <SafeAreaView
+    <View
+      onLayout={[Function]}
       style={
-        Object {
-          "backgroundColor": "#fefefe",
-          "flex": 0,
-        }
-      }
-    />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
       }
     >
-      <View
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingBottom": 60,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 20,
+            },
+            undefined,
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
         style={
           Array [
             Object {
               "backgroundColor": "#fefefe",
               "flex": 1,
-              "flexDirection": "column",
+              "paddingLeft": 0,
+              "paddingRight": 0,
             },
-            Object {
-              "paddingBottom": 0,
-            },
+            undefined,
           ]
         }
       >
-        <RCTScrollView
-          contentContainerStyle={
-            Array [
+        <View>
+          <View
+            style={
               Object {
-                "paddingBottom": 60,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 20,
-              },
-              undefined,
-            ]
-          }
-          keyboardDismissMode="on-drag"
-          refreshControl={null}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#fefefe",
-                "flex": 1,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View>
-            <View
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
               style={
-                Object {
-                  "paddingBottom": 20,
-                }
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  undefined,
+                ]
               }
             >
+              Filter by:
+            </Text>
+            <View>
+              <RNCPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                selectedIndex={0}
+                style={
+                  Array [
+                    Object {
+                      "height": 216,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <View>
               <Text
                 style={
                   Array [
                     Object {
-                      "color": "#4D5061",
+                      "color": "#6E707F",
                       "fontFamily": "apercu",
                       "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
+                      "marginBottom": 5,
+                      "marginTop": 5,
+                      "textAlign": "center",
                     },
                     undefined,
                   ]
                 }
               >
-                Filter by:
+                No empty rooms found 🙁
               </Text>
-              <View>
-                <RNCPicker
-                  items={
-                    Array [
-                      Object {
-                        "label": "All Buildings",
-                        "textColor": undefined,
-                        "value": null,
-                      },
-                      Object {
-                        "label": "Bentham House",
-                        "textColor": undefined,
-                        "value": "b",
-                      },
-                      Object {
-                        "label": "Main Building",
-                        "textColor": undefined,
-                        "value": "main",
-                      },
-                    ]
-                  }
-                  selectedIndex={0}
-                  style={
-                    Array [
-                      Object {
-                        "height": 216,
-                      },
-                      undefined,
-                    ]
-                  }
-                  testID="building-picker"
-                />
-              </View>
-              <Text
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
+`;
+
+exports[`EmptyRoomsScreen supports filtering by building 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fefefe",
+        "flex": 0,
+      }
+    }
+  />,
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#fefefe",
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingBottom": 60,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 20,
+            },
+            undefined,
+          ]
+        }
+        keyboardDismissMode="on-drag"
+        refreshControl={null}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#fefefe",
+              "flex": 1,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "paddingBottom": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Filter by:
+            </Text>
+            <View>
+              <RNCPicker
+                items={
+                  Array [
+                    Object {
+                      "label": "All Buildings",
+                      "textColor": undefined,
+                      "value": null,
+                    },
+                    Object {
+                      "label": "Bentham House",
+                      "textColor": undefined,
+                      "value": "b",
+                    },
+                    Object {
+                      "label": "Main Building",
+                      "textColor": undefined,
+                      "value": "main",
+                    },
+                  ]
+                }
+                onChange={[Function]}
+                selectedIndex={2}
                 style={
                   Array [
                     Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "marginBottom": 1,
-                      "marginTop": 1,
+                      "height": 216,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="building-picker"
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  Object {
+                    "marginBottom": 10,
+                  },
+                ]
+              }
+            >
+              Rooms vacant for the next hour:
+            </Text>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
                     },
                     Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
                       "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
                     },
                   ]
                 }
               >
-                Rooms vacant for the next hour:
-              </Text>
-              <TouchableOpacity
-                activeOpacity={0.9}
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Galactica
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    Lecture Theatre
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#fff",
+                      "borderRadius": 10,
+                      "marginBottom": 10,
+                      "marginLeft": 2,
+                      "marginRight": 2,
+                      "marginTop": 5,
+                      "padding": 10,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 2,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1845,
+                      "shadowRadius": 1.62,
+                    },
+                  ]
+                }
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
+                    Object {
+                      "backgroundColor": "#eaeaea",
+                      "borderRadius": 80,
+                      "marginRight": 10,
+                      "padding": 10,
+                    }
                   }
                 >
-                  <View
+                  <Text
+                    allowFontScaling={false}
                     style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
+                      Array [
+                        Object {
+                          "color": undefined,
+                          "fontSize": 24,
+                        },
+                        undefined,
+                        Object {
+                          "fontFamily": "feather",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
                     }
                   >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Bentham
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Classroom
-                    </Text>
-                  </View>
+                    
+                  </Text>
                 </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.9}
-              >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
-                        },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
+                    Object {
+                      "flex": 1,
+                    }
                   }
                 >
-                  <View
+                  <Text
                     style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Galactica
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Lecture Theatre
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.9}
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                      },
-                      Object {
-                        "alignSelf": "stretch",
-                        "backgroundColor": "#fff",
-                        "borderRadius": 10,
-                        "marginBottom": 10,
-                        "marginLeft": 2,
-                        "marginRight": 2,
-                        "marginTop": 5,
-                        "padding": 10,
-                        "shadowColor": "#000",
-                        "shadowOffset": Object {
-                          "height": 2,
-                          "width": 0,
+                      Array [
+                        Object {
+                          "color": "#4D5061",
+                          "fontFamily": "apercu-bold",
+                          "fontSize": 16,
+                          "marginBottom": 0,
+                          "marginTop": 1,
                         },
-                        "shadowOpacity": 0.1845,
-                        "shadowRadius": 1.62,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "backgroundColor": "#eaeaea",
-                        "borderRadius": 80,
-                        "marginRight": 10,
-                        "padding": 10,
-                      }
+                        undefined,
+                      ]
                     }
                   >
-                    <Text
-                      allowFontScaling={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": undefined,
-                            "fontSize": 24,
-                          },
-                          undefined,
-                          Object {
-                            "fontFamily": "feather",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                    >
-                      
-                    </Text>
-                  </View>
-                  <View
+                    Denning
+                  </Text>
+                  <Text
                     style={
-                      Object {
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "color": "#6E707F",
+                          "fontFamily": "apercu",
+                          "fontSize": 16,
+                          "fontStyle": "italic",
+                          "marginBottom": 1,
+                          "marginTop": 0,
+                        },
+                        undefined,
+                      ]
                     }
                   >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#4D5061",
-                            "fontFamily": "apercu-bold",
-                            "fontSize": 16,
-                            "marginBottom": 0,
-                            "marginTop": 1,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Denning
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#6E707F",
-                            "fontFamily": "apercu",
-                            "fontSize": 16,
-                            "fontStyle": "italic",
-                            "marginBottom": 1,
-                            "marginTop": 0,
-                          },
-                          undefined,
-                        ]
-                      }
-                    >
-                      Classroom
-                    </Text>
-                  </View>
+                    Classroom
+                  </Text>
                 </View>
-              </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </RCTScrollView>
-      </View>
-    </SafeAreaView>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+        </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>,
+]
 `;

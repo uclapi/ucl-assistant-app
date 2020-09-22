@@ -20,8 +20,8 @@ describe(`MainTabNavigator`, () => {
     expect(Navigator).toMatchSnapshot()
   })
 
-  it(`TimetableScreen is highlighted`, () => {
-    const Navigator = render(<MainTabNavigator />)
+  it(`TimetableScreen is highlighted`, async () => {
+    const Navigator = await render(<MainTabNavigator />)
     const { queryByText } = Navigator
     const timetableTab = queryByText(`Timetable`)
     expect(timetableTab).toBeTruthy();
@@ -30,8 +30,8 @@ describe(`MainTabNavigator`, () => {
     expect(TimetableScreen).toBeTruthy()
   })
 
-  it(`can navigate to SettingsScreen`, () => {
-    const Navigator = render(<MainTabNavigator />)
+  it(`can navigate to SettingsScreen`, async () => {
+    const Navigator = await render(<MainTabNavigator />)
     const { queryByText } = Navigator
     const settingsTab = queryByText(`Settings`)
     expect(settingsTab).toBeTruthy();

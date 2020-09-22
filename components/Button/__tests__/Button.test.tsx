@@ -7,10 +7,10 @@ import { ButtonText } from '../../Typography'
 describe(`Button`, () => {
   beforeEach(() => {
     jest.useRealTimers()
-    jest.clearAllMocks()
   })
   afterEach(() => {
     cleanup()
+    jest.clearAllMocks()
   })
   it(`renders with raw text as child`, () => {
     const wrapper = render(

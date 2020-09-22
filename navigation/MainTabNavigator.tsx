@@ -70,14 +70,6 @@ const tabBarOptions = {
   labelStyle: {
     fontFamily: `apercu`,
   },
-  style: {
-    backgroundColor: Colors.tabBackground,
-    bottom: 0,
-    height: 60,
-    left: 0,
-    position: `absolute`,
-    right: 0,
-  },
   tabStyle: {
     paddingBottom: 5,
     paddingTop: 5,

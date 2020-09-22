@@ -41,27 +41,27 @@ describe(`SettingsScreen`, () => {
     jest.useFakeTimers()
   })
 
-  it(`renders the SettingsScreen`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`renders the SettingsScreen`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 
-  it(`logs out when the signOut button is pressed`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`logs out when the signOut button is pressed`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     const { getByText } = wrapper
     fireEvent.press(getByText(/Sign Out/i))
     expect(mockSignOut).toHaveBeenCalledTimes(1)
   })
 
-  it(`opens Github repository when Github button is pressed`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`opens Github repository when Github button is pressed`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     const { getByText } = wrapper
     const githubButton = getByText(/Source Code/i)
     expect(githubButton.props.href === githubURL)
   })
 
-  it(`opens FAQ page when the FAQ button is pressed`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`opens FAQ page when the FAQ button is pressed`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     const { getByText } = wrapper
     const faqButton = getByText(/Frequently Asked Questions/i)
     fireEvent.press(faqButton)
@@ -70,8 +70,8 @@ describe(`SettingsScreen`, () => {
     expect(mockNavigate).toHaveBeenCalledWith(`FAQ`)
   })
 
-  it(`opens mail client when the feedback button is pressed`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`opens mail client when the feedback button is pressed`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     const { getByText } = wrapper
     const feedbackButton = getByText(/Send Us Feedback/i)
     fireEvent.press(feedbackButton)
@@ -80,13 +80,19 @@ describe(`SettingsScreen`, () => {
     expect(mockComposeAsync.mock.calls).toMatchSnapshot()
   })
 
-  it(`analytics checkbox is present`, () => {
-    const wrapper = render(<SettingsScreen {...mockProps} />)
+  it(`analytics checkbox is present`, async () => {
+    const wrapper = await render(<SettingsScreen {...mockProps} />)
     const { getByTestId } = wrapper
     const analyticsCheckbox = getByTestId(`analytics-checkbox`)
-    fireEvent.valueChange(analyticsCheckbox, true)
-    // await waitForEventLoop()
-    // expect(mockSetShouldTrackAnalytics).toHaveBeenCalledTimes(1)
-    // expect(mockSetShouldTrackAnalytics).toHaveBeenCalledWith(true)
+
+    const event = {
+      nativeEvent: {
+        value: true,
+      },
+    }
+    fireEvent(analyticsCheckbox, `valueChange`, event)
+
+    expect(mockSetShouldTrackAnalytics).toHaveBeenCalledTimes(1)
+    expect(mockSetShouldTrackAnalytics).toHaveBeenCalledWith(true)
   })
 })

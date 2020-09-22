@@ -1,865 +1,402 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RecentResults renders a filled RecentResults component 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
+<View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#4D5061",
+          "fontFamily": "apercu-bold",
+          "fontSize": 28,
+          "marginBottom": 2,
+          "marginTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    Recently Searched
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "flex": 1,
+        "opacity": 1,
       }
     }
   >
     <View
-      collapsable={true}
-      pointerEvents="box-none"
       style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#fff",
+            "borderRadius": 10,
+            "marginBottom": 10,
+            "marginLeft": 2,
+            "marginRight": 2,
+            "marginTop": 5,
+            "padding": 10,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1845,
+            "shadowRadius": 1.62,
+          },
+        ]
       }
     >
-      <View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
         <Text
           style={
             Array [
               Object {
                 "color": "#4D5061",
                 "fontFamily": "apercu-bold",
-                "fontSize": 28,
-                "marginBottom": 2,
-                "marginTop": 8,
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
               },
               undefined,
             ]
           }
         >
-          Recently Searched
+          Mr Potato
         </Text>
-        <TouchableOpacity
-          activeOpacity={0.9}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "alignSelf": "stretch",
-                  "backgroundColor": "#fff",
-                  "borderRadius": 10,
-                  "marginBottom": 10,
-                  "marginLeft": 2,
-                  "marginRight": 2,
-                  "marginTop": 5,
-                  "padding": 10,
-                  "shadowColor": "#000",
-                  "shadowOffset": Object {
-                    "height": 2,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.1845,
-                  "shadowRadius": 1.62,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#eaeaea",
-                  "borderRadius": 80,
-                  "marginRight": 10,
-                  "padding": 10,
-                }
-              }
-            >
-              <Text />
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu-bold",
-                      "fontSize": 16,
-                      "marginBottom": 0,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Mr Potato
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#6E707F",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "fontStyle": "italic",
-                      "marginBottom": 1,
-                      "marginTop": 0,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Department of Agriculture
-              </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.9}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "alignSelf": "stretch",
-                  "backgroundColor": "#fff",
-                  "borderRadius": 10,
-                  "marginBottom": 10,
-                  "marginLeft": 2,
-                  "marginRight": 2,
-                  "marginTop": 5,
-                  "padding": 10,
-                  "shadowColor": "#000",
-                  "shadowOffset": Object {
-                    "height": 2,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.1845,
-                  "shadowRadius": 1.62,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#eaeaea",
-                  "borderRadius": 80,
-                  "marginRight": 10,
-                  "padding": 10,
-                }
-              }
-            >
-              <Text />
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu-bold",
-                      "fontSize": 16,
-                      "marginBottom": 0,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Chris P Bacon
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#6E707F",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "fontStyle": "italic",
-                      "marginBottom": 1,
-                      "marginTop": 0,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Faculty of Medical Sciences
-              </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.9}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "alignSelf": "stretch",
-                  "backgroundColor": "#fff",
-                  "borderRadius": 10,
-                  "marginBottom": 10,
-                  "marginLeft": 2,
-                  "marginRight": 2,
-                  "marginTop": 5,
-                  "padding": 10,
-                  "shadowColor": "#000",
-                  "shadowOffset": Object {
-                    "height": 2,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.1845,
-                  "shadowRadius": 1.62,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#eaeaea",
-                  "borderRadius": 80,
-                  "marginRight": 10,
-                  "padding": 10,
-                }
-              }
-            >
-              <Text />
-            </View>
-            <View
-              style={
-                Object {
-                  "flex": 1,
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4D5061",
-                      "fontFamily": "apercu-bold",
-                      "fontSize": 16,
-                      "marginBottom": 0,
-                      "marginTop": 1,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Jeremy Bentham
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#6E707F",
-                      "fontFamily": "apercu",
-                      "fontSize": 16,
-                      "fontStyle": "italic",
-                      "marginBottom": 1,
-                      "marginTop": 0,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Philosophy Department
-              </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+        <Text
           style={
-            Object {
-              "backgroundColor": "transparent",
-            }
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              undefined,
+            ]
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            proxiedProperties={
-              Object {
-                "colors": Array [
-                  4279998859,
-                  4283151357,
-                ],
-                "endPoint": Array [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": Array [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "borderRadius": 8,
-                  "elevation": 2,
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginBottom": 5,
-                  "marginTop": 5,
-                  "minHeight": 55,
-                  "minWidth": 150,
-                  "padding": 8,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "shadowColor": "#1B998B",
-                  "shadowOffset": Object {
-                    "height": 2,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.75,
-                  "shadowRadius": 3,
-                },
-                undefined,
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#fefefe",
-                    "fontFamily": "apercu",
-                    "fontSize": 20,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                    "textAlign": "center",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Clear
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </TouchableOpacity>
+          Department of Agriculture
+        </Text>
       </View>
     </View>
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "flex": 1,
+        "opacity": 1,
       }
     }
   >
-    <View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#fff",
+            "borderRadius": 10,
+            "marginBottom": 10,
+            "marginLeft": 2,
+            "marginRight": 2,
+            "marginTop": 5,
+            "padding": 10,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1845,
+            "shadowRadius": 1.62,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu-bold",
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
+              },
+              undefined,
+            ]
+          }
+        >
+          Chris P Bacon
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          Faculty of Medical Sciences
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#fff",
+            "borderRadius": 10,
+            "marginBottom": 10,
+            "marginLeft": 2,
+            "marginRight": 2,
+            "marginTop": 5,
+            "padding": 10,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1845,
+            "shadowRadius": 1.62,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#eaeaea",
+            "borderRadius": 80,
+            "marginRight": 10,
+            "padding": 10,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4D5061",
+                "fontFamily": "apercu-bold",
+                "fontSize": 16,
+                "marginBottom": 0,
+                "marginTop": 1,
+              },
+              undefined,
+            ]
+          }
+        >
+          Jeremy Bentham
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#6E707F",
+                "fontFamily": "apercu",
+                "fontSize": 16,
+                "fontStyle": "italic",
+                "marginBottom": 1,
+                "marginTop": 0,
+              },
+              undefined,
+            ]
+          }
+        >
+          Philosophy Department
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "opacity": 1,
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoLinearGradient
+      proxiedProperties={
+        Object {
+          "colors": Array [
+            4279998859,
+            4283151357,
+          ],
+          "endPoint": Array [
+            1,
+            0,
+          ],
+          "locations": undefined,
+          "startPoint": Array [
+            0,
+            1,
+          ],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 8,
+            "elevation": 2,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 5,
+            "marginTop": 5,
+            "minHeight": 55,
+            "minWidth": 150,
+            "padding": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "shadowColor": "#1B998B",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.75,
+            "shadowRadius": 3,
+          },
+          undefined,
+        ]
+      }
+    >
       <Text
         style={
           Array [
             Object {
-              "color": "#4D5061",
-              "fontFamily": "apercu-bold",
-              "fontSize": 28,
-              "marginBottom": 2,
-              "marginTop": 8,
+              "color": "#fefefe",
+              "fontFamily": "apercu",
+              "fontSize": 20,
+              "marginBottom": 1,
+              "marginTop": 1,
+              "textAlign": "center",
             },
             undefined,
           ]
         }
       >
-        Recently Searched
+        Clear
       </Text>
-      <TouchableOpacity
-        activeOpacity={0.9}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "center",
-              },
-              Object {
-                "alignSelf": "stretch",
-                "backgroundColor": "#fff",
-                "borderRadius": 10,
-                "marginBottom": 10,
-                "marginLeft": 2,
-                "marginRight": 2,
-                "marginTop": 5,
-                "padding": 10,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 2,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.1845,
-                "shadowRadius": 1.62,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "#eaeaea",
-                "borderRadius": 80,
-                "marginRight": 10,
-                "padding": 10,
-              }
-            }
-          >
-            <Text />
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu-bold",
-                    "fontSize": 16,
-                    "marginBottom": 0,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Mr Potato
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#6E707F",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "fontStyle": "italic",
-                    "marginBottom": 1,
-                    "marginTop": 0,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Department of Agriculture
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.9}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "center",
-              },
-              Object {
-                "alignSelf": "stretch",
-                "backgroundColor": "#fff",
-                "borderRadius": 10,
-                "marginBottom": 10,
-                "marginLeft": 2,
-                "marginRight": 2,
-                "marginTop": 5,
-                "padding": 10,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 2,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.1845,
-                "shadowRadius": 1.62,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "#eaeaea",
-                "borderRadius": 80,
-                "marginRight": 10,
-                "padding": 10,
-              }
-            }
-          >
-            <Text />
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu-bold",
-                    "fontSize": 16,
-                    "marginBottom": 0,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Chris P Bacon
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#6E707F",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "fontStyle": "italic",
-                    "marginBottom": 1,
-                    "marginTop": 0,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Faculty of Medical Sciences
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.9}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "center",
-              },
-              Object {
-                "alignSelf": "stretch",
-                "backgroundColor": "#fff",
-                "borderRadius": 10,
-                "marginBottom": 10,
-                "marginLeft": 2,
-                "marginRight": 2,
-                "marginTop": 5,
-                "padding": 10,
-                "shadowColor": "#000",
-                "shadowOffset": Object {
-                  "height": 2,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.1845,
-                "shadowRadius": 1.62,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "backgroundColor": "#eaeaea",
-                "borderRadius": 80,
-                "marginRight": 10,
-                "padding": 10,
-              }
-            }
-          >
-            <Text />
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 1,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu-bold",
-                    "fontSize": 16,
-                    "marginBottom": 0,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Jeremy Bentham
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#6E707F",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "fontStyle": "italic",
-                    "marginBottom": 1,
-                    "marginTop": 0,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              Philosophy Department
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={
-          Object {
-            "backgroundColor": "transparent",
-          }
-        }
-      >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4279998859,
-                4283151357,
-              ],
-              "endPoint": Array [
-                1,
-                0,
-              ],
-              "locations": undefined,
-              "startPoint": Array [
-                0,
-                1,
-              ],
-            }
-          }
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "borderRadius": 8,
-                "elevation": 2,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "marginBottom": 5,
-                "marginTop": 5,
-                "minHeight": 55,
-                "minWidth": 150,
-                "padding": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "shadowColor": "#1B998B",
-                "shadowOffset": Object {
-                  "height": 2,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.75,
-                "shadowRadius": 3,
-              },
-              undefined,
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#fefefe",
-                  "fontFamily": "apercu",
-                  "fontSize": 20,
-                  "marginBottom": 1,
-                  "marginTop": 1,
-                  "textAlign": "center",
-                },
-                undefined,
-              ]
-            }
-          >
-            Clear
-          </Text>
-        </ViewManagerAdapter_ExpoLinearGradient>
-      </TouchableOpacity>
-    </View>
-  </View>,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+    </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
+</View>
 `;
 
-exports[`RecentResults renders an empty RecentResults component 1`] = `
-Object {
-  "asJSON": [Function],
-  "baseElement": <View
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <View
-      collapsable={true}
-      pointerEvents="box-none"
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </View>,
-  "container": <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  />,
-  "debug": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByHintText": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByDisplayValue": [Function],
-  "findByHintText": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByHintText": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByDisplayValue": [Function],
-  "getByHintText": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByHintText": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByHintText": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
+exports[`RecentResults renders an empty RecentResults component 1`] = `null`;

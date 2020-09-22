@@ -1,9 +1,11 @@
+import { RouteProp } from "@react-navigation/native"
 /**
  * @jest-environment jsdom
  */
 
 import { cleanup, render } from "@testing-library/react-native"
 import React from 'react'
+import { TimetableNavigatorParamList } from "../../TimetableNavigator"
 import { TimetableDetailScreen } from '../TimetableDetailScreen'
 
 jest.mock(`../TimetableDetailView`, () => (props) => JSON.stringify(props))
@@ -12,16 +14,19 @@ describe(`TimetableDetailScreen`, () => {
   let wrapper
 
   const mockProps = {
+    dispatch: jest.fn(),
     navigation: {
+      dispatch: jest.fn(),
       navigate: jest.fn(),
-    },
+    } as any,
     route: {
       params: {
         code: `ABC123`,
         date: `2020-01-01`,
         time: `00:00`,
       },
-    },
+    // eslint-disable-next-line quotes
+    } as RouteProp<TimetableNavigatorParamList, "TimetableDetail">,
     timetable: {
       "2020-01-01": {
         timetable: [
@@ -57,7 +62,7 @@ describe(`TimetableDetailScreen`, () => {
   })
 
   it(`renders the TimetableDetailScreen`, async () => {
-    wrapper = render(<TimetableDetailScreen {...mockProps} />)
+    wrapper = await render(<TimetableDetailScreen {...mockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

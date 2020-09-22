@@ -164,9 +164,9 @@ export class SettingsScreen extends React.Component<Props, State> {
     AnalyticsManager.logEvent(AnalyticsManager.events.SETTINGS_VIEW_FAQS)
   }
 
-  copyTokenToClipboard = async (): Promise<void> => {
+  copyTokenToClipboard = (): void => {
     const { user: { token } } = this.props
-    await ClipboardManager.setString(token)
+    ClipboardManager.setString(token)
     Alert.alert(`Copied`, `Token copied to clipboard.`)
   }
 

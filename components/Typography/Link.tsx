@@ -23,6 +23,7 @@ interface Props extends ViewProps {
   href?: string,
   onPress?: () => void,
   style?: StyleProp<TextStyle>,
+  splitByWord?: boolean,
 }
 
 const Link: React.FC<Props> = ({
@@ -31,6 +32,7 @@ const Link: React.FC<Props> = ({
   containerStyle = {},
   onPress,
   style = {},
+  splitByWord = false,
   ...props
 }) => {
   const openLink = useCallback((): void => {
@@ -39,7 +41,32 @@ const Link: React.FC<Props> = ({
     }
   }, [href])
 
-  return (
+  return splitByWord ? (
+    <>
+      {
+        React.Children.toArray(children)
+          .join(` `)
+          .split(` `)
+          .map((word, index, arr) => (
+            <Link
+              // eslint-disable-next-line react/no-array-index-key
+              key={`word-${word}-${index}`}
+              {...{
+                ...props,
+                children,
+                containerStyle,
+                href,
+                onPress,
+                style,
+              }}
+            >
+              {word}
+              {index === (arr.length - 1) ? `` : ` `}
+            </Link>
+          ))
+      }
+    </>
+  ) : (
     <TouchableOpacity
       onPress={onPress || openLink}
       style={containerStyle}
