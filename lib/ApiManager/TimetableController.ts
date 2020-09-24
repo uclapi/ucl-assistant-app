@@ -31,37 +31,47 @@ class TimetableController {
       authorization: `Bearer ${token}`,
     }
     ErrorManager.addDetail({ headers })
-    const results = await timetableApi.get(datePart, { headers })
-    if (!results.data.content.ok || results.data.error !== ``) {
-      throw new Error(
-        results.data.error
-        || `There was a problem fetching your personal timetable`,
-      )
+    try {
+      const results = await timetableApi.get(datePart, { headers })
+      if (!results.data.content.ok || results.data.error !== ``) {
+        throw new Error(
+          results.data.error
+          || `There was a problem fetching your personal timetable`,
+        )
+      }
+      const { data: { content: { timetable } } } = results
+      return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
+    } catch (error) {
+      ErrorManager.addDetail({ response: error.response })
+      throw error
     }
-    const { data: { content: { timetable } } } = results
-    return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
   }
 
   static getPersonalWeekTimetable = async (
     token: JWT,
     date = LocalisationManager.getMoment().startOf(`isoWeek`),
   ) => {
-    const queryParam = `?date=${date.format(`YYYY-MM-DD`)}`
+    const queryParam = `?date=${date.clone().startOf(`isoWeek`).format(`YYYY-MM-DD`)}`
     const headers = {
       authorization: `Bearer ${token}`,
     }
     ErrorManager.addDetail({ headers })
-    const results = await timetableApi.get(`/week/${queryParam}`, {
-      headers,
-    })
-    if (results.data.error !== ``) {
-      throw new Error(
-        results.data.error
-        || `An error occurred when fetching your personal weekly timetable`,
-      )
+    try {
+      const results = await timetableApi.get(`/week/${queryParam}`, {
+        headers,
+      })
+      if (results.data.error !== ``) {
+        throw new Error(
+          results.data.error
+          || `An error occurred when fetching your personal weekly timetable`,
+        )
+      }
+      const { data: { content: { timetable } } } = results
+      return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
+    } catch (error) {
+      ErrorManager.addDetail({ response: error.response })
+      throw error
     }
-    const { data: { content: { timetable } } } = results
-    return TimetableController.setLastModified(timetable, results.headers[`last-modified`])
   }
 }
 
