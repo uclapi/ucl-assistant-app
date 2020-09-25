@@ -2,24 +2,19 @@ import { Feather } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import React, { ReactElement } from "react"
 import Colors from "../constants/Colors"
-import PeopleNavigator from "../screens/People"
-import type { PeopleNavigatorParamList } from "../screens/People/PeopleNavigator"
-import RoomsNavigator from "../screens/Rooms"
-import type { RoomsNavigatorParamList } from "../screens/Rooms/RoomsNavigator"
+import SearchNavigator, { SearchNavigatorParamList } from "../screens/Search"
 import SettingsNavigator from "../screens/Settings"
 import type { SettingsNavigatorParamList } from "../screens/Settings/SettingsNavigator"
-import StudySpacesNavigator from "../screens/StudySpaces"
-import type { StudySpacesNavigatorParamList } from "../screens/StudySpaces/StudySpacesNavigator"
 import TimetableNavigator from "../screens/Timetable"
 import type { TimetableNavigatorParamList } from "../screens/Timetable/TimetableNavigator"
+import Wiki from "../screens/Wiki"
 import type { NestedNavigator } from "../types/uclapi"
 
 export type MainTabNavigatorParamList = {
   Timetable: NestedNavigator<TimetableNavigatorParamList>,
-  StudySpaces: NestedNavigator<StudySpacesNavigatorParamList>,
-  People: NestedNavigator<PeopleNavigatorParamList>,
-  Rooms: NestedNavigator<RoomsNavigatorParamList>,
   Settings: NestedNavigator<SettingsNavigatorParamList>,
+  Wiki: undefined,
+  Search: NestedNavigator<SearchNavigatorParamList>,
 }
 
 const Tab = createBottomTabNavigator<MainTabNavigatorParamList>()
@@ -31,17 +26,14 @@ const screenOptions = ({ route }) => ({
       case `Timetable`:
         iconName = `calendar`
         break
-      case `StudySpaces`:
-        iconName = `book`
-        break
-      case `People`:
-        iconName = `users`
-        break
-      case `Rooms`:
-        iconName = `map-pin`
+      case `Search`:
+        iconName = `search`
         break
       case `Settings`:
         iconName = `settings`
+        break
+      case `Wiki`:
+        iconName = `book-open`
         break
       default:
         iconName = `info`
@@ -87,16 +79,12 @@ const MainTabNavigator = (): ReactElement => (
       component={TimetableNavigator}
     />
     <Tab.Screen
-      name="StudySpaces"
-      component={StudySpacesNavigator}
+      name="Search"
+      component={SearchNavigator}
     />
     <Tab.Screen
-      name="People"
-      component={PeopleNavigator}
-    />
-    <Tab.Screen
-      name="Rooms"
-      component={RoomsNavigator}
+      name="Wiki"
+      component={Wiki}
     />
     <Tab.Screen
       name="Settings"

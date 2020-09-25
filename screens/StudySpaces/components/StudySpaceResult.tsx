@@ -1,4 +1,3 @@
-
 import React from "react"
 import { GestureResponderEvent } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
@@ -88,19 +87,21 @@ const ConnectedStudySpaceResult: React.FC<ConnectedStudySpaceProps> = ({
       onPress={() => navigation.navigate(`Main`, {
         params: {
           params: {
-            id: space.id,
-            name: space.name,
-            occupied: space.occupied,
-            total: space.total,
+            params: {
+              id: space.id,
+              name: space.name,
+              occupied: space.occupied,
+              total: space.total,
+            },
+            screen: `StudySpacesDetail`,
           },
-          screen: `StudySpacesDetail`,
+          screen: `StudySpaces`,
         },
-        screen: `StudySpaces`,
+        screen: `Search`,
       })}
     />
   )
 }
-
 
 const connector = connect(
   (state: AppStateType) => ({

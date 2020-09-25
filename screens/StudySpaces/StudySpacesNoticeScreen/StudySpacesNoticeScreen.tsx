@@ -39,7 +39,7 @@ const StudySpacesNoticeScreen: React.FC = () => {
           style={styles.image}
         />
         <BodyText style={styles.explanation}>
-          Study spaces in libraries and in the various academic buildings are not
+          Study spaces in libraries and the various academic buildings are not
           available for walk-in use during the ongoing pandemic.
           They must be booked in advance.
         </BodyText>

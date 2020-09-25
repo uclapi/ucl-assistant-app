@@ -97,7 +97,7 @@ class RoomsFavouritesScreen extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <Page>
-          <SubtitleText style={styles.subtitle}>Your Favourites</SubtitleText>
+          <SubtitleText style={styles.subtitle}>Rooms</SubtitleText>
           {
             (favouriteRooms.length > 0)
               ? this.renderFavouriteRooms()
