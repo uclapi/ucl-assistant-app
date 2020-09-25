@@ -34,7 +34,6 @@ interface Props extends TimetableEvent {
   initialRegion: Region,
 }
 
-
 class TimetableDetailView extends React.Component<Props> {
   navigateToLocation = (
     {
@@ -64,11 +63,14 @@ class TimetableDetailView extends React.Component<Props> {
     const { navigation } = this.props
     navigation.navigate(`Main`, {
       params: {
-        initial: false,
-        params: { query: roomName },
-        screen: `RoomsSearch`,
+        params: {
+          initial: false,
+          params: { query: roomName },
+          screen: `RoomsSearch`,
+        },
+        screen: `Rooms`,
       },
-      screen: `Rooms`,
+      screen: `Search`,
     })
   }
 

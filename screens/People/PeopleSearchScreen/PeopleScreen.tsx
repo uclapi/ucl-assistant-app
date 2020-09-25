@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from "react-redux"
 import { Page } from "../../../components/Containers"
 import { SearchInput } from "../../../components/Input"
 import SearchResult from "../../../components/SearchResult"
-import { CentredText, TitleText } from "../../../components/Typography"
+import { CentredText, SubtitleText } from "../../../components/Typography"
 import { AppStateType } from "../../../configureStore"
 import { useDebounce, usePeople } from "../../../hooks"
 import {
@@ -48,7 +48,7 @@ export const PeopleScreen: React.FC<Props> = ({
 
   return (
     <Page>
-      <TitleText>People</TitleText>
+      <SubtitleText>People</SubtitleText>
       <SearchInput
         placeholder="Search for a name or email..."
         onChangeQuery={onQueryChange}

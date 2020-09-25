@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native'
 import { TextProps } from 'react-native-svg'
+import { generate } from "shortid"
 import Style from "../../styles/Typography"
 
 const styles = StyleSheet.create({
@@ -33,9 +34,8 @@ const BodyText: React.FunctionComponent<Props> = ({
       React.Children.toArray(children)
         .map((el) => ((typeof el === `string`) ? (
           <>
-            {el.split(` `).map((word, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <BodyText key={`word-${word}-${index}`} {...props}>
+            {el.split(` `).map((word) => (
+              <BodyText key={`word-${word}-${generate()}`} {...props}>
                 {word}
                 &nbsp;
               </BodyText>
