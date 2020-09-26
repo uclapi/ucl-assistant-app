@@ -203,19 +203,21 @@ Array [
               >
                 Disallow UCL Assistant from sending analytics data to UCL API
               </Text>
-              <RNCCheckbox
-                forwardedRef={null}
-                onValueChange={[Function]}
+              <RCTSwitch
+                accessibilityRole="switch"
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "transparent",
-                      "height": 32,
-                      "width": 32,
+                      "height": 31,
+                      "width": 51,
                     },
                     Object {
                       "flex": 0.1,
                       "justifyContent": "center",
+                      "paddingLeft": 10,
                     },
                   ]
                 }
