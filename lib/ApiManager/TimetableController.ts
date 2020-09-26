@@ -13,8 +13,8 @@ class TimetableController {
     (acc, day) => ({
       ...acc,
       [day]: {
-        ...timetable[day],
         lastModified: LocalisationManager.parseToMoment(lastModified),
+        timetable: timetable[day],
       },
     }),
     {},
@@ -55,7 +55,7 @@ class TimetableController {
     const headers = {
       authorization: `Bearer ${token}`,
     }
-    ErrorManager.addDetail({ headers })
+    ErrorManager.addDetail({ headers, path: `/week/${queryParam}` })
     try {
       const results = await timetableApi.get(`/week/${queryParam}`, {
         headers,

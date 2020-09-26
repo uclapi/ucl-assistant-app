@@ -207,7 +207,7 @@ class TimetableScreen extends React.Component<Props, State> {
         )
       ),
     )
-    if (desiredIndex !== -1) {
+    if (desiredIndex !== -1 && this.viewpager) {
       this.viewpager.current.setPage(desiredIndex)
     } else {
       const { fetchTimetable, user: { token } } = this.props
