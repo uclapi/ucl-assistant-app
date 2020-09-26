@@ -1,4 +1,3 @@
-import CheckBox from '@react-native-community/checkbox'
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
   CommonActions,
@@ -17,6 +16,7 @@ import {
   View,
 } from "react-native"
 import { connect, ConnectedProps } from "react-redux"
+import CheckBox from '../../../components/CheckBox'
 import { SmallButton } from "../../../components/Button"
 import { Horizontal, Page } from "../../../components/Containers"
 import TextInput from "../../../components/Input/TextInput"
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   settingsCheckBox: {
     flex: 0.1,
     justifyContent: `center`,
+    paddingLeft: 10,
   },
   settingsText: {
     flex: 0.9,
