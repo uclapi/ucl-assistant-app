@@ -13,8 +13,13 @@ import { Horizontal } from "../../../../components/Containers"
 import { LocalisationManager } from "../../../../lib"
 
 const styles = StyleSheet.create({
-  buttonContainer: { alignItems: `center` },
+  buttonContainer: {
+    alignItems: `center`,
+    width: `100%`,
+  },
   dateControls: {
+    alignItems: `center`,
+    flexDirection: `row`,
     justifyContent: `space-around`,
     width: `100%`,
   },
@@ -65,7 +70,7 @@ class DateControls extends React.Component<Props, State> {
     return null
   }
 
-  onIndexChanged = (change: number) => () => {
+  onIndexChanged = (change: number) => ():void => {
     const { onIndexChanged } = this.props
     onIndexChanged(change)
   }

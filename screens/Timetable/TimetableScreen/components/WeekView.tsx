@@ -1,24 +1,22 @@
 import { Moment } from "moment"
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import Button from "../../../../components/Button"
 import TimetableCard from "../../../../components/Card/TimetableCard"
 import {
-  BodyText,
   HeaderText,
   TitleText,
 } from "../../../../components/Typography"
 import { LocalisationManager } from "../../../../lib"
 import type { TimetableNavigationType } from "../../TimetableNavigator"
-import DateControls from './DateControls'
 import FreeWeek from "./FreeWeek"
+import Header from "./Header"
 import LastModified from "./LastModified"
 
 const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    padding: 20,
   },
   dayContainer: {
     alignItems: `flex-start`,
@@ -51,15 +49,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
     textAlignVertical: `center`,
   },
-  header: {
-    alignItems: `center`,
-    marginBottom: 20,
-  },
   jumpToToday: {
     marginTop: 20,
-  },
-  weekText: {
-    marginBottom: 10,
   },
 })
 
@@ -90,34 +81,6 @@ class WeekView extends React.Component<Props> {
   jumpToToday = (): void => {
     const { onDateChanged } = this.props
     onDateChanged(LocalisationManager.getMoment())
-  }
-
-  renderHeader = (): ReactElement => {
-    const {
-      date,
-      onDateChanged,
-      onIndexChanged,
-      timetable: weekTimetable = [],
-    } = this.props
-
-    const firstDate = LocalisationManager.parseToMoment(
-      weekTimetable[0].dateISO,
-    ).format(`Do MMM`)
-    const secondDate = LocalisationManager.parseToMoment(
-      weekTimetable[0].dateISO,
-    ).endOf(`isoWeek`).format(`Do MMM`)
-    const weekText = `${firstDate} - ${secondDate}`
-
-    return (
-      <View style={styles.header}>
-        <BodyText style={styles.weekText}>{weekText}</BodyText>
-        <DateControls
-          date={date}
-          onDateChanged={onDateChanged}
-          onIndexChanged={onIndexChanged}
-        />
-      </View>
-    )
   }
 
   renderJumpToToday = (): (ReactElement | void) => {
@@ -151,7 +114,7 @@ class WeekView extends React.Component<Props> {
     )
   }
 
-  renderTimetableCard = (date: Moment) => (item) => {
+  renderTimetableCard = (date: Moment) => (item): ReactNode => {
     const { navigation } = this.props
     const dateISO = date.format(`YYYY-MM-DD`)
 
@@ -219,6 +182,9 @@ class WeekView extends React.Component<Props> {
       timetable: weekTimetable = [],
       onRefresh,
       isLoading,
+      date,
+      onDateChanged,
+      onIndexChanged,
     } = this.props
 
     const emptyWeek = weekTimetable.every(
@@ -233,7 +199,13 @@ class WeekView extends React.Component<Props> {
           keyExtractor={() => weekTimetable[0].dateISO}
           data={Array(1)}
           renderItem={() => <FreeWeek />}
-          ListHeaderComponent={this.renderHeader()}
+          ListHeaderComponent={(
+            <Header
+              date={date}
+              onDateChanged={onDateChanged}
+              onIndexChanged={onIndexChanged}
+            />
+          )}
           ListFooterComponent={this.renderFooter()}
         />
       )
@@ -251,7 +223,13 @@ class WeekView extends React.Component<Props> {
         keyExtractor={this.keyExtractor}
         data={weekTimetable}
         renderItem={this.renderDay}
-        ListHeaderComponent={this.renderHeader()}
+        ListHeaderComponent={(
+          <Header
+            date={date}
+            onDateChanged={onDateChanged}
+            onIndexChanged={onIndexChanged}
+          />
+        )}
         ListFooterComponent={this.renderFooter()}
       />
     )
