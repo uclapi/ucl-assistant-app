@@ -207,7 +207,7 @@ class TimetableScreen extends React.Component<Props, State> {
         )
       ),
     )
-    if (desiredIndex !== -1 && this.viewpager) {
+    if (desiredIndex !== -1 && this.viewpager?.current) {
       this.viewpager.current.setPage(desiredIndex)
     } else {
       const { fetchTimetable, user: { token } } = this.props
@@ -219,7 +219,7 @@ class TimetableScreen extends React.Component<Props, State> {
 
   onIndexChanged = (change: number): void => {
     const { currentIndex } = this.state
-    if (this.viewpager) {
+    if (this.viewpager?.current) {
       this.viewpager.current.setPage(currentIndex + change)
     }
   }
@@ -236,14 +236,19 @@ class TimetableScreen extends React.Component<Props, State> {
   }
 
   renderWeek = (weekTimetable, index) => {
-    if (weekTimetable === null) {
-      return (
-        <LoadingTimetable key={`loading-${index}`} />
-      )
-    }
-
     const { navigation, isFetchingTimetable } = this.props
     const { date } = this.state
+
+    if (weekTimetable === null) {
+      return (
+        <LoadingTimetable
+          key={`loading-${index}`}
+          onDateChanged={this.onDateChanged}
+          onIndexChanged={this.onIndexChanged}
+          date={date}
+        />
+      )
+    }
 
     return (
       <WeekView
@@ -266,11 +271,16 @@ class TimetableScreen extends React.Component<Props, State> {
     } = this.props
     const {
       currentIndex,
+      date,
     } = this.state
 
     if (error === `` && timetable.length <= 2) { // to account for padding nulls
       return (
-        <LoadingTimetable />
+        <LoadingTimetable
+          onDateChanged={this.onDateChanged}
+          onIndexChanged={this.onIndexChanged}
+          date={date}
+        />
       )
     }
 

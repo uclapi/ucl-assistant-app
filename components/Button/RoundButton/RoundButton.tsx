@@ -1,4 +1,3 @@
-
 import { Feather } from "@expo/vector-icons"
 import React from "react"
 import { ActivityIndicator, Platform } from "react-native"
