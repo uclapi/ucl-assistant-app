@@ -1,9 +1,11 @@
 import { Moment } from 'moment'
 import React, { ReactElement } from 'react'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
-import { PageNoScroll } from '../../../../components/Containers'
+import {
+  ActivityIndicator, StyleSheet, View,
+} from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { BodyText } from '../../../../components/Typography'
-import DateControls from './DateControls'
+import Header from './Header'
 
 interface Props {
   date: Moment,
@@ -12,19 +14,15 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    alignItems: `center`,
-    marginBottom: 20,
-  },
   loadingText: {
     marginBottom: 20,
   },
   messageContainer: {
     alignItems: `center`,
-    flex: 1,
-    justifyContent: `center`,
+    marginTop: 80,
   },
   pageContainer: {
+    flex: 1,
     padding: 20,
   },
 })
@@ -34,19 +32,17 @@ const LoadingTimetable: React.FC<Props> = ({
   onDateChanged,
   onIndexChanged,
 }): ReactElement => (
-  <PageNoScroll style={styles.pageContainer}>
-    <View style={styles.header}>
-      <DateControls
-        date={date}
-        onDateChanged={onDateChanged}
-        onIndexChanged={onIndexChanged}
-      />
-    </View>
+  <ScrollView style={styles.pageContainer}>
+    <Header
+      date={date}
+      onDateChanged={onDateChanged}
+      onIndexChanged={onIndexChanged}
+    />
     <View style={styles.messageContainer}>
       <BodyText style={styles.loadingText}>Loading timetable...</BodyText>
       <ActivityIndicator size="large" />
     </View>
-  </PageNoScroll>
+  </ScrollView>
 )
 
 export default LoadingTimetable
