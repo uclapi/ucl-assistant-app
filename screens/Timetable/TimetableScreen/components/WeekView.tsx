@@ -159,10 +159,12 @@ class WeekView extends React.Component<Props> {
       module: {
         name: moduleName,
         module_id: moduleId,
+        lecturer,
       },
       location: {
         name: locationName,
       },
+      session_type_str: sessionTypeStr,
       session_type: sessionType,
       start_time: startTime,
       end_time: endTime,
@@ -178,8 +180,8 @@ class WeekView extends React.Component<Props> {
         moduleCode={moduleId}
         startTime={`${dateISO} ${startTime}`}
         endTime={`${dateISO} ${endTime}`}
-        location={locationName || `TBA`}
-        lecturer={contact || `Unknown Lecturer`}
+        location={(/online/gi).test(sessionTypeStr) ? sessionTypeStr : (locationName || `TBA`)}
+        lecturer={contact || lecturer?.name || `Unknown Lecturer`}
         pastEvent={past}
         key={`${dateISO}-${moduleId}-${startTime}-${endTime}-${sessionType}`}
         navigation={navigation}
