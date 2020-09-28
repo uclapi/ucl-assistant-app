@@ -1,7 +1,7 @@
-import { YellowBox } from 'react-native'
+import { LogBox } from 'react-native'
 
 const ignore = (): void => {
-  YellowBox.ignoreWarnings([
+  LogBox.ignoreLogs([
     // https://github.com/facebook/react-native/issues/12981
     `Setting a timer`,
 
