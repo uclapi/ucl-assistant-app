@@ -1,9 +1,8 @@
 import React from "react"
-import { StyleSheet, View } from "react-native"
-import MapView, { Marker } from "react-native-maps"
-
+import { Dimensions, StyleSheet, View } from "react-native"
 import Button from "../../../components/Button"
 import { Page } from "../../../components/Containers"
+import Map from "../../../components/Map/Map"
 import {
   BodyText,
   ErrorText,
@@ -15,7 +14,6 @@ import { LocalisationManager, MailManager, MapsManager } from "../../../lib"
 import type {
   MailManagerComposeAsyncReturnType,
 } from "../../../lib/MailManager"
-import MapStyle from "../../../styles/Map"
 import type { Region, TimetableEvent } from "../../../types/uclapi"
 import type { TimetableNavigationType } from "../TimetableNavigator"
 
@@ -26,6 +24,13 @@ const styles = StyleSheet.create({
   },
   emailButton: {
     marginTop: 10,
+  },
+  map: {
+    height: 300,
+    marginBottom: 10,
+    marginLeft: -20,
+    marginTop: 10,
+    width: Dimensions.get(`screen`).width,
   },
 })
 
@@ -186,7 +191,17 @@ class TimetableDetailView extends React.Component<Props> {
             &nbsp;so the map may be incorrect.
           </ErrorText>
         )}
-        <MapView
+        <Map
+          style={styles.map}
+          mapCenterPosition={{
+            lat: latitude,
+            lng: longitude,
+          }}
+          mapMarkers={[{
+            position: { lat: latitude, lng: longitude },
+          }]}
+        />
+        {/* <MapView
           style={MapStyle.wideMap}
           initialRegion={initialRegion}
           region={{
@@ -197,7 +212,7 @@ class TimetableDetailView extends React.Component<Props> {
           }}
         >
           <Marker coordinate={{ latitude, longitude }} />
-        </MapView>
+        </MapView> */}
         <Button onPress={this.navigateToLocation({ address, lat, lng })}>
           Directions
         </Button>
