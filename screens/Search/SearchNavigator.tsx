@@ -1,6 +1,8 @@
 import { Feather } from "@expo/vector-icons"
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { SafeAreaView } from "react-native-safe-area-context"
 import { NestedNavigator } from '../../types/uclapi'
 import PeopleNavigator, { PeopleNavigatorParamList } from '../People'
 import RoomsNavigator, { RoomsNavigatorParamList } from '../Rooms/RoomsNavigator'
@@ -59,25 +61,31 @@ const tabBarOptions = {
   },
 }
 
+const styles = StyleSheet.create({
+  safeAreaView: { flex: 1 },
+})
+
 const SearchNavigator: React.FC = () => (
-  <Tab.Navigator
-    screenOptions={screenOptions}
-    initialRouteName="StudySpaces"
-    tabBarOptions={tabBarOptions}
-  >
-    <Tab.Screen
-      name="StudySpaces"
-      component={StudySpacesNavigator}
-    />
-    <Tab.Screen
-      name="People"
-      component={PeopleNavigator}
-    />
-    <Tab.Screen
-      name="Rooms"
-      component={RoomsNavigator}
-    />
-  </Tab.Navigator>
+  <SafeAreaView style={styles.safeAreaView}>
+    <Tab.Navigator
+      screenOptions={screenOptions}
+      initialRouteName="StudySpaces"
+      tabBarOptions={tabBarOptions}
+    >
+      <Tab.Screen
+        name="StudySpaces"
+        component={StudySpacesNavigator}
+      />
+      <Tab.Screen
+        name="People"
+        component={PeopleNavigator}
+      />
+      <Tab.Screen
+        name="Rooms"
+        component={RoomsNavigator}
+      />
+    </Tab.Navigator>
+  </SafeAreaView>
 )
 
 export default SearchNavigator
