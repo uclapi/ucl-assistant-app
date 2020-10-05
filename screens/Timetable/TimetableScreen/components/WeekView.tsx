@@ -1,6 +1,8 @@
 import { Moment } from "moment"
 import React, { ReactElement, ReactNode } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import {
+  FlatList, Platform, StyleSheet, View,
+} from 'react-native'
 import Button from "../../../../components/Button"
 import TimetableCard from "../../../../components/Card/TimetableCard"
 import {
@@ -15,13 +17,13 @@ import LastModified from "./LastModified"
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
   },
   dayContainer: {
     alignItems: `flex-start`,
-    flex: 1,
     flexDirection: `row`,
+    ...(Platform.OS === `android` ? { flex: 1 } : {}),
     justifyContent: `flex-start`,
   },
   dayLeft: {
@@ -83,7 +85,7 @@ class WeekView extends React.Component<Props> {
     onDateChanged(LocalisationManager.getMoment())
   }
 
-  renderJumpToToday = (): (ReactElement | void) => {
+  renderJumpToToday = (): ReactNode => {
     const { timetable: weekTimetable } = this.props
     const sameWeek = LocalisationManager.parseToMoment(
       weekTimetable[0].dateISO,
