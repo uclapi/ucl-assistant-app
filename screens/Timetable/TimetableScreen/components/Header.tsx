@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Platform } from 'react-native'
 import { Moment } from 'moment'
 import { BodyText } from '../../../../components/Typography'
 import DateControls from './DateControls'
@@ -13,7 +13,7 @@ interface Props {
 const styles = StyleSheet.create({
   header: {
     alignItems: `center`,
-    flex: 1,
+    ...(Platform.OS === `android` ? { flex: 1 } : {}),
     flexDirection: `column`,
     marginBottom: 20,
   },

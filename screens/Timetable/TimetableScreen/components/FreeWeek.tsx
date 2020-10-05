@@ -1,14 +1,15 @@
 import React, { FunctionComponent, ReactElement } from 'react'
 import {
   Image,
-
-  ImageStyle, StyleProp, StyleSheet,
+  Platform,
+  ImageStyle,
+  StyleProp,
+  StyleSheet,
   View,
   ViewStyle,
 } from 'react-native'
 import { CentredText } from "../../../../components/Typography"
 import { AssetManager, Random } from "../../../../lib"
-import Styles from "../../../../styles/Containers"
 
 interface Style {
   container: ViewStyle,
@@ -17,7 +18,7 @@ interface Style {
 
 const styles = StyleSheet.create<Style>({
   container: {
-    flex: 1,
+    ...(Platform.OS === `android` ? { flex: 1 } : {}),
     justifyContent: `center`,
     paddingBottom: 20,
     paddingTop: 20,
@@ -53,7 +54,7 @@ const FreeWeek: FunctionComponent<Props> = ({ style }): ReactElement => (
     <Image
       source={relaxIllustration}
       resizeMethod="scale"
-      style={[Styles.image, styles.timetableImage]}
+      style={styles.timetableImage}
       resizeMode="contain"
     />
   </View>
