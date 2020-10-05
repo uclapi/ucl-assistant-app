@@ -13,8 +13,8 @@ const executeCommandWithOutput = (command) => new Promise((resolve, reject) => {
 })
 
 const getPublishHistory = async () => {
-  const jsonResult = JSON.parse(await executeCommandWithOutput(`expo publish:history --raw`))
-  return jsonResult
+  const output = await executeCommandWithOutput(`expo publish:history --raw`)
+  return JSON.parse(output.replace(/^\[[0-9]{2}:[0-9]{2}:[0-9]{2}\]/, ``).trim())
 }
 
 const getLastPublishVersion = async () => {
@@ -30,12 +30,12 @@ const getLastPublishVersion = async () => {
   return {
     channel,
     environment,
-    version,
     publishedTime,
+    version,
   }
 }
 
 module.exports = {
-  getPublishHistory,
   getLastPublishVersion,
+  getPublishHistory,
 }
