@@ -15,8 +15,8 @@ describe(`MainTabNavigator`, () => {
     cleanup()
   })
 
-  it(`renders without error`, () => {
-    const Navigator = render(<MainTabNavigator />)
+  it(`renders without error`, async () => {
+    const Navigator = await render(<MainTabNavigator />)
     expect(Navigator).toMatchSnapshot()
   })
 

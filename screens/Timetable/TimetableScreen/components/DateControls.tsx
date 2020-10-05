@@ -1,4 +1,5 @@
 import DateTimerPicker, {
+  AndroidEvent,
   Event,
 } from "@react-native-community/datetimepicker"
 import { BlurView } from "expo-blur"
@@ -53,7 +54,7 @@ class DateControls extends React.Component<Props, State> {
   dismissDatePicker = (): void => this.setState({ isDatePickerVisible: false })
 
   onDatePickerAction = (
-    event: Event,
+    event: Event | AndroidEvent,
     date: Date,
   ): void => {
     const { type } = event
@@ -70,7 +71,7 @@ class DateControls extends React.Component<Props, State> {
     return null
   }
 
-  onIndexChanged = (change: number) => ():void => {
+  onIndexChanged = (change: number) => (): void => {
     const { onIndexChanged } = this.props
     onIndexChanged(change)
   }
