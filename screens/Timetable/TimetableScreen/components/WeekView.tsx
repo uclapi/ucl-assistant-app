@@ -142,7 +142,7 @@ class WeekView extends React.Component<Props> {
     return (
       <TimetableCard
         moduleName={moduleName}
-        moduleCode={moduleId}
+        moduleCode={moduleId || `Unknown`}
         startTime={`${dateISO} ${startTime}`}
         endTime={`${dateISO} ${endTime}`}
         location={(/online/gi).test(sessionTypeStr) ? sessionTypeStr : (locationName || `TBA`)}

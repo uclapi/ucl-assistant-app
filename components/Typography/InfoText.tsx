@@ -9,12 +9,13 @@ import {
 import Colors from "../../constants/Colors"
 import Style from "../../styles/Typography"
 import { Horizontal } from "../Containers"
+import type { FeatherIconType } from "../../types/icons"
 
 interface Props extends TextStyle {
   containerStyle?: StyleProp<ViewStyle>,
   style?: StyleProp<TextStyle>,
   children: React.ReactNode,
-  icon?: string,
+  icon?: FeatherIconType,
 }
 
 const InfoText: React.FunctionComponent<Props> = ({

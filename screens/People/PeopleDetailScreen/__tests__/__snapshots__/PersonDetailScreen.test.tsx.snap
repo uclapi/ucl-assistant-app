@@ -186,7 +186,7 @@ exports[`PersonDetailScreen renders fine 1`] = `
                 ]
               }
             >
-              
+              
             </Text>
             <Text
               style={

@@ -21,6 +21,7 @@ exports[`MainTabNavigator renders without error 1`] = `
     }
   >
     <View
+      enabled={true}
       style={
         Object {
           "flex": 1,
@@ -29,6 +30,7 @@ exports[`MainTabNavigator renders without error 1`] = `
     >
       <View
         collapsable={false}
+        enabled={true}
         pointerEvents="auto"
         removeClippedSubviews={false}
         style={
@@ -66,6 +68,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                 Object {
                   "backgroundColor": "rgb(242, 242, 242)",
                 },
+                undefined,
               ]
             }
           >
@@ -114,16 +117,21 @@ exports[`MainTabNavigator renders without error 1`] = `
                     onGestureCanceled={[Function]}
                     onGestureEnd={[Function]}
                     onOpen={[Function]}
-                    onTransitionStart={[Function]}
+                    onTransition={[Function]}
                     pointerEvents="box-none"
                     style={
-                      Object {
-                        "bottom": 0,
-                        "left": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                      }
+                      Array [
+                        Object {
+                          "overflow": undefined,
+                        },
+                        Object {
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      ]
                     }
                     transitionSpec={
                       Object {
@@ -153,6 +161,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                     }
                   >
                     <View
+                      needsOffscreenAlphaCompositing={false}
                       pointerEvents="box-none"
                       style={
                         Object {
@@ -273,7 +282,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                                           ]
                                         }
                                       >
-                                        5th Oct - 11th Oct
+                                        7th Dec - 13th Dec
                                       </Text>
                                     </View>
                                     <View
@@ -586,17 +595,14 @@ exports[`MainTabNavigator renders without error 1`] = `
               <View
                 pointerEvents="box-none"
                 style={
-                  Array [
-                    Object {
-                      "zIndex": 1,
-                    },
-                    Object {
-                      "left": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                    },
-                  ]
+                  Object {
+                    "height": 64,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "zIndex": 1,
+                  }
                 }
               />
             </View>
@@ -869,7 +875,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
             <View
@@ -908,7 +914,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
           </View>
@@ -1169,7 +1175,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
             <View
@@ -1208,7 +1214,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
           </View>

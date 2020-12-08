@@ -29,7 +29,7 @@ interface Props {
 }
 
 const TimetableCard: React.FC<Props> = ({
-  moduleName = ``,
+  moduleName,
   moduleCode = `ABCD123D`,
   startTime = LocalisationManager.getMoment().toISOString(),
   endTime = LocalisationManager.getMoment().toISOString(),
@@ -71,7 +71,7 @@ const TimetableCard: React.FC<Props> = ({
         })
       }}
     >
-      <BodyText>{moduleName}</BodyText>
+      {moduleName && <BodyText>{moduleName}</BodyText>}
       <Horizontal style={styles.timeContainer}>
         <BodyText>
           <Feather name="clock" />

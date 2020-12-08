@@ -4,6 +4,11 @@ import { StyleSheet, View } from 'react-native'
 
 import Colors from "../../constants/Colors"
 import type { IconProps } from "../../types/uclapi"
+import type { FeatherIconType } from "../../types/icons"
+
+interface FeatherIconProps extends Omit<IconProps, `name`> {
+  name: FeatherIconType,
+}
 
 const styles = StyleSheet.create({
   circularIcon: {
@@ -15,7 +20,7 @@ const styles = StyleSheet.create({
 })
 
 // eslint-disable-next-line quotes
-const CircularIcon: React.FC<IconProps> = (props) => (
+const CircularIcon: React.FC<FeatherIconProps> = (props) => (
   <View style={styles.circularIcon}>
     <Feather {...props} />
   </View>

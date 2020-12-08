@@ -4,6 +4,7 @@ import ActionButton from "react-native-action-button"
 
 import Colors from "../../../constants/Colors"
 import { ActiveButtonProps } from "../ActiveButton"
+import type { EntypoIconType } from '../../../types/icons'
 
 export interface FloatingButtonProps extends Omit<
   ActiveButtonProps,
@@ -12,10 +13,10 @@ export interface FloatingButtonProps extends Omit<
   > {
   active?: boolean,
   activeButtonColor?: string,
-  activeIcon?: string,
+  activeIcon?: EntypoIconType,
   activeIconColor?: string,
   buttonColor?: string,
-  icon?: string,
+  icon?: EntypoIconType,
   iconColor?: string,
   onPress?: () => void,
   offsetY?: number,
