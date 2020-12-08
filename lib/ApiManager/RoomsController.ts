@@ -64,7 +64,14 @@ class roomsController {
       if (!results.data.content.ok) {
         throw new Error(results.data.content.error)
       }
-      return results.data.content.free_rooms
+
+      // return unique only. remove once https://github.com/uclapi/uclapi/issues/3016 is fixed
+      return Array.from(new Set(results.data.content.free_rooms
+        .map(({ siteid, roomid }) => `${siteid}|${roomid}`)
+      )).map((aggregate: string) => {
+        const [siteid, roomid] = aggregate.split(`|`)
+        return results.data.content.free_rooms.find(r => siteid === r.siteid && roomid === r.roomid)
+      })
     } catch (error) {
       ErrorManager.captureError(error)
       throw error
