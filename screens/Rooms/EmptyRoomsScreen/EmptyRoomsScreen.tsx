@@ -2,7 +2,6 @@ import { Picker } from '@react-native-community/picker'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import {
-  ActivityIndicator,
   StyleSheet,
   View,
 } from 'react-native'
@@ -143,7 +142,7 @@ export class EmptyRoomsScreen extends React.Component<
       return (
         <Page>
           <View style={styles.container}>
-            <ActivityIndicator size="large" />
+            <BodyText>Searching for empty rooms...</BodyText>
           </View>
         </Page>
       )

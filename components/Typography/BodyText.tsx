@@ -33,14 +33,14 @@ const BodyText: React.FunctionComponent<Props> = ({
     {
       React.Children.toArray(children)
         .map((el) => ((typeof el === `string`) ? (
-          <>
+          <React.Fragment key={`${el}-${generate()}`}>
             {el.split(` `).map((word) => (
               <BodyText key={`word-${word}-${generate()}`} {...props}>
                 {word}
                 &nbsp;
               </BodyText>
             ))}
-          </>
+          </React.Fragment>
         ) : el))
     }
   </View>

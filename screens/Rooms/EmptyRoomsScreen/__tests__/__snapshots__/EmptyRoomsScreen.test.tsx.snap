@@ -566,12 +566,22 @@ Array [
               }
             }
           >
-            <ActivityIndicator
-              animating={true}
-              color="#999999"
-              hidesWhenStopped={true}
-              size="large"
-            />
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4D5061",
+                    "fontFamily": "apercu",
+                    "fontSize": 16,
+                    "marginBottom": 1,
+                    "marginTop": 1,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              Searching for empty rooms...
+            </Text>
           </View>
         </View>
       </RCTScrollView>
