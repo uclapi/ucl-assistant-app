@@ -50,4 +50,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
       with:
         msg: Published to [dev.commit-${{ github.sha }}](https://expo.io/@${{ secrets.EXPO_CLI_USERNAME }}/ucl-assistant?release-channel=dev.commit-${{ github.sha }}).
-
+      continue-on-error: true
