@@ -1,13 +1,15 @@
 import { Feather } from "@expo/vector-icons"
-import { ImageSourcePropType } from "react-native"
+import { ImageURISource } from "react-native"
 
-const uclapi: Record<string, ImageSourcePropType> = {
+type ImageType = ImageURISource
+
+const uclapi: Record<string, ImageType> = {
   iconForeground: require(`../assets/images/icon-fg.png`),
   smallIcon: require(`../assets/images/uclapi.png`),
   splash: require(`../assets/images/splash.png`),
 }
 
-const undraw: Record<string, ImageSourcePropType> = {
+const undraw: Record<string, ImageType> = {
   buildingBlocks: require(`../assets/images/undraw_building_blocks.png`),
   calendar: require(`../assets/images/undraw_calendar.png`),
   chilling: require(`../assets/images/undraw_chilling.png`),

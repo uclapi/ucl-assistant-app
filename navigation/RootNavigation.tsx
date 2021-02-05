@@ -23,6 +23,7 @@ export const RootNavigatorComponent = ({
   token,
   upi,
   scopeNumber,
+  ref,
 }): ReactElement => {
   const isLoggedIn = (
     token && typeof token === `string` && token.length > 0
@@ -58,6 +59,7 @@ export const RootNavigatorComponent = ({
   return (
     <NavigationContainer
       onStateChange={onNavigationStateChange}
+      ref={ref}
     >
       <Stack.Navigator
         screenOptions={{

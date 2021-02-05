@@ -57,8 +57,8 @@ export const signInCancel = (): UserActionTypes => ({
 export const signIn = (): UserThunkAction => async (
   dispatch: UserDispatch,
 ): Promise<void> => {
-  await dispatch(isSigningIn())
-  const returnUrl = AuthSession.getRedirectUrl()
+  dispatch(isSigningIn())
+  const returnUrl = AuthSession.makeRedirectUri()
   const result = await AuthSession.startAsync({
     authUrl: `${ASSISTANT_API_URL}/connect/uclapi?return=${encodeURIComponent(
       returnUrl,
@@ -86,8 +86,8 @@ export const signOut = (): UserThunkAction => async (
 ): Promise<void> => {
   AnalyticsManager.clearUserProperties()
   await (dispatch as TimetableDispatch)(clearTimetable())
-  await dispatch(signOutUser())
-  await persistor.purge()
+  dispatch(signOutUser())
+  persistor.purge()
   return null
 }
 

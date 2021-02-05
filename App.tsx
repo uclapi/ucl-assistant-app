@@ -1,4 +1,4 @@
-import { AppLoading } from "expo"
+import AppLoading from "expo-app-loading"
 import { Asset } from "expo-asset"
 import * as Font from "expo-font"
 import * as Notifications from 'expo-notifications'
@@ -93,11 +93,11 @@ class App extends React.Component<Props, State> {
   }
 
   componentWillUnmount(): void {
-    Notifications.removeAllNotificationListeners()
+    Notifications.removeNotificationSubscription(this.notificationSubscription)
   }
 
   loadResourcesAsync = async (): Promise<any> => Promise.all([
-    Asset.loadAsync(Object.values(AssetManager.undraw)),
+    Asset.loadAsync(Object.values(AssetManager.undraw) as string[]),
     Font.loadAsync({
       ...AssetManager.font,
     }),

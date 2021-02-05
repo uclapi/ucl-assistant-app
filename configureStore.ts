@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { persistReducer, persistStore } from "redux-persist"
 import createSecureStore from "redux-persist-expo-securestore"

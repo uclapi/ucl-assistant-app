@@ -1,4 +1,4 @@
-import { Picker } from '@react-native-community/picker'
+import { Picker } from '@react-native-picker/picker'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import {

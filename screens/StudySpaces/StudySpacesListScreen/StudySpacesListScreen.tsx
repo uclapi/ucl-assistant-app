@@ -87,10 +87,7 @@ class StudySpacesListScreen extends React.Component<Props, State> {
     } = this.props
     const errorneousSpaces = this.memoizeErrorneousSpaces(studyspaces)
     const isLoading = !loadedSeatInfo
-      || studyspaces.reduce(
-        (res, space) => res || space.isFetchingSeatInfo,
-        false,
-      )
+      || studyspaces.some((space) => space.isFetchingSeatInfo)
     return (
       <Page
         refreshEnabled

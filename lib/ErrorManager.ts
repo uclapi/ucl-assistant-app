@@ -3,21 +3,19 @@ import * as Sentry from "sentry-expo"
 
 const initialise = (): void => {
   if (!__DEV__) {
-    const { extra: { sentry: { dsn = `` } = {} } = {} } = Constants.manifest
+    const { extra: { sentry: { dsn = `` } = {} } = {}, revisionId } = Constants.manifest
     Sentry.init({
       dsn,
+      ...(typeof revisionId === `string` && revisionId.length > 0
+        ? { release: revisionId }
+        : {}),
     })
-
-    const { revisionId } = Constants.manifest
-    if (typeof revisionId === `string` && revisionId.length > 0) {
-      Sentry.setRelease(revisionId)
-    }
   }
 }
 
 const addDetail = (details: any): void => {
   if (!__DEV__) {
-    Sentry.addBreadcrumb({
+    Sentry.Native.addBreadcrumb({
       ...details,
     })
   } else {
@@ -28,7 +26,7 @@ const addDetail = (details: any): void => {
 const captureError = (error: Error, details?: any): void => {
   if (!__DEV__) {
     if (details) {
-      Sentry.withScope((scope) => {
+      Sentry.Native.withScope((scope) => {
         if (typeof details === `object`) {
           Object.entries(details).forEach(([attr, val]) => {
             scope.setExtra(attr, val)
@@ -36,10 +34,10 @@ const captureError = (error: Error, details?: any): void => {
         } else {
           scope.setExtra(`details`, details)
         }
-        Sentry.captureException(error)
+        Sentry.Native.captureException(error)
       })
     } else {
-      Sentry.captureException(error)
+      Sentry.Native.captureException(error)
     }
   } else {
     console.error(`ErrorManager.captureError`, error, details)
@@ -48,7 +46,7 @@ const captureError = (error: Error, details?: any): void => {
 
 const setUser = (user): void => {
   if (!__DEV__ && user) {
-    Sentry.setUser(user)
+    Sentry.Native.setUser(user)
   }
 }
 

@@ -18,3 +18,4 @@ updates:
       - dependency-name: "react-native-svg"
       - dependency-name: "@react-native-community/*"
       - dependency-name: "expo-*"
+      - dependency-name: "react-test-renderer"

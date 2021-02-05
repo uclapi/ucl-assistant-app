@@ -1,10 +1,10 @@
-import { QueryResult, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import ApiManager from '../lib/ApiManager'
 import { JWT, Person } from '../types/uclapi'
 
-const usePeople = (token: JWT, query: string): QueryResult<Person[], Error> => useQuery(
+const usePeople = (token: JWT, query: string) => useQuery<Person[], Error>(
   [`people`, token, query],
-  (_, t: string, q: string) => ApiManager.people.search(t, q),
+  () => ApiManager.people.search(token, query),
   {
     enabled: query && query.length > 0,
   },
