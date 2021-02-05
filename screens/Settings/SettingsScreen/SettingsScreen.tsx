@@ -6,7 +6,7 @@ import {
 import type { StackNavigationProp } from "@react-navigation/stack"
 import Constants from "expo-constants"
 import * as IntentLauncherAndroid from "expo-intent-launcher"
-import * as StoreReview from 'expo-store-review'
+// import * as StoreReview from 'expo-store-review'
 import React from "react"
 import {
   Alert,
@@ -189,16 +189,16 @@ export class SettingsScreen extends React.Component<Props, State> {
     AnalyticsManager.logEvent(AnalyticsManager.events.SETTINGS_GIVE_FEEDBACK)
   }
 
-  rateApp = async (): Promise<void> => {
-    const isSupported = await StoreReview.isAvailableAsync()
-    if (isSupported) {
-      StoreReview.requestReview()
-    }
-    AnalyticsManager.logEvent(
-      AnalyticsManager.events.SETTINGS_RATE_APP,
-      { isSupported },
-    )
-  }
+  // rateApp = async (): Promise<void> => {
+  //   const isSupported = await StoreReview.isAvailableAsync()
+  //   if (isSupported) {
+  //     StoreReview.requestReview()
+  //   }
+  //   AnalyticsManager.logEvent(
+  //     AnalyticsManager.events.SETTINGS_RATE_APP,
+  //     { isSupported },
+  //   )
+  // }
 
   renderDev = (): React.ReactNode => {
     const { user } = this.props
