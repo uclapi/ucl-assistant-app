@@ -1,5 +1,6 @@
 import { RouteProp } from '@react-navigation/native'
 import React from 'react'
+import { QueryClient, QueryClientProvider } from "react-query"
 import PersonDetailScreen from '..'
 import { PeopleNavigatorParamList } from "../.."
 import {
@@ -9,6 +10,7 @@ import { ApiManager, MailManager } from "../../../../lib"
 import type { Person } from '../../../../types/uclapi'
 
 MailManager.composeAsync = jest.fn()
+const queryClient = new QueryClient()
 
 describe(`PersonDetailScreen`, () => {
   const mockPerson: Person = {
@@ -30,7 +32,11 @@ describe(`PersonDetailScreen`, () => {
 
   ApiManager.people.fetchPerson = jest.fn(() => Promise.resolve(mockPerson))
 
-  const setup = () => render(<PersonDetailScreen {...props} />)
+  const setup = () => render(
+    <QueryClientProvider client={queryClient}>
+      <PersonDetailScreen {...props} />
+    </QueryClientProvider>,
+  )
 
   beforeAll(() => {
     jest.useFakeTimers()

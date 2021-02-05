@@ -1,11 +1,14 @@
 import { cleanup, fireEvent } from "@testing-library/react-native"
 import React from 'react'
+import MockDate from 'mockdate'
 import Colors from "../../constants/Colors"
 import { render } from "../../jest/test-utils"
 import { Warnings } from '../../lib'
 import MainTabNavigator from '../MainTabNavigator'
 
 describe(`MainTabNavigator`, () => {
+  MockDate.set(`2021-02-02T09:26:22.000Z`)
+
   beforeAll(() => {
     Warnings.ignore()
     jest.useFakeTimers()

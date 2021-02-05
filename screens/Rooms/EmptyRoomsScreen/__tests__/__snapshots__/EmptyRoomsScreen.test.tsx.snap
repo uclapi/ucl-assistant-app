@@ -90,16 +90,19 @@ Array [
                   Array [
                     Object {
                       "label": "All Buildings",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": null,
                     },
                     Object {
                       "label": "Bentham House",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": "b",
                     },
                     Object {
                       "label": "Main Building",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": "main",
                     },
@@ -680,6 +683,7 @@ Array [
                   Array [
                     Object {
                       "label": "All Buildings",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": null,
                     },
@@ -833,16 +837,19 @@ Array [
                   Array [
                     Object {
                       "label": "All Buildings",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": null,
                     },
                     Object {
                       "label": "Bentham House",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": "b",
                     },
                     Object {
                       "label": "Main Building",
+                      "testID": undefined,
                       "textColor": undefined,
                       "value": "main",
                     },

@@ -33,14 +33,12 @@ describe(`ErrorManager`, () => {
     jest.clearAllMocks()
   })
 
-
   it(`does not initialise Sentry in development mode`, () => {
     // eslint-disable-next-line no-underscore-dangle
     global.__DEV__ = true
 
     ErrorManager.initialise()
     expect(Sentry.init).toHaveBeenCalledTimes(0)
-    expect(Sentry.setRelease).toHaveBeenCalledTimes(0)
   })
 
   it(`initialises Sentry in production mode`, () => {
@@ -56,7 +54,7 @@ describe(`ErrorManager`, () => {
     global.__DEV__ = true
 
     ErrorManager.setUser(SAMPLE_USER)
-    expect(Sentry.setUser).toHaveBeenCalledTimes(0)
+    expect(Sentry.Native.setUser).toHaveBeenCalledTimes(0)
   })
 
   it(`sets user in production`, () => {
@@ -64,8 +62,8 @@ describe(`ErrorManager`, () => {
     global.__DEV__ = false
 
     ErrorManager.setUser(SAMPLE_USER)
-    expect(Sentry.setUser).toHaveBeenCalledTimes(1)
-    expect(Sentry.setUser).toHaveBeenCalledWith(SAMPLE_USER)
+    expect(Sentry.Native.setUser).toHaveBeenCalledTimes(1)
+    expect(Sentry.Native.setUser).toHaveBeenCalledWith(SAMPLE_USER)
   })
 
   it(`does not capture errors in development mode`, () => {
@@ -73,7 +71,7 @@ describe(`ErrorManager`, () => {
     global.__DEV__ = true
 
     ErrorManager.captureError(SAMPLE_ERROR)
-    expect(Sentry.captureException).toHaveBeenCalledTimes(0)
+    expect(Sentry.Native.captureException).toHaveBeenCalledTimes(0)
     expect(mockConsoleError).toHaveBeenCalledTimes(1)
   })
 
@@ -82,24 +80,23 @@ describe(`ErrorManager`, () => {
     global.__DEV__ = false
 
     ErrorManager.captureError(SAMPLE_ERROR)
-    expect(Sentry.captureException).toHaveBeenCalledTimes(1)
-    expect(Sentry.captureException).toHaveBeenCalledWith(SAMPLE_ERROR)
+    expect(Sentry.Native.captureException).toHaveBeenCalledTimes(1)
+    expect(Sentry.Native.captureException).toHaveBeenCalledWith(SAMPLE_ERROR)
   })
 
   it(`captures extra details from errors`, () => {
     // eslint-disable-next-line no-underscore-dangle
     global.__DEV__ = false
 
-    const mockWithScope = jest.spyOn(Sentry, `withScope`)
+    const mockWithScope = jest.spyOn(Sentry.Native, `withScope`)
     ErrorManager.captureError(SAMPLE_ERROR, SAMPLE_DETAILS)
-
 
     const callback = (mockWithScope as jest.Mock).mock.calls[0][0]
     const scope = { setExtra: jest.fn() }
     callback(scope)
 
-    expect(Sentry.captureException).toHaveBeenCalledTimes(1)
-    expect(Sentry.captureException).toHaveBeenCalledWith(SAMPLE_ERROR)
+    expect(Sentry.Native.captureException).toHaveBeenCalledTimes(1)
+    expect(Sentry.Native.captureException).toHaveBeenCalledWith(SAMPLE_ERROR)
     expect(scope.setExtra).toHaveBeenCalledTimes(
       Object.entries(SAMPLE_DETAILS).length,
     )

@@ -3,10 +3,10 @@
  */
 
 import {
-  logEvent,
-  logEventWithProperties,
-  setUserId,
-  setUserProperties,
+  logEventAsync,
+  logEventWithPropertiesAsync,
+  setUserIdAsync,
+  setUserPropertiesAsync,
 } from 'expo-analytics-amplitude'
 
 import configureStore from "../../configureStore"
@@ -16,10 +16,10 @@ const { store } = configureStore
 
 jest.mock(`expo-analytics-amplitude`, () => ({
   __esModule: true,
-  logEvent: jest.fn(),
-  logEventWithProperties: jest.fn(),
-  setUserId: jest.fn(),
-  setUserProperties: jest.fn(),
+  logEventAsync: jest.fn(),
+  logEventWithPropertiesAsync: jest.fn(),
+  setUserIdAsync: jest.fn(),
+  setUserPropertiesAsync: jest.fn(),
 }))
 
 interface Global {
@@ -54,27 +54,27 @@ describe(`AnalyticsManager`, () => {
     store.getState = mockGetState
 
     AnalyticsManager.setUserId(USER_ID)
-    expect(setUserId).toHaveBeenCalledTimes(1)
-    expect(setUserId).toHaveBeenCalledWith(USER_ID)
+    expect(setUserIdAsync).toHaveBeenCalledTimes(1)
+    expect(setUserIdAsync).toHaveBeenCalledWith(USER_ID)
 
     AnalyticsManager.setUserProperties(USER_PROPERTIES)
-    expect(setUserProperties).toHaveBeenCalledTimes(1)
-    expect(setUserProperties).toHaveBeenCalledWith(USER_PROPERTIES)
+    expect(setUserPropertiesAsync).toHaveBeenCalledTimes(1)
+    expect(setUserPropertiesAsync).toHaveBeenCalledWith(USER_PROPERTIES)
 
     AnalyticsManager.logEvent(EVENT)
-    expect(logEvent).toHaveBeenCalledTimes(1)
-    expect(logEvent).toHaveBeenCalledWith(EVENT)
+    expect(logEventAsync).toHaveBeenCalledTimes(1)
+    expect(logEventAsync).toHaveBeenCalledWith(EVENT)
 
     AnalyticsManager.logEvent(EVENT, EVENT_PROPERTIES)
-    expect(logEventWithProperties).toHaveBeenCalledTimes(1)
-    expect(logEventWithProperties).toHaveBeenCalledWith(
+    expect(logEventWithPropertiesAsync).toHaveBeenCalledTimes(1)
+    expect(logEventWithPropertiesAsync).toHaveBeenCalledWith(
       EVENT,
       EVENT_PROPERTIES,
     )
 
     AnalyticsManager.logScreenView(SCREEN_NAME)
-    expect(logEvent).toHaveBeenCalledTimes(2)
-    expect(logEvent).toHaveBeenCalledWith(`VIEW_SCREEN_${SCREEN_NAME}`)
+    expect(logEventAsync).toHaveBeenCalledTimes(2)
+    expect(logEventAsync).toHaveBeenCalledWith(`VIEW_SCREEN_${SCREEN_NAME}`)
   })
 
   it(`does not track user when shouldTrackAnalytics is false`, () => {
@@ -88,18 +88,18 @@ describe(`AnalyticsManager`, () => {
     store.getState = mockGetState
 
     AnalyticsManager.setUserId(USER_ID)
-    expect(setUserId).toHaveBeenCalledTimes(0)
+    expect(setUserIdAsync).toHaveBeenCalledTimes(0)
 
     AnalyticsManager.setUserProperties(USER_PROPERTIES)
-    expect(setUserProperties).toHaveBeenCalledTimes(0)
+    expect(setUserPropertiesAsync).toHaveBeenCalledTimes(0)
 
     AnalyticsManager.logEvent(EVENT)
-    expect(logEvent).toHaveBeenCalledTimes(0)
+    expect(logEventAsync).toHaveBeenCalledTimes(0)
 
     AnalyticsManager.logEvent(EVENT, EVENT_PROPERTIES)
-    expect(logEventWithProperties).toHaveBeenCalledTimes(0)
+    expect(logEventWithPropertiesAsync).toHaveBeenCalledTimes(0)
 
     AnalyticsManager.logScreenView(SCREEN_NAME)
-    expect(logEvent).toHaveBeenCalledTimes(0)
+    expect(logEventAsync).toHaveBeenCalledTimes(0)
   })
 })
