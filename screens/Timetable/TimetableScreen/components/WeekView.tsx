@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   dayLeft: {
     alignItems: `flex-end`,
     paddingRight: 10,
-    width: 80,
+    width: 85,
   },
   dayNumber: {
     marginBottom: 0,

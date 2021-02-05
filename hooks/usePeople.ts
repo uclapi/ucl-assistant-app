@@ -5,9 +5,7 @@ import { JWT, Person } from '../types/uclapi'
 const usePeople = (token: JWT, query: string) => useQuery<Person[], Error>(
   [`people`, token, query],
   () => ApiManager.people.search(token, query),
-  {
-    enabled: query && query.length > 0,
-  },
+  { enabled: (typeof query === `string` && query.length > 0) },
 )
 
 export default usePeople

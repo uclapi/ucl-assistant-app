@@ -16,8 +16,10 @@ import {
 import RootNavigation from "./navigation/RootNavigation"
 import { NotificationChannels } from "./redux/constants/notificationsConstants"
 import Styles from "./styles/Containers"
+import { QueryClient, QueryClientProvider } from "react-query"
 
 const { persistor, store } = configureStore
+const queryClient = new QueryClient()
 
 ErrorManager.initialise()
 // crashes LiveSeatingMapScreen, probably because of the large
@@ -147,17 +149,19 @@ class App extends React.Component<Props, State> {
     return (
       <Provider store={stateStore}>
         <PersistGate persistor={statePersistor}>
-          <View style={Styles.app}>
-            <StatusBar
-              barStyle="dark-content"
-              hidden={false}
-              backgroundColor={Colors.pageBackground}
-            />
-            <RootNavigation
-              ref={this.navigationRef}
-              onNavigationStateChange={this.onNavigationStateChange}
-            />
+          <QueryClientProvider client={queryClient}>
+            <View style={Styles.app}>
+              <StatusBar
+                barStyle="dark-content"
+                hidden={false}
+                backgroundColor={Colors.pageBackground}
+              />
+              <RootNavigation
+                ref={this.navigationRef}
+                onNavigationStateChange={this.onNavigationStateChange}
+              />
           </View>
+          </QueryClientProvider>
         </PersistGate>
       </Provider>
     )

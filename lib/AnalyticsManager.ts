@@ -11,7 +11,7 @@ const AMPLITUDE_API_KEY = Constants.manifest.extra
   ? Constants.manifest.extra.amplitude.apiKey
   : null
 
-const initialise = (): Promise<void> => Amplitude.initialize(AMPLITUDE_API_KEY)
+const initialise = (): Promise<void> => Amplitude.initializeAsync(AMPLITUDE_API_KEY)
 
 const shouldTrackAnalytics = (): boolean => (
   AMPLITUDE_API_KEY
@@ -24,27 +24,27 @@ const setUserId = (userId): void => {
 
   // make sure this is unique
   if (userId) {
-    Amplitude.setUserId(userId)
+    Amplitude.setUserIdAsync(userId)
   }
 }
 
 const setUserProperties = ({ ...userProperties }): void => {
   if (!shouldTrackAnalytics()) { return }
 
-  Amplitude.setUserProperties({ ...userProperties })
+  Amplitude.setUserPropertiesAsync({ ...userProperties })
 }
 
 const clearUserProperties = (): void => {
-  Amplitude.clearUserProperties()
+  Amplitude.clearUserPropertiesAsync()
 }
 
-const logEvent = (eventName: string, eventProperties?): void => {
+const logEvent = (eventName: string, eventProperties?: unknown): void => {
   if (!shouldTrackAnalytics()) { return }
 
   if (eventProperties) {
-    Amplitude.logEventWithProperties(eventName, eventProperties)
+    Amplitude.logEventWithPropertiesAsync(eventName, eventProperties)
   } else {
-    Amplitude.logEvent(eventName)
+    Amplitude.logEventAsync(eventName)
   }
 }
 
