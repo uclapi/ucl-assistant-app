@@ -29,7 +29,8 @@ jobs:
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
         expo-cache: true
     - run: echo '${{ secrets.APP_JSON }}' > app.json
-    - run: npm ci
+    # see https://github.com/expo/expo/issues/11790#issuecomment-773513299
+    - run: npm i -g npm@6 && npm ci
 
     - name: codechecks
       run: npx codechecks

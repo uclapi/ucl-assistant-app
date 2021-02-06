@@ -48,19 +48,29 @@ const run = async () => {
 
   const options = []
   if (platform === `android`) {
-    options.push(`-t app-bundle`)
+    const { buildType } = await inquirer.prompt([{
+      type: `list`,
+      name: `buildType`,
+      message: `Build what?`,
+      choices: [`app-bundle (aab)`, `apk`],
+      default: `aab`
+    }])
+    if (buildType === `aab`) {
+      options.push(`-t app-bundle`)
+    }
+    if (buildType === `apk`) {
+      options.push(`-t apk`)
+    }
   }
   if (!shouldPublish) {
     options.push(`--no-publish`)
   }
 
-  const expoCommand = `node node_modules/.bin/expo build:${platform} ${
-    options.join(` `)
-  } --release-channel=${environment}-${version}`
+  const expoCommand = `node node_modules/.bin/expo build:${platform} ${options.join(` `)
+    } --release-channel=${environment}-${version}`
 
   const confirmationQuestion = [{
     type: `confirm`,
-    // eslint-disable-next-line no-secrets/no-secrets
     name: `publishCommandCorrect`,
     message: `The following command will now be run: ${expoCommand}`,
     default: false,
