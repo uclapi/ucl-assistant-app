@@ -17,26 +17,26 @@ const run = async () => {
   console.log(`Last published to release channel ${lastChannel} at ${lastPublishedTime}`)
 
   const questions = [{
-    type: `list`,
-    name: `platform`,
-    message: `Build for which platform?`,
     choices: [`android`, `ios`],
-  }, {
+    message: `Build for which platform?`,
+    name: `platform`,
     type: `list`,
-    name: `environment`,
-    message: `Build for which environment?`,
+  }, {
     choices: [`development`, `staging`, `production`],
     default: `production`,
+    message: `Build for which environment?`,
+    name: `environment`,
+    type: `list`,
   }, {
-    type: `input`,
-    name: `version`,
-    message: `What version is this build?`,
     default: lastVersion,
+    message: `What version is this build?`,
+    name: `version`,
+    type: `input`,
   }, {
-    type: `confirm`,
-    name: `shouldPublish`,
-    message: `Publish JS code (no need if you've already done this before)`,
     default: true,
+    message: `Publish JS code (no need if you've already done this before)`,
+    name: `shouldPublish`,
+    type: `confirm`,
   }]
 
   const {
@@ -49,13 +49,13 @@ const run = async () => {
   const options = []
   if (platform === `android`) {
     const { buildType } = await inquirer.prompt([{
-      type: `list`,
-      name: `buildType`,
-      message: `Build what?`,
       choices: [`app-bundle (aab)`, `apk`],
-      default: `aab`
+      default: `aab`,
+      message: `Build what?`,
+      name: `buildType`,
+      type: `list`,
     }])
-    if (buildType === `aab`) {
+    if (buildType === `app-bundle (aab)`) {
       options.push(`-t app-bundle`)
     }
     if (buildType === `apk`) {
@@ -67,13 +67,16 @@ const run = async () => {
   }
 
   const expoCommand = `node node_modules/.bin/expo build:${platform} ${options.join(` `)
-    } --release-channel=${environment}-${version}`
+  } --release-channel=${environment}-${version}`
 
   const confirmationQuestion = [{
-    type: `confirm`,
-    name: `publishCommandCorrect`,
-    message: `The following command will now be run: ${expoCommand}`,
+
     default: false,
+
+    message: `The following command will now be run: ${expoCommand}`,
+    // eslint-disable-next-line no-secrets/no-secrets
+    name: `publishCommandCorrect`,
+    type: `confirm`,
   }]
 
   const {
