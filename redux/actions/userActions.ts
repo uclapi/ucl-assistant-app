@@ -1,6 +1,7 @@
 import * as AuthSession from 'expo-auth-session'
 import { Action } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
+import { Alert } from 'react-native'
 import configureStore, { AppStateType } from "../../configureStore"
 import { ASSISTANT_API_URL } from "../../constants/API"
 import { AnalyticsManager, ErrorManager } from "../../lib"
@@ -58,11 +59,14 @@ export const signIn = (): UserThunkAction => async (
   dispatch: UserDispatch,
 ): Promise<void> => {
   dispatch(isSigningIn())
-  const returnUrl = AuthSession.makeRedirectUri()
+  const returnUrl = `${AuthSession.makeRedirectUri()}redirect`
   const result = await AuthSession.startAsync({
     authUrl: `${ASSISTANT_API_URL}/connect/uclapi?return=${encodeURIComponent(
       returnUrl,
-    )}`
+    )}`,
+    // specify optional parameter returnUrl to work around bug
+    // https://github.com/expo/expo/issues/6679#issuecomment-637032717
+    returnUrl,
   })
   if (result.type === `success`) {
     const action = signInSuccess(result)
@@ -72,6 +76,7 @@ export const signIn = (): UserThunkAction => async (
     dispatch(action)
     return null
   }
+  Alert.alert(result.type, returnUrl)
   // login cancelled by user.
   dispatch(signInCancel())
   return null
