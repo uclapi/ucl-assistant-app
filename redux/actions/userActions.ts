@@ -62,8 +62,7 @@ export const signIn = (): UserThunkAction => async (
   const result = await AuthSession.startAsync({
     authUrl: `${ASSISTANT_API_URL}/connect/uclapi?return=${encodeURIComponent(
       returnUrl,
-    )}`,
-    returnUrl,
+    )}`
   })
   if (result.type === `success`) {
     const action = signInSuccess(result)
