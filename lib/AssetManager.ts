@@ -27,9 +27,9 @@ const undraw: Record<string, ImageType> = {
 
 const font = {
   ...Feather.font,
-  apercu: require(`../assets/fonts/somerandomfont.otf`),
-  "apercu-bold": require(`../assets/fonts/somerandomfont-Bold.otf`),
-  "apercu-light": require(`../assets/fonts/somerandomfont-Light.otf`),
+  apercu: require(`../assets/fonts/apercu.otf`),
+  "apercu-bold": require(`../assets/fonts/apercu-bold.otf`),
+  "apercu-light": require(`../assets/fonts/apercu-light.otf`),
 }
 
 export default {
