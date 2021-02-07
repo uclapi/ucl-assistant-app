@@ -1,6 +1,5 @@
 node_modules
 .expo
-.expo-shared
 app.json
 node_modules
 **/node_modules
