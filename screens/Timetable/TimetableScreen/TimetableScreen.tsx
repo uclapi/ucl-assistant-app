@@ -271,18 +271,7 @@ class TimetableScreen extends React.Component<Props, State> {
     } = this.props
     const {
       currentIndex,
-      date,
     } = this.state
-
-    if (error === `` && timetable.length <= 2) { // to account for padding nulls
-      return (
-        <LoadingTimetable
-          onDateChanged={this.onDateChanged}
-          onIndexChanged={this.onIndexChanged}
-          date={date}
-        />
-      )
-    }
 
     return (
       <PageNoScroll
@@ -306,7 +295,8 @@ class TimetableScreen extends React.Component<Props, State> {
           onPageSelected={this.onSwipe}
         >
           {
-            timetable.map(this.renderWeek)
+            ((error === `` && timetable.length <= 2)
+              ? [null, null, null] : timetable).map(this.renderWeek)
           }
         </ViewPager>
       </PageNoScroll>

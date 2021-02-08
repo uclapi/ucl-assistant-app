@@ -4,13 +4,13 @@ import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { Platform } from 'react-native'
 import configureStore, { AppStateType } from "../../configureStore"
 import { ASSISTANT_API_URL } from "../../constants/API"
-import { AnalyticsManager, ErrorManager } from "../../lib"
+import { AnalyticsManager, ErrorManager, LocalisationManager } from "../../lib"
 import * as constants from "../constants/userConstants"
 import type {
   SignInSuccessAction,
   UserActionTypes,
 } from "../constants/userConstants"
-import { clearTimetable, TimetableDispatch } from "./timetableActions"
+import { clearTimetable, fetchTimetable, TimetableDispatch } from "./timetableActions"
 
 const { persistor } = configureStore
 
@@ -70,6 +70,7 @@ export const signIn = (): UserThunkAction => async (
   })
   if (result.type === `success`) {
     const action = signInSuccess(result)
+    dispatch(fetchTimetable(action.user.token, LocalisationManager.getMoment()))
     AnalyticsManager.setUserId(action.user.upi)
     AnalyticsManager.setUserProperties(action.user)
     ErrorManager.setUser(action.user)
