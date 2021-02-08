@@ -25,12 +25,13 @@ describe(`MainTabNavigator`, () => {
 
   it(`TimetableScreen is highlighted`, async () => {
     const Navigator = await render(<MainTabNavigator />)
-    const { queryByText } = Navigator
+    const { queryByText, queryAllByText } = Navigator
     const timetableTab = queryByText(`Timetable`)
     expect(timetableTab).toBeTruthy();
     (expect(timetableTab) as any).toHaveStyle({ color: Colors.pageBackground })
-    const TimetableScreen = queryByText(`Loading timetable...`)
-    expect(TimetableScreen).toBeTruthy()
+    const loadingElements = queryAllByText(`Loading timetable...`)
+    expect(loadingElements).toBeTruthy()
+    expect(loadingElements.length).toBe(3)
   })
 
   it(`can navigate to SettingsScreen`, async () => {
