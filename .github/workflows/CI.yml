@@ -48,7 +48,7 @@ jobs:
     - uses: unsplash/comment-on-pr@master
       if: github.ref != 'refs/heads/master' # don't try to comment on master
       env:
-        GITHUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         msg: Published to [dev.commit-${{ github.sha }}](https://expo.io/@${{ secrets.EXPO_CLI_USERNAME }}/ucl-assistant?release-channel=dev.commit-${{ github.sha }}).
       continue-on-error: true
