@@ -26,9 +26,9 @@ const now = (): Date => getMoment().toDate()
 const local = {
   getMoment: (): Moment => moment().tz(getTimezone()),
   parseToMoment: (
-    date,
+    date: string,
     format = null,
-  ) => parseWithTz(date, getTimezone(), format),
+  ): Moment => parseWithTz(date, getTimezone(), format),
 }
 
 export default {

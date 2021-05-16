@@ -329,7 +329,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                                                 ]
                                               }
                                             >
-                                              8th Feb - 14th Feb
+                                              1st Feb - 7th Feb
                                             </Text>
                                           </View>
                                           <View
@@ -673,7 +673,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                                                 ]
                                               }
                                             >
-                                              8th Feb - 14th Feb
+                                              1st Feb - 7th Feb
                                             </Text>
                                           </View>
                                           <View
@@ -1017,7 +1017,7 @@ exports[`MainTabNavigator renders without error 1`] = `
                                                 ]
                                               }
                                             >
-                                              8th Feb - 14th Feb
+                                              1st Feb - 7th Feb
                                             </Text>
                                           </View>
                                           <View

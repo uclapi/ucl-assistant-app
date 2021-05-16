@@ -12,6 +12,7 @@ module.exports = {
   ],
   setupFiles: [
     ...expoJestPreset.setupFiles,
+    `jest-date-mock`,
   ],
   setupFilesAfterEnv: [
     `@testing-library/jest-native/extend-expect`,

@@ -42,8 +42,6 @@ const styles = StyleSheet.create({
   swiper: { flex: 1 },
 })
 
-const today = LocalisationManager.getMoment()
-
 interface Props extends PropsFromRedux {
   navigation: TimetableNavigationType,
 }
@@ -72,6 +70,8 @@ class TimetableScreen extends React.Component<Props, State> {
     super(props)
     const { timetable } = props
 
+    const today = LocalisationManager.getMoment()
+
     const todayIndex = timetable.findIndex(
       (week) => (
         week !== null
@@ -90,6 +90,7 @@ class TimetableScreen extends React.Component<Props, State> {
   }
 
   componentDidMount = async () => {
+    const today = LocalisationManager.getMoment()
     const {
       user: {
         token,
