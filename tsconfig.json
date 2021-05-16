@@ -10,17 +10,18 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": false, // not strict for now
+    "strict": false,
     "sourceMap": true,
     "esModuleInterop": true,
-    "checkJs": false,
+    "checkJs": false
   },
   "include": [
-    "./types/customTypes.d.ts",
+    "./types/customTypes.d.ts"
   ],
   "exclude": [
     "node_modules",
     "**/*.js",
     "**/*.jsx"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

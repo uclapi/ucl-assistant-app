@@ -28,7 +28,7 @@ the key access to the Google Maps Android API.
 
 Install the necessary dependencies with `npm i`
 
-Then you can start the app with `npm run start`
+Then you can start the app with `npm run start`. If you're using WSL, then you may need to set the RN packager host to your actual IP address instead of the WSL IP address using `export REACT_NATIVE_PACKAGER_HOSTNAME=192.168.x.x`, or do port-forwarding over `adb` debugging.
 
 ### Which API server?
 
