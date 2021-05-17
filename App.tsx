@@ -8,6 +8,7 @@ import { Platform, StatusBar, View } from "react-native"
 // import { enableScreens } from 'react-native-screens'
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/lib/integration/react"
+import { QueryClient, QueryClientProvider } from "react-query"
 import configureStore from "./configureStore"
 import Colors from './constants/Colors'
 import {
@@ -16,7 +17,6 @@ import {
 import RootNavigation from "./navigation/RootNavigation"
 import { NotificationChannels } from "./redux/constants/notificationsConstants"
 import Styles from "./styles/Containers"
-import { QueryClient, QueryClientProvider } from "react-query"
 
 const { persistor, store } = configureStore
 const queryClient = new QueryClient()
@@ -160,7 +160,7 @@ class App extends React.Component<Props, State> {
                 ref={this.navigationRef}
                 onNavigationStateChange={this.onNavigationStateChange}
               />
-          </View>
+            </View>
           </QueryClientProvider>
         </PersistGate>
       </Provider>
