@@ -1,6 +1,6 @@
 {
   "name": "ucl-assistant-app",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "private": true,
   "description": "An app to manage your UCL life",
   "homepage": "https://github.com/uclapi/ucl-assistant-app",
