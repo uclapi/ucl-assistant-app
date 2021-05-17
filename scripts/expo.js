@@ -13,7 +13,8 @@ const executeCommandWithOutput = (command) => new Promise((resolve, reject) => {
 })
 
 const getPublishHistory = async () => {
-  const output = await executeCommandWithOutput(`expo publish:history --raw`)
+  const rawOutput = (await executeCommandWithOutput(`expo publish:history --raw`))
+  const output = rawOutput.slice(rawOutput.indexOf(`{`))
   return JSON.parse(output.replace(/^\[[0-9]{2}:[0-9]{2}:[0-9]{2}\]/, ``).trim())
 }
 

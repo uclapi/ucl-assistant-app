@@ -17,16 +17,16 @@ const run = async () => {
   console.log(`Last published to release channel ${lastChannel} at ${lastPublishedTime}`)
 
   const questions = [{
-    type: `list`,
-    name: `environment`,
-    message: `Publish in which environment?`,
     choices: [`development`, `staging`, `production`],
     default: `production`,
+    message: `Publish in which environment?`,
+    name: `environment`,
+    type: `list`,
   }, {
-    type: `input`,
-    name: `version`,
-    message: `Publish to which version?`,
     default: lastVersion,
+    message: `Publish to which version?`,
+    name: `version`,
+    type: `input`,
   }]
 
   const {
@@ -37,11 +37,13 @@ const run = async () => {
   const expoCommand = `node node_modules/expo/bin/cli.js publish --release-channel=${environment}-${version}`
 
   const confirmationQuestion = [{
-    type: `confirm`,
+
+    default: false,
+
+    message: `The following command will now be run: ${expoCommand}`,
     // eslint-disable-next-line no-secrets/no-secrets
     name: `publishCommandCorrect`,
-    message: `The following command will now be run: ${expoCommand}`,
-    default: false,
+    type: `confirm`,
   }]
 
   const {
