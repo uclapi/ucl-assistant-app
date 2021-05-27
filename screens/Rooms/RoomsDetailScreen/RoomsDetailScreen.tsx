@@ -25,9 +25,9 @@ import {
   Shadow,
 } from "../../../lib"
 import MapStyle from "../../../styles/Map"
+import { Equipment, RoomBooking } from '../../../types/uclapi'
 import type { RoomsNavigatorParamList } from "../RoomsNavigator"
 import FavouriteButton from "./FavouriteButton"
-
 
 const closedRoomDescriptions = [`Room Closed`, `UCL Closed`]
 
@@ -89,10 +89,10 @@ interface Props extends PropsFromRedux {
 }
 
 interface State {
-  equipment: Array<unknown>,
+  equipment: Array<Equipment>,
   fetchBookingsError: Error,
   fetchEquipmentError: Error,
-  roombookings: Array<unknown>,
+  roombookings: Array<RoomBooking>,
 }
 
 class RoomsDetailScreen extends React.Component<Props, State> {
@@ -118,7 +118,7 @@ class RoomsDetailScreen extends React.Component<Props, State> {
     this.fetchRoomBookings(token, roomid, siteid)
   }
 
-  fetchEquipment = async (token, roomid, siteid) => {
+  fetchEquipment = async (token: string, roomid: string, siteid: string) => {
     try {
       const equipment = await ApiManager.rooms.getEquipment(token, {
         roomid,
@@ -144,7 +144,7 @@ class RoomsDetailScreen extends React.Component<Props, State> {
     }
   }
 
-  renderEquipment = ({ description, units }) => {
+  renderEquipment = ({ description, units }: Equipment) => {
     if (description === `Wheelchair accessible`) {
       return (
         <BodyText key={generate()}>
@@ -164,7 +164,7 @@ class RoomsDetailScreen extends React.Component<Props, State> {
     end_time: end,
     description,
     contact,
-  }) => (
+  }: RoomBooking) => (
       <View style={styles.booking} key={generate()}>
         <SearchResultTopText>
           {`${
@@ -303,6 +303,5 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-
 
 export default connector(RoomsDetailScreen)

@@ -18,10 +18,18 @@ const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
   },
+  loadingContainer: {
+    marginTop: 80,
+  },
   subtitle: {
     marginBottom: 10,
   },
 })
+
+interface Site {
+  siteid: string,
+  sitename: string,
+}
 
 interface Props extends PropsFromRedux {
   navigation: StackNavigationProp<RoomsNavigatorParamList>,
@@ -32,7 +40,7 @@ interface State {
   error: Error,
   loadingEmptyRooms: boolean,
   selectedSite: string,
-  sites: Array<unknown>,
+  sites: Array<Site>,
 }
 
 export class EmptyRoomsScreen extends React.Component<
@@ -62,7 +70,7 @@ export class EmptyRoomsScreen extends React.Component<
     const { token } = this.props
     try {
       const emptyRooms = await ApiManager.rooms.getEmptyRooms(token)
-      const sites = Array.from(new Set(emptyRooms.map(({ siteid }) => siteid)))
+      const sites: Site[] = Array.from(new Set(emptyRooms.map(({ siteid }) => siteid)))
         .map((siteid) => ({
           siteid,
           sitename: emptyRooms.find((r) => r.siteid === siteid).sitename,
@@ -138,37 +146,42 @@ export class EmptyRoomsScreen extends React.Component<
     if (error) {
       return <BodyText>{`Could not fetch empty rooms: ${error}`}</BodyText>
     }
-    if (loadingEmptyRooms) {
-      return (
-        <Page>
-          <View style={styles.container}>
-            <BodyText>Searching for empty rooms...</BodyText>
-          </View>
-        </Page>
-      )
-    }
     return (
-      <Page>
+      <Page
+        refreshEnabled
+        onRefresh={this.fetchEmptyRooms}
+        refreshing={loadingEmptyRooms}
+      >
         <View style={styles.container}>
-          <BodyText>
-            Filter by:
-          </BodyText>
-          <Picker
-            selectedValue={selectedSite}
-            onValueChange={this.onSelectSite}
-            testID="building-picker"
-          >
-            <Picker.Item label="All Buildings" value={null} />
-            {
-              sites.map(({ sitename, siteid }) => (
-                <Picker.Item key={siteid} label={sitename} value={siteid} />
-              ))
-            }
-          </Picker>
-          <BodyText style={styles.subtitle}>
-            Rooms vacant for the next hour:
-          </BodyText>
-          {this.renderResults()}
+        {
+          loadingEmptyRooms ? (
+            <View style={styles.loadingContainer}>
+              <BodyText>Searching for empty rooms...</BodyText>
+            </View>
+          ) : (
+            <>
+              <BodyText>
+                  Filter by:
+              </BodyText>
+                <Picker
+                  selectedValue={selectedSite}
+                  onValueChange={this.onSelectSite}
+                  testID="building-picker"
+                >
+                  <Picker.Item label="All Buildings" value={null} />
+                  {
+                    sites.map(({ sitename, siteid }) => (
+                      <Picker.Item key={siteid} label={sitename} value={siteid} />
+                    ))
+                  }
+                </Picker>
+                <BodyText style={styles.subtitle}>
+                  Rooms vacant for the next hour:
+                </BodyText>
+                {this.renderResults()}
+            </>
+          )
+        }
         </View>
       </Page>
     )

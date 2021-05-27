@@ -2,7 +2,7 @@ import axios from "axios"
 import {
   EQUIPMENT_URL, FREE_ROOMS_URL, ROOMBOOKINGS_URL, ROOMS_URL, SITES_URL,
 } from "../../constants/API"
-import type { JWT, Room } from '../../types/uclapi'
+import type { JWT, Room, Equipment } from '../../types/uclapi'
 import ErrorManager from "../ErrorManager"
 import LocalisationManager from "../LocalisationManager"
 
@@ -50,7 +50,7 @@ class roomsController {
           .toISOString()
       ),
     } = {},
-  ) => {
+  ): Promise<Room[]> => {
     try {
       const results = await axios.get(FREE_ROOMS_URL, {
         headers: {
@@ -65,12 +65,27 @@ class roomsController {
         throw new Error(results.data.content.error)
       }
 
+      const {
+        data: {
+          content: {
+            free_rooms: freeRooms,
+          },
+        },
+      }: {
+        data: {
+          content: {
+            free_rooms: Room[],
+          },
+        },
+      } = results
+
       // return unique only. remove once https://github.com/uclapi/uclapi/issues/3016 is fixed
-      return Array.from(new Set(results.data.content.free_rooms
-        .map(({ siteid, roomid }) => `${siteid}|${roomid}`)
-      )).map((aggregate: string) => {
+      return Array.from(new Set(freeRooms
+        .map(({ siteid, roomid }) => `${siteid}|${roomid}`))).map((aggregate: string) => {
         const [siteid, roomid] = aggregate.split(`|`)
-        return results.data.content.free_rooms.find(r => siteid === r.siteid && roomid === r.roomid)
+        return freeRooms.find((r: Room) => (
+          siteid === r.siteid && roomid === r.roomid
+        ))
       })
     } catch (error) {
       ErrorManager.captureError(error)
@@ -78,7 +93,7 @@ class roomsController {
     }
   }
 
-  static getEquipment = async (token: JWT, { roomid, siteid }) => {
+  static getEquipment = async (token: JWT, { roomid, siteid }: Room): Promise<Equipment[]> => {
     if (!roomid || !siteid) {
       throw new Error(`Must specify roomid and siteid`)
     }
@@ -102,7 +117,7 @@ class roomsController {
     }
   }
 
-  static getSites = async (token: JWT) => {
+  static getAllRooms = async (token: JWT): Promise<Room[]> => {
     try {
       const results = await axios.get(SITES_URL, {
         headers: {

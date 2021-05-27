@@ -13,10 +13,13 @@ export interface Location {
 export interface Room {
   roomid: string,
   siteid: string,
+  sitename?: string,
   roomname?: string,
+  classification?: string,
   classification_name?: string,
   capacity?: number,
   location?: Location,
+  automated?: `Y` | `N`,
 }
 
 export interface Region {
@@ -100,4 +103,23 @@ export interface User {
   scopeNumber: number,
   token: string,
   upi: string,
+}
+
+export interface Equipment {
+  type: string,
+  description: string,
+  units: number,
+}
+
+export interface RoomBooking {
+  slotid: string,
+  end_time: Date,
+  description?: string,
+  roomname: string,
+  siteid: string,
+  contact?: string,
+  weeknumber?: number,
+  roomid: string,
+  start_time: Date,
+  phone?: string,
 }

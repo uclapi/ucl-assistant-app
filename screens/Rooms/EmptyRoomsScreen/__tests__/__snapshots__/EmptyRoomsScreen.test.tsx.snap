@@ -47,7 +47,13 @@ Array [
           ]
         }
         keyboardDismissMode="on-drag"
-        refreshControl={null}
+        refreshControl={
+          <RefreshControlMock
+            enabled={true}
+            onRefresh={[Function]}
+            refreshing={false}
+          />
+        }
         style={
           Array [
             Object {
@@ -60,6 +66,7 @@ Array [
           ]
         }
       >
+        <RCTRefreshControl />
         <View>
           <View
             style={
@@ -548,7 +555,13 @@ Array [
           ]
         }
         keyboardDismissMode="on-drag"
-        refreshControl={null}
+        refreshControl={
+          <RefreshControlMock
+            enabled={true}
+            onRefresh={[Function]}
+            refreshing={true}
+          />
+        }
         style={
           Array [
             Object {
@@ -561,6 +574,7 @@ Array [
           ]
         }
       >
+        <RCTRefreshControl />
         <View>
           <View
             style={
@@ -569,22 +583,30 @@ Array [
               }
             }
           >
-            <Text
+            <View
               style={
-                Array [
-                  Object {
-                    "color": "#4D5061",
-                    "fontFamily": "apercu",
-                    "fontSize": 16,
-                    "marginBottom": 1,
-                    "marginTop": 1,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "marginTop": 80,
+                }
               }
             >
-              Searching for empty rooms...
-            </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#4D5061",
+                      "fontFamily": "apercu",
+                      "fontSize": 16,
+                      "marginBottom": 1,
+                      "marginTop": 1,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                Searching for empty rooms...
+              </Text>
+            </View>
           </View>
         </View>
       </RCTScrollView>
@@ -640,7 +662,13 @@ Array [
           ]
         }
         keyboardDismissMode="on-drag"
-        refreshControl={null}
+        refreshControl={
+          <RefreshControlMock
+            enabled={true}
+            onRefresh={[Function]}
+            refreshing={false}
+          />
+        }
         style={
           Array [
             Object {
@@ -653,6 +681,7 @@ Array [
           ]
         }
       >
+        <RCTRefreshControl />
         <View>
           <View
             style={
@@ -794,7 +823,13 @@ Array [
           ]
         }
         keyboardDismissMode="on-drag"
-        refreshControl={null}
+        refreshControl={
+          <RefreshControlMock
+            enabled={true}
+            onRefresh={[Function]}
+            refreshing={false}
+          />
+        }
         style={
           Array [
             Object {
@@ -807,6 +842,7 @@ Array [
           ]
         }
       >
+        <RCTRefreshControl />
         <View>
           <View
             style={
