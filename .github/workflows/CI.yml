@@ -13,8 +13,8 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2-beta
       with:
-        node-version: 12
-    - uses: actions/cache@v2.2.0
+        node-version: 14
+    - uses: actions/cache@v2.1.6
       with:
         path: |
           ~/.npm
@@ -23,9 +23,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Expo GitHub Action
-      uses: expo/expo-github-action@v6.0.0
+      uses: expo/expo-github-action@5.5.1
       with:
-        token: ${{ secrets.EXPO_CLI_TOKEN }}
+        expo-token: ${{ secrets.EXPO_CLI_TOKEN }}
         expo-cache: true
         packager: npm
     - run: echo '${{ secrets.APP_JSON }}' > app.json
@@ -45,7 +45,7 @@ jobs:
       if: github.ref != 'refs/heads/master'
       run: |
           expo publish --release-channel=dev.commit-${{ github.sha }}
-    - uses: unsplash/comment-on-pr@main
+    - uses: unsplash/comment-on-pr@master
       if: github.ref != 'refs/heads/master' # don't try to comment on master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -62,7 +62,7 @@ interface Props {
   navigation: TimetableNavigationType,
   onDateChanged: (date: Moment) => Promise<void>,
   onIndexChanged: (index: number) => void,
-  onRefresh: () => Promise<unknown>,
+  onRefresh: () => void,
   timetable: any,
 }
 

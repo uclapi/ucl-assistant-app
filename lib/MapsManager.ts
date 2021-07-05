@@ -1,4 +1,4 @@
-import { Linking } from "react-native"
+import * as Linking from 'expo-linking'
 
 const navigateToCoords = ({ lat, lng }): void => {
   const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`

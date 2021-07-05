@@ -148,10 +148,10 @@ class TimetableScreen extends React.Component<Props, State> {
     return true
   }
 
-  onRefresh = (): Promise<unknown> => {
+  onRefresh = (): void => {
     const { fetchTimetable, user: { token } } = this.props
     const { date } = this.state
-    return fetchTimetable(token, date)
+    fetchTimetable(token, date)
   }
 
   onSwipe = ({ nativeEvent: { position: index } }) => {

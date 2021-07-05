@@ -4,20 +4,19 @@ import type { AppStateType } from "../../configureStore"
 import { ApiManager, DeviceManager, ErrorManager } from "../../lib"
 import {
   CLEAR_TIMETABLE,
-
   TimetableActionTypes, TIMETABLE_FETCH_FAILURE,
   TIMETABLE_FETCH_SUCCESS,
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
 
-export type TimetableThunkAction = ThunkAction<
-  Promise<unknown>,
+export type TimetableThunkAction<T> = ThunkAction<
+  Promise<T>,
   AppStateType,
   unknown,
   TimetableActionTypes
 >
 export type TimetableDispatch = ThunkDispatch<
-  unknown,
+  AppStateType,
   unknown,
   TimetableActionTypes
 >
@@ -41,30 +40,32 @@ export const setIsFetchingTimetable = (): TimetableActionTypes => ({
 export const fetchTimetable = (
   token: string = null,
   date: Moment = null,
-): TimetableThunkAction => async (
+): TimetableThunkAction<void> => async (
   dispatch: TimetableDispatch,
-): Promise<TimetableActionTypes> => {
+): Promise<void> => {
   await dispatch(setIsFetchingTimetable())
   try {
     const timetable = await ApiManager.timetable.getPersonalWeekTimetable(
       token,
       date,
     )
-    return dispatch(fetchTimetableSuccess(timetable))
+    dispatch(fetchTimetableSuccess(timetable))
+    return
   } catch (error) {
     ErrorManager.captureError(error)
     try {
       const isConnectedToInternet = await DeviceManager.isConnectedToInternet()
       if (!isConnectedToInternet) {
-        return dispatch(
+        dispatch(
           fetchTimetableFailure(`Check your internet connection 😢`),
         )
       }
+      return
     } catch (deviceManagerError) {
       ErrorManager.captureError(deviceManagerError)
     }
 
-    return dispatch(
+    dispatch(
       fetchTimetableFailure(error.message),
     )
   }
