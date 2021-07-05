@@ -51,7 +51,7 @@ export const weeklyTimetableArraySelector = createSelector(
               ([
                 dateISO,
                 { lastModified, timetable: dayTimetable },
-              ]) => ({ dateISO, lastModified, timetable: dayTimetable }),
+              ]: any) => ({ dateISO, lastModified, timetable: dayTimetable }),
             ),
           5,
         ),

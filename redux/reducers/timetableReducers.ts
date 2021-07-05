@@ -5,10 +5,17 @@ import {
   TIMETABLE_IS_FETCHING,
 } from "../constants/timetableConstants"
 
+export interface WeeklyTimetable {
+  [prop: string]: {
+    lastModified: Date,
+    timetable: unknown[],
+  },
+}
+
 interface TimetableState {
   error: string,
   isFetching: boolean,
-  weeklyTimetable: unknown,
+  weeklyTimetable: WeeklyTimetable,
 }
 
 export const initialState: TimetableState = {
@@ -44,7 +51,7 @@ export default (state: TimetableState = initialState, action = null): TimetableS
         ...state,
         isFetching: false,
         weeklyTimetable: {
-          ...(state.weeklyTimetable as Record<string, unknown>),
+          ...(state.weeklyTimetable as WeeklyTimetable),
           ...timetableFrag,
         },
       }

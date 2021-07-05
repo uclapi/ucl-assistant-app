@@ -1,7 +1,6 @@
 import axios from "axios"
 import Constants from "expo-constants"
 import * as Notifications from "expo-notifications"
-import * as Permissions from "expo-permissions"
 
 import { ASSISTANT_API_URL } from "../constants/API"
 import AnalyticsManager from "./AnalyticsManager"
@@ -16,16 +15,14 @@ const registerForPushNotifications = async (token: string): Promise<string> => {
     return ``
   }
 
-  const { status: existingStatus } = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS,
-  )
+  const { status: existingStatus } = await Notifications.getPermissionsAsync()
 
   let finalStatus = existingStatus
 
   // only ask if permissions have not already been determined, because
   // iOS won't necessarily prompt the user a second time.
   if (existingStatus !== `granted`) {
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+    const { status } = await Notifications.getPermissionsAsync()
     finalStatus = status
   }
 
@@ -78,7 +75,7 @@ const registerForPushNotifications = async (token: string): Promise<string> => {
 const hasPushNotificationPermissions = async (): Promise<boolean> => {
   let result
   try {
-    result = await Permissions.getAsync(Permissions.NOTIFICATIONS)
+    result = await Notifications.getPermissionsAsync()
   } catch (error) {
     ErrorManager.captureError(error)
     throw new Error(`Failed to check if push notifications permissions granted`)

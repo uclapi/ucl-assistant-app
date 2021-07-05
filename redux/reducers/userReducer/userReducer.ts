@@ -1,3 +1,4 @@
+import type { PersistState } from "redux-persist/es/types"
 import type { User } from '../../../types/uclapi'
 import {
   DECLINE_PUSH_NOTIFICATIONS,
@@ -19,10 +20,19 @@ interface Settings {
 }
 
 export interface UserState extends User {
+  apiToken: string,
+  cn: string,
   declinePushNotifications: boolean,
+  department: string,
+  email: string,
   expoPushToken: string,
+  fullName: string,
+  givenName: string,
   settings: Settings,
   signIn: SignInState,
+  token: string,
+  upi: string,
+  _persist?: PersistState,
 }
 
 export const initialState: UserState = {

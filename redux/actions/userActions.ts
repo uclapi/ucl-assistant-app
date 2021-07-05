@@ -22,7 +22,7 @@ export type UserThunkAction = ThunkAction<
 >
 
 export type UserDispatch = ThunkDispatch<
-  unknown,
+  AppStateType,
   unknown,
   UserActionTypes
 >
@@ -70,7 +70,12 @@ export const signIn = (): UserThunkAction => async (
   })
   if (result.type === `success`) {
     const action = signInSuccess(result)
-    dispatch(fetchTimetable(action.user.token, LocalisationManager.getMoment()))
+    dispatch(
+      fetchTimetable(
+        action.user.token,
+        LocalisationManager.getMoment(),
+      ),
+    )
     AnalyticsManager.setUserId(action.user.upi)
     AnalyticsManager.setUserProperties(action.user)
     ErrorManager.setUser(action.user)

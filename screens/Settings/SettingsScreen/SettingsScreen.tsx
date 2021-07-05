@@ -10,11 +10,11 @@ import * as IntentLauncherAndroid from "expo-intent-launcher"
 import React from "react"
 import {
   Alert,
-  Linking,
   Platform,
   StyleSheet,
   View,
 } from "react-native"
+import * as Linking from 'expo-linking'
 import { connect, ConnectedProps } from "react-redux"
 import CheckBox from '../../../components/CheckBox'
 import { SmallButton } from "../../../components/Button"
@@ -195,6 +195,7 @@ export class SettingsScreen extends React.Component<Props, State> {
   //     StoreReview.requestReview()
   //   }
   //   AnalyticsManager.logEvent(
+  // eslint-disable-next-line no-secrets/no-secrets
   //     AnalyticsManager.events.SETTINGS_RATE_APP,
   //     { isSupported },
   //   )

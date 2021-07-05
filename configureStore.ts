@@ -38,8 +38,6 @@ const appReducer = combineReducers({
   ...otherReducers,
 })
 
-export type AppStateType = ReturnType<typeof appReducer>
-
 const rootReducer = (state, action) => appReducer(
   action.type === SIGN_OUT_USER ? undefined : state, action,
 )
@@ -48,9 +46,12 @@ const persistRootReducer = persistReducer(config, rootReducer)
 
 const store = createStore(
   persistRootReducer,
-  initialState,
+  initialState as unknown,
   applyMiddleware(...middleware),
 )
+
+export type AppStateType = ReturnType<typeof store.getState>
+
 const persistor = persistStore(store)
 
 export default { persistor, store }
